@@ -165,36 +165,19 @@ ModuleNotFoundError: No module named 'homepage'
 It'll take us a few steps to get the home page to show
 up, but we'll start by tackling that error. 
 
+- Stop the server
 
+We'll need to run another <<code|python manage.py>> command
+in the next step. Let's stop the server by holding down 
+the <<kbd|control>> key on the keyboard then pressing <<kbd|c>>
 
+- Make the new app/module
 
+The error message starts with "ModuleNotFountError". In Django's
+terminology the module it's looking for is called an "app". (TODO:
+more details on app/module). 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- Expected Error in the terminals:
-
-ModuleNotFoundError: No module named 'homepage'
-
-- To fix the error make the module 
-(aka app) with this command which will create a new "homepage" 
-directory with an initial set of files in it. 
-
-Stop the server with Ctrl+C, then run:
+Run this command to create our new "homepage" app/module:
 
 -- cli/
 
@@ -202,7 +185,29 @@ python manage.py startapp homepage
 
 -- /cli
 
-- Register the newly created app/module in tutorial_site/settings.py
+- Register the newly created app/module
+
+After creating the app/module with "startapp" in the previous 
+command we have to configure Django to use it. We do this
+by adding this line:
+
+-- pre/
+
+"homepage.apps.HomepageConfig",
+
+-- /pre
+
+to the <<code|INSTALLED_APPS>> list variable in the file:
+
+-- pre/
+
+django_tutorial/tutorial_site/tutorial_site/settings.py 
+
+-- /pre
+
+There's a lot to that file so you'll have to scroll down
+some to find it. When you've made the update, the variable
+should look like this:
 
 -- code/
 -- python
@@ -219,8 +224,14 @@ INSTALLED_APPS = [
 
 -- /code
 
+TODO: Link to some docs about how the <<code|"homepage.apps.HomepageConfig",>> 
+line works. 
 
-- Start the server again with:
+- Start the server
+
+With that change in place, we're ready to start the
+server again which will show us a new error. Run
+this to start the server:
 
 -- cli/
 
@@ -228,18 +239,49 @@ python manage.py runserver
 
 -- /cli
 
+The error in the console changes from:
 
-- This will create a new error something like:
+-- pre/
 
-ModuleNotFuleError: No module named 'homepage.urls'
+ModuleNotFoundError: No module named 'homepage'
 
+-- /pre
 
-- To fix this error create a new "urls.py" file
-inside the newly created "homepage" directory with this for 
-the content:
+To:
+
+-- pre/
+
+ModuleNotFoundError: No module named 'homepage.urls'
+
+-- /pre
+
+- Stop the server 
+
+We're going to add a new file in the next step. We'll
+need to restart the server to see the change so 
+we can stop it now with:
+
+<<kbd|control>>+<<kbd|c>>
+
+- Add a <<code|homepage/urls.py>> file
+
+Django is looking for a file at:
+
+-- pre/
+
+django_tutorial/tutorial_site/homepage/urls.py
+
+-- /pre
+
+When we ran the <<code|python manage.py startapp homepage>> 
+command it built a bunch of default files in the "homepage"
+directory, but "url.py" wasn't one of them. We have 
+to make it ourselves. Create it now and add this for
+the contents of the file:
 
 -- code/
 -- python
+-- subtitle: django_tutorial/tutorial_site/homepage/urls.py
 
 from django.urls import path
 
@@ -252,7 +294,127 @@ urlpatterns = [
 
 -- /code
 
-- Stop the server with <<kbd|Ctrl>>+<<kdb|c>> and restart it again with:
+This file looks a lot like: 
+
+-- pre/
+
+django_tutorial/tutorial_site/tutorial_site/urls.py
+
+-- /pre
+
+In fact, they two files work together. Inside that file
+the line:
+
+-- code/
+-- python
+
+path("", include("homepage.urls")),
+
+-- /code
+
+calls out to include the file we just created at:
+
+-- pre/
+
+django_tutorial/tutorial_site/homepage/urls.py
+
+-- /pre
+
+- Examine the new urls.py file
+
+Let's take a quick look at the lines of the new "urls.py" file
+to see what's going on. 
+
+Details:
+
+-- list/
+
+- The first line is a the basic import statement that
+let's use use the <<code|path()|python>> function in 
+our <<code|urlpatterns|python>> variable later in the file.
+
+-- code/
+-- python
+
+from django.urls import path
+
+-- /code
+
+
+- The next line of code is:
+
+-- code/
+-- python
+
+from . import views
+
+-- /code
+
+This imports the "views.py" file from the current
+directory. In this case that means it's pointing to:
+
+-- pre/
+
+django_tutorial/tutorial_site/homepage/views.py
+
+-- /pre
+
+We'll be editing that file in our next step. 
+
+- The next code line is:
+
+-- code/
+-- python
+
+app_name = "homepage"
+
+-- /code
+
+The "app_name" provides us with part of what we need
+to automatically generate links. We'll see more about
+how that works in a moment. 
+
+- Next we get to:
+
+-- code/
+-- python
+
+urlpatterns = [
+    path("", views.index, name="index"),
+]
+
+-- /code
+
+These paths are combined with those from the top level 
+file (i.e. <<code|django_tutorial/tutorial_site/tutorial_site/urls.py>>)
+to create that pattern matches for requested URLs and 
+assocaite them with their respective actions. 
+
+In this case, we have an <<code|"">> empty string for the 
+matcher. TODO: show how this works with the top level
+urls.py file to serve the home page.
+
+The "views.index" parameter tells Django that we want 
+to use the "index" function from the "views.py" file
+that was imported earlier. (That function doesn't 
+exist yet, so we'll expect an error that we'll discuss
+in a moment)
+
+The last argument passed to the path is <<code|name="index">>. 
+This name is the second component we can use to 
+automatically generate links to specific URLs. In this 
+case, our "app_name" from above is "homepage" which we combine
+with "index" into the format "homepage:index". We'll see
+examples of how this is used later in the tutorial. 
+
+
+-- /list
+
+- Start the server
+
+With our new <<code|urls.py>> file in place we can start
+the server again to see our new error message. Run it
+with the command:
 
 -- cli/
 
@@ -260,13 +422,44 @@ python manage.py runserver
 
 -- /cli
 
+The server will dump a big error message that ends with:
 
-- The terminal error message will update to something like:
+-- pre/
 
 AttributeError: module 'homepage.views' has no attribute 'index'
 
+-- /pre
 
-- Change 'homepage/views.py' to this:
+This is exactly what we're expecting since we know that 
+we haven't yet created an "index" function in the homepage
+app's "views.py" file. We'll do that now. 
+
+- Add and "index" function to the homepage app's "views.py" file
+
+The file we need to edit is:
+
+-- pre/
+
+django_tutorial/tutorial_site/homepage/views.py
+
+-- /pre
+
+The default version that was created when we ran the "startapp"
+command contains only a single line of code and a comment
+that looks like this:
+
+-- code/
+-- python
+
+from django.shortcuts import render
+
+# Create your views here.
+
+-- /code
+
+We can remove the comment and create a new "index" function
+that Django is looking for. Here's the full contents of
+what the file should look like:
 
 -- code/
 -- python
@@ -279,9 +472,112 @@ def index(request):
 
 -- /code
 
+paste that in and save the file which will automatically 
+reload the server and clear the errors and should show 
+this response:
 
-- Refresh the page at: http://127.0.0.1:8000/ and you'll see
-a "TemplateDoesNotExist at /" error page. 
+-- pre/
+
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+September 26, 2024 - 22:41:21
+Django version 5.1.1, using settings 'tutorial_site.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+-- /pre
+
+At this point we can open our browser to our home page
+which will have changed from the default Django home page
+to an error page that starts with 
+
+-- pre/
+
+TemplateDoesNotExist at /
+
+-- /pre
+
+We'll address that in a moment, but first let's look 
+and the file we just updated. 
+
+
+- Examine the homepage views.py file
+
+Details:
+
+-- list/
+
+- The first line is:
+
+-- code/
+-- python
+
+from django.shortcuts import render
+
+-- /code
+
+This imports some of the built-in Django functionality
+for a <<code|render()|python>> function that we'll use
+as the return value for our function. 
+
+- The next code line is:
+
+-- code/
+-- python
+
+def index(request):
+
+-- /code
+
+This creates a new Python function named "index" that
+expects a "request" object to be passed to it. Since
+we're in the "views.py" file this is what the "views.index"
+portion of the <<code|path()|python>> function in the 
+homepage "urls.py" file from above points to. 
+
+- Our next line is:
+
+-- code/
+-- python
+
+context = {}
+
+-- /code
+
+The context is something that's required to be passed
+to <<code|render()|python>> on the next line. We don't need
+to do anything with it on our homepage so it's empty here. 
+
+- Our last line is:
+
+-- code/
+-- python
+
+return render(request, "homepage/index.html", context)
+
+-- /code
+
+This is the respose that's returned to Django for assembly 
+into the content that's sent back to the browser. The value
+that's returned is from the <<code|render()|python>> function. 
+It takes three arguments:
+
+-- list/
+
+- The "request" object that was passed into the "index" function
+
+- The template to use for the rendering (in this case "homepage/index.html")
+
+- And the context (which we defined as empty in the prior line)
+
+-- /list
+
+-- /list
+
+
+
 
 - Add the template at:
 

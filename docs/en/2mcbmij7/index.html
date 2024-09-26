@@ -651,9 +651,7 @@ up, but we'll start by tackling that error.
 
 <p>
 
-Expected Error in the terminals
-
-:
+Stop the server
 
 </p>
 
@@ -661,11 +659,31 @@ Expected Error in the terminals
 
 <p>
 
-ModuleNotFoundError
+We'll need to run another 
 
-:
+<code class=""><span class="text plain">python manage.py</span></code>
 
- No module named 'homepage'
+ command
+
+
+
+
+in the next step. Let's stop the server by holding down 
+
+
+
+
+the 
+
+<kbd 
+
+>control</kbd>
+
+ key on the keyboard then pressing 
+
+<kbd 
+
+>c</kbd>
 
 </p>
 
@@ -679,17 +697,7 @@ ModuleNotFoundError
 
 <p>
 
-To fix the error make the module 
-
-
-
-
-(aka app) with this command which will create a new "homepage" 
-
-
-
-
-directory with an initial set of files in it. 
+Make the new app/module
 
 </p>
 
@@ -697,7 +705,27 @@ directory with an initial set of files in it.
 
 <p>
 
-Stop the server with Ctrl+C, then run
+The error message starts with "ModuleNotFountError". In Django's
+
+
+
+
+terminology the module it's looking for is called an "app". (TODO
+
+:
+
+
+
+
+more details on app/module). 
+
+</p>
+
+
+
+<p>
+
+Run this command to create our new "homepage" app/module
 
 :
 
@@ -724,11 +752,91 @@ Stop the server with Ctrl+C, then run
 
 <p>
 
-Register the newly created app/module in tutorial
+Register the newly created app/module
 
-_
+</p>
 
-site/settings.py
+
+
+<p>
+
+After creating the app/module with "startapp" in the previous 
+
+
+
+
+command we have to configure Django to use it. We do this
+
+
+
+
+by adding this line
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+
+
+<pre>&quot;homepage.apps.HomepageConfig&quot;,</pre>
+
+
+    
+</section>
+
+
+
+
+
+
+
+<p>
+
+to the 
+
+<code class=""><span class="text plain">INSTALLED_APPS</span></code>
+
+ list variable in the file
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+
+
+<pre>django_tutorial&#x2f;tutorial_site&#x2f;tutorial_site&#x2f;settings.py</pre>
+
+
+    
+</section>
+
+
+
+
+
+
+
+<p>
+
+There's a lot to that file so you'll have to scroll down
+
+
+
+
+some to find it. When you've made the update, the variable
+
+
+
+
+should look like this
+
+:
 
 </p>
 
@@ -753,6 +861,27 @@ site/settings.py
 
 
 
+<p>
+
+TODO
+
+:
+
+ Link to some docs about how the 
+
+<code class=""><span class="text plain">&quot;homepage.apps.HomepageConfig&quot;,</span></code>
+
+ 
+
+
+
+
+line works. 
+
+</p>
+
+
+
 </li>
 
 
@@ -761,7 +890,25 @@ site/settings.py
 
 <p>
 
-Start the server again with
+Start the server
+
+</p>
+
+
+
+<p>
+
+With that change in place, we're ready to start the
+
+
+
+
+server again which will show us a new error. Run
+
+
+
+
+this to start the server
 
 :
 
@@ -780,6 +927,56 @@ Start the server again with
 
 
 
+<p>
+
+The error in the console changes from
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+
+
+<pre>ModuleNotFoundError: No module named &#x27;homepage&#x27;</pre>
+
+
+    
+</section>
+
+
+
+
+
+
+
+<p>
+
+To
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+
+
+<pre>ModuleNotFoundError: No module named &#x27;homepage.urls&#x27;</pre>
+
+
+    
+</section>
+
+
+
+
+
+
+
 </li>
 
 
@@ -788,7 +985,25 @@ Start the server again with
 
 <p>
 
-This will create a new error something like
+Stop the server 
+
+</p>
+
+
+
+<p>
+
+We're going to add a new file in the next step. We'll
+
+
+
+
+need to restart the server to see the change so 
+
+
+
+
+we can stop it now with
 
 :
 
@@ -798,11 +1013,15 @@ This will create a new error something like
 
 <p>
 
-ModuleNotFuleError
+<kbd 
 
-:
+>control</kbd>
 
- No module named 'homepage.urls'
++
+
+<kbd 
+
+>c</kbd>
 
 </p>
 
@@ -816,17 +1035,68 @@ ModuleNotFuleError
 
 <p>
 
-To fix this error create a new "urls.py" file
+Add a 
+
+<code class=""><span class="text plain">homepage/urls.py</span></code>
+
+ file
+
+</p>
+
+
+
+<p>
+
+Django is looking for a file at
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+
+
+<pre>django_tutorial&#x2f;tutorial_site&#x2f;homepage&#x2f;urls.py</pre>
+
+
+    
+</section>
 
 
 
 
-inside the newly created "homepage" directory with this for 
+
+
+
+<p>
+
+When we ran the 
+
+<code class=""><span class="text plain">python manage.py startapp homepage</span></code>
+
+ 
 
 
 
 
-the content
+command it built a bunch of default files in the "homepage"
+
+
+
+
+directory, but "url.py" wasn't one of them. We have 
+
+
+
+
+to make it ourselves. Create it now and add this for
+
+
+
+
+the contents of the file
 
 :
 
@@ -852,6 +1122,84 @@ the content
 
 
 
+<p>
+
+This file looks a lot like
+
+:
+
+ 
+
+</p>
+
+
+<section class="pre-section">
+
+
+
+<pre>django_tutorial&#x2f;tutorial_site&#x2f;tutorial_site&#x2f;urls.py</pre>
+
+
+    
+</section>
+
+
+
+
+
+
+
+<p>
+
+In fact, they two files work together. Inside that file
+
+
+
+
+the line
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span>,</span></code></pre>
+
+
+
+<p>
+
+calls out to include the file we just created at
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+
+
+<pre>django_tutorial&#x2f;tutorial_site&#x2f;homepage&#x2f;urls.py</pre>
+
+
+    
+</section>
+
+
+
+
+
+
+
 </li>
 
 
@@ -860,19 +1208,388 @@ the content
 
 <p>
 
-Stop the server with 
+Examine the new urls.py file
 
-<kbd 
+</p>
 
->Ctrl</kbd>
 
-+
 
-<kdb 
+<p>
 
->c</kdb>
+Let's take a quick look at the lines of the new "urls.py" file
 
- and restart it again with
+
+
+
+to see what's going on. 
+
+</p>
+
+
+
+<p>
+
+Details
+
+:
+
+</p>
+
+
+
+<ul class="flow">
+
+
+<li class="flow">
+
+
+<p>
+
+The first line is a the basic import statement that
+
+
+
+
+let's use use the 
+
+<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
+
+ function in 
+
+
+
+
+our 
+
+<code class=""><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span></span></code>
+
+ variable later in the file.
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span></span></code></pre>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+The next line of code is
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="keyword control import relative python">.</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">views</span></span></span></code></pre>
+
+
+
+<p>
+
+This imports the "views.py" file from the current
+
+
+
+
+directory. In this case that means it's pointing to
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+
+
+<pre>django_tutorial&#x2f;tutorial_site&#x2f;homepage&#x2f;views.py</pre>
+
+
+    
+</section>
+
+
+
+
+
+
+
+<p>
+
+We'll be editing that file in our next step. 
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+The next code line is
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">app_name</span></span> <span class="keyword operator assignment python">=</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage<span class="punctuation definition string end python">&quot;</span></span></span></span></code></pre>
+
+
+
+<p>
+
+The "app
+
+_
+
+name" provides us with part of what we need
+
+
+
+
+to automatically generate links. We'll see more about
+
+
+
+
+how that works in a moment. 
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Next we get to
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
+<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">views</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">index</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">name</span><span class="keyword operator assignment python">=</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">index<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+
+
+
+<p>
+
+These paths are combined with those from the top level 
+
+
+
+
+file (i.e. 
+
+<code class=""><span class="text plain">django_tutorial/tutorial_site/tutorial_site/urls.py</span></code>
+
+)
+
+
+
+
+to create that pattern matches for requested URLs and 
+
+
+
+
+assocaite them with their respective actions. 
+
+</p>
+
+
+
+<p>
+
+In this case, we have an 
+
+<code class=""><span class="text plain">&quot;&quot;</span></code>
+
+ empty string for the 
+
+
+
+
+matcher. TODO
+
+:
+
+ show how this works with the top level
+
+
+
+
+urls.py file to serve the home page.
+
+</p>
+
+
+
+<p>
+
+The "views.index" parameter tells Django that we want 
+
+
+
+
+to use the "index" function from the "views.py" file
+
+
+
+
+that was imported earlier. (That function doesn't 
+
+
+
+
+exist yet, so we'll expect an error that we'll discuss
+
+
+
+
+in a moment)
+
+</p>
+
+
+
+<p>
+
+The last argument passed to the path is 
+
+<code class=""><span class="text plain">name=&quot;index&quot;</span></code>
+
+. 
+
+
+
+
+This name is the second component we can use to 
+
+
+
+
+automatically generate links to specific URLs. In this 
+
+
+
+
+case, our "app
+
+_
+
+name" from above is "homepage" which we combine
+
+
+
+
+with "index" into the format "homepage
+
+:
+
+index". We'll see
+
+
+
+
+examples of how this is used later in the tutorial. 
+
+</p>
+
+
+
+</li>
+
+</ul>
+
+
+
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Start the server
+
+</p>
+
+
+
+<p>
+
+With our new 
+
+<code class=""><span class="text plain">urls.py</span></code>
+
+ file in place we can start
+
+
+
+
+the server again to see our new error message. Run it
+
+
+
+
+with the command
 
 :
 
@@ -891,6 +1608,49 @@ Stop the server with
 
 
 
+<p>
+
+The server will dump a big error message that ends with
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+
+
+<pre>AttributeError: module &#x27;homepage.views&#x27; has no attribute &#x27;index&#x27;</pre>
+
+
+    
+</section>
+
+
+
+
+
+
+
+<p>
+
+This is exactly what we're expecting since we know that 
+
+
+
+
+we haven't yet created an "index" function in the homepage
+
+
+
+
+app's "views.py" file. We'll do that now. 
+
+</p>
+
+
+
 </li>
 
 
@@ -899,9 +1659,7 @@ Stop the server with
 
 <p>
 
-The terminal error message will update to something like
-
-:
+Add and "index" function to the homepage app's "views.py" file
 
 </p>
 
@@ -909,25 +1667,75 @@ The terminal error message will update to something like
 
 <p>
 
-AttributeError
+The file we need to edit is
 
 :
 
- module 'homepage.views' has no attribute 'index'
+</p>
+
+
+<section class="pre-section">
+
+
+
+<pre>django_tutorial&#x2f;tutorial_site&#x2f;homepage&#x2f;views.py</pre>
+
+
+    
+</section>
+
+
+
+
+
+
+
+<p>
+
+The default version that was created when we ran the "startapp"
+
+
+
+
+command contains only a single line of code and a comment
+
+
+
+
+that looks like this
+
+:
 
 </p>
 
 
 
-</li>
+
+<section class="code-section">
 
 
-<li class="flow">
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">shortcuts</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">render</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="comment line number-sign python"><span class="punctuation definition comment python">#</span> Create your views here.</span></span></code></pre>
+
 
 
 <p>
 
-Change 'homepage/views.py' to this
+We can remove the comment and create a new "index" function
+
+
+
+
+that Django is looking for. Here's the full contents of
+
+
+
+
+what the file should look like
 
 :
 
@@ -950,6 +1758,94 @@ Change 'homepage/views.py' to this
 
 
 
+<p>
+
+paste that in and save the file which will automatically 
+
+
+
+
+reload the server and clear the errors and should show 
+
+
+
+
+this response
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+
+
+<pre>Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+September 26, 2024 - 22:41:21
+Django version 5.1.1, using settings &#x27;tutorial_site.settings&#x27;
+Starting development server at http:&#x2f;&#x2f;127.0.0.1:8000&#x2f;
+Quit the server with CONTROL-C.</pre>
+
+
+    
+</section>
+
+
+
+
+
+
+
+<p>
+
+At this point we can open our browser to our home page
+
+
+
+
+which will have changed from the default Django home page
+
+
+
+
+to an error page that starts with 
+
+</p>
+
+
+<section class="pre-section">
+
+
+
+<pre>TemplateDoesNotExist at &#x2f;</pre>
+
+
+    
+</section>
+
+
+
+
+
+
+
+<p>
+
+We'll address that in a moment, but first let's look 
+
+
+
+
+and the file we just updated. 
+
+</p>
+
+
+
 </li>
 
 
@@ -958,26 +1854,298 @@ Change 'homepage/views.py' to this
 
 <p>
 
-Refresh the page at
-
-:
-
- http
-
-:
-
-//127.0.0.1
-
-:
-
-8000/ and you'll see
-
-
-
-
-a "TemplateDoesNotExist at /" error page. 
+Examine the homepage views.py file
 
 </p>
+
+
+
+<p>
+
+Details
+
+:
+
+</p>
+
+
+
+<ul class="flow">
+
+
+<li class="flow">
+
+
+<p>
+
+The first line is
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">shortcuts</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">render</span></span></span></code></pre>
+
+
+
+<p>
+
+This imports some of the built
+
+-
+
+in Django functionality
+
+
+
+
+for a 
+
+<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
+
+ function that we'll use
+
+
+
+
+as the return value for our function. 
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+The next code line is
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta function python"><span class="storage type function python">def</span> <span class="entity name function python"><span class="meta generic-name python">index</span></span></span><span class="meta function parameters python"><span class="punctuation section parameters begin python">(</span></span><span class="meta function parameters python"><span class="variable parameter python">request</span><span class="punctuation section parameters end python">)</span></span><span class="meta function python"><span class="punctuation section function begin python">:</span></span></span></code></pre>
+
+
+
+<p>
+
+This creates a new Python function named "index" that
+
+
+
+
+expects a "request" object to be passed to it. Since
+
+
+
+
+we're in the "views.py" file this is what the "views.index"
+
+
+
+
+portion of the 
+
+<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
+
+ function in the 
+
+
+
+
+homepage "urls.py" file from above points to. 
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Our next line is
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">context</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure dictionary python"><span class="punctuation section dictionary begin python">{</span><span class="meta empty-dictionary python"><span class="punctuation section dictionary end python">}</span></span></span></span></code></pre>
+
+
+
+<p>
+
+The context is something that's required to be passed
+
+
+
+
+to 
+
+<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
+
+ on the next line. We don't need
+
+
+
+
+to do anything with it on our homepage so it's empty here. 
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Our last line is
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta qualified-name python"><span class="meta generic-name python">request</span></span><span class="punctuation separator arguments python">,</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage/index.html<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">context</span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
+
+
+
+<p>
+
+This is the respose that's returned to Django for assembly 
+
+
+
+
+into the content that's sent back to the browser. The value
+
+
+
+
+that's returned is from the 
+
+<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
+
+ function. 
+
+
+
+
+It takes three arguments
+
+:
+
+</p>
+
+
+
+<ul class="flow">
+
+
+<li class="flow">
+
+
+<p>
+
+The "request" object that was passed into the "index" function
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+The template to use for the rendering (in this case "homepage/index.html")
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+And the context (which we defined as empty in the prior line)
+
+</p>
+
+
+
+</li>
+
+</ul>
+
+
+
+
+
+
+
+</li>
+
+</ul>
+
+
+
+
 
 
 
