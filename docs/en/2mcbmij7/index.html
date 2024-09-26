@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Section 2 - Make A Home Page</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta property="og:title" content="Section 2 - Make A Home Page" />
+<meta property="og:description" content="a post from alan w. smith" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://django.alanwsmith.com/en/2mcbmij7/?page=section-2-make-a-home-page" />
+<meta property="og:image" content="https://django.alanwsmith.com/neo-images/default-og-image/1200w.jpg" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/theme/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/theme/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/theme/favicons/favicon-16x16.png">
+<link rel="manifest" href="/theme/favicons/site.webmanifest">
+<link rel="mask-icon" href="/theme/favicons/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/theme/favicons/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/theme/favicons/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="/theme/styles/variables.css" />
+<link rel="stylesheet" href="/theme/styles/theme.css" />
+<link rel="stylesheet" href="/theme/styles/syntax-highlighting/code-solarized-dark.css" /></head>
+<body>
+<header>
+      <a href="/">Home</a>
+      <div class="under-construction">
+        NOTE: I'm in the middle of upgrading the site. Most things are in place, but
+        some things are missing and/or broken. This includes alt text for images. Please
+        bear with me while I get things fixed. 
+      </div>
+    </header>
+<main class="flow">
+
+<section class="title-section flow">
+<hgroup>
+
+  
+    <h1 class="page-title">
+    
+      Section 2 
+    
+      -
+    
+       Make A Home Page
+    
+    </h1>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+
+</section>
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Introduction 
+    
+    </h2>
+    
+  
+
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>
+
+Django provided us with a nice default home page to 
+
+
+
+
+let us know that things are working, but we don't 
+
+
+
+
+want it to be what folks would see if they visited
+
+
+
+
+our site. Instead, we'll make our own basic home
+
+
+
+
+page.
+
+</p>
+
+
+
+
+    
+<p>
+
+Before we get started, 
+
+<a href="/en/2mcf8e2u/?page=starting-the-python-virtual-environment">make sure the Python
+virtual environment is active</a>
+
+
+.
+
+</p>
+
+
+
+
+
+    
+
+    
+
+    
+
+</section>
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      The Steps
+    
+    </h2>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+
+    
+
+</section>
+<ul class="flow">
+
+
+<li class="flow">
+
+
+<p>
+
+Examine the initial url paths
+
+</p>
+
+
+
+<p>
+
+The first change we're going make is to update the routing
+
+
+
+
+functionality to point calls to the root of the site. 
+
+
+
+
+These changes are made in the file
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+
+
+<pre>django_tutorial&#x2f;tutorial_site&#x2f;tutorial_site&#x2f;urls.py</pre>
+
+
+    
+</section>
+
+
+
+
+
+
+
+<p>
+
+Before we make any changes, let's examine the initial version 
+
+
+
+
+of the file that looks like this
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="comment line number-sign python"><span class="punctuation definition comment python">#</span> A bunch of comments are here that we&#39;re 
+<span class="line-marker"></span></span><span class="comment line number-sign python"><span class="punctuation definition comment python">#</span> going to ignore
+<span class="line-marker"></span></span>
+<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
+<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
+<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">admin/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+
+
+
+<p>
+
+These first two lines of code are
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
+<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span></span></code></pre>
+
+
+
+<p>
+
+These lines import some of Django's
+
+
+
+
+default functionality that's used for the 
+
+
+
+
+configuration. 
+
+</p>
+
+
+
+<p>
+
+The next snippet of code is
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
+<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">admin/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+
+
+
+<p>
+
+The 
+
+<code class=""><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span><span class="punctuation section list end python">]</span></span></span></code>
+
+ list holds a 
+
+
+
+
+collection of 
+
+<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
+
+ functions. These are
+
+
+
+
+what define the specific url paths that define the routes. 
+
+</p>
+
+
+
+<p>
+
+The 
+
+<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
+
+ functions take two required arguments. The first is 
+
+
+
+
+a pattern to match in the requested page's URL. The second
+
+
+
+
+is what to do when a match is found. (The 
+
+<code class=""><span class="text plain">path()</span></code>
+
+ 
+
+
+
+
+function can also take two optional arguments for "kwargs" and "name"
+
+
+
+
+that we'll see later.)
+
+</p>
+
+
+
+<p>
+
+The initial path that's include by default is
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">admin/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
+
+
+
+<p>
+
+It tells Django to match "admin/" from the URL of
+
+
+
+
+a page request and send it to the built in admin functionality
+
+
+
+
+defined in 
+
+<code class=""><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span></code>
+
+. This is what
+
+
+
+
+powers the http
+
+:
+
+//127.0.0.1
+
+:
+
+8000/admin/ pages. 
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Adding the new url path route
+
+</p>
+
+
+
+<p>
+
+We need to do two things to create the new url path route
+
+
+
+
+for the home page. First, we need to import a new module 
+
+
+
+
+with
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">include</span></span></span></code></pre>
+
+
+
+<p>
+
+Then, we need to add a new path with
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span>,</span></code></pre>
+
+
+
+<p>
+
+The empty 
+
+<code class=""><span class="source python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span></span></code>
+
+ match argument
+
+
+
+
+means the 
+
+<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
+
+ is for the root
+
+
+
+
+of the site (i.e. http
+
+:
+
+//127.0.0.1
+
+:
+
+8000/) and
+
+
+
+
+the 
+
+<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span></code>
+
+ tells
+
+
+
+
+Django that we want to use an app/module named
+
+
+
+
+"homepage" to handle it. (We haven't created this
+
+
+
+
+module yet, so this will cause an expected error
+
+
+
+
+that we see below.)
+
+</p>
+
+
+
+<p>
+
+Putting those two lines in place updates the file
+
+
+
+
+to look like this which you can copy and paste 
+
+
+
+
+to replace the contents of the original
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
+<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span>
+<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">include</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
+<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">admin/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+
+
+
+<p>
+
+When we save that file the Django server in the 
+
+
+
+
+terminal will reload itself and show an error
+
+
+
+
+that ends with
+
+:
+
+ 
+
+</p>
+
+
+<section class="pre-section">
+
+
+
+<pre>ModuleNotFoundError: No module named &#x27;homepage&#x27;</pre>
+
+
+    
+</section>
+
+
+
+
+
+
+
+<p>
+
+It'll take us a few steps to get the home page to show
+
+
+
+
+up, but we'll start by tackling that error. 
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Expected Error in the terminals
+
+:
+
+</p>
+
+
+
+<p>
+
+ModuleNotFoundError
+
+:
+
+ No module named 'homepage'
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+To fix the error make the module 
+
+
+
+
+(aka app) with this command which will create a new "homepage" 
+
+
+
+
+directory with an initial set of files in it. 
+
+</p>
+
+
+
+<p>
+
+Stop the server with Ctrl+C, then run
+
+:
+
+</p>
+
+
+
+
+<section class="cli-section">
+
+
+
+
+
+<pre class="cli-pre"><code>python manage.py startapp homepage</code></pre>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Register the newly created app/module in tutorial
+
+_
+
+site/settings.py
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta qualified-name python"><span class="variable other constant python">INSTALLED_APPS</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
+<span class="line-marker"></span>    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.admin<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span>    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span>    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.contenttypes<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span>    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.sessions<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span>    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.messages<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span>    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.staticfiles<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span>    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.apps.HomepageConfig<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Start the server again with
+
+:
+
+</p>
+
+
+
+
+<section class="cli-section">
+
+
+
+
+
+<pre class="cli-pre"><code>python manage.py runserver</code></pre>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+This will create a new error something like
+
+:
+
+</p>
+
+
+
+<p>
+
+ModuleNotFuleError
+
+:
+
+ No module named 'homepage.urls'
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+To fix this error create a new "urls.py" file
+
+
+
+
+inside the newly created "homepage" directory with this for 
+
+
+
+
+the content
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="keyword control import relative python">.</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">views</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">app_name</span></span> <span class="keyword operator assignment python">=</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage<span class="punctuation definition string end python">&quot;</span></span></span>
+<span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
+<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">views</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">index</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">name</span><span class="keyword operator assignment python">=</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">index<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Stop the server with 
+
+<kbd 
+
+>Ctrl</kbd>
+
++
+
+<kdb 
+
+>c</kdb>
+
+ and restart it again with
+
+:
+
+</p>
+
+
+
+
+<section class="cli-section">
+
+
+
+
+
+<pre class="cli-pre"><code>python manage.py runserver</code></pre>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+The terminal error message will update to something like
+
+:
+
+</p>
+
+
+
+<p>
+
+AttributeError
+
+:
+
+ module 'homepage.views' has no attribute 'index'
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Change 'homepage/views.py' to this
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">shortcuts</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">render</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta function python"><span class="storage type function python">def</span> <span class="entity name function python"><span class="meta generic-name python">index</span></span></span><span class="meta function parameters python"><span class="punctuation section parameters begin python">(</span></span><span class="meta function parameters python"><span class="variable parameter python">request</span><span class="punctuation section parameters end python">)</span></span><span class="meta function python"><span class="punctuation section function begin python">:</span></span>
+<span class="line-marker"></span>    <span class="meta qualified-name python"><span class="meta generic-name python">context</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure dictionary python"><span class="punctuation section dictionary begin python">{</span><span class="meta empty-dictionary python"><span class="punctuation section dictionary end python">}</span></span></span>
+<span class="line-marker"></span>    <span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta qualified-name python"><span class="meta generic-name python">request</span></span><span class="punctuation separator arguments python">,</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage/index.html<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">context</span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Refresh the page at
+
+:
+
+ http
+
+:
+
+//127.0.0.1
+
+:
+
+8000/ and you'll see
+
+
+
+
+a "TemplateDoesNotExist at /" error page. 
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Add the template at
+
+:
+
+</p>
+
+
+
+<p>
+
+<code class=""><span class="text plain">tutorial_site/homepage/templates/homepage/index.html</span></code>
+
+</p>
+
+
+
+<p>
+
+Note that you'll need to make the directories
+
+:
+
+</p>
+
+
+
+<p>
+
+<code class=""><span class="text plain">tutorial_site/homepage/templates</span></code>
+
+</p>
+
+
+
+<p>
+
+and
+
+</p>
+
+
+
+<p>
+
+<code class=""><span class="text plain">tutorial_site/homepage/templates/homepage</span></code>
+
+</p>
+
+
+
+<p>
+
+TODO
+
+:
+
+ walk through the namespace logic of why 
+
+
+
+
+the paths have the name twice. 
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>Hello, world<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Stop the server with 
+
+<kbd 
+
+>Ctrl</kbd>
+
++
+
+<kbd 
+
+>c</kbd>
+
+ and 
+
+
+
+
+restart it with
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+
+
+
+
+<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">python</span></span> <span class="meta qualified-name python"><span class="meta generic-name python">manage</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">py</span></span> <span class="meta qualified-name python"><span class="meta generic-name python">runserver</span></span></span></code></pre>
+
+
+
+<p>
+
+When you refresh the page at
+
+:
+
+ http
+
+:
+
+//127.0.0.1
+
+:
+
+8000/
+
+
+
+
+you'll see your "Hello, world" text
+
+</p>
+
+
+
+</li>
+
+</ul>
+
+
+
+
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Links
+    
+    </h2>
+    
+  
+
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>
+
+Previous
+
+:
+
+ 
+
+<a href="/en/2mc6armk/?page=section-1-basic-installation-and-super-user-creation">
+  Section 1 - Basic Installation And Super User Creation
+</a>
+
+</p>
+
+
+
+
+    
+<p>
+
+Next
+
+:
+
+ TKTKTKT
+
+</p>
+
+
+
+
+
+    
+
+    
+
+    
+
+</section><div class="fin-token">~ fin ~</div>
+
+</main>
+<footer></footer>
+
+
+
+
+
+
+</body>
+

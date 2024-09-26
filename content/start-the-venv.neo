@@ -1,0 +1,67 @@
+-- title
+
+Starting The Python Virtual Environment
+
+You'll need to make sure you're inside your Python 
+virtual environment for everything to work properly. 
+The easiest way to verify you are is by checking the server.
+If it's already running you're all set. If it's not
+currently running try to start it with:
+
+
+-- cli
+
+python manage.py runserver
+
+-- p
+
+If it starts properly you'll see something like:
+
+-- pre/
+
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+September 26, 2024 - 19:12:44
+Django version 5.1.1, using settings 'tutorial_site.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+-- /pre
+
+If you see some type of error instead it likely means you're
+virtual environment is not activated. To do that, you'll
+need to move into your "django_tutorial" directory where
+you'll see the "venv" directory. When you're there, run:
+
+-- cli/
+
+source venv/bin/activate
+
+-- /cli
+
+
+
+
+
+
+-- h2
+
+Links
+
+-- list
+
+- <<tlink|2mc6armk>>
+
+- <<tlink|2mcbmij7>>
+
+
+-- metadata
+-- created: 2024-09-26T15:57:02-04:00
+-- updated: 2024-09-26T15:57:02-04:00
+-- id: 2mcf8e2u
+-- type: post
+-- status: scratch
+
+

@@ -1,0 +1,347 @@
+-- title
+
+Section 2 - Make A Home Page
+
+-- h2
+
+Introduction 
+
+Django provided us with a nice default home page to 
+let us know that things are working, but we don't 
+want it to be what folks would see if they visited
+our site. Instead, we'll make our own basic home
+page.
+
+Before we get started, <<ilink|make sure the Python
+virtual environment is active|2mcf8e2u>>.
+
+-- h2
+
+The Steps
+
+-- list/
+
+- Examine the initial url paths
+
+The first change we're going make is to update the routing
+functionality to point calls to the root of the site. 
+These changes are made in the file:
+
+-- pre/
+
+django_tutorial/tutorial_site/tutorial_site/urls.py
+
+-- /pre
+
+Before we make any changes, let's examine the initial version 
+of the file that looks like this:
+
+-- code/
+-- python
+-- subtitle: django_tutorial/tutorial_site/tutorial_site/urls.py
+
+# A bunch of comments are here that we're 
+# going to ignore
+
+from django.contrib import admin
+from django.urls import path
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+]
+
+-- /code
+
+
+These first two lines of code are:
+
+-- code/
+-- python
+
+from django.contrib import admin
+from django.urls import path
+
+-- /code
+
+These lines import some of Django's
+default functionality that's used for the 
+configuration. 
+
+The next snippet of code is:
+
+-- code/
+-- python
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+]
+
+-- /code
+
+The <<code|urlpatterns = []|python>> list holds a 
+collection of <<code|path()|python>> functions. These are
+what define the specific url paths that define the routes. 
+
+The <<code|path()|python>> functions take two required arguments. The first is 
+a pattern to match in the requested page's URL. The second
+is what to do when a match is found. (The <<code|path()|pyton>> 
+function can also take two optional arguments for "kwargs" and "name"
+that we'll see later.)
+
+The initial path that's include by default is:
+
+-- code/
+-- python
+
+path("admin/", admin.site.urls)
+
+-- /code
+
+It tells Django to match "admin/" from the URL of
+a page request and send it to the built in admin functionality
+defined in <<code|admin.site.urls|python>>. This is what
+powers the http://127.0.0.1:8000/admin/ pages. 
+
+- Adding the new url path route
+
+We need to do two things to create the new url path route
+for the home page. First, we need to import a new module 
+with:
+
+-- code/
+-- python
+
+from django.urls import include
+
+-- /code
+
+Then, we need to add a new path with:
+
+-- code/
+-- python
+
+path("", include("homepage.urls")),
+
+-- /code
+
+The empty <<code|""|python>> match argument
+means the <<code|path()|python>> is for the root
+of the site (i.e. http://127.0.0.1:8000/) and
+the <<code|include("homepage.urls")|python>> tells
+Django that we want to use an app/module named
+"homepage" to handle it. (We haven't created this
+module yet, so this will cause an expected error
+that we see below.)
+
+Putting those two lines in place updates the file
+to look like this which you can copy and paste 
+to replace the contents of the original:
+
+-- code/
+-- python
+-- subtitle: django_tutorial/tutorial_site/tutorial_site/urls.py
+
+from django.contrib import admin
+from django.urls import path
+from django.urls import include
+
+urlpatterns = [
+    path("", include("homepage.urls")),
+    path("admin/", admin.site.urls),
+]
+
+-- /code
+
+When we save that file the Django server in the 
+terminal will reload itself and show an error
+that ends with: 
+
+-- pre/
+
+ModuleNotFoundError: No module named 'homepage'
+
+-- /pre
+
+It'll take us a few steps to get the home page to show
+up, but we'll start by tackling that error. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- Expected Error in the terminals:
+
+ModuleNotFoundError: No module named 'homepage'
+
+- To fix the error make the module 
+(aka app) with this command which will create a new "homepage" 
+directory with an initial set of files in it. 
+
+Stop the server with Ctrl+C, then run:
+
+-- cli/
+
+python manage.py startapp homepage
+
+-- /cli
+
+- Register the newly created app/module in tutorial_site/settings.py
+
+-- code/
+-- python
+
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "homepage.apps.HomepageConfig",
+]
+
+-- /code
+
+
+- Start the server again with:
+
+-- cli/
+
+python manage.py runserver
+
+-- /cli
+
+
+- This will create a new error something like:
+
+ModuleNotFuleError: No module named 'homepage.urls'
+
+
+- To fix this error create a new "urls.py" file
+inside the newly created "homepage" directory with this for 
+the content:
+
+-- code/
+-- python
+
+from django.urls import path
+
+from . import views
+
+app_name = "homepage"
+urlpatterns = [
+    path("", views.index, name="index"),
+]
+
+-- /code
+
+- Stop the server with <<kbd|Ctrl>>+<<kdb|c>> and restart it again with:
+
+-- cli/
+
+python manage.py runserver
+
+-- /cli
+
+
+- The terminal error message will update to something like:
+
+AttributeError: module 'homepage.views' has no attribute 'index'
+
+
+- Change 'homepage/views.py' to this:
+
+-- code/
+-- python
+
+from django.shortcuts import render
+
+def index(request):
+    context = {}
+    return render(request, "homepage/index.html", context)
+
+-- /code
+
+
+- Refresh the page at: http://127.0.0.1:8000/ and you'll see
+a "TemplateDoesNotExist at /" error page. 
+
+- Add the template at:
+
+<<code|tutorial_site/homepage/templates/homepage/index.html>>
+
+Note that you'll need to make the directories:
+
+<<code|tutorial_site/homepage/templates>>
+
+and
+
+<<code|tutorial_site/homepage/templates/homepage>>
+
+TODO: walk through the namespace logic of why 
+the paths have the name twice. 
+
+-- code/
+-- html
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hello, world</h1>
+  </body>
+</html>
+
+-- /code
+
+- Stop the server with <<kbd|Ctrl>>+<<kbd|c>> and 
+restart it with:
+
+-- code/
+-- python
+
+python manage.py runserver
+
+-- /code
+
+When you refresh the page at: http://127.0.0.1:8000/
+you'll see your "Hello, world" text
+
+
+-- /list
+
+
+
+
+-- h2
+
+Links
+
+Previous: <<tlink|2mc6armk>>
+
+Next: TKTKTKT
+
+-- metadata
+-- created: 2024-09-26T15:26:05-04:00
+-- updated: 2024-09-26T15:26:05-04:00
+-- id: 2mcbmij7
+-- type: post
+-- status: scratch
+
+
