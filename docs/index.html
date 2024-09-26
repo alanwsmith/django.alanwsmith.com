@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Django 5.1 Getting Started Tutorial</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta property="og:title" content="Django 5.1 Getting Started Tutorial" />
+<meta property="og:description" content="a post from alan w. smith" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://django.alanwsmith.com/en/2mbzmjd0/?page=django-5-1-getting-started-tutorial" />
+<meta property="og:image" content="https://django.alanwsmith.com/neo-images/default-og-image/1200w.jpg" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/theme/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/theme/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/theme/favicons/favicon-16x16.png">
+<link rel="manifest" href="/theme/favicons/site.webmanifest">
+<link rel="mask-icon" href="/theme/favicons/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/theme/favicons/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/theme/favicons/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="/theme/styles/variables.css" />
+<link rel="stylesheet" href="/theme/styles/theme.css" />
+<link rel="stylesheet" href="/theme/styles/syntax-highlighting/code-solarized-dark.css" /></head>
+<body>
+<header>
+      <a href="/">Home</a>
+      <div class="under-construction">
+        NOTE: I'm in the middle of upgrading the site. Most things are in place, but
+        some things are missing and/or broken. This includes alt text for images. Please
+        bear with me while I get things fixed. 
+      </div>
+    </header>
+<main class="flow">
+
+<section class="title-section flow">
+<hgroup>
+
+  
+    <h1 class="page-title">
+    
+      Django 5.1 Getting Started Tutorial
+    
+    </h1>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+
+</section>
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Introduction
+    
+    </h2>
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>
+
+Welcome to my Django Tutorial. 
+
+</p>
+
+
+
+
+    
+<p>
+
+This site was born out of frustration with the 
+
+
+
+
+offical Django getting started tutorial
+
+<sup><a 
+    href="#fnref-1-text"
+    id="fnref-1-link"
+    >1</a></sup>
+
+
+.
+
+
+
+
+It doesn't show you 
+
+
+
+
+how to make a home page. It also skips details on 
+
+
+
+
+how to do user authentication to edit content. 
+
+
+
+
+Those are both fundamental to 
+
+
+
+
+practial websites that Django is great at doing
+
+<sup><a 
+    href="#fnref-2-text"
+    id="fnref-2-link"
+    >2</a></sup>
+
+
+.
+
+
+
+
+So, I made this tutorail to make it easier to get
+
+
+
+
+started with a site that includes those features. 
+
+</p>
+
+
+
+
+    
+<p>
+
+You can read more about the tutorial below. Or, jump straight
+
+
+
+
+into it here if you want to get started right away
+
+:
+
+</p>
+
+
+
+
+    
+<p>
+
+<a href="/en/2mc6armk/?page=part-1-basic-installation-and-super-user-creation">
+  Part 1 - Basic Installation And Super User Creation
+</a>
+
+</p>
+
+
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</section>
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Who This Tutorial Is For
+    
+    </h2>
+    
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>
+
+This tutorial is desinged for
+
+:
+
+</p>
+
+
+
+
+
+    
+
+    
+
+</section>
+<ul class="flow">
+
+
+<li class="flow">
+
+
+<p>
+
+Folks who have never worked with Django before 
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Folks who are frustrated with other tutorials not
+
+
+
+
+giving them enough information to make a basic site
+
+
+
+
+with Django's core features
+
+</p>
+
+
+
+</li>
+
+
+
+</ul>
+
+
+<section class="p-section flow">
+
+
+      
+        
+<p>
+
+There are a few prerequisites you'll need to know in 
+
+
+
+
+order to get started
+
+:
+
+</p>
+
+      
+
+
+
+
+
+    
+
+
+</section>
+
+<ul class="flow">
+
+
+<li class="flow">
+
+
+<p>
+
+A code editor (like 
+
+
+<a href="https://code.visualstudio.com/">VS Code</a>
+
+)
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+An installed version of 
+
+
+<a href="https://www.python.org/">Python 3</a>
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+A basic knowledge of working with the Python
+
+
+
+
+programming langauge
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+A basic knowledge of how to run commands on 
+
+
+
+
+a terminal command line
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+A baisc knowledge of HTML
+
+</p>
+
+
+
+</li>
+
+
+
+</ul>
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Goals
+    
+    </h2>
+    
+  
+
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>
+
+The primary goal of this tutorial is to provide you 
+
+
+
+
+with enough knowledge to make your own Django site that
+
+
+
+
+includes the ability for authorized users to 
+
+
+
+
+create and modify content. 
+
+</p>
+
+
+
+
+    
+<p>
+
+The specific things we'll cover include
+
+:
+
+</p>
+
+
+
+
+
+    
+
+    
+
+    
+
+</section>
+<ul class="flow">
+
+
+<li class="flow">
+
+
+<p>
+
+An overview of Django's built
+
+-
+
+in admin 
+
+
+
+
+interface and user authentication tools
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Creating A Home Page
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Implementing login/logout functionality
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Providing the ability to create, view, update, 
+
+
+
+
+and delete content based on if a user is logged
+
+
+
+
+in or not
+
+</p>
+
+
+
+</li>
+
+
+
+</ul>
+
+
+<section class="p-section flow">
+
+
+      
+        
+<p>
+
+We'll cover each of those items with a fair
+
+
+
+
+amount of depth. To keep a balance with the 
+
+
+
+
+amount of detail and the length of
+
+
+
+
+the tutorial there are some limits to what's covered. 
+
+
+
+
+Specifically
+
+:
+
+</p>
+
+      
+
+
+
+
+
+    
+
+
+</section>
+
+<ul class="flow">
+
+
+<li class="flow">
+
+
+<p>
+
+I'm a fan of the "First, make it work. Then, make it pretty"
+
+
+
+
+approach to development. We'll be focusing on the
+
+
+
+
+first part and skipping design and styling for the most 
+
+
+
+
+part. 
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Details on how to deploy a site to production 
+
+
+
+
+vary greatly depending on where the site is hosted. So, we'll
+
+
+
+
+be sticking with a local development version of the
+
+
+
+
+site.
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Django has offical database support for PostgreSQL,
+
+
+
+
+MariaDB, MySQL, Oracle, and SQLite
+
+<sup><a 
+    href="#fnref-3-text"
+    id="fnref-3-link"
+    >3</a></sup>
+
+
+. Generally speaking, 
+
+
+
+
+SQLite probably isn't what you'd want to use for a 
+
+
+
+
+production database, but it'll work great for our
+
+
+
+
+purposes since we're working with a local development
+
+
+
+
+environment. The reason for this choice is that
+
+
+
+
+SQLite works without having to do any of the 
+
+
+
+
+software set up that's required for the other databases. 
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+The requirements for user sign
+
+-
+
+up systems vary grately 
+
+
+
+
+from site to site. We'll be making our users and assigning 
+
+
+
+
+their permissions via the built
+
+-
+
+in admin interface instead
+
+
+
+
+of trying to address that. 
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Django provides built
+
+-
+
+in tools for automated testing. 
+
+
+
+
+I'm a firm believer in testing, but learning how to do that
+
+
+
+
+adds to the mental overhead. We'll skip that for the time
+
+
+
+
+being to focus on the fundamental site functionality. 
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Version control is a highly recommended best practice, 
+
+
+
+
+but it's not the focus of this tutorial. If you're already 
+
+
+
+
+familiar with how to use a version control system like Git
+
+<sup><a 
+    href="#fnref-4-text"
+    id="fnref-4-link"
+    >4</a></sup>
+
+
+, feel free
+
+
+
+
+to make commits as you make progress, but we won't be
+
+
+
+
+specically mentioning it. 
+
+</p>
+
+
+
+</li>
+
+
+
+</ul>
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Getting Started
+    
+    </h2>
+    
+  
+
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>
+
+That's it for the overview. You're ready for
+
+:
+
+</p>
+
+
+
+
+    
+<p>
+
+<a href="/en/2mc6armk/?page=part-1-basic-installation-and-super-user-creation">
+  Part 1 - Basic Installation And Super User Creation
+</a>
+
+</p>
+
+
+
+
+
+    
+
+    
+
+    
+
+</section><div class="fin-token">~ fin ~</div>
+
+
+      <section>
+        <h2>Footnotes</h2>
+        <ul class="flow">
+    
+    <li class="footnote-ref"><div id="fnref-1-text" class="footnote-number">
+    <a href="#fnref-1-link">1</a>
+  </div><div class="footnote-text"><a href="https://docs.djangoproject.com/en/5.1/intro/tutorial01/">Writing your first Django app</a><div class="flow">
+
+      
+        
+<p>
+
+This is the offical getting started tutofial from the Django
+
+
+
+
+project. It may work for other folks, but it doesn't for me. 
+
+
+
+
+Hence the reason I made this site. 
+
+</p>
+
+      
+
+
+</div>
+</div><div class="footnote-return-arrow">
+    <a href="#fnref-1-link">&#x2934;</a>
+  </div>
+</li><li class="footnote-ref"><div id="fnref-2-text" class="footnote-number">
+    <a href="#fnref-2-link">2</a>
+  </div><div class="footnote-text"><a href="/en/2mc0os37">My Problems With The Offical Django Tutorial</a><div class="flow">
+
+      
+        
+<p>
+
+This is my full list of frustrations with the offical 
+
+
+
+
+tutorial. 
+
+</p>
+
+      
+
+
+</div>
+</div><div class="footnote-return-arrow">
+    <a href="#fnref-2-link">&#x2934;</a>
+  </div>
+</li><li class="footnote-ref"><div id="fnref-3-text" class="footnote-number">
+    <a href="#fnref-3-link">3</a>
+  </div><div class="footnote-text"><a href="https://docs.djangoproject.com/en/5.1/ref/databases/">Django Offical Database Documentation</a><div class="flow">
+
+
+</div>
+</div><div class="footnote-return-arrow">
+    <a href="#fnref-3-link">&#x2934;</a>
+  </div>
+</li><li class="footnote-ref"><div id="fnref-4-text" class="footnote-number">
+    <a href="#fnref-4-link">4</a>
+  </div><div class="footnote-text"><a href="https://git-scm.com/">Git Version Control Software</a><div class="flow">
+
+
+</div>
+</div><div class="footnote-return-arrow">
+    <a href="#fnref-4-link">&#x2934;</a>
+  </div>
+</li>
+    </ul>
+    </section>
+  </main>
+<footer></footer>
+
+
+
+
+
+
+</body>
+

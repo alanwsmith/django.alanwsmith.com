@@ -1,0 +1,177 @@
+-- title
+
+Django 5.1 Getting Started Tutorial
+
+-- h2
+
+Introduction
+
+Welcome to my Django Tutorial. 
+
+This site was born out of frustration with the 
+offical Django getting started tutorial^^1^^.
+It doesn't show you 
+how to make a home page. It also skips details on 
+how to do user authentication to edit content. 
+Those are both fundamental to 
+practial websites that Django is great at doing^^2^^.
+So, I made this tutorail to make it easier to get
+started with a site that includes those features. 
+
+You can read more about the tutorial below. Or, jump straight
+into it here if you want to get started right away:
+
+<<tlink|2mc6armk>>
+
+-- h2
+
+Who This Tutorial Is For
+
+This tutorial is desinged for:
+
+-- list
+
+- Folks who have never worked with Django before 
+
+- Folks who are frustrated with other tutorials not
+giving them enough information to make a basic site
+with Django's core features
+
+-- p
+
+There are a few prerequisites you'll need to know in 
+order to get started:
+
+-- list
+
+- A code editor (like <<link|VS Code|https://code.visualstudio.com/>>)
+
+- An installed version of <<link|Python 3|https://www.python.org/>>
+
+- A basic knowledge of working with the Python
+programming langauge
+
+- A basic knowledge of how to run commands on 
+a terminal command line
+
+- A baisc knowledge of HTML
+
+
+-- h2
+
+Goals
+
+The primary goal of this tutorial is to provide you 
+with enough knowledge to make your own Django site that
+includes the ability for authorized users to 
+create and modify content. 
+
+The specific things we'll cover include:
+
+-- list
+
+- An overview of Django's built-in admin 
+interface and user authentication tools
+
+- Creating A Home Page
+
+- Implementing login/logout functionality
+
+- Providing the ability to create, view, update, 
+and delete content based on if a user is logged
+in or not
+
+-- p
+
+We'll cover each of those items with a fair
+amount of depth. To keep a balance with the 
+amount of detail and the length of
+the tutorial there are some limits to what's covered. 
+Specifically:
+
+-- list
+
+- I'm a fan of the "First, make it work. Then, make it pretty"
+approach to development. We'll be focusing on the
+first part and skipping design and styling for the most 
+part. 
+
+- Details on how to deploy a site to production 
+vary greatly depending on where the site is hosted. So, we'll
+be sticking with a local development version of the
+site.
+
+- Django has offical database support for PostgreSQL,
+MariaDB, MySQL, Oracle, and SQLite^^3^^. Generally speaking, 
+SQLite probably isn't what you'd want to use for a 
+production database, but it'll work great for our
+purposes since we're working with a local development
+environment. The reason for this choice is that
+SQLite works without having to do any of the 
+software set up that's required for the other databases. 
+
+- The requirements for user sign-up systems vary grately 
+from site to site. We'll be making our users and assigning 
+their permissions via the built-in admin interface instead
+of trying to address that. 
+
+- Django provides built-in tools for automated testing. 
+I'm a firm believer in testing, but learning how to do that
+adds to the mental overhead. We'll skip that for the time
+being to focus on the fundamental site functionality. 
+
+- Version control is a highly recommended best practice, 
+but it's not the focus of this tutorial. If you're already 
+familiar with how to use a version control system like Git^^4^^, feel free
+to make commits as you make progress, but we won't be
+specically mentioning it. 
+
+
+-- h2
+
+Getting Started
+
+That's it for the overview. You're ready for:
+
+<<tlink|2mc6armk>>
+
+
+
+-- footnote
+-- id: 1
+-- title: Writing your first Django app
+-- url: https://docs.djangoproject.com/en/5.1/intro/tutorial01/
+
+This is the offical getting started tutofial from the Django
+project. It may work for other folks, but it doesn't for me. 
+Hence the reason I made this site. 
+
+-- footnote
+-- id: 2
+-- title: My Problems With The Offical Django Tutorial
+-- url: /en/2mc0os37
+
+This is my full list of frustrations with the offical 
+tutorial. 
+
+-- footnote
+-- id: 3
+-- title: Django Offical Database Documentation
+-- url: https://docs.djangoproject.com/en/5.1/ref/databases/
+
+-- footnote
+-- id: 4
+-- title: Git Version Control Software
+-- url: https://git-scm.com/
+
+
+
+-- metadata
+-- created: 2024-09-26T10:13:34-04:00
+-- updated: 2024-09-26T10:13:34-04:00
+-- id: 2mbzmjd0
+-- type: post
+-- status: scratch
+-- path: /
+
+

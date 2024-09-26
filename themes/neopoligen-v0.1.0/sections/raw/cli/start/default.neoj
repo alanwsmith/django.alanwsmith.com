@@ -1,0 +1,20 @@
+[! import "includes/theme.neoj" as theme !]
+
+<section
+    [@- theme.section_classes(section, "cli-section") -@] 
+    [@- section.attr_string -@]>
+
+[! if "title" in section.attr_spans !]
+<h3>[@ theme.output_spans(site, page_id, section.attr_spans.title) @]</h3>
+[! endif !]
+
+[#
+[! if section.flags[0] !]
+<div class="cli-language">
+Language: [@ section.flags[0] @]
+</div>
+[! endif !]
+#]
+
+<pre class="cli-pre"><code>[@- section.text -@]</code></pre>
+
