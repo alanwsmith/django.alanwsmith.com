@@ -2157,7 +2157,30 @@ And the context (which we defined as empty in the prior line)
 
 <p>
 
-Add the template at
+Stop the server
+
+</p>
+
+
+
+<p>
+
+We'll be making another change that Django can't see
+
+
+
+
+automatically along with using the command line to 
+
+
+
+
+create a couple of directories for us. So, stop the
+
+
+
+
+server with
 
 :
 
@@ -2167,7 +2190,29 @@ Add the template at
 
 <p>
 
-<code class=""><span class="text plain">tutorial_site/homepage/templates/homepage/index.html</span></code>
+<kbd 
+
+>control</kbd>
+
++
+
+<kbd 
+
+>c</kbd>
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+<p>
+
+Create the homepage app templates directory
 
 </p>
 
@@ -2175,7 +2220,89 @@ Add the template at
 
 <p>
 
-Note that you'll need to make the directories
+The homepage "views.py" file we just updated defined the template
+
+
+
+
+the 
+
+<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
+
+ function should use as "homepage/index.html". 
+
+
+
+
+Django automatically looks for template directories inside apps
+
+
+
+
+to find those files. When we created the "homepage" app with
+
+
+
+
+"startapp" it didn't automatically create a "templates" directory for
+
+
+
+
+us. We need to do it ourselves. 
+
+</p>
+
+
+
+<p>
+
+Because of the way namespacing works in Django will also need to create
+
+
+
+
+another directory named "homepage" inside it. It's a little weird to 
+
+
+
+
+look at and we'll discuss why in a moment but for now we need
+
+
+
+
+to create a directory tree that looks like
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+
+
+<pre>django_tutorial&#x2f;tutorial_site&#x2f;homepage&#x2f;templates&#x2f;homepage&#x2f;</pre>
+
+
+    
+</section>
+
+
+
+
+
+
+
+<p>
+
+You can create this directory from the terminal command line
+
+
+
+
+with
 
 :
 
@@ -2183,9 +2310,26 @@ Note that you'll need to make the directories
 
 
 
+
+<section class="cli-section">
+
+
+
+
+
+<pre class="cli-pre"><code>mkdir -p homepage/templates/homepage</code></pre>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
 <p>
 
-<code class=""><span class="text plain">tutorial_site/homepage/templates</span></code>
+Make the home page "index.html" template file
 
 </p>
 
@@ -2193,32 +2337,32 @@ Note that you'll need to make the directories
 
 <p>
 
-and
-
-</p>
-
-
-
-<p>
-
-<code class=""><span class="text plain">tutorial_site/homepage/templates/homepage</span></code>
-
-</p>
-
-
-
-<p>
-
-TODO
+Now we're ready to drop in our "index.html" template file at
 
 :
 
- walk through the namespace logic of why 
+</p>
+
+
+<section class="pre-section">
+
+
+
+<pre>django_tutorial&#x2f;tutorial_site&#x2f;homepage&#x2f;templates&#x2f;homepage&#x2f;index.html</pre>
+
+
+    
+</section>
 
 
 
 
-the paths have the name twice. 
+
+
+
+<p>
+
+Copy and past this for the content of the file and save it.
 
 </p>
 
@@ -2248,24 +2392,15 @@ the paths have the name twice.
 
 <p>
 
-Stop the server with 
+Start the server
 
-<kbd 
-
->Ctrl</kbd>
-
-+
-
-<kbd 
-
->c</kbd>
-
- and 
+</p>
 
 
 
+<p>
 
-restart it with
+We're ready to start the server again with
 
 :
 
@@ -2274,19 +2409,24 @@ restart it with
 
 
 
-<section class="code-section">
+<section class="cli-section">
 
 
 
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">python</span></span> <span class="meta qualified-name python"><span class="meta generic-name python">manage</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">py</span></span> <span class="meta qualified-name python"><span class="meta generic-name python">runserver</span></span></span></code></pre>
+<pre class="cli-pre"><code>python manage.py runserver</code></pre>
 
 
 
 <p>
 
-When you refresh the page at
+Now, we can go back to our site and we'll see 
+
+
+
+
+our bare bones home page at
 
 :
 
@@ -2300,11 +2440,6 @@ When you refresh the page at
 
 8000/
 
-
-
-
-you'll see your "Hello, world" text
-
 </p>
 
 
@@ -2317,6 +2452,87 @@ you'll see your "Hello, world" text
 
 
 
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Wrapping Up
+    
+    </h2>
+    
+  
+
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>
+
+We covered a lot of ground here. It feels like a lot
+
+
+
+
+to make a simple home page, but we'll see in the next
+
+
+
+
+sections how what we've learned here is the basis for
+
+
+
+
+a lot of the power Django provides that we aren't 
+
+
+
+
+using yet. Things will aslo start going faster now
+
+
+
+
+that we have some understanding of the basics. 
+
+</p>
+
+
+
+
+    
+<p>
+
+TODO
+
+:
+
+ Add discussion about template name spacing
+
+</p>
+
+
+
+
+
+    
+
+    
+
+    
+
+</section>
 
 <section class="h2-section flow">
 <hgroup>

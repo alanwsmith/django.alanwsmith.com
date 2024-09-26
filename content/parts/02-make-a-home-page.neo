@@ -576,23 +576,55 @@ It takes three arguments:
 
 -- /list
 
+- Stop the server
 
+We'll be making another change that Django can't see
+automatically along with using the command line to 
+create a couple of directories for us. So, stop the
+server with:
 
+<<kbd|control>>+<<kbd|c>>
 
-- Add the template at:
+- Create the homepage app templates directory
 
-<<code|tutorial_site/homepage/templates/homepage/index.html>>
+The homepage "views.py" file we just updated defined the template
+the <<code|render()|python>> function should use as "homepage/index.html". 
+Django automatically looks for template directories inside apps
+to find those files. When we created the "homepage" app with
+"startapp" it didn't automatically create a "templates" directory for
+us. We need to do it ourselves. 
 
-Note that you'll need to make the directories:
+Because of the way namespacing works in Django will also need to create
+another directory named "homepage" inside it. It's a little weird to 
+look at and we'll discuss why in a moment but for now we need
+to create a directory tree that looks like:
 
-<<code|tutorial_site/homepage/templates>>
+-- pre/
 
-and
+django_tutorial/tutorial_site/homepage/templates/homepage/
 
-<<code|tutorial_site/homepage/templates/homepage>>
+-- /pre
 
-TODO: walk through the namespace logic of why 
-the paths have the name twice. 
+You can create this directory from the terminal command line
+with:
+
+-- cli/
+
+mkdir -p homepage/templates/homepage
+
+-- /cli
+
+- Make the home page "index.html" template file
+
+Now we're ready to drop in our "index.html" template file at:
+
+-- pre/
+
+django_tutorial/tutorial_site/homepage/templates/homepage/index.html
+
+-- /pre
+
+Copy and past this for the content of the file and save it.
 
 -- code/
 -- html
@@ -606,24 +638,34 @@ the paths have the name twice.
 
 -- /code
 
-- Stop the server with <<kbd|Ctrl>>+<<kbd|c>> and 
-restart it with:
+- Start the server
 
--- code/
--- python
+We're ready to start the server again with:
+
+-- cli/
 
 python manage.py runserver
 
--- /code
+-- /cli
 
-When you refresh the page at: http://127.0.0.1:8000/
-you'll see your "Hello, world" text
+Now, we can go back to our site and we'll see 
+our bare bones home page at: http://127.0.0.1:8000/
 
 
 -- /list
 
+-- h2
 
+Wrapping Up
 
+We covered a lot of ground here. It feels like a lot
+to make a simple home page, but we'll see in the next
+sections how what we've learned here is the basis for
+a lot of the power Django provides that we aren't 
+using yet. Things will aslo start going faster now
+that we have some understanding of the basics. 
+
+TODO: Add discussion about template name spacing
 
 -- h2
 
