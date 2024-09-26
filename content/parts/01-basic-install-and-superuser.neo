@@ -2,6 +2,341 @@
 
 Part 1 - Basic Installation And Super User Creation
 
+-- h2
+
+Introduction
+
+Welcome to the first part of the tutorial. The things
+we're going to cover get use up and running with
+a basic site with a default home page. The specific things we're
+doing to do are:
+
+- Install Django in a Python virtual environment
+
+- Create a new Django site
+
+- Create the "Super User" account for the site
+
+- Verify we can log into Django's built-in admin
+interface with the Super User account
+
+-- h2
+
+The Steps
+
+
+-- note
+
+These directions are for a Mac running the version of
+Python 3 provided by the <<link|homebrew package manager|https://brew.sh/>>. 
+I don't have the resources at the moment to make a Windows specific version,
+but hopefully the commands are close enough that they 
+can be followed.
+
+-- p
+
+This is the full list of every command you need to run
+in your command line terminal to get started. 
+
+-- list/
+
+- Make a new directory and move into it
+
+We'll start things off by making a new directory
+to house all our Django work. Run these commands
+to create the directory and move into it:
+
+-- cli/
+
+mkdir django_tutorial
+cd django_tutorial
+
+-- /cli
+
+- Make a new Python virtual environment^^1^^ to house our Django
+installation
+
+-- cli/
+
+python3 -m venv venv
+
+-- /cli
+
+This command creates a new "venv" directory that 
+houses all the files for the virtual environment. 
+We won't edit anything inside of it so we can pretty 
+much ignore it after we run the activte the 
+envionment in the next step.
+
+- Activate the Python virtual environment
+
+We have to "activate" the Python virtual environment
+to actually use it. Run this command to do just that:
+
+-- cli/
+
+source venv/bin/activate
+
+-- /cli
+
+-- note/
+
+You have to run this command in every 
+terminal window where you want to run the 
+various Django commands we'll use throughout
+the tutorial. That is, if you close your terminal
+and open it again, you'll need to re-run this
+inside the "django_tutorial" directory. 
+
+-- /note
+
+- Install Django using Python's built-in "pip" package manager
+
+The first thing we need to install for building our
+Django site is the "django-admin" command that we'll use
+in the next step. It comes with the basic Django install 
+which we can do with this command now:
+
+-- cli/
+
+python -m pip install Django
+
+-- /cli
+
+This command will output the install detail that look 
+something like:
+
+-- pre/
+
+Collecting Django
+  Using cached Django-5.1.1-py3-none-any.whl.metadata (4.2 kB)
+Collecting asgiref<4,>=3.8.1 (from Django)
+  Using cached asgiref-3.8.1-py3-none-any.whl.metadata (9.3 kB)
+Collecting sqlparse>=0.3.1 (from Django)
+  Using cached sqlparse-0.5.1-py3-none-any.whl.metadata (3.9 kB)
+Using cached Django-5.1.1-py3-none-any.whl (8.2 MB)
+Using cached asgiref-3.8.1-py3-none-any.whl (23 kB)
+Using cached sqlparse-0.5.1-py3-none-any.whl (44 kB)
+Installing collected packages: sqlparse, asgiref, Django
+Successfully installed Django-5.1.1 asgiref-3.8.1 sqlparse-0.5.1
+
+-- /pre
+
+You may also see lines like this which can safely be ignored:
+
+-- pre/
+
+[notice] A new release of pip is available: 24.0 -> 24.2
+[notice] To update, run: pip install --upgrade pip
+
+-- /pre
+
+
+- Create A New Django Site:
+
+Installing Django gives us access to "django-admin" but doesn't
+automatically create a new site for us to work with. We'll
+do that by using the "django-admin" subcommand "startproject". (Django 
+often uses the word "project" in place of "site" by convention, but
+for our purposes it means the same thing.) We'll name our 
+new site/project "tutorial_site". 
+
+Here's the command to run:
+
+
+-- cli/
+
+django-admin startproject tutorial_site
+
+-- /cli
+
+After running the command you'll see a new directory called
+<<code|tutorial_site>> in your <<code|django_tutorial>>
+directory. Several default files and folders are generated
+in a tree underneath it. We'll be exploring them
+throughout this tutorial starting with the "manage.py"
+file that we'll use momentarily. 
+
+- Move into the newly created <<code|tutorial_site>> 
+directory
+
+We'll be doing all the rest of our work inside the <<code|tutorial_site>>
+directory. Move into it with:
+
+-- cli/
+
+cd tutorial_site
+
+-- /cli
+
+- Prep the database with a migration 
+
+Django uses a database to store both content and
+it's own operating and administraion data. 
+Changes to the database are made via "migrations" 
+which provide the details of each change to be made. 
+When a new Django project/site is created it comes with a 
+set of migrations that need to run to complete the
+initial setup. The migrations are run by passing
+the "migrate" argument to "manage.py"
+
+Here's the full command which you can run now:
+
+-- cli/
+
+python manage.py migrate
+
+-- /cli
+
+The terminal will display an overview of the changes 
+made that looks something like:
+
+-- pre/
+
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying sessions.0001_initial... OK
+
+-- /pre
+
+- Create the "Super User" account
+
+Django includes a built-in admin interface and
+user authentication system. Part of that system
+includes the ability to make a "Super User" account
+that has full access to everything in the admin 
+interface. Creating that user is done using
+the "createsuperuser" argument for "manage.py". 
+
+Running the command will ask you to fill in the username, 
+email, and password you want to use for the account. 
+
+You can pick whatever username you want to but for
+ease of use in this tutorial let's stick with "admin". 
+You can leave the email blank or put in a fake one as
+this tutorial won't be using it. You can use whatever
+password you want. Django will warn you if it thinks
+it's too short or too common but offers the option
+of using it anyway. 
+
+Go ahead and create the Super User now with:
+
+-- cli/
+
+python manage.py createsuperuser
+
+-- /cli
+
+- Start the server
+
+Everything is ready to go now. Start the server with:
+
+-- cli/
+
+python manage.py runserver
+
+-- /cli
+
+You should see output that looks like:
+
+-- pre/
+
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+September 26, 2024 - 19:12:44
+Django version 5.1.1, using settings 'tutorial_site.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+-- /pre
+
+If you get that it means the server is up and running. 
+If you don't see that, a common error is running into 
+another process that is trying to use port 8000. 
+If that's the case, you'll see an error message like:
+
+-- pre/
+
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+Error: That port is already in use.
+
+-- /pre
+
+You'll need to find whatever process is using the port
+on your machine and stop it for now. 
+
+If you run into some other error then you can copy
+and paste it into a search engine to start figuring
+out what went wrong. 
+
+
+- Check the home page
+
+When you first start a new Django site it displays 
+a default home page. You'll see it at this 
+address:
+
+<<link|http://127.0.0.1:8000/|http://127.0.0.1:8000/>>
+
+Click that now and you should see the
+message "The install worked successfully! Congratulations!"
+along with some more info and links. 
+
+- Check the admin page
+
+Next, click this link to open the admin interface: 
+
+<<link|http://127.0.0.1:8000/admin/|http://127.0.0.1:8000/admin/>>
+
+You'll be presented with a login form where you can use 
+the "admin" Super User account and password you created
+earlier. When you enter it correctly, you'll see the 
+initial admin page that contains links for "Groups" and 
+"Users". We'll be working with those more later. 
+
+For now, we're ready to move on to the next part. 
+
+
+-- /list
+
+-- h2
+
+Links
+
+Next: 
+
+
+-- footnote
+-- id: 1
+
+Python Virtual Environments provide a way to issolate
+apps and projects so they don't interfere with each
+other or the main system version of python. There are
+different tools that can make the environments. We're
+using the <<link|built-in venv functionality|https://docs.python.org/3/library/venv.html>>
 
 
 
