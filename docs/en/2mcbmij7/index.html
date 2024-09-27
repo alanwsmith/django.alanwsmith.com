@@ -162,10 +162,13 @@ virtual environment is active</a>
     
 
 </section>
-<ul class="flow">
+
+<ol class="flow">
+    
 
 
 <li class="flow">
+
 
 
 <p>
@@ -197,20 +200,26 @@ These changes are made in the file
 
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>django_tutorial&#x2f;tutorial_site&#x2f;tutorial_site&#x2f;urls.py</pre>
+
+<div class="pre-title">
+File path:
+</div>
+
+
+
+
+<pre class="pre-block">tutorial_site&#x2f;urls.py</pre>
 
 
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
 Before we make any changes, let's examine the initial version 
@@ -227,13 +236,23 @@ of the file that looks like this
 
 
 
+
+
+
+
 <section class="code-section">
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="comment line number-sign python"><span class="punctuation definition comment python">#</span> A bunch of comments are here that we&#39;re 
+<div class="code-title">Original: tutorial_site/urls.py</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="comment line number-sign python"><span class="punctuation definition comment python">#</span> A bunch of comments are here that we&#39;re 
 <span class="line-marker"></span></span><span class="comment line number-sign python"><span class="punctuation definition comment python">#</span> going to ignore
 <span class="line-marker"></span></span>
 <span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
@@ -242,9 +261,12 @@ of the file that looks like this
 <span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">admin/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
 <span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+    
+</div>
+</section>
 
 
-
+    
 <p>
 
 These first two lines of code are
@@ -253,6 +275,9 @@ These first two lines of code are
 
 </p>
 
+ 
+
+
 
 
 
@@ -260,13 +285,22 @@ These first two lines of code are
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
-<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span></span></code></pre>
+<div class="code-title">python</div>
 
 
 
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
+<span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
 <p>
 
 These lines import some of Django's
@@ -284,7 +318,7 @@ configuration.
 </p>
 
 
-
+    
 <p>
 
 The next snippet of code is
@@ -293,6 +327,9 @@ The next snippet of code is
 
 </p>
 
+ 
+
+
 
 
 
@@ -300,14 +337,23 @@ The next snippet of code is
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
-<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">admin/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
-<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+<div class="code-title">python</div>
 
 
 
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
+    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">admin/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="punctuation section list end python">]</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
 <p>
 
 The 
@@ -333,7 +379,7 @@ what define the specific url paths that define the routes.
 </p>
 
 
-
+    
 <p>
 
 The 
@@ -369,7 +415,7 @@ that we'll see later.)
 </p>
 
 
-
+    
 <p>
 
 The initial path that's include by default is
@@ -378,6 +424,9 @@ The initial path that's include by default is
 
 </p>
 
+ 
+
+
 
 
 
@@ -385,12 +434,21 @@ The initial path that's include by default is
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">admin/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
+<div class="code-title">python</div>
 
 
 
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">admin/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
 <p>
 
 It tells Django to match "admin/" from the URL of
@@ -424,12 +482,16 @@ powers the http
 
 </p>
 
+ 
+
+
 
 
 </li>
 
 
 <li class="flow">
+
 
 
 <p>
@@ -465,12 +527,21 @@ with
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">include</span></span></span></code></pre>
+<div class="code-title">python</div>
 
 
 
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">include</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
 <p>
 
 Then, we need to add a new path with
@@ -479,6 +550,9 @@ Then, we need to add a new path with
 
 </p>
 
+ 
+
+
 
 
 
@@ -486,12 +560,21 @@ Then, we need to add a new path with
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span>,</span></code></pre>
+<div class="code-title">python</div>
 
 
 
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span>,</span></code></pre>
+    
+</div>
+</section>
+
+
+    
 <p>
 
 The empty 
@@ -554,7 +637,7 @@ that we see below.)
 </p>
 
 
-
+    
 <p>
 
 Putting those two lines in place updates the file
@@ -573,6 +656,9 @@ to replace the contents of the original
 
 </p>
 
+ 
+
+
 
 
 
@@ -580,9 +666,15 @@ to replace the contents of the original
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
+<div class="code-title">Update for: tutorial_site/urls.py</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
 <span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span>
 <span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">include</span></span>
 <span class="line-marker"></span>
@@ -590,9 +682,12 @@ to replace the contents of the original
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">admin/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
 <span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+    
+</div>
+</section>
 
 
-
+    
 <p>
 
 When we save that file the Django server in the 
@@ -613,23 +708,32 @@ that ends with
 
 </p>
 
+ 
+
+
 
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>ModuleNotFoundError: No module named &#x27;homepage&#x27;</pre>
+
+<div class="pre-title">
+Error message:
+</div>
+
+
+
+
+<pre class="pre-block">ModuleNotFoundError: No module named &#x27;homepage&#x27;</pre>
 
 
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
 It'll take us a few steps to get the home page to show
@@ -643,10 +747,15 @@ up, but we'll start by tackling that error.
 
 
 
+
+
+
+
 </li>
 
 
 <li class="flow">
+
 
 
 <p>
@@ -695,6 +804,7 @@ the
 <li class="flow">
 
 
+
 <p>
 
 Make the new app/module
@@ -738,9 +848,24 @@ Run this command to create our new "homepage" app/module
 
 
 
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
 
 
-<pre class="cli-pre"><code>python manage.py startapp homepage</code></pre>
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py startapp homepage</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+ 
 
 
 
@@ -748,6 +873,7 @@ Run this command to create our new "homepage" app/module
 
 
 <li class="flow">
+
 
 
 <p>
@@ -777,22 +903,27 @@ by adding this line
 </p>
 
 
-<section class="pre-section">
+
+
+<section class="code-section">
 
 
 
-<pre>&quot;homepage.apps.HomepageConfig&quot;,</pre>
+<div class="code-wrapper">
 
 
+<div class="code-title">python</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.apps.HomepageConfig<span class="punctuation definition string end python">&quot;</span></span></span>,</span></code></pre>
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
 to the 
@@ -805,23 +936,32 @@ to the
 
 </p>
 
+ 
+
+
 
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>django_tutorial&#x2f;tutorial_site&#x2f;tutorial_site&#x2f;settings.py</pre>
+
+<div class="pre-title">
+File path:
+</div>
+
+
+
+
+<pre class="pre-block">tutorial_site&#x2f;settings.py</pre>
 
 
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
 There's a lot to that file so you'll have to scroll down
@@ -843,24 +983,37 @@ should look like this
 
 
 
+
+
+
+
 <section class="code-section">
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta qualified-name python"><span class="variable other constant python">INSTALLED_APPS</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
-<span class="line-marker"></span>    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.admin<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
-<span class="line-marker"></span>    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
-<span class="line-marker"></span>    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.contenttypes<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
-<span class="line-marker"></span>    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.sessions<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
-<span class="line-marker"></span>    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.messages<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
-<span class="line-marker"></span>    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.staticfiles<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
-<span class="line-marker"></span>    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.apps.HomepageConfig<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
-<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+<div class="code-title">python</div>
 
 
 
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta qualified-name python"><span class="variable other constant python">INSTALLED_APPS</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.admin<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.contenttypes<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.sessions<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.messages<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.staticfiles<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.apps.HomepageConfig<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+<span class="punctuation section list end python">]</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
 <p>
 
 TODO
@@ -880,12 +1033,16 @@ line works.
 
 </p>
 
+ 
+
+
 
 
 </li>
 
 
 <li class="flow">
+
 
 
 <p>
@@ -921,12 +1078,24 @@ this to start the server
 
 
 
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
 
 
-<pre class="cli-pre"><code>python manage.py runserver</code></pre>
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
 
 
+    
+</div>
+</section>
 
+
+    
 <p>
 
 The error in the console changes from
@@ -936,22 +1105,31 @@ The error in the console changes from
 </p>
 
 
+ 
+
+
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>ModuleNotFoundError: No module named &#x27;homepage&#x27;</pre>
+
+<div class="pre-title">
+Error message:
+</div>
+
+
+
+
+<pre class="pre-block">ModuleNotFoundError: No module named &#x27;homepage&#x27;</pre>
 
 
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
 To
@@ -961,14 +1139,28 @@ To
 </p>
 
 
+
+
+
+
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>ModuleNotFoundError: No module named &#x27;homepage.urls&#x27;</pre>
+
+<div class="pre-title">
+Error message:
+</div>
+
+
+
+
+<pre class="pre-block">ModuleNotFoundError: No module named &#x27;homepage.urls&#x27;</pre>
 
 
     
+</div>
 </section>
 
 
@@ -981,6 +1173,7 @@ To
 
 
 <li class="flow">
+
 
 
 <p>
@@ -1010,20 +1203,29 @@ we can stop it now with
 </p>
 
 
+<section class="pre-section">
 
-<p>
+<div class="pre-wrapper">
 
-<kbd 
 
->control</kbd>
 
-+
+<div class="pre-title">
+Keyboard:
+</div>
 
-<kbd 
 
->c</kbd>
 
-</p>
+
+<pre class="pre-block">control + c</pre>
+
+
+    
+</div>
+</section>
+
+
+
+
 
 
 
@@ -1031,6 +1233,7 @@ we can stop it now with
 
 
 <li class="flow">
+
 
 
 <p>
@@ -1056,20 +1259,26 @@ Django is looking for a file at
 
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>django_tutorial&#x2f;tutorial_site&#x2f;homepage&#x2f;urls.py</pre>
+
+<div class="pre-title">
+File path:
+</div>
+
+
+
+
+<pre class="pre-block">homepage&#x2f;urls.py</pre>
 
 
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
 When we ran the 
@@ -1105,13 +1314,23 @@ the contents of the file
 
 
 
+
+
+
+
 <section class="code-section">
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span>
+<div class="code-title">New file: homepage/urls.py</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="keyword control import relative python">.</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">views</span></span>
 <span class="line-marker"></span>
@@ -1119,9 +1338,12 @@ the contents of the file
 <span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">views</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">index</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">name</span><span class="keyword operator assignment python">=</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">index<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
 <span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+    
+</div>
+</section>
 
 
-
+    
 <p>
 
 This file looks a lot like
@@ -1132,26 +1354,39 @@ This file looks a lot like
 
 </p>
 
+ 
+
+
 
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>django_tutorial&#x2f;tutorial_site&#x2f;tutorial_site&#x2f;urls.py</pre>
+
+<div class="pre-title">
+File path:
+</div>
+
+
+
+
+<pre class="pre-block">tutorial_site&#x2f;urls.py</pre>
 
 
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
-In fact, they two files work together. Inside that file
+In fact, they two files work together. Inside the 
+
+<code class=""><span class="text plain">tutorial_site/urls.py</span></code>
+
+ file
 
 
 
@@ -1165,16 +1400,29 @@ the line
 
 
 
+
+
+
+
 <section class="code-section">
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span>,</span></code></pre>
+<div class="code-title">python</div>
 
 
 
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span>,</span></code></pre>
+    
+</div>
+</section>
+
+
+    
 <p>
 
 calls out to include the file we just created at
@@ -1183,15 +1431,28 @@ calls out to include the file we just created at
 
 </p>
 
+ 
+
+
 
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>django_tutorial&#x2f;tutorial_site&#x2f;homepage&#x2f;urls.py</pre>
+
+<div class="pre-title">
+File path:
+</div>
+
+
+
+
+<pre class="pre-block">homepage&#x2f;urls.py</pre>
 
 
     
+</div>
 </section>
 
 
@@ -1204,6 +1465,7 @@ calls out to include the file we just created at
 
 
 <li class="flow">
+
 
 
 <p>
@@ -1237,10 +1499,13 @@ Details
 
 
 
+
 <ul class="flow">
+    
 
 
 <li class="flow">
+
 
 
 <p>
@@ -1274,9 +1539,21 @@ our
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span></span></code></pre>
+<div class="code-title">python</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span></span></code></pre>
+    
+</div>
+</section>
+
+ 
+
 
 
 
@@ -1284,6 +1561,7 @@ our
 
 
 <li class="flow">
+
 
 
 <p>
@@ -1301,12 +1579,21 @@ The next line of code is
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="keyword control import relative python">.</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">views</span></span></span></code></pre>
+<div class="code-title">python</div>
 
 
 
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="keyword control import relative python">.</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">views</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
 <p>
 
 This imports the "views.py" file from the current
@@ -1320,23 +1607,32 @@ directory. In this case that means it's pointing to
 
 </p>
 
+ 
+
+
 
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>django_tutorial&#x2f;tutorial_site&#x2f;homepage&#x2f;views.py</pre>
+
+<div class="pre-title">
+File path:
+</div>
+
+
+
+
+<pre class="pre-block">homepage&#x2f;views.py</pre>
 
 
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
 We'll be editing that file in our next step. 
@@ -1345,10 +1641,15 @@ We'll be editing that file in our next step.
 
 
 
+
+
+
+
 </li>
 
 
 <li class="flow">
+
 
 
 <p>
@@ -1366,12 +1667,21 @@ The next code line is
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">app_name</span></span> <span class="keyword operator assignment python">=</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage<span class="punctuation definition string end python">&quot;</span></span></span></span></code></pre>
+<div class="code-title">python</div>
 
 
 
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">app_name</span></span> <span class="keyword operator assignment python">=</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage<span class="punctuation definition string end python">&quot;</span></span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
 <p>
 
 The "app
@@ -1392,12 +1702,16 @@ how that works in a moment.
 
 </p>
 
+ 
+
+
 
 
 </li>
 
 
 <li class="flow">
+
 
 
 <p>
@@ -1415,14 +1729,23 @@ Next we get to
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
-<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">views</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">index</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">name</span><span class="keyword operator assignment python">=</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">index<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
-<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+<div class="code-title">python</div>
 
 
 
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
+    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">views</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">index</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">name</span><span class="keyword operator assignment python">=</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">index<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="punctuation section list end python">]</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
 <p>
 
 These paths are combined with those from the top level 
@@ -1432,7 +1755,7 @@ These paths are combined with those from the top level
 
 file (i.e. 
 
-<code class=""><span class="text plain">django_tutorial/tutorial_site/tutorial_site/urls.py</span></code>
+<code class=""><span class="text plain">tutorial_site/urls.py</span></code>
 
 )
 
@@ -1449,7 +1772,7 @@ assocaite them with their respective actions.
 </p>
 
 
-
+    
 <p>
 
 In this case, we have an 
@@ -1475,7 +1798,7 @@ urls.py file to serve the home page.
 </p>
 
 
-
+    
 <p>
 
 The "views.index" parameter tells Django that we want 
@@ -1503,7 +1826,7 @@ in a moment)
 </p>
 
 
-
+    
 <p>
 
 The last argument passed to the path is 
@@ -1547,6 +1870,9 @@ examples of how this is used later in the tutorial.
 
 </p>
 
+ 
+
+
 
 
 </li>
@@ -1563,6 +1889,7 @@ examples of how this is used later in the tutorial.
 
 
 <li class="flow">
+
 
 
 <p>
@@ -1602,12 +1929,24 @@ with the command
 
 
 
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
 
 
-<pre class="cli-pre"><code>python manage.py runserver</code></pre>
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
 
 
+    
+</div>
+</section>
 
+
+    
 <p>
 
 The server will dump a big error message that ends with
@@ -1617,22 +1956,31 @@ The server will dump a big error message that ends with
 </p>
 
 
+ 
+
+
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>AttributeError: module &#x27;homepage.views&#x27; has no attribute &#x27;index&#x27;</pre>
+
+<div class="pre-title">
+Error message:
+</div>
+
+
+
+
+<pre class="pre-block">AttributeError: module &#x27;homepage.views&#x27; has no attribute &#x27;index&#x27;</pre>
 
 
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
 This is exactly what we're expecting since we know that 
@@ -1651,10 +1999,15 @@ app's "views.py" file. We'll do that now.
 
 
 
+
+
+
+
 </li>
 
 
 <li class="flow">
+
 
 
 <p>
@@ -1676,20 +2029,26 @@ The file we need to edit is
 
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>django_tutorial&#x2f;tutorial_site&#x2f;homepage&#x2f;views.py</pre>
+
+<div class="pre-title">
+File path:
+</div>
+
+
+
+
+<pre class="pre-block">homepage&#x2f;views.py</pre>
 
 
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
 The default version that was created when we ran the "startapp"
@@ -1711,18 +2070,31 @@ that looks like this
 
 
 
+
+
+
+
 <section class="code-section">
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">shortcuts</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">render</span></span>
+<div class="code-title">python</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">shortcuts</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">render</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span><span class="comment line number-sign python"><span class="punctuation definition comment python">#</span> Create your views here.</span></span></code></pre>
+    
+</div>
+</section>
 
 
-
+    
 <p>
 
 We can remove the comment and create a new "index" function
@@ -1741,6 +2113,9 @@ what the file should look like
 
 </p>
 
+ 
+
+
 
 
 
@@ -1748,16 +2123,25 @@ what the file should look like
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">shortcuts</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">render</span></span>
+<div class="code-title">python</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">shortcuts</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">render</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span><span class="meta function python"><span class="storage type function python">def</span> <span class="entity name function python"><span class="meta generic-name python">index</span></span></span><span class="meta function parameters python"><span class="punctuation section parameters begin python">(</span></span><span class="meta function parameters python"><span class="variable parameter python">request</span><span class="punctuation section parameters end python">)</span></span><span class="meta function python"><span class="punctuation section function begin python">:</span></span>
 <span class="line-marker"></span>    <span class="meta qualified-name python"><span class="meta generic-name python">context</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure dictionary python"><span class="punctuation section dictionary begin python">{</span><span class="meta empty-dictionary python"><span class="punctuation section dictionary end python">}</span></span></span>
 <span class="line-marker"></span>    <span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta qualified-name python"><span class="meta generic-name python">request</span></span><span class="punctuation separator arguments python">,</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage/index.html<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">context</span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
+    
+</div>
+</section>
 
 
-
+    
 <p>
 
 paste that in and save the file which will automatically 
@@ -1776,12 +2160,24 @@ this response
 
 </p>
 
+ 
+
+
 
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>Watching for file changes with StatReloader
+
+<div class="pre-title">
+Message:
+</div>
+
+
+
+
+<pre class="pre-block">Watching for file changes with StatReloader
 Performing system checks...
 
 System check identified no issues (0 silenced).
@@ -1792,14 +2188,11 @@ Quit the server with CONTROL-C.</pre>
 
 
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
 At this point we can open our browser to our home page
@@ -1812,27 +2205,39 @@ which will have changed from the default Django home page
 
 
 
-to an error page that starts with 
+to an error page that starts with
+
+:
 
 </p>
 
 
+
+
+
+
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>TemplateDoesNotExist at &#x2f;</pre>
+
+<div class="pre-title">
+Error message:
+</div>
+
+
+
+
+<pre class="pre-block">TemplateDoesNotExist at &#x2f;</pre>
 
 
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
 We'll address that in a moment, but first let's look 
@@ -1846,10 +2251,15 @@ and the file we just updated.
 
 
 
+
+
+
+
 </li>
 
 
 <li class="flow">
+
 
 
 <p>
@@ -1870,10 +2280,13 @@ Details
 
 
 
+
 <ul class="flow">
+    
 
 
 <li class="flow">
+
 
 
 <p>
@@ -1891,12 +2304,21 @@ The first line is
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">shortcuts</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">render</span></span></span></code></pre>
+<div class="code-title">python</div>
 
 
 
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">shortcuts</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">render</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
 <p>
 
 This imports some of the built
@@ -1921,12 +2343,16 @@ as the return value for our function.
 
 </p>
 
+ 
+
+
 
 
 </li>
 
 
 <li class="flow">
+
 
 
 <p>
@@ -1944,12 +2370,21 @@ The next code line is
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta function python"><span class="storage type function python">def</span> <span class="entity name function python"><span class="meta generic-name python">index</span></span></span><span class="meta function parameters python"><span class="punctuation section parameters begin python">(</span></span><span class="meta function parameters python"><span class="variable parameter python">request</span><span class="punctuation section parameters end python">)</span></span><span class="meta function python"><span class="punctuation section function begin python">:</span></span></span></code></pre>
+<div class="code-title">python</div>
 
 
 
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta function python"><span class="storage type function python">def</span> <span class="entity name function python"><span class="meta generic-name python">index</span></span></span><span class="meta function parameters python"><span class="punctuation section parameters begin python">(</span></span><span class="meta function parameters python"><span class="variable parameter python">request</span><span class="punctuation section parameters end python">)</span></span><span class="meta function python"><span class="punctuation section function begin python">:</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
 <p>
 
 This creates a new Python function named "index" that
@@ -1980,12 +2415,16 @@ homepage "urls.py" file from above points to.
 
 </p>
 
+ 
+
+
 
 
 </li>
 
 
 <li class="flow">
+
 
 
 <p>
@@ -2003,12 +2442,21 @@ Our next line is
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">context</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure dictionary python"><span class="punctuation section dictionary begin python">{</span><span class="meta empty-dictionary python"><span class="punctuation section dictionary end python">}</span></span></span></span></code></pre>
+<div class="code-title">python</div>
 
 
 
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">context</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure dictionary python"><span class="punctuation section dictionary begin python">{</span><span class="meta empty-dictionary python"><span class="punctuation section dictionary end python">}</span></span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
 <p>
 
 The context is something that's required to be passed
@@ -2029,12 +2477,16 @@ to do anything with it on our homepage so it's empty here.
 
 </p>
 
+ 
+
+
 
 
 </li>
 
 
 <li class="flow">
+
 
 
 <p>
@@ -2052,12 +2504,21 @@ Our last line is
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="source python"><span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta qualified-name python"><span class="meta generic-name python">request</span></span><span class="punctuation separator arguments python">,</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage/index.html<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">context</span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
+<div class="code-title">python</div>
 
 
 
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta qualified-name python"><span class="meta generic-name python">request</span></span><span class="punctuation separator arguments python">,</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage/index.html<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">context</span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
 <p>
 
 This is the respose that's returned to Django for assembly 
@@ -2085,12 +2546,18 @@ It takes three arguments
 
 </p>
 
+ 
+
+
+
 
 
 <ul class="flow">
+    
 
 
 <li class="flow">
+
 
 
 <p>
@@ -2107,6 +2574,7 @@ The "request" object that was passed into the "index" function
 <li class="flow">
 
 
+
 <p>
 
 The template to use for the rendering (in this case "homepage/index.html")
@@ -2119,6 +2587,7 @@ The template to use for the rendering (in this case "homepage/index.html")
 
 
 <li class="flow">
+
 
 
 <p>
@@ -2155,6 +2624,7 @@ And the context (which we defined as empty in the prior line)
 <li class="flow">
 
 
+
 <p>
 
 Stop the server
@@ -2187,20 +2657,29 @@ server with
 </p>
 
 
+<section class="pre-section">
 
-<p>
+<div class="pre-wrapper">
 
-<kbd 
 
->control</kbd>
 
-+
+<div class="pre-title">
+Keyboard:
+</div>
 
-<kbd 
 
->c</kbd>
 
-</p>
+
+<pre class="pre-block">control + c</pre>
+
+
+    
+</div>
+</section>
+
+
+
+
 
 
 
@@ -2208,6 +2687,7 @@ server with
 
 
 <li class="flow">
+
 
 
 <p>
@@ -2281,20 +2761,26 @@ to create a directory tree that looks like
 
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>django_tutorial&#x2f;tutorial_site&#x2f;homepage&#x2f;templates&#x2f;homepage&#x2f;</pre>
+
+<div class="pre-title">
+Directory path:
+</div>
+
+
+
+
+<pre class="pre-block">homepage&#x2f;templates&#x2f;homepage&#x2f;</pre>
 
 
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
 You can create this directory from the terminal command line
@@ -2311,13 +2797,32 @@ with
 
 
 
+
+
+
+
 <section class="cli-section">
 
 
 
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
 
 
-<pre class="cli-pre"><code>mkdir -p homepage/templates/homepage</code></pre>
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">mkdir</span></span><span class="meta function-call arguments shell"><span class="variable parameter option shell"><span class="punctuation definition parameter shell"> -</span>p</span> homepage/templates/homepage</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+ 
 
 
 
@@ -2325,6 +2830,7 @@ with
 
 
 <li class="flow">
+
 
 
 <p>
@@ -2346,20 +2852,26 @@ Now we're ready to drop in our "index.html" template file at
 
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>django_tutorial&#x2f;tutorial_site&#x2f;homepage&#x2f;templates&#x2f;homepage&#x2f;index.html</pre>
+
+<div class="pre-title">
+File path
+</div>
+
+
+
+
+<pre class="pre-block">homepage&#x2f;templates&#x2f;homepage&#x2f;index.html</pre>
 
 
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
 Copy and past this for the content of the file and save it.
@@ -2369,18 +2881,34 @@ Copy and past this for the content of the file and save it.
 
 
 
+
+
+
+
 <section class="code-section">
 
 
 
+<div class="code-wrapper">
 
 
-<pre class="code-pre"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+<div class="code-title">New file: homepage/templates/homepage/index.html</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>Hello, world<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+    
+</div>
+</section>
+
+ 
+
 
 
 
@@ -2388,6 +2916,7 @@ Copy and past this for the content of the file and save it.
 
 
 <li class="flow">
+
 
 
 <p>
@@ -2413,12 +2942,24 @@ We're ready to start the server again with
 
 
 
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
 
 
-<pre class="cli-pre"><code>python manage.py runserver</code></pre>
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
 
 
+    
+</div>
+</section>
 
+
+    
 <p>
 
 Now, we can go back to our site and we'll see 
@@ -2443,10 +2984,13 @@ our bare bones home page at
 </p>
 
 
+ 
+
+
 
 </li>
 
-</ul>
+</ol>
 
 
 
@@ -2582,7 +3126,11 @@ Next
 
 :
 
- TKTKTKT
+ 
+
+<a href="/en/2md4eik2/?page=seciton-3-create-a-web-user-in-the-admin-interface">
+  Seciton 3 - Create A Web User In The Admin Interface
+</a>
 
 </p>
 

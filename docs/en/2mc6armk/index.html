@@ -75,14 +75,6 @@
 
   
 
-  
-
-  
-
-  
-
-  
-
 </hgroup>
 
 
@@ -117,48 +109,69 @@ doing to do are
 
 
 
+
     
+
+    
+
+</section>
+
+<ul class="flow">
+    
+
+
+<li class="flow">
+
+
+
 <p>
 
--
-
- Install Django in a Python virtual environment
+Install Django in a Python virtual environment
 
 </p>
 
 
 
+</li>
 
-    
+
+<li class="flow">
+
+
+
 <p>
 
--
-
- Create a new Django site
+Create a new Django site
 
 </p>
 
 
 
+</li>
 
-    
+
+<li class="flow">
+
+
+
 <p>
 
--
-
- Create the "Super User" account for the site
+Create the "Super User" account for the site
 
 </p>
 
 
 
+</li>
 
-    
+
+<li class="flow">
+
+
+
 <p>
 
--
-
- Verify we can log into Django's built
+Verify we can log into Django's built
 
 -
 
@@ -173,21 +186,12 @@ interface with the Super User account
 
 
 
+</li>
 
 
-    
 
-    
+</ul>
 
-    
-
-    
-
-    
-
-    
-
-</section>
 
 <section class="h2-section flow">
 <hgroup>
@@ -294,10 +298,13 @@ in your command line terminal to get started.
 
 </section>
 
-<ul class="flow">
+
+<ol class="flow">
+    
 
 
 <li class="flow">
+
 
 
 <p>
@@ -333,10 +340,25 @@ to create the directory and move into it
 
 
 
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
 
 
-<pre class="cli-pre"><code>mkdir django_tutorial
-cd django_tutorial</code></pre>
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">mkdir</span></span><span class="meta function-call arguments shell"> django_tutorial</span>
+<span class="meta function-call shell"><span class="support function cd shell">cd</span></span><span class="meta function-call arguments shell"> django_tutorial</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+ 
 
 
 
@@ -344,6 +366,7 @@ cd django_tutorial</code></pre>
 
 
 <li class="flow">
+
 
 
 <p>
@@ -372,12 +395,24 @@ installation
 
 
 
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
 
 
-<pre class="cli-pre"><code>python3 -m venv venv</code></pre>
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python3</span></span><span class="meta function-call arguments shell"><span class="variable parameter option shell"><span class="punctuation definition parameter shell"> -</span>m</span> venv venv</span></span></code></pre>
 
 
+    
+</div>
+</section>
 
+
+    
 <p>
 
 This command creates a new "venv" directory that 
@@ -405,11 +440,15 @@ envionment in the next step.
 </p>
 
 
+ 
+
+
 
 </li>
 
 
 <li class="flow">
+
 
 
 <p>
@@ -440,9 +479,24 @@ to actually use it. Run this command to do just that
 
 
 
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
 
 
-<pre class="cli-pre"><code>source venv/bin/activate</code></pre>
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="support function source shell">source</span></span><span class="meta function-call arguments shell"> venv/bin/activate</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+ 
 
 
 
@@ -523,6 +577,7 @@ tutorial" directory.
 <li class="flow">
 
 
+
 <p>
 
 Install Django using Python's built
@@ -569,12 +624,24 @@ which we can do with this command now
 
 
 
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
 
 
-<pre class="cli-pre"><code>python -m pip install Django</code></pre>
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"><span class="variable parameter option shell"><span class="punctuation definition parameter shell"> -</span>m</span> pip install Django</span></span></code></pre>
 
 
+    
+</div>
+</section>
 
+
+    
 <p>
 
 This command will output the install detail that look 
@@ -589,11 +656,23 @@ something like
 </p>
 
 
+ 
+
+
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>Collecting Django
+
+<div class="pre-title">
+command line message:
+</div>
+
+
+
+
+<pre class="pre-block">Collecting Django
   Using cached Django-5.1.1-py3-none-any.whl.metadata (4.2 kB)
 Collecting asgiref&lt;4,&gt;=3.8.1 (from Django)
   Using cached asgiref-3.8.1-py3-none-any.whl.metadata (9.3 kB)
@@ -607,14 +686,11 @@ Successfully installed Django-5.1.1 asgiref-3.8.1 sqlparse-0.5.1</pre>
 
 
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
 You may also see lines like this which can safely be ignored
@@ -624,15 +700,29 @@ You may also see lines like this which can safely be ignored
 </p>
 
 
+
+
+
+
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>[notice] A new release of pip is available: 24.0 -&gt; 24.2
+
+<div class="pre-title">
+command line message:
+</div>
+
+
+
+
+<pre class="pre-block">[notice] A new release of pip is available: 24.0 -&gt; 24.2
 [notice] To update, run: pip install --upgrade pip</pre>
 
 
     
+</div>
 </section>
 
 
@@ -645,6 +735,7 @@ You may also see lines like this which can safely be ignored
 
 
 <li class="flow">
+
 
 
 <p>
@@ -717,12 +808,24 @@ Here's the command to run
 
 
 
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
 
 
-<pre class="cli-pre"><code>django-admin startproject tutorial_site</code></pre>
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">django-admin</span></span><span class="meta function-call arguments shell"> startproject tutorial_site</span></span></code></pre>
 
 
+    
+</div>
+</section>
 
+
+    
 <p>
 
 After running the command you'll see a new directory called
@@ -759,11 +862,15 @@ file that we'll use momentarily.
 </p>
 
 
+ 
+
+
 
 </li>
 
 
 <li class="flow">
+
 
 
 <p>
@@ -805,9 +912,24 @@ directory. Move into it with
 
 
 
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
 
 
-<pre class="cli-pre"><code>cd tutorial_site</code></pre>
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="support function cd shell">cd</span></span><span class="meta function-call arguments shell"> tutorial_site</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+ 
 
 
 
@@ -815,6 +937,7 @@ directory. Move into it with
 
 
 <li class="flow">
+
 
 
 <p>
@@ -883,12 +1006,24 @@ Here's the full command which you can run now
 
 
 
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
 
 
-<pre class="cli-pre"><code>python manage.py migrate</code></pre>
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py migrate</span></span></code></pre>
 
 
+    
+</div>
+</section>
 
+
+    
 <p>
 
 The terminal will display an overview of the changes 
@@ -903,11 +1038,23 @@ made that looks something like
 </p>
 
 
+ 
+
+
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>Operations to perform:
+
+<div class="pre-title">
+command line message:
+</div>
+
+
+
+
+<pre class="pre-block">Operations to perform:
   Apply all migrations: admin, auth, contenttypes, sessions
 Running migrations:
   Applying contenttypes.0001_initial... OK
@@ -931,6 +1078,7 @@ Running migrations:
 
 
     
+</div>
 </section>
 
 
@@ -943,6 +1091,7 @@ Running migrations:
 
 
 <li class="flow">
+
 
 
 <p>
@@ -1056,9 +1205,24 @@ Go ahead and create the Super User now with
 
 
 
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
 
 
-<pre class="cli-pre"><code>python manage.py createsuperuser</code></pre>
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py createsuperuser</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+ 
 
 
 
@@ -1066,6 +1230,7 @@ Go ahead and create the Super User now with
 
 
 <li class="flow">
+
 
 
 <p>
@@ -1091,12 +1256,24 @@ Everything is ready to go now. Start the server with
 
 
 
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
 
 
-<pre class="cli-pre"><code>python manage.py runserver</code></pre>
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
 
 
+    
+</div>
+</section>
 
+
+    
 <p>
 
 You should see output that looks like
@@ -1106,11 +1283,23 @@ You should see output that looks like
 </p>
 
 
+ 
+
+
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>Watching for file changes with StatReloader
+
+<div class="pre-title">
+command line message:
+</div>
+
+
+
+
+<pre class="pre-block">Watching for file changes with StatReloader
 Performing system checks...
 
 System check identified no issues (0 silenced).
@@ -1121,14 +1310,11 @@ Quit the server with CONTROL-C.</pre>
 
 
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
 If you get that it means the server is up and running. 
@@ -1153,11 +1339,24 @@ If that's the case, you'll see an error message like
 </p>
 
 
+
+
+
+
 <section class="pre-section">
 
+<div class="pre-wrapper">
 
 
-<pre>Watching for file changes with StatReloader
+
+<div class="pre-title">
+command line error:
+</div>
+
+
+
+
+<pre class="pre-block">Watching for file changes with StatReloader
 Performing system checks...
 
 System check identified no issues (0 silenced).
@@ -1165,14 +1364,11 @@ Error: That port is already in use.</pre>
 
 
     
+</div>
 </section>
 
 
-
-
-
-
-
+    
 <p>
 
 You'll need to find whatever process is using the port
@@ -1185,7 +1381,7 @@ on your machine and stop it for now.
 </p>
 
 
-
+    
 <p>
 
 If you run into some other error then you can copy
@@ -1204,10 +1400,15 @@ out what went wrong.
 
 
 
+
+
+
+
 </li>
 
 
 <li class="flow">
+
 
 
 <p>
@@ -1269,6 +1470,7 @@ along with some more info and links.
 
 
 <li class="flow">
+
 
 
 <p>
@@ -1338,7 +1540,7 @@ For now, we're ready to move on to the next part.
 
 </li>
 
-</ul>
+</ol>
 
 
 

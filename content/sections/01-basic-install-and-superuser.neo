@@ -11,6 +11,8 @@ we're going to cover get use up and running with
 a basic site with a default home page. The specific things we're
 doing to do are:
 
+-- list
+
 - Install Django in a Python virtual environment
 
 - Create a new Django site
@@ -38,7 +40,7 @@ can be followed.
 This is the full list of every command you need to run
 in your command line terminal to get started. 
 
--- list/
+-- olist/
 
 - Make a new directory and move into it
 
@@ -107,6 +109,7 @@ This command will output the install detail that look
 something like:
 
 -- pre/
+-- title: command line message:
 
 Collecting Django
   Using cached Django-5.1.1-py3-none-any.whl.metadata (4.2 kB)
@@ -125,6 +128,7 @@ Successfully installed Django-5.1.1 asgiref-3.8.1 sqlparse-0.5.1
 You may also see lines like this which can safely be ignored:
 
 -- pre/
+-- title: command line message:
 
 [notice] A new release of pip is available: 24.0 -> 24.2
 [notice] To update, run: pip install --upgrade pip
@@ -192,6 +196,7 @@ The terminal will display an overview of the changes
 made that looks something like:
 
 -- pre/
+-- title: command line message:
 
 Operations to perform:
   Apply all migrations: admin, auth, contenttypes, sessions
@@ -258,6 +263,7 @@ python manage.py runserver
 You should see output that looks like:
 
 -- pre/
+-- title: command line message:
 
 Watching for file changes with StatReloader
 Performing system checks...
@@ -276,6 +282,7 @@ another process that is trying to use port 8000.
 If that's the case, you'll see an error message like:
 
 -- pre/
+-- title: command line error:
 
 Watching for file changes with StatReloader
 Performing system checks...
@@ -320,7 +327,7 @@ initial admin page that contains links for "Groups" and
 For now, we're ready to move on to the next part. 
 
 
--- /list
+-- /olist
 
 -- h2
 

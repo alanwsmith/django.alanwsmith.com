@@ -19,7 +19,7 @@ virtual environment is active|2mcf8e2u>>.
 
 The Steps
 
--- list/
+-- olist/
 
 - Examine the initial url paths
 
@@ -28,8 +28,9 @@ functionality to point calls to the root of the site.
 These changes are made in the file:
 
 -- pre/
+-- title: File path:
 
-django_tutorial/tutorial_site/tutorial_site/urls.py
+tutorial_site/urls.py
 
 -- /pre
 
@@ -38,7 +39,7 @@ of the file that looks like this:
 
 -- code/
 -- python
--- subtitle: django_tutorial/tutorial_site/tutorial_site/urls.py
+-- title: Original: tutorial_site/urls.py
 
 # A bunch of comments are here that we're 
 # going to ignore
@@ -57,6 +58,7 @@ These first two lines of code are:
 
 -- code/
 -- python
+-- no-nums
 
 from django.contrib import admin
 from django.urls import path
@@ -71,6 +73,7 @@ The next snippet of code is:
 
 -- code/
 -- python
+-- no-nums
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -92,6 +95,7 @@ The initial path that's include by default is:
 
 -- code/
 -- python
+-- no-nums
 
 path("admin/", admin.site.urls)
 
@@ -110,6 +114,7 @@ with:
 
 -- code/
 -- python
+-- no-nums
 
 from django.urls import include
 
@@ -119,6 +124,7 @@ Then, we need to add a new path with:
 
 -- code/
 -- python
+-- no-nums
 
 path("", include("homepage.urls")),
 
@@ -139,7 +145,7 @@ to replace the contents of the original:
 
 -- code/
 -- python
--- subtitle: django_tutorial/tutorial_site/tutorial_site/urls.py
+-- title: Update for: tutorial_site/urls.py
 
 from django.contrib import admin
 from django.urls import path
@@ -157,6 +163,7 @@ terminal will reload itself and show an error
 that ends with: 
 
 -- pre/
+-- title: Error message:
 
 ModuleNotFoundError: No module named 'homepage'
 
@@ -191,17 +198,20 @@ After creating the app/module with "startapp" in the previous
 command we have to configure Django to use it. We do this
 by adding this line:
 
--- pre/
+-- code/
+-- python
+-- no-nums
 
 "homepage.apps.HomepageConfig",
 
--- /pre
+-- /code
 
 to the <<code|INSTALLED_APPS>> list variable in the file:
 
 -- pre/
+-- title: File path:
 
-django_tutorial/tutorial_site/tutorial_site/settings.py 
+tutorial_site/settings.py 
 
 -- /pre
 
@@ -211,6 +221,7 @@ should look like this:
 
 -- code/
 -- python
+-- no-nums
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -242,6 +253,7 @@ python manage.py runserver
 The error in the console changes from:
 
 -- pre/
+-- title: Error message:
 
 ModuleNotFoundError: No module named 'homepage'
 
@@ -250,6 +262,7 @@ ModuleNotFoundError: No module named 'homepage'
 To:
 
 -- pre/
+-- title: Error message:
 
 ModuleNotFoundError: No module named 'homepage.urls'
 
@@ -261,15 +274,21 @@ We're going to add a new file in the next step. We'll
 need to restart the server to see the change so 
 we can stop it now with:
 
-<<kbd|control>>+<<kbd|c>>
+-- pre/
+-- title: Keyboard:
+
+control + c
+
+-- /pre
 
 - Add a <<code|homepage/urls.py>> file
 
 Django is looking for a file at:
 
 -- pre/
+-- title: File path:
 
-django_tutorial/tutorial_site/homepage/urls.py
+homepage/urls.py
 
 -- /pre
 
@@ -281,7 +300,7 @@ the contents of the file:
 
 -- code/
 -- python
--- subtitle: django_tutorial/tutorial_site/homepage/urls.py
+-- title: New file: homepage/urls.py
 
 from django.urls import path
 
@@ -297,16 +316,18 @@ urlpatterns = [
 This file looks a lot like: 
 
 -- pre/
+-- title: File path:
 
-django_tutorial/tutorial_site/tutorial_site/urls.py
+tutorial_site/urls.py
 
 -- /pre
 
-In fact, they two files work together. Inside that file
+In fact, they two files work together. Inside the <<code|tutorial_site/urls.py>> file
 the line:
 
 -- code/
 -- python
+-- no-nums
 
 path("", include("homepage.urls")),
 
@@ -315,8 +336,9 @@ path("", include("homepage.urls")),
 calls out to include the file we just created at:
 
 -- pre/
+-- title: File path:
 
-django_tutorial/tutorial_site/homepage/urls.py
+homepage/urls.py
 
 -- /pre
 
@@ -335,6 +357,7 @@ our <<code|urlpatterns|python>> variable later in the file.
 
 -- code/
 -- python
+-- no-nums
 
 from django.urls import path
 
@@ -345,6 +368,7 @@ from django.urls import path
 
 -- code/
 -- python
+-- no-nums
 
 from . import views
 
@@ -354,8 +378,9 @@ This imports the "views.py" file from the current
 directory. In this case that means it's pointing to:
 
 -- pre/
+-- title: File path:
 
-django_tutorial/tutorial_site/homepage/views.py
+homepage/views.py
 
 -- /pre
 
@@ -365,6 +390,7 @@ We'll be editing that file in our next step.
 
 -- code/
 -- python
+-- no-nums
 
 app_name = "homepage"
 
@@ -378,6 +404,7 @@ how that works in a moment.
 
 -- code/
 -- python
+-- no-nums
 
 urlpatterns = [
     path("", views.index, name="index"),
@@ -386,7 +413,7 @@ urlpatterns = [
 -- /code
 
 These paths are combined with those from the top level 
-file (i.e. <<code|django_tutorial/tutorial_site/tutorial_site/urls.py>>)
+file (i.e. <<code|tutorial_site/urls.py>>)
 to create that pattern matches for requested URLs and 
 assocaite them with their respective actions. 
 
@@ -425,6 +452,7 @@ python manage.py runserver
 The server will dump a big error message that ends with:
 
 -- pre/
+-- title: Error message:
 
 AttributeError: module 'homepage.views' has no attribute 'index'
 
@@ -439,8 +467,9 @@ app's "views.py" file. We'll do that now.
 The file we need to edit is:
 
 -- pre/
+-- title: File path:
 
-django_tutorial/tutorial_site/homepage/views.py
+homepage/views.py
 
 -- /pre
 
@@ -477,6 +506,7 @@ reload the server and clear the errors and should show
 this response:
 
 -- pre/
+-- title: Message:
 
 Watching for file changes with StatReloader
 Performing system checks...
@@ -491,9 +521,10 @@ Quit the server with CONTROL-C.
 
 At this point we can open our browser to our home page
 which will have changed from the default Django home page
-to an error page that starts with 
+to an error page that starts with:
 
 -- pre/
+-- title: Error message:
 
 TemplateDoesNotExist at /
 
@@ -513,6 +544,7 @@ Details:
 
 -- code/
 -- python
+-- no-nums
 
 from django.shortcuts import render
 
@@ -526,6 +558,7 @@ as the return value for our function.
 
 -- code/
 -- python
+-- no-nums
 
 def index(request):
 
@@ -541,6 +574,7 @@ homepage "urls.py" file from above points to.
 
 -- code/
 -- python
+-- no-nums
 
 context = {}
 
@@ -554,6 +588,7 @@ to do anything with it on our homepage so it's empty here.
 
 -- code/
 -- python
+-- no-nums
 
 return render(request, "homepage/index.html", context)
 
@@ -583,7 +618,12 @@ automatically along with using the command line to
 create a couple of directories for us. So, stop the
 server with:
 
-<<kbd|control>>+<<kbd|c>>
+-- pre/
+-- title: Keyboard:
+
+control + c
+
+-- /pre
 
 - Create the homepage app templates directory
 
@@ -600,8 +640,9 @@ look at and we'll discuss why in a moment but for now we need
 to create a directory tree that looks like:
 
 -- pre/
+-- title: Directory path:
 
-django_tutorial/tutorial_site/homepage/templates/homepage/
+homepage/templates/homepage/
 
 -- /pre
 
@@ -619,8 +660,9 @@ mkdir -p homepage/templates/homepage
 Now we're ready to drop in our "index.html" template file at:
 
 -- pre/
+-- title: File path
 
-django_tutorial/tutorial_site/homepage/templates/homepage/index.html
+homepage/templates/homepage/index.html
 
 -- /pre
 
@@ -628,6 +670,7 @@ Copy and past this for the content of the file and save it.
 
 -- code/
 -- html
+-- title: New file: homepage/templates/homepage/index.html
 
 <!DOCTYPE html>
 <html>
@@ -651,8 +694,7 @@ python manage.py runserver
 Now, we can go back to our site and we'll see 
 our bare bones home page at: http://127.0.0.1:8000/
 
-
--- /list
+-- /olist
 
 -- h2
 
@@ -673,7 +715,7 @@ Links
 
 Previous: <<tlink|2mc6armk>>
 
-Next: TKTKTKT
+Next: <<tlink|2md4eik2>>
 
 -- metadata
 -- created: 2024-09-26T15:26:05-04:00

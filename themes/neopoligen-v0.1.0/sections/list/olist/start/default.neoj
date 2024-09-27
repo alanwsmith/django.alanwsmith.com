@@ -1,6 +1,6 @@
 [! import "includes/theme.neoj" as theme !]
 
-<ul
+<ol
     [@- theme.section_classes(section, "flow") -@] 
     [@- section.attr_string -@]>
     

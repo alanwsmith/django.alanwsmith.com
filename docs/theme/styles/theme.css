@@ -50,24 +50,58 @@ body {
   font-family: 'Inter';
 }
 
-.cli-pre {
+.cli-block {
+  padding-block: 0.5rem;
+}
+
+.cli-title {
+  color: var(--color-bravo-70);
+  border-bottom: 1px solid var(--color-bravo-10); 
+}
+
+.cli-subtitle {
+  border-bottom: 1px solid var(--color-bravo-10); 
+}
+
+.cli-wrapper {
+  font-size: var(--size-8);
+  padding: 0.3rem;
+  background-color: var(--color-black-30);
+  border: 1px solid var(--color-bravo-10);
+  border-radius: 0.3rem;
+}
+
+.code-block {
   font-size: var(--size-8);
   margin-left: 3rem;
   padding-left: 0.3rem;
+  padding-top: 0.7rem;
   border-left: 1px solid var(--color-delta);
   background-color: var(--color-black-30);
   border-top-right-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem;
 }
 
-.code-pre {
-  font-size: var(--size-8);
-  margin-left: 3rem;
-  padding-left: 0.3rem;
-  border-left: 1px solid var(--color-delta);
+.code-block-no-nums {
+  padding: 0.8rem;
   background-color: var(--color-black-30);
-  border-top-right-radius: 0.3rem;
-  border-bottom-right-radius: 0.3rem;
+}
+
+.code-title {
+  border-bottom: 1px solid var(--color-bravo-20);
+  color: var(--color-bravo-60);
+  font-family: monospace;
+  font-size: var(--size-8);
+  padding: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.code-wrapper {
+  font-size: var(--size-8);
+  background-color: var(--color-black-30);
+  border: 1px solid var(--color-bravo-10);
+  border-radius: 0.3rem;
+  padding: 0.4rem;
 }
 
 .fin-token {
@@ -198,6 +232,31 @@ main {
 
 .pad-top-1 {
   padding-top: 1rem;
+}
+
+.pre-block {
+  font-family: monospace;
+  background-color: var(--color-black-30);
+  overflow-wrap: break-word;
+  padding: 0.8rem;
+  white-space: pre-wrap; 
+}
+
+.pre-title {
+  border-bottom: 1px solid var(--color-bravo-20);
+  color: var(--color-bravo-60);
+  font-family: monospace;
+  font-size: var(--size-8);
+  padding: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.pre-wrapper {
+  font-size: var(--size-8);
+  background-color: var(--color-black-30);
+  border: 1px solid var(--color-bravo-10);
+  border-radius: 0.3rem;
+  padding: 0.4rem;
 }
 
 .photo {
