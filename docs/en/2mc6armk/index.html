@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Part 1 - Basic Installation And Super User Creation</title>
+<title>Section 1 - Basic Installation And Super User Creation</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta property="og:title" content="Part 1 - Basic Installation And Super User Creation" />
+<meta property="og:title" content="Section 1 - Basic Installation And Super User Creation" />
 <meta property="og:description" content="a post from alan w. smith" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://django.alanwsmith.com/en/2mc6armk/?page=part-1-basic-installation-and-super-user-creation" />
+<meta property="og:url" content="https://django.alanwsmith.com/en/2mc6armk/?page=section-1-basic-installation-and-super-user-creation" />
 <meta property="og:image" content="https://django.alanwsmith.com/neo-images/default-og-image/1200w.jpg" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/theme/favicons/apple-touch-icon.png">
@@ -40,7 +40,7 @@
   
     <h1 class="page-title">
     
-      Part 1 
+      Section 1 
     
       -
     
@@ -59,9 +59,1631 @@
 
     
 
+</section>
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Introduction
+    
+    </h2>
+    
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>
+
+Welcome to the first part of the tutorial. The things
+
+
+
+
+we're going to cover get use up and running with
+
+
+
+
+a basic site with a default home page. The specific things we're
+
+
+
+
+doing to do are
+
+:
+
+</p>
+
+
+
+
+
+    
+
+    
+
+</section>
+
+<ul class="flow">
+    
+
+
+<li class="flow">
+
+
+
+<p>
+
+Install Django in a Python virtual environment
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Create a new Django site
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Create the "Super User" account for the site
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Verify we can log into Django's built
+
+-
+
+in admin
+
+
+
+
+interface with the Super User account
+
+</p>
+
+
+
+</li>
+
+
+
+</ul>
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      The Steps
+    
+    </h2>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+
+    
+
+</section>
+
+<section class="note-section">
+
+<div class="note-title">
+Note</div>
+
+<div class="flow">
+
+
+      
+        
+<p>
+
+These directions are for a Mac running the version of
+
+
+
+
+Python 3 provided by the 
+
+
+<a href="https://brew.sh/">homebrew package manager</a>
+
+. 
+
+
+
+
+I don't have the resources at the moment to make a Windows specific version,
+
+
+
+
+but hopefully the commands are close enough that they 
+
+
+
+
+can be followed.
+
+</p>
+
+      
+
+
+
+</div>
+
+
+
+    
+
+</section>
+
+
+<section class="p-section flow">
+
+
+      
+        
+<p>
+
+This is the full list of every command you need to run
+
+
+
+
+in your command line terminal to get started. 
+
+</p>
+
+      
+
+
+
+
+
+    
+
+
+</section>
+
+
+<ol class="flow">
+    
+
+
+<li class="flow">
+
+
+
+<p>
+
+Make a new directory and move into it
+
+</p>
+
+
+
+<p>
+
+We'll start things off by making a new directory
+
+
+
+
+to house all our Django work. Run these commands
+
+
+
+
+to create the directory and move into it
+
+:
+
+</p>
+
+
+
+
+<section class="cli-section">
+
+
+
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">mkdir</span></span><span class="meta function-call arguments shell"> django_tutorial</span>
+<span class="meta function-call shell"><span class="support function cd shell">cd</span></span><span class="meta function-call arguments shell"> django_tutorial</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+ 
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Make a new Python virtual environment
+
+<sup><a 
+    href="#fnref-1-text"
+    id="fnref-1-link"
+    >1</a></sup>
+
+
+ to house our Django
+
+
+
+
+installation
+
+</p>
+
+
+
+
+<section class="cli-section">
+
+
+
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python3</span></span><span class="meta function-call arguments shell"><span class="variable parameter option shell"><span class="punctuation definition parameter shell"> -</span>m</span> venv venv</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+This command creates a new "venv" directory that 
+
+
+
+
+houses all the files for the virtual environment. 
+
+
+
+
+We won't edit anything inside of it so we can pretty 
+
+
+
+
+much ignore it after we run the activte the 
+
+
+
+
+envionment in the next step.
+
+</p>
+
+
+ 
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Activate the Python virtual environment
+
+</p>
+
+
+
+<p>
+
+We have to "activate" the Python virtual environment
+
+
+
+
+to actually use it. Run this command to do just that
+
+:
+
+</p>
+
+
+
+
+<section class="cli-section">
+
+
+
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="support function source shell">source</span></span><span class="meta function-call arguments shell"> venv/bin/activate</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+ 
+
+
+
+
+<section class="note-section">
+
+<div class="note-title">
+Note</div>
+
+<div class="flow">
+
+
+      
+        
+<p>
+
+You have to run this command in every 
+
+
+
+
+terminal window where you want to run the 
+
+
+
+
+various Django commands we'll use throughout
+
+
+
+
+the tutorial. That is, if you close your terminal
+
+
+
+
+and open it again, you'll need to re
+
+-
+
+run this
+
+
+
+
+inside the "django
+
+_
+
+tutorial" directory. 
+
+</p>
+
+      
+
+      
+
+
+
+</div>
+
+
+
+    
+
+    
+        </section>
+
+
+
+    
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Install Django using Python's built
+
+-
+
+in "pip" package manager
+
+</p>
+
+
+
+<p>
+
+The first thing we need to install for building our
+
+
+
+
+Django site is the "django
+
+-
+
+admin" command that we'll use
+
+
+
+
+in the next step. It comes with the basic Django install 
+
+
+
+
+which we can do with this command now
+
+:
+
+</p>
+
+
+
+
+<section class="cli-section">
+
+
+
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"><span class="variable parameter option shell"><span class="punctuation definition parameter shell"> -</span>m</span> pip install Django</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+This command will output the install detail that look 
+
+
+
+
+something like
+
+:
+
+</p>
+
+
+ 
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+command line message:
+</div>
+
+
+
+
+<pre class="pre-block">Collecting Django
+  Using cached Django-5.1.1-py3-none-any.whl.metadata (4.2 kB)
+Collecting asgiref&lt;4,&gt;=3.8.1 (from Django)
+  Using cached asgiref-3.8.1-py3-none-any.whl.metadata (9.3 kB)
+Collecting sqlparse&gt;=0.3.1 (from Django)
+  Using cached sqlparse-0.5.1-py3-none-any.whl.metadata (3.9 kB)
+Using cached Django-5.1.1-py3-none-any.whl (8.2 MB)
+Using cached asgiref-3.8.1-py3-none-any.whl (23 kB)
+Using cached sqlparse-0.5.1-py3-none-any.whl (44 kB)
+Installing collected packages: sqlparse, asgiref, Django
+Successfully installed Django-5.1.1 asgiref-3.8.1 sqlparse-0.5.1</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+You may also see lines like this which can safely be ignored
+
+:
+
+</p>
+
+
+
+
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+command line message:
+</div>
+
+
+
+
+<pre class="pre-block">[notice] A new release of pip is available: 24.0 -&gt; 24.2
+[notice] To update, run: pip install --upgrade pip</pre>
+
+
+    
+</div>
+</section>
+
+
+
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Create A New Django Site
+
+:
+
+</p>
+
+
+
+<p>
+
+Installing Django gives us access to "django
+
+-
+
+admin" but doesn't
+
+
+
+
+automatically create a new site for us to work with. We'll
+
+
+
+
+do that by using the "django
+
+-
+
+admin" subcommand "startproject". (Django 
+
+
+
+
+often uses the word "project" in place of "site" by convention, but
+
+
+
+
+for our purposes it means the same thing.) We'll name our 
+
+
+
+
+new site/project "tutorial
+
+_
+
+site". 
+
+</p>
+
+
+
+<p>
+
+Here's the command to run
+
+:
+
+</p>
+
+
+
+
+<section class="cli-section">
+
+
+
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">django-admin</span></span><span class="meta function-call arguments shell"> startproject tutorial_site</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+After running the command you'll see a new directory called
+
+
+
+
+<code class=""><span class="text plain">tutorial_site</span></code>
+
+ in your 
+
+<code class=""><span class="text plain">django_tutorial</span></code>
+
+
+
+
+directory. Several default files and folders are generated
+
+
+
+
+in a tree underneath it. We'll be exploring them
+
+
+
+
+throughout this tutorial starting with the "manage.py"
+
+
+
+
+file that we'll use momentarily. 
+
+</p>
+
+
+ 
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Move into the newly created 
+
+<code class=""><span class="text plain">tutorial_site</span></code>
+
+ 
+
+
+
+
+directory
+
+</p>
+
+
+
+<p>
+
+We'll be doing all the rest of our work inside the 
+
+<code class=""><span class="text plain">tutorial_site</span></code>
+
+
+
+
+directory. Move into it with
+
+:
+
+</p>
+
+
+
+
+<section class="cli-section">
+
+
+
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="support function cd shell">cd</span></span><span class="meta function-call arguments shell"> tutorial_site</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+ 
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Prep the database with a migration 
+
+</p>
+
+
+
+<p>
+
+Django uses a database to store both content and
+
+
+
+
+it's own operating and administraion data. 
+
+
+
+
+Changes to the database are made via "migrations" 
+
+
+
+
+which provide the details of each change to be made. 
+
+
+
+
+When a new Django project/site is created it comes with a 
+
+
+
+
+set of migrations that need to run to complete the
+
+
+
+
+initial setup. The migrations are run by passing
+
+
+
+
+the "migrate" argument to "manage.py"
+
+</p>
+
+
+
+<p>
+
+Here's the full command which you can run now
+
+:
+
+</p>
+
+
+
+
+<section class="cli-section">
+
+
+
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py migrate</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The terminal will display an overview of the changes 
+
+
+
+
+made that looks something like
+
+:
+
+</p>
+
+
+ 
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+command line message:
+</div>
+
+
+
+
+<pre class="pre-block">Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying sessions.0001_initial... OK</pre>
+
+
+    
+</div>
+</section>
+
+
+
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Create the "Super User" account
+
+</p>
+
+
+
+<p>
+
+Django includes a built
+
+-
+
+in admin interface and
+
+
+
+
+user authentication system. Part of that system
+
+
+
+
+includes the ability to make a "Super User" account
+
+
+
+
+that has full access to everything in the admin 
+
+
+
+
+interface. Creating that user is done using
+
+
+
+
+the "createsuperuser" argument for "manage.py". 
+
+</p>
+
+
+
+<p>
+
+Running the command will ask you to fill in the username, 
+
+
+
+
+email, and password you want to use for the account. 
+
+</p>
+
+
+
+<p>
+
+You can pick whatever username you want to but for
+
+
+
+
+ease of use in this tutorial let's stick with "admin". 
+
+
+
+
+You can leave the email blank or put in a fake one as
+
+
+
+
+this tutorial won't be using it. You can use whatever
+
+
+
+
+password you want. Django will warn you if it thinks
+
+
+
+
+it's too short or too common but offers the option
+
+
+
+
+of using it anyway. 
+
+</p>
+
+
+
+<p>
+
+Go ahead and create the Super User now with
+
+:
+
+</p>
+
+
+
+
+<section class="cli-section">
+
+
+
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py createsuperuser</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+ 
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Start the server
+
+</p>
+
+
+
+<p>
+
+Everything is ready to go now. Start the server with
+
+:
+
+</p>
+
+
+
+
+<section class="cli-section">
+
+
+
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+You should see output that looks like
+
+:
+
+</p>
+
+
+ 
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+command line message:
+</div>
+
+
+
+
+<pre class="pre-block">Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+September 26, 2024 - 19:12:44
+Django version 5.1.1, using settings &#x27;tutorial_site.settings&#x27;
+Starting development server at http:&#x2f;&#x2f;127.0.0.1:8000&#x2f;
+Quit the server with CONTROL-C.</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+If you get that it means the server is up and running. 
+
+
+
+
+If you don't see that, a common error is running into 
+
+
+
+
+another process that is trying to use port 8000. 
+
+
+
+
+If that's the case, you'll see an error message like
+
+:
+
+</p>
+
+
+
+
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+command line error:
+</div>
+
+
+
+
+<pre class="pre-block">Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+Error: That port is already in use.</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+You'll need to find whatever process is using the port
+
+
+
+
+on your machine and stop it for now. 
+
+</p>
+
+
+    
+<p>
+
+If you run into some other error then you can copy
+
+
+
+
+and paste it into a search engine to start figuring
+
+
+
+
+out what went wrong. 
+
+</p>
+
+
+
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Check the home page
+
+</p>
+
+
+
+<p>
+
+When you first start a new Django site it displays 
+
+
+
+
+a default home page. You'll see it at this 
+
+
+
+
+address
+
+:
+
+</p>
+
+
+
+
+<section class="link-section">
+
+<div class="link-wrapper">
+
+
+<div class="link-title">home page:</div>
+
+
+<div class="link-block">
+
+    
+<p>
+
+
+<a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>
+
+</p>
+
+
+    
+
+</div>
+</section>
+
+
+</div>
+
+
+<p>
+
+Click that now and you should see the
+
+
+
+
+message "The install worked successfully! Congratulations!"
+
+
+
+
+along with some more info and links. 
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Check the admin page
+
+</p>
+
+
+
+<p>
+
+Next, click this link to open the admin interface
+
+:
+
+ 
+
+</p>
+
+
+
+
+<section class="link-section">
+
+<div class="link-wrapper">
+
+
+<div class="link-title">admin interface:</div>
+
+
+<div class="link-block">
+
+    
+<p>
+
+
+<a href="http://127.0.0.1:8000/admin/">http://127.0.0.1:8000/admin/</a>
+
+</p>
+
+
+    
+
+</div>
+</section>
+
+
+</div>
+
+
+<p>
+
+You'll be presented with a login form where you can use 
+
+
+
+
+the "admin" Super User account and password you created
+
+
+
+
+earlier. When you enter it correctly, you'll see the 
+
+
+
+
+initial admin page that contains links for "Groups" and 
+
+
+
+
+"Users". We'll be working with those more later. 
+
+</p>
+
+
+
+<p>
+
+For now, we're ready to move on to the next part. 
+
+</p>
+
+
+
+</li>
+
+</ol>
+
+
+
+
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Links
+    
+    </h2>
+    
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>
+
+Next
+
+:
+
+ 
+
+<a href="/en/2mcbmij7/?page=section-2-make-a-home-page">
+  Section 2 - Make A Home Page
+</a>
+
+</p>
+
+
+
+
+
+    
+
+    
+
 </section><div class="fin-token">~ fin ~</div>
 
-</main>
+
+      <section>
+        <h2>Footnotes</h2>
+        <ul class="flow">
+    
+    <li class="footnote-ref"><div id="fnref-1-text" class="footnote-number">
+    <a href="#fnref-1-link">1</a>
+  </div><div class="footnote-text"><div class="flow">
+
+      
+        
+<p>
+
+Python Virtual Environments provide a way to issolate
+
+
+
+
+apps and projects so they don't interfere with each
+
+
+
+
+other or the main system version of python. There are
+
+
+
+
+different tools that can make the environments. We're
+
+
+
+
+using the 
+
+
+<a href="https://docs.python.org/3/library/venv.html">built-in venv functionality</a>
+
+</p>
+
+      
+
+
+</div>
+</div><div class="footnote-return-arrow">
+    <a href="#fnref-1-link">&#x2934;</a>
+  </div>
+</li>
+    </ul>
+    </section>
+  </main>
 <footer></footer>
 
 

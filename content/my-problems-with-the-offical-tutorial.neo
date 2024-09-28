@@ -5,7 +5,258 @@ My Problems With The Offical Django Tutorial
 I've taken multiple runs at the offical Django
 Getting Started Tutorial. It's relative long but
 after going through it I still don't have a sense
-of how to work with Django. 
+of how to work with Django. This is the list
+of problem I have with it that make it hard for
+me to use. 
+
+-- h2
+
+The Problems
+
+-- list/
+
+- No info on how to build a home page
+
+- Doesn't show how to create user accounts
+
+- Doesn't show how to protect the content editing pages
+behind authentication 
+
+- Does things like show "the hard way" only to then
+show a different way to do things (e.g. the generic 
+views). The tutorial should pick one way and stick 
+to it. 
+
+- The first page of the tutorial assumes you have
+Django installed. If I'm doing a tutorial from 
+scratch that should be the first thing. Instead, it
+links off to a page that then links off to another
+page to show you how to actually do the install. 
+It's like throwing a curve ball as the very first thing. 
+
+- The first thing it shows is how to make a direct
+"HttpResponse" response. This is only used as a stub
+and isn't something that's used in the final app. That
+means you spend mental overhead on something that isn't
+going to be used. 
+
+- There's no distinction on what lines are new and what
+lines have changed in some of the code snippets. It makes
+it easy to miss things like a line changing from:
+
+-- code/
+-- python
+
+from django.urls import path
+
+-- /code
+
+to 
+
+-- code/
+-- python
+
+from django.urls import include, path
+
+-- /code
+
+- Verbose documentation is dropped in directly
+that's hard to parse without already knowing
+what's going on and before some parts of it
+are even used (e.g. the path() stuff in Part 1). 
+Better to use explinaions of
+just the parts that are being used. 
+
+- Talking about the specific INSTALLED_APPS in the database section
+at the start of Part 2 is extra overhead that's not needed for running the 
+migration command. 
+
+- There's a "For the minimalists" aside in Part 2 about
+removing some of the INSTALLED_APPS. This is the first 
+tutorial and I don't really have an understanding of 
+when I'd want to do that and what the ramifications
+would be. This is better left out since it's more 
+overhead and not something I'm going to do for the 
+basic app. 
+
+- There's a philosopy section at the start of the models
+build out in Part 2. I don't need to know that at this
+point. It's enough to just run the commands. Learning
+about the philosophy can come later. 
+
+- The tutorial builds two models at the same time. It's
+better to do one thing at a time. 
+
+- The models in Part 2 introduce Foreign key constraints
+in the first example. That's a more advanced topic that
+should be covered once we have a basic model in place.
+This is part of one of my overall feeling that part of this 
+tutorial is trying to get you through it as fast as 
+possible while sacrificing an incremental approach that
+aids in understanding a smaller number of concepts 
+at one time. 
+
+- Talking about the "pluggable" philosophy in the breakout
+aside box isn't needed. The break out box makes it feel
+like it's a very important thing that I need to know about
+to make things work, but that's not the case. 
+
+- Part 2 runs the command to show the SQL that builds the
+database tables. This is unnecessary and can be a lot for
+folks that don't have knowledge of SQL. At this point, 
+it's enough to know that the table is built. This
+is also an example of running an unnecessary command
+for making things work. 
+
+- The "Playing With The API" section of Part 2 uses the command
+line shell to create content. Using the command line
+is not something that's required to build the web app. 
+This is a lot of extra mental overhead. Unfortunately, 
+you can't skip this since the content created here
+is what's used later in the tutorial. It's better to
+create initial content via the admin interface which is
+actually what's shown next. 
+
+- The "Playing With The API" section digs into using
+primary and foreign keys. That's a lot of overhead
+before we've even seen a web page with a basic output
+on it. 
+
+- Part 3 again stubs pages with "HttpResponse" that's
+not what we'll actually be using. It also stubs
+all the pages and URLS patterns at the same time so
+there's a big shift. It's better to add things one
+at a time so there's a direct correlation between 
+the changes in the code and what you're seeing
+at each step. 
+
+- The "Write views that actually do something"
+is where things should have started. It's a clear
+indication that the stuff we did before was just
+burning mental energy on things we aren't actually
+going to use. 
+
+- The first part of the "Write views that actually do something"
+section in Part 3 shows how to use the "HttpResponse"
+and "loader" modules. Once it's done that, it shows
+you how to use the single "render" shortcut instead. 
+Again, we've had to spend mental energy learning two
+ways to do the same thing. We don't need the first
+way for any of the rest of the project so we should
+just be introduced to the shortcut at this time and
+save the fuller version for when it's necessary. 
+
+- The "Raising a 404 error" section of Part 3 does
+the same thing where it shows both a verbose way and 
+a shortcut for how to handle missing pages. As before,
+the tutorial should pick the most common use case
+and just show it. 
+
+- Creating the templates for each of the parts
+of the app is pretty far away from the views for each
+related item. It's hard to track how they connect to
+each other. It would be better to do things one at a time. 
+
+- Part 3 builds the "detail" page out before it builds
+the index page. 
+
+- A big issue with the approach in part 3 is you end up 
+making a bunch of changes before trying to look at any
+pages. That leaves a lot of room to introduce errors and
+typos that become very hard to figure out without already
+having experience with the error messages. This left
+me feeling lost several times and having to backtrack
+through lots of changes to try to figure out where I
+did something that introduced and error. 
+
+- There's a section called "Removing hardcoded URLs in templates"
+in Part 3. This is another example of being shown
+one way to do something and then having it change later
+to the way you'll actually do things. It would be
+better to just show the single way and exaplain it fully. 
+
+- The "Namespacing URL names" is it's own section in 
+Part 3. This should be rolled into the start of the app
+since it's something we want to do for the final version. 
+
+- Part 4 starts by redoing the detail template. We should
+have just started here and explained things directly. 
+
+- Part 4 has a section called "Use generic views: Less code is better"
+that talks about using generic views. This is another 
+case of being show multiple ways to do the same thing. 
+
+- There's a breakout aside called "Why the code-shuffle" in 
+Part 4 that talks about how you would generally evaluate 
+if you want to use a generic view or not when you firest create
+a view instea of refactoring halfway through. It then goes on 
+to say the tutorial intentionally focuses on "the hard way" to
+start with. I'm not concerned with which way is harder or
+easier. The core problem is that the tutorial introduces two ways
+to do it and, as a beginner, I have no idea how to judge 
+which one I should be using. 
+
+- The "Amend URLconf" in Part 4 is another example of introducing
+multiple changes at the same time. The same goes for the "Amend views"
+section. 
+
+- Part 5 starts automated testing. I'm a big beliver in testing, but
+for an initial tutorial I like the idea of stopping with a basic working
+site and then breaking testing out to it's own tutorial where you 
+can start from scratch and to TDD instead of retro-fitting the 
+tests into already the already existing code. 
+
+
+-- /list
+
+-- h2
+
+The Difficulty
+
+-- note
+
+This will probably become it's own blog post
+at some point
+
+-- p
+
+One of the hardest parts of writing a good getting 
+started tutorial is putting yourself in the 
+mind of your intended audience when you yourself are
+and expert. There's lots of context already loaded in 
+your brain that makes it easy to miss how much mental 
+energy it takes to learn each new thing. That, in turn, 
+makes it easy to add in way more than you need since
+you, as the author, don't feel the weight of trying
+to figure every little part out. 
+
+It's also easy to ignore the fact that folks will make
+typos and errors understanding what needs to change in 
+files. When a tutorial makes a bunch of changes before
+looking at the work to check it, the chance of introducing
+errors that are hard for new folks to track down becomes
+huge. 
+
+Errors are a way of life. Must tutorials I see don't show
+any errors at all. That leaves you with no exporse to them
+other than the mistakes you make which aren't addressed
+in the tutorial itself. 
+
+Taking all that into consideration, had led me to make 
+the tutorial on this site that tries to address
+those issues. 
+
+I hope you find it useful. 
+
+~ Alan
+
+-- h3
+
+Links
+
+<<tlink|2mc6armk>>
+
+
 
 
 -- metadata
