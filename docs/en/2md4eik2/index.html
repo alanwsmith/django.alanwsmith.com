@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Seciton 3 - Adding A Login Link</title>
+<title>Seciton 3 - Adding Login Functionality</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta property="og:title" content="Seciton 3 - Adding A Login Link" />
+<meta property="og:title" content="Seciton 3 - Adding Login Functionality" />
 <meta property="og:description" content="a post from alan w. smith" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://django.alanwsmith.com/en/2md4eik2/?page=seciton-3-adding-a-login-link" />
+<meta property="og:url" content="https://django.alanwsmith.com/en/2md4eik2/?page=seciton-3-adding-login-functionality" />
 <meta property="og:image" content="https://django.alanwsmith.com/neo-images/default-og-image/1200w.jpg" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/theme/favicons/apple-touch-icon.png">
@@ -44,7 +44,7 @@
     
       -
     
-       Adding A Login Link
+       Adding Login Functionality
     
     </h1>
     
@@ -645,7 +645,7 @@ For example, the current version of our
 
 file that we made in 
 
-<a href="">Section 2</a>
+<a href="/en/2mcbmij7/?page=section-2-make-a-home-page">Section 2</a>
 
 
  looks like this
@@ -2187,7 +2187,7 @@ Create the new
 
 <p>
 
-Scratch Notes Below
+Create the generic templates directory
 
 </p>
 
@@ -2195,9 +2195,206 @@ Scratch Notes Below
 
 <p>
 
-#####################################################
+To be able to use a generic template directory we have
+
+
+
+
+to update our Django configuration so it knows to look
+
+
+
+
+for it. This is done in 
+
+<path 
+
+>tutorial_site/settings.py</path>
+
+
+
+
+inside the 
+
+<code class=""><span class="text plain">TEMPLATES</span></code>
+
+ list. Open the file and 
+
+
+
+
+find the line
+
+:
 
 </p>
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">initial tutorial_site/settings.py line</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">DIRS<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator annotation variable python">:</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span><span class="punctuation section list end python">]</span></span>,</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+and update it to
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">updated tutorial_site/settings.py line</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">DIRS<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator annotation variable python">:</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span><span class="meta qualified-name python"><span class="variable other constant python">BASE_DIR</span></span> <span class="keyword operator arithmetic python">/</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">templates<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section list end python">]</span></span>,</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The 
+
+<code class=""><span class="text plain">BASE_DIR</span></code>
+
+ variable represents our root
+
+
+
+
+site/project directory (i.e. 
+
+<path 
+
+>tutorial_site</path>
+
+). So, 
+
+
+
+
+the full path we're adding here is 
+
+<path 
+
+>tutorial_site/templates</path>
+
+)
+
+
+
+
+Let's add that now by stopping the server with
+
+:
+
+</p>
+
+ 
+
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+keyboard
+</div>
+
+
+
+
+<pre class="pre-block">control + c</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Then running the command
+
+:
+
+</p>
+
+
+
+
+
+
+
+
+<section class="cli-section">
+
+
+
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">mkdir</span></span><span class="meta function-call arguments shell"> templates</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+We're now set up to fix our error by adding our
+
+
+
+
+new template
+
+</p>
+
+
+ 
 
 
 
@@ -2210,224 +2407,37 @@ Scratch Notes Below
 
 <p>
 
-Start adding the login link to the template. The 
-
-
-
-
-line is
-
-:
+Add the login template file
 
 </p>
 
 
 
-
-<section class="code-section">
-
-<div class="code-wrapper">
-
-
-<div class="code-title">login link</div>
-
-
-
-
-<pre class="code-block-no-nums"><code><span class="text html basic"><span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log In<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
-    
-</div>
-</section>
-
-
-    
 <p>
 
-Copy and paste this into the template file to replacing
+Or current 
+
+<code class=""><span class="text plain">TemplateDoesNotExist</span></code>
+
+ error on the
 
 
 
 
-the initial content
+<path 
+
+>/accounts/login</path>
+
+ page says it's looking for
+
+
+
+
+the template at
 
 :
-
-</p>
 
  
-
-
-
-
-
-<section class="code-section">
-
-<div class="code-wrapper">
-
-
-<div class="code-title">update for: homepage/templates/homepage/index.html</div>
-
-
-
-
-<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>      <span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log In<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>Hello, world<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
-    
-</div>
-</section>
-
- 
-
-
-
-
-</li>
-
-</ol>
-
-
-
-
-
-
-<section class="h2-section flow">
-<hgroup>
-
-  
-    <h2 class="section-heading">
-    
-      Original Notes
-    
-    </h2>
-    
-  
-
-</hgroup>
-
-
-
-
-
-
-
-    
-
-</section>
-
-<ol class="flow">
-    
-
-
-<li class="flow">
-
-
-
-<p>
-
-Update the home page template
-
-</p>
-
-
-
-
-<section class="code-section">
-
-<div class="code-wrapper">
-
-
-<div class="code-title">update for: homepage/templates/homepage/index.html</div>
-
-
-
-
-<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>    {% if user.is_authenticated %}
-<span class="line-marker"></span>      <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block form html">form</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">action</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;logout&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">method</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>post<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>        {% csrf_token %}
-<span class="line-marker"></span>        {{ user.username }}
-<span class="line-marker"></span>        <span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline form html">button</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">type</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>submit<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log Out<span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline form html">button</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>      <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block form html">form</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>    {% else %}
-<span class="line-marker"></span>      <span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log In<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>    {% endif %}
-<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>Hello, world<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
-    
-</div>
-</section>
-
-
-    
-<p>
-
-We're continuing our process here of making intentional 
-
-
-
-
-errors to track our progress. Checkout the home page
-
-
-
-
-to see the new one
-
-:
-
-</p>
-
- 
-
-
-
-
-
-<section class="link-section">
-
-<div class="link-wrapper">
-
-
-<div class="link-title">home page link</div>
-
-
-<div class="link-block">
-
-    
-<p>
-
-
-<a href="http://127.0.0.1/">http://127.0.0.1/</a>
-
-</p>
-
-
-    
-
-</div>
-</section>
-
-
-</div>
-
-
-<p>
-
-You'll see the error on the page that starts with
-
-:
 
 </p>
 
@@ -2439,13 +2449,13 @@ You'll see the error on the page that starts with
 
 
 <div class="pre-title">
-web page error
+login page template error path
 </div>
 
 
 
 
-<pre class="pre-block">NoReverseMatch at &#x2f;</pre>
+<pre class="pre-block">registration&#x2f;login.html</pre>
 
 
     
@@ -2456,53 +2466,106 @@ web page error
     
 <p>
 
-Before we fix that, let's look at the new code for the 
-
-
-
-
-home page template to get a better idea of what's going
-
-
-
-
-on.
-
-</p>
-
-
-
-
-
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>
-
-Example the new home page template
-
-</p>
-
-
-
-<p>
-
-The section of code we added to the home page template 
-
-
-
-
-looks like this
+Django will look for that file under
 
 :
 
 </p>
+
+
+
+
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+template file path
+</div>
+
+
+
+
+<pre class="pre-block">tutorial_site&#x2f;templates&#x2f;registraion&#x2f;index.html</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+We haven't created the 
+
+<path 
+
+>registration</path>
+
+ directory
+
+
+
+
+yet. Do that now with
+
+:
+
+</p>
+
+
+
+
+
+
+
+
+<section class="cli-section">
+
+
+
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">mkdir</span></span><span class="meta function-call arguments shell"> templates/registration</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Once that's done, make a new file at 
+
+<path 
+
+>tutorial_site/templates/registration/index.html</path>
+
+
+
+
+with this content
+
+:
+
+</p>
+
+
+ 
 
 
 
@@ -2512,20 +2575,21 @@ looks like this
 <div class="code-wrapper">
 
 
-<div class="code-title">home page template snippet</div>
+<div class="code-title">new file: tutorial_site/templates/registration/index.html</div>
 
 
 
 
-<pre class="code-block-no-nums"><code><span class="text html basic">{% if user.is_authenticated %}
-    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block form html">form</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">action</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;logout&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">method</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>post<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
-        {% csrf_token %}
-        {{ user.username }}
-        <span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline form html">button</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">type</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>submit<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log Out<span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline form html">button</span><span class="punctuation definition tag end html">&gt;</span></span>
-    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block form html">form</span><span class="punctuation definition tag end html">&gt;</span></span>
-{% else %}
-    <span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log In<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span>
-{% endif %}</span></code></pre>
+<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block form html">form</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">method</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>post<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    {% csrf_token %}
+<span class="line-marker"></span>    {{ form }}
+<span class="line-marker"></span>    <span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline form html">button</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">type</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>submit<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log In<span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline form html">button</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block form html">form</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
     
 </div>
 </section>
@@ -2534,12 +2598,7 @@ looks like this
     
 <p>
 
-The first thing to point out is the Django template
-
-
-
-
-tags that start and end like this
+With that done, we can start the server again with
 
 :
 
@@ -2551,17 +2610,22 @@ tags that start and end like this
 
 
 
-<section class="code-section">
-
-<div class="code-wrapper">
-
-
-<div class="code-title">django template tags</div>
+<section class="cli-section">
 
 
 
+<div class="cli-wrapper">
 
-<pre class="code-block-no-nums"><code><span class="text html basic">{% %}</span></code></pre>
+<div class="cli-title">
+
+command line:
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
+
+
     
 </div>
 </section>
@@ -2570,368 +2634,131 @@ tags that start and end like this
     
 <p>
 
-Anything inside those tags is parsed and handled by
-
-
-
-
-Django as it renders the page. Let's look at these
-
-
-
-
-three lines that make up an if/else statement
-
-
-
-
-as an example
-
-:
-
-</p>
-
- 
-
-
-
-
-
-<section class="code-section">
-
-<div class="code-wrapper">
-
-
-<div class="code-title">django if/else tags</div>
-
-
-
-
-<pre class="code-block-no-nums"><code><span class="text html basic">{% if user.is_authenticated %}
-
-{% else %}
-  
-{% endif %}</span></code></pre>
-    
-</div>
-</section>
-
-
-    
-<p>
-
-The format is like if/else statements in regular programming
-
-
-
-
-languages. If the result of the 
-
-<code class=""><span class="source python"><span class="meta statement if python"><span class="keyword control flow conditional python">if</span></span></span></code>
-
- tag 
-
-
-
-
-is 
-
-<code class=""><span class="text plain">true</span></code>
-
- then the content and code between it
-
-
-
-
-and the 
-
-<code class=""><span class="text plain">else</span></code>
-
- statement is used. Otherwise, the
-
-
-
-
-code between the 
-
-<code class=""><span class="text plain">else</span></code>
-
- and 
-
-<code class=""><span class="text plain">endif</span></code>
-
-
-
-
-tags is used. 
-
-</p>
-
-
-    
-<p>
-
-The value that's being checked by the 
-
-<code class=""><span class="text plain">if</span></code>
-
- tag is
-
-
-
-
-<code class=""><span class="text plain">user.is_authenticated</span></code>
-
-. The 
-
-<code class=""><span class="text plain">user</span></code>
-
- object
-
-
-
-
-and the 
-
-<code class=""><span class="text plain">is_authenticated</span></code>
-
- method are provided
-
-
-
-
-automatically by Django's built
-
--
-
-in user authentication 
-
-
-
-
-system. If a user is logged in, the value is 
-
-<code class=""><span class="text plain">true</span></code>
-
-. 
-
-
-
-
-Otherwise, it's 
-
-<code class=""><span class="text plain">false</span></code>
-
-</p>
-
- 
-
-
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>
-
-The "url" template tag
-
-</p>
-
-
-
-<p>
-
-The next line to look at is
+and check out the login page at
 
 :
 
 </p>
 
 
-
-
-<section class="code-section">
-
-<div class="code-wrapper">
-
-
-<div class="code-title">html</div>
-
-
-
-
-<pre class="code-block-no-nums"><code><span class="text html basic"><span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block form html">form</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">action</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;logout&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">method</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>post<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
-    
-</div>
-</section>
-
-
-    
-<p>
-
-The value for the 
-
-<code class=""><span class="text plain">action</span></code>
-
- attribute of the 
-
-<code class=""><span class="text plain">form</span></code>
-
-
-
-
-element is another django template tag
-
-:
-
-</p>
-
  
 
 
 
 
+<section class="link-section">
 
-<section class="code-section">
-
-<div class="code-wrapper">
-
-
-<div class="code-title">django url tag</div>
+<div class="link-wrapper">
 
 
+<div class="link-title">login page link</div>
 
 
-<pre class="code-block-no-nums"><code><span class="text plain">{% url &#39;logout&#39; %}</span></code></pre>
-    
-</div>
-</section>
-
+<div class="link-block">
 
     
 <p>
 
-The 
 
-<code class=""><span class="text plain">url</span></code>
-
- template tag is another feature that's built into 
-
-
-
-
-Django. It takes a string that is expected to be the
-
-
-
-
-name of a link inside your Django code and exapands it
-
-
-
-
-into a URL. 
+<a href="none" target="_blank">http://127.0.0.1/accounts/login/↗
+</a>
 
 </p>
 
 
     
-<p>
 
-In this case the value for 
-
-<code class=""><span class="text plain">logout</span></code>
-
- is provided by
-
-
-
-
-the built
-
--
-
-in user authentication system which will 
-
-
-
-
-see in just a moment. The user authentication system
-
-
-
-
-also provides the 
-
-<code class=""><span class="text plain">login</span></code>
-
- used in the line
-
-:
-
-</p>
-
- 
-
-
-
-
-
-<section class="code-section">
-
-<div class="code-wrapper">
-
-
-<div class="code-title">django template tag</div>
-
-
-
-
-<pre class="code-block-no-nums"><code><span class="text html basic"><span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log In<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
-    
 </div>
 </section>
 
 
-    
+</div>
+
+
+<p>
+
+This is a fully functional login form. Try putting
+
+
+
+
+in a random username and password and you'll get
+
+
+
+
+a message that it's incorrect. Next, use your
+
+
+
+
+"admin" super user account username and password. 
+
+
+
+
+Django will log you in and redirect you to a page
+
+
+
+
+at 
+
+<path 
+
+>/accounts/profile</path>
+
+ by default. 
+
+</p>
+
+
+
+<p>
+
+Full sites that have users generally provide profile
+
+
+
+
+pages for them, but we don't need that for our
+
+
+
+
+site right now. Instead of building out those pages
+
+
+
+
+we'll update the login page to redirect to the home
+
+
+
+
+page by default in a later step. We need to be able
+
+
+
+
+to log out first which we'll do shortly in the next 
+
+
+
+
+section. 
+
+</p>
+
+
+
 <p>
 
 TODO
 
 :
 
- mention that this is called a reverse lookup. 
-
-</p>
-
- 
-
-
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>
-
-The CSRF token
-
-</p>
-
-
-
-<p>
-
-The next line to look at is
+ Put in note about CSRF. Earlier text is
 
 :
 
@@ -2939,24 +2766,6 @@ The next line to look at is
 
 
 
-
-<section class="code-section">
-
-<div class="code-wrapper">
-
-
-<div class="code-title">django csrf token</div>
-
-
-
-
-<pre class="code-block-no-nums"><code><span class="text plain">{% csrf_token %}</span></code></pre>
-    
-</div>
-</section>
-
-
-    
 <p>
 
 "CSRF" stands for "Cross
@@ -3017,8 +2826,40 @@ check out the offical documentation
 
 </p>
 
- 
 
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Examine the login page template
+
+</p>
+
+
+
+<p>
+
+Before we leave this section let's take another 
+
+
+
+
+look at the login page and the template that 
+
+
+
+
+produces it. You can open the page with
+
+:
+
+</p>
 
 
 
@@ -3028,7 +2869,7 @@ check out the offical documentation
 <div class="link-wrapper">
 
 
-<div class="link-title">django csrf documentation</div>
+<div class="link-title">login page</div>
 
 
 <div class="link-block">
@@ -3037,7 +2878,8 @@ check out the offical documentation
 <p>
 
 
-<a href="https://docs.djangoproject.com/en/5.1/howto/csrf/">https://docs.djangoproject.com/en/5.1/howto/csrf/</a>
+<a href="none" target="_blank">http://127.0.0.1/accounts/login↗
+</a>
 
 </p>
 
@@ -3051,158 +2893,67 @@ check out the offical documentation
 </div>
 
 
-</li>
-
-
-<li class="flow">
-
-
-
 <p>
 
-The "user.username" tag
-
-</p>
-
-
-
-<p>
-
-As we mentioned above, Django automatically provides 
+And here's the contents of the template file again
 
 
 
 
-a 
-
-<code class=""><span class="text plain">user</span></code>
-
- object to page templates. The 
-
-<code class=""><span class="text plain">username</span></code>
-
-
-
-
-method outputs the username value from the user authentication
-
-
-
-
-system. For example, we'll see "admin" when our Super User
-
-
-
-
-account is logged in. 
-
-</p>
-
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>
-
-Looking at the "NoReverseMatch" error
-
-</p>
-
-
-
-<p>
-
-The error on our page is
+for reference
 
 :
-
-</p>
-
-
-<section class="pre-section">
-
-<div class="pre-wrapper">
-
-
-
-<div class="pre-title">
-web page error
-</div>
-
-
-
-
-<pre class="pre-block">NoReverseMatch at &#x2f;</pre>
-
-
-    
-</div>
-</section>
-
-
-    
-<p>
-
-The second line is
-
-:
-
-</p>
-
-
-
-
-
-
-<section class="pre-section">
-
-<div class="pre-wrapper">
-
-
-
-<div class="pre-title">
-web page error
-</div>
-
-
-
-
-<pre class="pre-block">Reverse for &#x27;login&#x27; not found. &#x27;login&#x27; is not a valid view function or pattern name.</pre>
-
-
-    
-</div>
-</section>
-
-
-    
-<p>
-
-The 
-
-<code class=""><span class="text plain">login</span></code>
-
- that's referring to is the 
-
-<code class=""><span class="text plain">url</span></code>
 
  
 
-<code class=""><span class="text plain">login</span></code>
-
- from
-
-:
-
 </p>
 
 
 
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">current tutorial_site/templates/registration/index.html</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block form html">form</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">method</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>post<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    {% csrf_token %}
+<span class="line-marker"></span>    {{ form }}
+<span class="line-marker"></span>    <span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline form html">button</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">type</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>submit<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log In<span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline form html">button</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block form html">form</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The template contains two Django template tags. The first one is
+
+
+
+
+the same CSRF tag we've seen before that needs to
+
+
+
+
+be added to every form we use. 
+
+</p>
+
+ 
 
 
 
@@ -3213,12 +2964,12 @@ The
 <div class="code-wrapper">
 
 
-<div class="code-title">django url template tag</div>
+<div class="code-title">csrf template tag</div>
 
 
 
 
-<pre class="code-block-no-nums"><code><span class="text html basic"><span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log In<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+<pre class="code-block-no-nums"><code><span class="text plain">{% csrf_token %}</span></code></pre>
     
 </div>
 </section>
@@ -3227,27 +2978,218 @@ The
     
 <p>
 
-That code is being called because we're not logged in yet
+The second tag is
 
-
-
-
-so the 
-
-<code class=""><span class="text plain">{% if user.is_authenticated %}</span></code>
-
- value is false
-
-
-
-
-which means the 
-
-<code class=""><span class="text plain">{% else %}</span></code>
-
- statement gets executed. 
+:
 
 </p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">form template tag</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text plain">{{ form }}</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+This second tag looks a little different. Instead of opening and
+
+
+
+
+closing tokens that looks like this
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">original opening and closing tokens</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text plain">{% %}</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+They look like this
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">alternate opening and closing tokens</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text plain">{{ }}</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Django uses both styles but treats them a little
+
+
+
+
+differently. They can both output content but the
+
+
+
+
+<code class=""><span class="text plain">{% %}</span></code>
+
+ are used more for functions as well
+
+
+
+
+as control structures (like 
+
+<code class=""><span class="text plain">if</span></code>
+
+ statements
+
+
+
+
+we'll see shortly) while the 
+
+<code class=""><span class="text plain">{{ }}</span></code>
+
+ version
+
+
+
+
+outputs a variable directly. 
+
+</p>
+
+
+    
+<p>
+
+In this case, the varialbe we're outputting the contents
+
+
+
+
+of the 
+
+<code class=""><span class="text plain">form</span></code>
+
+ variable. It's provided for us 
+
+
+
+
+automatically as part of the built
+
+-
+
+in user auth 
+
+
+
+
+functionality we got when we set the 
+
+<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
+
+
+
+
+for 
+
+<path 
+
+>accounts</path>
+
+ in our 
+
+<path 
+
+>tutorial_site/urls.py</path>
+
+
+
+
+file to use
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">python</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
+    
+</div>
+</section>
 
  
 
@@ -3262,6 +3204,108 @@ which means the
 
 
 
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Wrapping Up
+    
+    </h2>
+    
+  
+
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>
+
+Setting up to handle user based functionality can be 
+
+
+
+
+a huge pain. There's all kinds of things to deal with
+
+:
+
+
+
+
+different sign
+
+-
+
+up processes, secure crednetial storage, 
+
+
+
+
+password resets, etc... Django builds all that stuff
+
+
+
+
+in. If you've never head to deal with handling user 
+
+
+
+
+accounts before it's tough to get across how much 
+
+
+
+
+of a bonus this is. It's enough to make Django a
+
+
+
+
+go
+
+-
+
+to choice for lots of uses cases. 
+
+</p>
+
+
+
+
+    
+<p>
+
+Our next step will be implementing the logout 
+
+
+
+
+functionality. 
+
+</p>
+
+
+
+
+
+    
+
+    
+
+    
+
+</section>
 
 <section class="h2-section flow">
 <hgroup>
@@ -3295,8 +3339,8 @@ Previous
 
  
 
-<a href="">
-  
+<a href="/en/2mcbmij7/?page=section-2-make-a-home-page">
+  Section 2 - Make A Home Page
 </a>
 
 </p>
@@ -3313,8 +3357,8 @@ Next
 
  
 
-<a href="/en/2md3ouqp/?page=section-4-adding-login-x2f-logout-functionality">
-  Section 4 - Adding Login&#x2F;Logout Functionality 
+<a href="/en/2md3ouqp/?page=section-4-adding-logout-functionality">
+  Section 4 - Adding Logout Functionality 
 </a>
 
 </p>

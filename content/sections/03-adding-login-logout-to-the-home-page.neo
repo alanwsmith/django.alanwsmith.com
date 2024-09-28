@@ -1,6 +1,6 @@
 -- title
 
-Seciton 3 - Adding A Login Link
+Seciton 3 - Adding Login Functionality
 
 -- h2
 
@@ -516,291 +516,141 @@ There are two steps to doing this:
 
 -- /olist
 
+- Create the generic templates directory
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- Scratch Notes Below
-
-
-#####################################################
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- Start adding the login link to the template. The 
-line is:
+To be able to use a generic template directory we have
+to update our Django configuration so it knows to look
+for it. This is done in <<path|tutorial_site/settings.py>>
+inside the <<code|TEMPLATES>> list. Open the file and 
+find the line:
 
 -- code/
--- html
+-- python
 -- no-nums
--- title: login link
+-- title: initial tutorial_site/settings.py line
 
-<a href="{% url 'login' %}">Log In</a>
+"DIRS": [],
 
 -- /code
 
-Copy and paste this into the template file to replacing
-the initial content:
+and update it to:
 
 -- code/
--- html
--- title: update for: homepage/templates/homepage/index.html
+-- python
+-- no-nums
+-- title: updated tutorial_site/settings.py line
 
-<!DOCTYPE html>
-<html>
-  <body>
-    <div>
-      <a href="{% url 'login' %}">Log In</a>
-    </div>
-    <h1>Hello, world</h1>
-  </body>
-</html>
+"DIRS": [BASE_DIR / "templates"],
 
 -- /code
 
-
-
-
-
-
-
-
--- /olist
-
-
-
--- h2
-
-Original Notes
-
--- olist/
-
-- Update the home page template
-
-
-
--- code/
--- html
--- title: update for: homepage/templates/homepage/index.html
-
-<!DOCTYPE html>
-<html>
-  <body>
-    <div>
-    {% if user.is_authenticated %}
-      <form action="{% url 'logout' %}" method="post">
-        {% csrf_token %}
-        {{ user.username }}
-        <button type="submit">Log Out</button>
-      </form>
-    {% else %}
-      <a href="{% url 'login' %}">Log In</a>
-    {% endif %}
-    </div>
-    <h1>Hello, world</h1>
-  </body>
-</html>
-
--- /code
-
-We're continuing our process here of making intentional 
-errors to track our progress. Checkout the home page
-to see the new one:
-
--- link/
--- title: home page link
-
-<<link|http://127.0.0.1/|http://127.0.0.1/>>
-
--- /link
-
-You'll see the error on the page that starts with:
+The <<code|BASE_DIR>> variable represents our root
+site/project directory (i.e. <<path|tutorial_site>>). So, 
+the full path we're adding here is <<path|tutorial_site/templates>>)
+Let's add that now by stopping the server with:
 
 -- pre/
--- title: web page error
+-- title: keyboard
 
-NoReverseMatch at /
+control + c
 
 -- /pre
 
-Before we fix that, let's look at the new code for the 
-home page template to get a better idea of what's going
-on.
+Then running the command:
 
+-- cli/
 
-- Example the new home page template
+mkdir templates
 
-The section of code we added to the home page template 
-looks like this:
+-- /cli
+
+We're now set up to fix our error by adding our
+new template
+
+- Add the login template file
+
+Or current <<code|TemplateDoesNotExist>> error on the
+<<path|/accounts/login>> page says it's looking for
+the template at: 
+
+-- pre/
+-- title: login page template error path
+
+registration/login.html
+
+-- /pre
+
+Django will look for that file under:
+
+-- pre/
+-- title: template file path
+
+tutorial_site/templates/registraion/index.html
+
+-- /pre
+
+We haven't created the <<path|registration>> directory
+yet. Do that now with:
+
+-- cli/
+
+mkdir templates/registration
+
+-- /cli
+
+Once that's done, make a new file at <<path|tutorial_site/templates/registration/index.html>>
+with this content:
 
 -- code/
 -- html
--- no-nums
--- title: home page template snippet
+-- title: new file: tutorial_site/templates/registration/index.html
 
-{% if user.is_authenticated %}
-    <form action="{% url 'logout' %}" method="post">
-        {% csrf_token %}
-        {{ user.username }}
-        <button type="submit">Log Out</button>
+<!DOCTYPE html>
+<html>
+<body>
+    <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Log In</button>
     </form>
-{% else %}
-    <a href="{% url 'login' %}">Log In</a>
-{% endif %}
+  </body>
+</html>
 
 -- /code
 
-The first thing to point out is the Django template
-tags that start and end like this:
+With that done, we can start the server again with:
 
--- code/
--- html
--- no-nums
--- title: django template tags
+-- cli/
 
-{% %}
+python manage.py runserver
 
--- /code
+-- /cli
 
-Anything inside those tags is parsed and handled by
-Django as it renders the page. Let's look at these
-three lines that make up an if/else statement
-as an example:
+and check out the login page at:
 
--- code/
--- html
--- no-nums
--- title: django if/else tags
+-- link/
+-- title: login page link
 
-{% if user.is_authenticated %}
+<<tablink|http://127.0.0.1/accounts/login/>>
 
-{% else %}
-  
-{% endif %}
+-- /link
 
--- /code
+This is a fully functional login form. Try putting
+in a random username and password and you'll get
+a message that it's incorrect. Next, use your
+"admin" super user account username and password. 
+Django will log you in and redirect you to a page
+at <<path|/accounts/profile>> by default. 
 
-The format is like if/else statements in regular programming
-languages. If the result of the <<code|if|python>> tag 
-is <<code|true>> then the content and code between it
-and the <<code|else>> statement is used. Otherwise, the
-code between the <<code|else>> and <<code|endif>>
-tags is used. 
+Full sites that have users generally provide profile
+pages for them, but we don't need that for our
+site right now. Instead of building out those pages
+we'll update the login page to redirect to the home
+page by default in a later step. We need to be able
+to log out first which we'll do shortly in the next 
+section. 
 
-The value that's being checked by the <<code|if>> tag is
-<<code|user.is_authenticated>>. The <<code|user>> object
-and the <<code|is_authenticated>> method are provided
-automatically by Django's built-in user authentication 
-system. If a user is logged in, the value is <<code|true>>. 
-Otherwise, it's <<code|false>>
-
-- The "url" template tag
-
-The next line to look at is:
-
--- code/
--- html
--- no-nums
-
-<form action="{% url 'logout' %}" method="post">
-
--- /code
-
-The value for the <<code|action>> attribute of the <<code|form>>
-element is another django template tag:
-
--- code/
--- no-nums
--- title: django url tag
-
-{% url 'logout' %}
-
--- /code
-
-The <<code|url>> template tag is another feature that's built into 
-Django. It takes a string that is expected to be the
-name of a link inside your Django code and exapands it
-into a URL. 
-
-In this case the value for <<code|logout>> is provided by
-the built-in user authentication system which will 
-see in just a moment. The user authentication system
-also provides the <<code|login>> used in the line:
-
--- code/
--- html
--- no-nums
--- title: django template tag
-
-<a href="{% url 'login' %}">Log In</a>
-
--- /code
-
-TODO: mention that this is called a reverse lookup. 
-
-- The CSRF token
-
-The next line to look at is:
-
--- code/
--- no-nums
--- title: django csrf token
-
-{% csrf_token %}
-
--- /code
+TODO: Put in note about CSRF. Earlier text is:
 
 "CSRF" stands for "Cross-Site Request Forgery" which is
 a security vulnerability that can happen when a malicious
@@ -812,63 +662,127 @@ you make should have the token in it. When you're
 ready to learn more about the specifics you can 
 check out the offical documentation:
 
--- link/
--- title: django csrf documentation
+- Examine the login page template
 
-<<link|https://docs.djangoproject.com/en/5.1/howto/csrf/|https://docs.djangoproject.com/en/5.1/howto/csrf/>>
+Before we leave this section let's take another 
+look at the login page and the template that 
+produces it. You can open the page with:
+
+-- link/
+-- title: login page
+
+<<tablink|http://127.0.0.1/accounts/login>>
 
 -- /link
 
-- The "user.username" tag
-
-As we mentioned above, Django automatically provides 
-a <<code|user>> object to page templates. The <<code|username>>
-method outputs the username value from the user authentication
-system. For example, we'll see "admin" when our Super User
-account is logged in. 
-
-- Looking at the "NoReverseMatch" error
-
-The error on our page is:
-
--- pre/
--- title: web page error
-
-NoReverseMatch at /
-
--- /pre
-
-The second line is:
-
--- pre/
--- title: web page error
-
-Reverse for 'login' not found. 'login' is not a valid view function or pattern name.
-
--- /pre
-
-The <<code|login>> that's referring to is the <<code|url>> <<code|login>> from:
+And here's the contents of the template file again
+for reference: 
 
 -- code/
 -- html
--- no-nums
--- title: django url template tag
+-- title: current tutorial_site/templates/registration/index.html
 
-<a href="{% url 'login' %}">Log In</a>
+<!DOCTYPE html>
+<html>
+<body>
+    <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Log In</button>
+    </form>
+  </body>
+</html>
 
 -- /code
 
-That code is being called because we're not logged in yet
-so the <<code|{% if user.is_authenticated %}>> value is false
-which means the <<code|{% else %}>> statement gets executed. 
+The template contains two Django template tags. The first one is
+the same CSRF tag we've seen before that needs to
+be added to every form we use. 
+
+-- code/
+-- django
+-- no-nums
+-- title: csrf template tag
+
+{% csrf_token %}
+
+-- /code
+
+The second tag is:
 
 
+-- code/
+-- django
+-- no-nums
+-- title: form template tag
+
+{{ form }}
+
+-- /code
+
+This second tag looks a little different. Instead of opening and
+closing tokens that looks like this:
+
+-- code/
+-- django
+-- no-nums
+-- title: original opening and closing tokens
+
+{% %}
+
+-- /code
+
+They look like this:
+
+-- code/
+-- django
+-- no-nums
+-- title: alternate opening and closing tokens
+
+{{ }} 
+
+-- /code
+
+Django uses both styles but treats them a little
+differently. They can both output content but the
+<<code|{% %}>> are used more for functions as well
+as control structures (like <<code|if>> statements
+we'll see shortly) while the <<code|{{ }}>> version
+outputs a variable directly. 
+
+In this case, the varialbe we're outputting the contents
+of the <<code|form>> variable. It's provided for us 
+automatically as part of the built-in user auth 
+functionality we got when we set the <<code|path()|python>>
+for <<path|accounts>> in our <<path|tutorial_site/urls.py>>
+file to use:
+
+-- code/
+-- python
+-- no-nums
+
+include("django.contrib.auth.urls")
+
+-- /code
 
 
 -- /olist
 
+-- h2
 
+Wrapping Up
 
+Setting up to handle user based functionality can be 
+a huge pain. There's all kinds of things to deal with:
+different sign-up processes, secure crednetial storage, 
+password resets, etc... Django builds all that stuff
+in. If you've never head to deal with handling user 
+accounts before it's tough to get across how much 
+of a bonus this is. It's enough to make Django a
+go-to choice for lots of uses cases. 
+
+Our next step will be implementing the logout 
+functionality. 
 
 -- h2
 
@@ -896,6 +810,6 @@ Next: <<tlink|2md3ouqp>>
 -- updated: 2024-09-26T19:23:25-04:00
 -- id: 2md4eik2
 -- type: post
--- status: scratch
+-- status: draft
 
 
