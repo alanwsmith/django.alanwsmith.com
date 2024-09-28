@@ -1,8 +1,10 @@
 -- title
 
-Seciton 3 - Adding Login/Logout Functionality
+Seciton 3 - Adding A Login Link
 
--- Introduction
+-- h2
+
+Introduction
 
 Throughout this tutorial we'll be working to make
 pages that we can edit. An important part of that
@@ -10,8 +12,8 @@ is making sure that we're the only ones that can
 make changes. Dealing with user accounts is often
 a pain, but Django has a built-in user authentication
 system that smooths out the process a lot. We'll
-be using it in this section to add login/logout
-functionality to the home page. 
+start the process by adding a login link to 
+the home page in this section. 
 
 -- h2
 
@@ -19,12 +21,614 @@ Steps
 
 -- olist/
 
+- A quck look at Django template tags
+
+The <<path|homepage/templates/homepage/index.html>> file
+is a Django template. It's what's untimatly used to
+create the output for our pages. Our file is currently 
+nothing but HTML:
+
+-- code/
+-- html
+-- title: original home page template
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hello, world</h1>
+  </body>
+</html>
+
+-- /code
+
+Django doesn't do anything special with this code. 
+It simply returns it exaclty as it is. In order to
+use Django features we'll use Django template tags
+which are snippets of code that start with:
+
+-- pre/
+-- title: django opening template tag
+
+{%
+
+-- /pre
+
+And end with:
+
+-- pre/
+-- title: django closing template tag
+
+%}
+
+-- /pre
+
+The code for Django to execute goes between the
+opening and closing portions of the tag. For example, 
+we can create a <<code|lorem>> Django template tag that
+outputs random "Lorem Ipsum" placeholder text like
+this:
+
+-- code/
+-- django
+-- no-nums
+-- title: lorem placeholder text template tag
+
+{% lorem %}
+
+-- /code
+
+That'll output a paragraph of random placeholder text
+like:
+
+-- pre/
+-- title: lorem placeholder text output
+
+Lorem ipsum dolor sit amet, consectetur adipisicing 
+elit, sed do eiusmod tempor incididunt ut labore et 
+dolore magna aliqua.... 
+
+-- /pre
+
+You can see this in action by replacing the content
+of the home page template index.html file with this:
+
+-- code/
+-- html
+-- title: update for: homepage/templates/homepage/index.html
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hello, world</h1>
+    <div>
+      {% lorem %}
+    </div>
+  </body>
+</html>
+
+
+-- /code
+
+Make sure you've <<ilink|activated the Python virtual environment|2mcf8e2u>>
+then start the server if it's not already running with:
+
+-- cli/
+
+python manage.py runserver
+
+-- /cli
+
+Now, open the home page and you'll see the random text:
+
+-- link/
+-- title: home page link
+
+<<tablink|http://127.0.0.1/>>
+
+-- /link
+
+- Introducing the Django url template tag
+
+We'll be using Djano's "url" template tag to make 
+a link to our login page. The basic format for the tag
+is:
+
+-- code/
+-- django
+-- no-nums
+-- title: django url template tag example
+
+{% url 'NAME-OF-PAGE-TO-LINK-TO' %}
+
+-- /code
+
+One way to define a <<code|NAME-OF-PAGE-TO-LINK-TO>> is
+with the <<code|app_name>> and the <<code|name>> argument
+for a <<code|path()|python>> function in a "urls.py" file. 
+
+For example, the current version of our <<code|homepage/urls.py>> 
+file that we made in <<ilink|Section 2|2mcbmij7>> looks like this:
+
+-- code/
+-- python
+-- title: homepage/urls.py
+
+from django.urls import path
+
+from . import views
+
+app_name = "homepage"
+urlpatterns = [
+    path("", views.index, name="index"),
+]
+
+-- /code
+
+The <<code|app_name>> is "homepage" and the <<code|name>>
+for our <<code|path()|python>> is "index". We combine
+those with a <<code|:>> character to generate the full
+name for the page like:
+
+-- code/
+-- no-nums
+-- title: django homepage name
+
+homepage:index
+
+-- /code
+
+We can use this name in our <<code|url>> template tag like
+this:
+
+-- code/
+-- django
+-- no-nums
+
+{% url 'homepage:index' %}
+
+-- /code
+
+Let's add that temporarily to our home page so we 
+can see it. Replace the content of <<path|homepage/templates/homepage/index.html>>
+with this:
+
+-- code/
+-- html
+-- title: update for: homepage/templates/homepage/index.html
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hello, world</h1>
+    <div>
+      Home Page URL: {% url 'homepage:index' %}
+    </div>
+  </body>
+</html>
+
+-- /code
+
+Visit the home page again to see our change:
+
+-- link/
+-- title: home page link
+
+<<tablink|http://127.0.0.1/>>
+
+-- /link
+
+The new output is:
+
+-- pre/
+-- title: home page url line
+
+Home Page URL: /
+
+-- /pre
+
+There's not much to the URL. It points to the 
+root of the site so it's only the single <<code|/>>
+character. That's fine since the key point is 
+that the URL was generated for us automatically. 
+
+Let's change the URL to link to our login page
+(which doesn't exist yet, but we'll implement in 
+the next few steps)
+
+- Start making the login page link
+
+Django's built-in user authentication system provides
+a way to automatically create a login page. We'll
+need to configure it, but we can start by putting
+in the link which will demonstrate a new error for
+us. 
+
+The Django template name we can use in the "url" template
+tag is simply "login". Let's change our home page 
+to point use it (and get our new error message). Replace
+the contents of the <<path|homepage/templates/homepage/index.html>>
+file with this:
+
+-- code/
+-- html
+-- title: update for: homepage/templates/homepage/index.html
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hello, world</h1>
+    <div>
+      Login URL: {% url 'login' %}
+    </div>
+  </body>
+</html>
+
+-- /code
+
+Visit the home page and we'll see our new 
+error message:
+
+-- link/
+-- title: home page link
+
+<<tablink|http://127.0.0.1/>>
+
+-- /link
+
+-- pre/
+-- title: home page error message
+
+NoReverseMatch at /
+
+Reverse for 'login' not found. 'login' is not a valid view function or pattern name.
+
+etc...
+
+-- /pre
+
+- Examine the "NoReverseMatch" error
+
+Our error message start with:
+
+-- pre/
+-- title: web error message part 1
+
+NoReverseMatch at /
+
+-- /pre
+
+The <<code|NoReverseMatch>> error means that Django was 
+trying to look up a <<code|url>> template tag name that 
+doesn't exist. The <<code|at />> identifies the page
+the error occrred on which in this case is our home page
+(i.e. <<path|/>>)
+
+The next part of the error message is:
+
+-- pre/
+-- title: web error message part 2
+
+Reverse for 'login' not found. 'login' is not a valid view function or pattern name.
+
+-- /pre
+
+This let's us know that the name for the URL that failed
+is "login" which matches names we expect since we're trying
+to use:
+
+-- code/
+-- django
+-- no-nums
+-- title: url template tag
+
+{% url 'login' %}
+
+-- /code
+
+This URL isn't made up of an app_name and path() name
+separated by a colon like our previous example. That's 
+because we'll be using Django's built-in user authentication 
+for the link and it uses just 'login' instead of something
+like 'auth:login'.
+
+
+- Adding the built-in login page overview
+
+Setting up Djangos built-in login page takes a couple of
+steps:
+
+-- olist/
+
+- Update the sites <<path|urls.py>> file to add the route
+paths for the built-in pages
+
+- Create a template for the login page
+
+-- /olist
+
+- Add the built-in user authentication path routes
+
+We'll add the path routes for the login and other 
+user authentication pages that Django provides under 
+<<path|accounts/>>. We'll do this by adding this
+new line to the <<code|urlpatterns>> list in our
+<<path|tutorial_site/urls.py>> file:
+
+-- code/
+-- python
+-- no-nums
+-- title: user authentication path routes
+
+path("accounts/", include("django.contrib.auth.urls")),
+
+-- /code
+
+Here's the full contents of the <<path|tutorial_site/urls.py>>
+file to copy/paste into the file:
+
+-- code/
+-- python
+-- title: update for: tutorial_site/urls.py
+
+from django.contrib import admin
+from django.urls import path
+from django.urls import include
+
+urlpatterns = [
+    path("", include("homepage.urls")),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("admin/", admin.site.urls),
+]
+
+-- /code
+
+The <<code|include("django.contrib.auth.urls")|python>> call 
+loads the built-in user auth functionality at our defined
+<<path|accounts/>> path. We don't need to do anything else
+to get the page to show up. 
+
+The built-in functionality also gets our code to work for:
+
+-- code/
+-- django
+-- no-nums
+-- title: django url template tag
+
+{% url 'login' %}
+
+-- /code
+
+Visit the home page again and you'll see we've cleared the
+error and now show the URL for the login page as <<path|/accounts/login>>
+
+-- link/
+-- title: home page link
+
+<<tablink|http://127.0.0.1/>>
+
+-- /link
+
+
+- Use the built-in login link
+
+We can use the built-in user auth url tag by placing it in
+an HTML <<code|<a\>>> tag like:
+
+-- code/
+-- html
+-- no-nums
+-- title: login page link
+
+<a href="{% url 'login' %}">Login</a>
+
+-- /code
+
+Update the <<path|homepage/templates/homepage/index.html>> page
+to use it like this:
+
+-- code/
+-- html
+-- title: update for: homepage/templates/homepage/index.html
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hello, world</h1>
+    <div>
+      <a href="{% url 'login' %}">Login</a>
+    </div>
+  </body>
+</html>
+
+-- /code
+
+Visit the home page again to checkout the Login link
+which you can click on. (It'll take us to an 
+intentional error which we'll address next)
+
+-- link/
+-- title: home page link
+
+<<tablink|http://127.0.0.1/>>
+
+-- /link
+
+- Generic templates directory overview
+
+Clicking on the <<code|Login>> link takes us 
+to the URL <<path|/accounts/login>> and the page tries
+to load but produces this error:
+
+
+-- pre/
+-- title: login page error message
+
+TemplateDoesNotExist at /accounts/login/
+
+registration/login.html
+
+etc...
+
+-- /pre
+
+The <<code|TemplateDoesNotExist>> tells us that Django
+couldn't find a template it expected to be able to use.
+The <<code|at /accounts/login>> tells us the URL of
+the page that had the problem and the "registration/login.html"
+tells us the path to the template file it was looking for. 
+We need to add a file that it can find for that path. 
+
+By default, Django searching for templates inside any 
+<<path|template>> directories in our app/module folders. 
+For example, we created the directory:
+
+-- pre/
+-- title: home page template directory 
+
+homepage/templates
+
+-- /pre
+
+and put the home page template itself in:
+
+-- pre/
+-- title: home page template file
+
+homepage/templates/homepage/index.html
+
+-- /pre
+
+We can't use the same approach for our login template
+because we're using the built-in user auth instead of
+our own app/module. That means we don't have an <<path|accounts>>
+or <<path|registration>> directory to create a <<path|templates>>
+directory in. To address this we'll make a generic <<path|templates>>
+directory that's not inside an app/module and place
+our login template file there. 
+
+There are two steps to doing this:
+
+-- olist/
+
+- Define the directory in <<path|tutorial_site/settings.py>>
+
+- Create the new <<path|templates>> directory itself
+
+-- /olist
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- Scratch Notes Below
+
+
+#####################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- Start adding the login link to the template. The 
+line is:
+
+-- code/
+-- html
+-- no-nums
+-- title: login link
+
+<a href="{% url 'login' %}">Log In</a>
+
+-- /code
+
+Copy and paste this into the template file to replacing
+the initial content:
+
+-- code/
+-- html
+-- title: update for: homepage/templates/homepage/index.html
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <div>
+      <a href="{% url 'login' %}">Log In</a>
+    </div>
+    <h1>Hello, world</h1>
+  </body>
+</html>
+
+-- /code
+
+
+
+
+
+
+
+
+-- /olist
+
+
+
+-- h2
+
+Original Notes
+
+-- olist/
+
 - Update the home page template
 
-Our first step is to update the home page template file
-to get ready to display the login/logout links. To do that,
-we're doing to update the contents of the homepage file
-with this:
 
 
 -- code/
@@ -273,6 +877,18 @@ Links
 Previous: <<tlink|2mcbmij7>>
 
 Next: <<tlink|2md3ouqp>>
+
+
+
+-- ref
+-- title: Django Built-in template tags and filters
+-- url: https://docs.djangoproject.com/en/5.1/ref/templates/builtins/
+
+
+-- ref
+-- title: Djanog NoReverseMatch error docs
+-- url: https://docs.djangoproject.com/en/5.1/ref/exceptions/#django.urls.NoReverseMatch
+
 
 
 -- metadata

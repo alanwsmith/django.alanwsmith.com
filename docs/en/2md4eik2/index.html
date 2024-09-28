@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Seciton 3 - Adding Login&#x2F;Logout Functionality</title>
+<title>Seciton 3 - Adding A Login Link</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta property="og:title" content="Seciton 3 - Adding Login&#x2F;Logout Functionality" />
+<meta property="og:title" content="Seciton 3 - Adding A Login Link" />
 <meta property="og:description" content="a post from alan w. smith" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://django.alanwsmith.com/en/2md4eik2/?page=seciton-3-adding-login-x2f-logout-functionality" />
+<meta property="og:url" content="https://django.alanwsmith.com/en/2md4eik2/?page=seciton-3-adding-a-login-link" />
 <meta property="og:image" content="https://django.alanwsmith.com/neo-images/default-og-image/1200w.jpg" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/theme/favicons/apple-touch-icon.png">
@@ -44,7 +44,7 @@
     
       -
     
-       Adding Login/Logout Functionality
+       Adding A Login Link
     
     </h1>
     
@@ -59,10 +59,30 @@
 
     
 
-</section><section class="unknown-section flow">
+</section>
 
-      
-        
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Introduction
+    
+    </h2>
+    
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
 <p>
 
 Throughout this tutorial we'll be working to make
@@ -99,22 +119,24 @@ system that smooths out the process a lot. We'll
 
 
 
-be using it in this section to add login/logout
+start the process by adding a login link to 
 
 
 
 
-functionality to the home page. 
+the home page in this section. 
 
 </p>
 
-      
 
 
 
 
     
 
+    
+
+</section>
 
 <section class="h2-section flow">
 <hgroup>
@@ -150,7 +172,7 @@ functionality to the home page.
 
 <p>
 
-Update the home page template
+A quck look at Django template tags
 
 </p>
 
@@ -158,17 +180,622 @@ Update the home page template
 
 <p>
 
-Our first step is to update the home page template file
+The 
+
+<path 
+
+>homepage/templates/homepage/index.html</path>
+
+ file
 
 
 
 
-to get ready to display the login/logout links. To do that,
+is a Django template. It's what's untimatly used to
 
 
 
 
-we're doing to update the contents of the homepage file
+create the output for our pages. Our file is currently 
+
+
+
+
+nothing but HTML
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">original home page template</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>Hello, world<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Django doesn't do anything special with this code. 
+
+
+
+
+It simply returns it exaclty as it is. In order to
+
+
+
+
+use Django features we'll use Django template tags
+
+
+
+
+which are snippets of code that start with
+
+:
+
+</p>
+
+ 
+
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+django opening template tag
+</div>
+
+
+
+
+<pre class="pre-block">{%</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+And end with
+
+:
+
+</p>
+
+
+
+
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+django closing template tag
+</div>
+
+
+
+
+<pre class="pre-block">%}</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The code for Django to execute goes between the
+
+
+
+
+opening and closing portions of the tag. For example, 
+
+
+
+
+we can create a 
+
+<code class=""><span class="text plain">lorem</span></code>
+
+ Django template tag that
+
+
+
+
+outputs random "Lorem Ipsum" placeholder text like
+
+
+
+
+this
+
+:
+
+</p>
+
+
+
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">lorem placeholder text template tag</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text plain">{% lorem %}</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+That'll output a paragraph of random placeholder text
+
+
+
+
+like
+
+:
+
+</p>
+
+ 
+
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+lorem placeholder text output
+</div>
+
+
+
+
+<pre class="pre-block">Lorem ipsum dolor sit amet, consectetur adipisicing 
+elit, sed do eiusmod tempor incididunt ut labore et 
+dolore magna aliqua....</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+You can see this in action by replacing the content
+
+
+
+
+of the home page template index.html file with this
+
+:
+
+</p>
+
+
+
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">update for: homepage/templates/homepage/index.html</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>Hello, world<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>      {% lorem %}
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Make sure you've 
+
+<a href="/en/2mcf8e2u/?page=starting-the-python-virtual-environment">activated the Python virtual environment</a>
+
+
+
+
+
+then start the server if it's not already running with
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="cli-section">
+
+
+
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Now, open the home page and you'll see the random text
+
+:
+
+</p>
+
+
+ 
+
+
+
+
+<section class="link-section">
+
+<div class="link-wrapper">
+
+
+<div class="link-title">home page link</div>
+
+
+<div class="link-block">
+
+    
+<p>
+
+
+<a href="none" target="_blank">http://127.0.0.1/↗
+</a>
+
+</p>
+
+
+    
+
+</div>
+</section>
+
+
+</div>
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Introducing the Django url template tag
+
+</p>
+
+
+
+<p>
+
+We'll be using Djano's "url" template tag to make 
+
+
+
+
+a link to our login page. The basic format for the tag
+
+
+
+
+is
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">django url template tag example</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text plain">{% url &#39;NAME-OF-PAGE-TO-LINK-TO&#39; %}</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+One way to define a 
+
+<code class=""><span class="text plain">NAME-OF-PAGE-TO-LINK-TO</span></code>
+
+ is
+
+
+
+
+with the 
+
+<code class=""><span class="text plain">app_name</span></code>
+
+ and the 
+
+<code class=""><span class="text plain">name</span></code>
+
+ argument
+
+
+
+
+for a 
+
+<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
+
+ function in a "urls.py" file. 
+
+</p>
+
+
+    
+<p>
+
+For example, the current version of our 
+
+<code class=""><span class="text plain">homepage/urls.py</span></code>
+
+ 
+
+
+
+
+file that we made in 
+
+<a href="">Section 2</a>
+
+
+ looks like this
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">homepage/urls.py</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="keyword control import relative python">.</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">views</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">app_name</span></span> <span class="keyword operator assignment python">=</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage<span class="punctuation definition string end python">&quot;</span></span></span>
+<span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
+<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">views</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">index</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">name</span><span class="keyword operator assignment python">=</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">index<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The 
+
+<code class=""><span class="text plain">app_name</span></code>
+
+ is "homepage" and the 
+
+<code class=""><span class="text plain">name</span></code>
+
+
+
+
+for our 
+
+<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
+
+ is "index". We combine
+
+
+
+
+those with a 
+
+<code class=""><span class="text plain">:</span></code>
+
+ character to generate the full
+
+
+
+
+name for the page like
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">django homepage name</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text plain">homepage:index</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+We can use this name in our 
+
+<code class=""><span class="text plain">url</span></code>
+
+ template tag like
+
+
+
+
+this
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">django</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text plain">{% url &#39;homepage:index&#39; %}</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Let's add that temporarily to our home page so we 
+
+
+
+
+can see it. Replace the content of 
+
+<path 
+
+>homepage/templates/homepage/index.html</path>
 
 
 
@@ -176,6 +803,1535 @@ we're doing to update the contents of the homepage file
 with this
 
 :
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">update for: homepage/templates/homepage/index.html</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>Hello, world<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>      Home Page URL: {% url &#39;homepage:index&#39; %}
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Visit the home page again to see our change
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="link-section">
+
+<div class="link-wrapper">
+
+
+<div class="link-title">home page link</div>
+
+
+<div class="link-block">
+
+    
+<p>
+
+
+<a href="none" target="_blank">http://127.0.0.1/↗
+</a>
+
+</p>
+
+
+    
+
+</div>
+</section>
+
+
+</div>
+
+
+<p>
+
+The new output is
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+home page url line
+</div>
+
+
+
+
+<pre class="pre-block">Home Page URL: &#x2f;</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+There's not much to the URL. It points to the 
+
+
+
+
+root of the site so it's only the single 
+
+<code class=""><span class="text plain">/</span></code>
+
+
+
+
+character. That's fine since the key point is 
+
+
+
+
+that the URL was generated for us automatically. 
+
+</p>
+
+
+    
+<p>
+
+Let's change the URL to link to our login page
+
+
+
+
+(which doesn't exist yet, but we'll implement in 
+
+
+
+
+the next few steps)
+
+</p>
+
+
+
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Start making the login page link
+
+</p>
+
+
+
+<p>
+
+Django's built
+
+-
+
+in user authentication system provides
+
+
+
+
+a way to automatically create a login page. We'll
+
+
+
+
+need to configure it, but we can start by putting
+
+
+
+
+in the link which will demonstrate a new error for
+
+
+
+
+us. 
+
+</p>
+
+
+
+<p>
+
+The Django template name we can use in the "url" template
+
+
+
+
+tag is simply "login". Let's change our home page 
+
+
+
+
+to point use it (and get our new error message). Replace
+
+
+
+
+the contents of the 
+
+<path 
+
+>homepage/templates/homepage/index.html</path>
+
+
+
+
+file with this
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">update for: homepage/templates/homepage/index.html</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>Hello, world<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>      Login URL: {% url &#39;login&#39; %}
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Visit the home page and we'll see our new 
+
+
+
+
+error message
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="link-section">
+
+<div class="link-wrapper">
+
+
+<div class="link-title">home page link</div>
+
+
+<div class="link-block">
+
+    
+<p>
+
+
+<a href="none" target="_blank">http://127.0.0.1/↗
+</a>
+
+</p>
+
+
+    
+
+</div>
+</section>
+
+
+</div>
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+home page error message
+</div>
+
+
+
+
+<pre class="pre-block">NoReverseMatch at &#x2f;
+
+Reverse for &#x27;login&#x27; not found. &#x27;login&#x27; is not a valid view function or pattern name.
+
+etc...</pre>
+
+
+    
+</div>
+</section>
+
+
+
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Examine the "NoReverseMatch" error
+
+</p>
+
+
+
+<p>
+
+Our error message start with
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+web error message part 1
+</div>
+
+
+
+
+<pre class="pre-block">NoReverseMatch at &#x2f;</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The 
+
+<code class=""><span class="text plain">NoReverseMatch</span></code>
+
+ error means that Django was 
+
+
+
+
+trying to look up a 
+
+<code class=""><span class="text plain">url</span></code>
+
+ template tag name that 
+
+
+
+
+doesn't exist. The 
+
+<code class=""><span class="text plain">at /</span></code>
+
+ identifies the page
+
+
+
+
+the error occrred on which in this case is our home page
+
+
+
+
+(i.e. 
+
+<path 
+
+>/</path>
+
+)
+
+</p>
+
+
+    
+<p>
+
+The next part of the error message is
+
+:
+
+</p>
+
+
+
+
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+web error message part 2
+</div>
+
+
+
+
+<pre class="pre-block">Reverse for &#x27;login&#x27; not found. &#x27;login&#x27; is not a valid view function or pattern name.</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+This let's us know that the name for the URL that failed
+
+
+
+
+is "login" which matches names we expect since we're trying
+
+
+
+
+to use
+
+:
+
+</p>
+
+
+
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">url template tag</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text plain">{% url &#39;login&#39; %}</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+This URL isn't made up of an app
+
+_
+
+name and path() name
+
+
+
+
+separated by a colon like our previous example. That's 
+
+
+
+
+because we'll be using Django's built
+
+-
+
+in user authentication 
+
+
+
+
+for the link and it uses just 'login' instead of something
+
+
+
+
+like 'auth
+
+:
+
+login'.
+
+</p>
+
+ 
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Adding the built
+
+-
+
+in login page overview
+
+</p>
+
+
+
+<p>
+
+Setting up Djangos built
+
+-
+
+in login page takes a couple of
+
+
+
+
+steps
+
+:
+
+</p>
+
+
+
+
+<ol class="flow">
+    
+
+
+<li class="flow">
+
+
+
+<p>
+
+Update the sites 
+
+<path 
+
+>urls.py</path>
+
+ file to add the route
+
+
+
+
+paths for the built
+
+-
+
+in pages
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Create a template for the login page
+
+</p>
+
+
+
+</li>
+
+</ol>
+
+
+
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Add the built
+
+-
+
+in user authentication path routes
+
+</p>
+
+
+
+<p>
+
+We'll add the path routes for the login and other 
+
+
+
+
+user authentication pages that Django provides under 
+
+
+
+
+<path 
+
+>accounts/</path>
+
+. We'll do this by adding this
+
+
+
+
+new line to the 
+
+<code class=""><span class="text plain">urlpatterns</span></code>
+
+ list in our
+
+
+
+
+<path 
+
+>tutorial_site/urls.py</path>
+
+ file
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">user authentication path routes</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">accounts/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span>,</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Here's the full contents of the 
+
+<path 
+
+>tutorial_site/urls.py</path>
+
+
+
+
+file to copy/paste into the file
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">update for: tutorial_site/urls.py</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
+<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span>
+<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">include</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
+<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">accounts/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">admin/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The 
+
+<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span></code>
+
+ call 
+
+
+
+
+loads the built
+
+-
+
+in user auth functionality at our defined
+
+
+
+
+<path 
+
+>accounts/</path>
+
+ path. We don't need to do anything else
+
+
+
+
+to get the page to show up. 
+
+</p>
+
+
+    
+<p>
+
+The built
+
+-
+
+in functionality also gets our code to work for
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">django url template tag</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text plain">{% url &#39;login&#39; %}</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Visit the home page again and you'll see we've cleared the
+
+
+
+
+error and now show the URL for the login page as 
+
+<path 
+
+>/accounts/login</path>
+
+</p>
+
+ 
+
+
+
+
+
+<section class="link-section">
+
+<div class="link-wrapper">
+
+
+<div class="link-title">home page link</div>
+
+
+<div class="link-block">
+
+    
+<p>
+
+
+<a href="none" target="_blank">http://127.0.0.1/↗
+</a>
+
+</p>
+
+
+    
+
+</div>
+</section>
+
+
+</div>
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Use the built
+
+-
+
+in login link
+
+</p>
+
+
+
+<p>
+
+We can use the built
+
+-
+
+in user auth url tag by placing it in
+
+
+
+
+an HTML 
+
+<code class=""><span class="text plain">&lt;a&gt;</span></code>
+
+ tag like
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">login page link</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text html basic"><span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Login<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Update the 
+
+<path 
+
+>homepage/templates/homepage/index.html</path>
+
+ page
+
+
+
+
+to use it like this
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">update for: homepage/templates/homepage/index.html</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>Hello, world<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>      <span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Login<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Visit the home page again to checkout the Login link
+
+
+
+
+which you can click on. (It'll take us to an 
+
+
+
+
+intentional error which we'll address next)
+
+</p>
+
+ 
+
+
+
+
+
+<section class="link-section">
+
+<div class="link-wrapper">
+
+
+<div class="link-title">home page link</div>
+
+
+<div class="link-block">
+
+    
+<p>
+
+
+<a href="none" target="_blank">http://127.0.0.1/↗
+</a>
+
+</p>
+
+
+    
+
+</div>
+</section>
+
+
+</div>
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Generic templates directory overview
+
+</p>
+
+
+
+<p>
+
+Clicking on the 
+
+<code class=""><span class="text plain">Login</span></code>
+
+ link takes us 
+
+
+
+
+to the URL 
+
+<path 
+
+>/accounts/login</path>
+
+ and the page tries
+
+
+
+
+to load but produces this error
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+login page error message
+</div>
+
+
+
+
+<pre class="pre-block">TemplateDoesNotExist at &#x2f;accounts&#x2f;login&#x2f;
+
+registration&#x2f;login.html
+
+etc...</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The 
+
+<code class=""><span class="text plain">TemplateDoesNotExist</span></code>
+
+ tells us that Django
+
+
+
+
+couldn't find a template it expected to be able to use.
+
+
+
+
+The 
+
+<code class=""><span class="text plain">at /accounts/login</span></code>
+
+ tells us the URL of
+
+
+
+
+the page that had the problem and the "registration/login.html"
+
+
+
+
+tells us the path to the template file it was looking for. 
+
+
+
+
+We need to add a file that it can find for that path. 
+
+</p>
+
+
+    
+<p>
+
+By default, Django searching for templates inside any 
+
+
+
+
+<path 
+
+>template</path>
+
+ directories in our app/module folders. 
+
+
+
+
+For example, we created the directory
+
+:
+
+</p>
+
+
+
+
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+home page template directory 
+</div>
+
+
+
+
+<pre class="pre-block">homepage&#x2f;templates</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+and put the home page template itself in
+
+:
+
+</p>
+
+
+
+
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+home page template file
+</div>
+
+
+
+
+<pre class="pre-block">homepage&#x2f;templates&#x2f;homepage&#x2f;index.html</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+We can't use the same approach for our login template
+
+
+
+
+because we're using the built
+
+-
+
+in user auth instead of
+
+
+
+
+our own app/module. That means we don't have an 
+
+<path 
+
+>accounts</path>
+
+
+
+
+or 
+
+<path 
+
+>registration</path>
+
+ directory to create a 
+
+<path 
+
+>templates</path>
+
+
+
+
+directory in. To address this we'll make a generic 
+
+<path 
+
+>templates</path>
+
+
+
+
+directory that's not inside an app/module and place
+
+
+
+
+our login template file there. 
+
+</p>
+
+
+    
+<p>
+
+There are two steps to doing this
+
+:
+
+</p>
+
+
+
+
+
+
+
+
+<ol class="flow">
+    
+
+
+<li class="flow">
+
+
+
+<p>
+
+Define the directory in 
+
+<path 
+
+>tutorial_site/settings.py</path>
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Create the new 
+
+<path 
+
+>templates</path>
+
+ directory itself
+
+</p>
+
+
+
+</li>
+
+</ol>
+
+
+
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Scratch Notes Below
+
+</p>
+
+
+
+<p>
+
+#####################################################
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Start adding the login link to the template. The 
+
+
+
+
+line is
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">login link</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text html basic"><span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log In<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Copy and paste this into the template file to replacing
+
+
+
+
+the initial content
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">update for: homepage/templates/homepage/index.html</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>      <span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log In<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>Hello, world<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+    
+</div>
+</section>
+
+ 
+
+
+
+
+</li>
+
+</ol>
+
+
+
+
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Original Notes
+    
+    </h2>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+
+    
+
+</section>
+
+<ol class="flow">
+    
+
+
+<li class="flow">
+
+
+
+<p>
+
+Update the home page template
 
 </p>
 
@@ -1139,8 +3295,8 @@ Previous
 
  
 
-<a href="/en/2mcbmij7/?page=section-2-make-a-home-page">
-  Section 2 - Make A Home Page
+<a href="">
+  
 </a>
 
 </p>
@@ -1175,7 +3331,27 @@ Next
 
 </section><div class="fin-token">~ fin ~</div>
 
-</main>
+
+      <section>
+        <h2>References</h2>
+        <ul class="flow">
+    
+    <li class="ref-item">
+  <div><a href="https://docs.djangoproject.com/en/5.1/ref/templates/builtins/">Django Built-in template tags and filters</a></div>
+  <div class="flow">
+
+
+</div>
+</li><li class="ref-item">
+  <div><a href="https://docs.djangoproject.com/en/5.1/ref/exceptions/#django.urls.NoReverseMatch">Djanog NoReverseMatch error docs</a></div>
+  <div class="flow">
+
+
+</div>
+</li>
+    </ul>
+    </section>
+  </main>
 <footer></footer>
 
 
