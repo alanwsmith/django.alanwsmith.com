@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Section 6 - Creating The Notes Model</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta property="og:title" content="Section 6 - Creating The Notes Model" />
+<meta property="og:description" content="a post from alan w. smith" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://django.alanwsmith.com/en/2mi16pye/?page=section-6-creating-the-notes-model" />
+<meta property="og:image" content="https://django.alanwsmith.com/neo-images/default-og-image/1200w.jpg" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/theme/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/theme/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/theme/favicons/favicon-16x16.png">
+<link rel="manifest" href="/theme/favicons/site.webmanifest">
+<link rel="mask-icon" href="/theme/favicons/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/theme/favicons/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/theme/favicons/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="/theme/styles/variables.css" />
+<link rel="stylesheet" href="/theme/styles/theme.css" />
+<link rel="stylesheet" href="/theme/styles/syntax-highlighting/code-solarized-dark.css" /></head>
+<body>
+<header>
+      <a href="/">Home</a>
+      <div class="under-construction">
+        NOTE: I'm in the middle of upgrading the site. Most things are in place, but
+        some things are missing and/or broken. This includes alt text for images. Please
+        bear with me while I get things fixed. 
+      </div>
+    </header>
+<main class="flow">
+
+<section class="title-section flow">
+<hgroup>
+
+  
+    <h1 class="page-title">
+    
+      Section 6 
+    
+      -
+    
+       Creating The Notes Model
+    
+    </h1>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+
+</section>
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Introduction
+    
+    </h2>
+    
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>
+
+This section sets up a "notes" app/module that we'll
+
+
+
+
+use to show how to create, view, edit, and delete
+
+
+
+
+simple notes. 
+
+</p>
+
+
+
+
+
+    
+
+    
+
+</section><section class="unknown-section flow">
+
+      
+        
+<p>
+
+TODO
+
+:
+
+ Note that we'll be using Error Driven Development
+
+
+
+
+for the Tutorial and link to the post about it
+
+</p>
+
+      
+
+
+
+
+    
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Section Steps
+    
+    </h2>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+
+    
+
+</section>
+
+<ol class="flow">
+    
+
+
+<li class="flow">
+
+
+
+<p>
+
+Stop the server if it's running
+
+:
+
+</p>
+
+
+
+<p>
+
+We need to make a new app for our notes. Let's
+
+
+
+
+stop the server so we can do that with
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+keyboard
+</div>
+
+
+
+
+<pre class="pre-block">control + c</pre>
+
+
+    
+</div>
+</section>
+
+
+
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Create the notes app
+
+</p>
+
+
+
+
+<section class="cli-section">
+
+
+
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+command line:
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py startapp notes</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+ 
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Install the notes app in our Django project by updating
+
+
+
+
+<code class=""><span class="text plain">INSTALLED_APPS</span></code>
+
+ in the 
+
+<path 
+
+>tutorial_site/tutorial_site/settings.py</path>
+
+ file
+
+
+
+
+to add
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">python</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">notes.apps.NotesConfig<span class="punctuation definition string end python">&quot;</span></span></span>,</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The 
+
+<code class=""><span class="text plain">INSTALLED_APPS</span></code>
+
+ should look like this when you're done
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">INSTALLED_APPS in tutorial_site/tutorial_site/settings.py</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta qualified-name python"><span class="variable other constant python">INSTALLED_APPS</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.admin<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.contenttypes<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.sessions<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.messages<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.staticfiles<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.apps.HomepageConfig<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">notes.apps.NotesConfig<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+<span class="punctuation section list end python">]</span></span></span></code></pre>
+    
+</div>
+</section>
+
+ 
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Update the model
+
+</p>
+
+
+
+<p>
+
+from
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">original: tutorial_site/notes/models.py</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">db</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">models</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="comment line number-sign python"><span class="punctuation definition comment python">#</span> Create your models here.</span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Change it to
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">update for: tutorial_site/notes/models.py</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">db</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">models</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta class python"><span class="storage type class python">class</span> <span class="entity name class python"><span class="meta generic-name python">Note</span></span><span class="meta class inheritance python"><span class="punctuation section inheritance begin python">(</span></span></span><span class="meta class inheritance python"><span class="entity other inherited-class python">models<span class="punctuation accessor dot python">.</span>Model</span><span class="punctuation section inheritance end python">)</span></span><span class="meta class python"><span class="punctuation section class begin python">:</span></span>
+<span class="line-marker"></span>    <span class="meta qualified-name python"><span class="meta generic-name python">note_text</span></span> <span class="keyword operator assignment python">=</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">models</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">CharField</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="variable parameter python">max_length</span><span class="keyword operator assignment python">=</span><span class="constant numeric integer decimal python">200</span></span><span class="punctuation section arguments end python">)</span></span>
+<span class="line-marker"></span>    <span class="meta qualified-name python"><span class="meta generic-name python">created_at</span></span> <span class="keyword operator assignment python">=</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">models</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">DateTimeField</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">Date<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta function python">    <span class="storage type function python">def</span> <span class="entity name function python"><span class="support function magic python">__str__</span></span></span><span class="meta function parameters python"><span class="punctuation section parameters begin python">(</span></span><span class="meta function parameters python"><span class="variable parameter python">self</span><span class="punctuation section parameters end python">)</span></span><span class="meta function python"><span class="punctuation section function begin python">:</span></span>
+<span class="line-marker"></span>        <span class="keyword control flow return python">return</span> <span class="meta qualified-name python"><span class="variable language python">self</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">note_text</span></span></span></code></pre>
+    
+</div>
+</section>
+
+ 
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Examine the models.py code
+
+</p>
+
+
+
+<p>
+
+TODO
+
+:
+
+ Go through the models.py file line by line
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Make the migration
+
+</p>
+
+
+
+
+<section class="cli-section">
+
+
+<h3>django makemigrations command</h3>
+
+
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+django makemigrations command</div>
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py makemigrations notes</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The results will look like
+
+:
+
+</p>
+
+
+ 
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+command line message
+</div>
+
+
+
+
+<pre class="pre-block">TODO: add the respose from makemigraions here</pre>
+
+
+    
+</div>
+</section>
+
+
+
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Run the migrations
+
+</p>
+
+
+
+
+<section class="cli-section">
+
+
+<h3>django migrate command</h3>
+
+
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+django migrate command</div>
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py migrate</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The output from the command looks like
+
+:
+
+</p>
+
+
+ 
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+command line message
+</div>
+
+
+
+
+<pre class="pre-block">TODO: Copy and paste the response here</pre>
+
+
+    
+</div>
+</section>
+
+
+
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Add the notes to the admin interface
+
+</p>
+
+
+
+<p>
+
+Starts off with
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">original: tutorial_site/notes/admin.py</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="comment line number-sign python"><span class="punctuation definition comment python">#</span> Register your models here.</span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Change it to
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">update for: tutorial_site/notes/admin.py</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="keyword control import relative python">.</span></span><span class="meta import-path python"><span class="meta import-name python">models</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">Note</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">register</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta qualified-name python"><span class="meta generic-name python">Note</span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+TODO
+
+:
+
+ Add line by line notes 
+
+</p>
+
+ 
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Start the server
+
+</p>
+
+
+
+
+<section class="cli-section">
+
+
+<h3>django server start command</h3>
+
+
+<div class="cli-wrapper">
+
+<div class="cli-title">
+
+django server start command</div>
+
+</div>
+
+
+<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+ 
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Visit the admin interface
+
+</p>
+
+
+
+
+<section class="link-section">
+
+<div class="link-wrapper">
+
+
+<div class="link-title">django admin interface link</div>
+
+
+<div class="link-block">
+
+    
+<p>
+
+
+<a href="none" target="_blank">http://localhost:8000/admin/↗
+</a>
+
+</p>
+
+
+    
+
+</div>
+</section>
+
+
+</div>
+
+
+</li>
+
+</ol>
+
+
+
+
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Wrapping Up
+    
+    </h2>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+
+    
+
+</section>
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Links
+    
+    </h2>
+    
+  
+
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>
+
+Previous
+
+:
+
+ 
+
+<a href="/en/2mhtioft/?page=section-5-showing-login-state">
+  Section 5 - Showing Login State
+</a>
+
+</p>
+
+
+
+
+    
+<p>
+
+Next
+
+:
+
+ 
+
+<a href="/en/2midac9a/?page=section-7-adding-notes-via-the-admin-interface">
+  Section 7 - Adding Notes Via The Admin Interface
+</a>
+
+</p>
+
+
+
+
+
+    
+
+    
+
+    
+
+</section><div class="fin-token">~ fin ~</div>
+
+</main>
+<footer></footer>
+
+
+
+
+
+
+</body>
+
