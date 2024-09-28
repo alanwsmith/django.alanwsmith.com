@@ -92,7 +92,9 @@ template with this code to add the form:
 <!DOCTYPE html>
 <html>
   <body>
+
     <h1>Hello, world</h1>
+
     <div>
       <a href="{% url 'login' %}">Login</a>
       <form action="{% url 'logout' %}" method="post">
@@ -100,6 +102,7 @@ template with this code to add the form:
         <button type="submit">Log Out</button>
       </form>
     </div>
+
   </body>
 </html>
 

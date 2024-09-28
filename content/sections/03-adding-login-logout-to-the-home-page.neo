@@ -35,7 +35,9 @@ nothing but HTML:
 <!DOCTYPE html>
 <html>
   <body>
+
     <h1>Hello, world</h1>
+
   </body>
 </html>
 
@@ -99,10 +101,13 @@ of the home page template index.html file with this:
 <!DOCTYPE html>
 <html>
   <body>
+
     <h1>Hello, world</h1>
+
     <div>
       {% lorem %}
     </div>
+
   </body>
 </html>
 
@@ -199,10 +204,13 @@ with this:
 <!DOCTYPE html>
 <html>
   <body>
+
     <h1>Hello, world</h1>
+
     <div>
       Home Page URL: {% url 'homepage:index' %}
     </div>
+
   </body>
 </html>
 
@@ -256,10 +264,13 @@ file with this:
 <!DOCTYPE html>
 <html>
   <body>
+
     <h1>Hello, world</h1>
+
     <div>
       Login URL: {% url 'login' %}
     </div>
+
   </body>
 </html>
 
@@ -433,10 +444,13 @@ to use it like this:
 <!DOCTYPE html>
 <html>
   <body>
+
     <h1>Hello, world</h1>
+
     <div>
       <a href="{% url 'login' %}">Login</a>
     </div>
+
   </body>
 </html>
 

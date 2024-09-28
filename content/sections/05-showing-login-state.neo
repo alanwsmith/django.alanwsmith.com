@@ -25,10 +25,219 @@ python manage.py runserver
 
 Section Steps
 
+-- olist/
 
 
+- Checking If The User Is Authenticated
+
+Part of Django's built-in user authentication system involves
+passing a <<code|user>> object to templates for them to use when 
+rending a page. We can add it to our template with:
+
+-- code/
+-- django
+-- no-nums
+-- title: user template tag
+
+{{ user }}
+
+-- /code
+
+When the page renders the output from the tag will be either:
+
+-- list/
+
+- The user's username if they're logged in
+
+- The string "AnonymousUser" if there's not a logged in user
+
+-- /list
+
+Update the <<path|tutorial_site/homepage/templates/homepage/index.html>>
+template with this code to add it:
+
+-- code/
+-- html
+-- title: update for: tutorial_site/homepage/templates/homepage/index.html
+
+<!DOCTYPE html>
+<html>
+  <body>
+
+    <h1>Hello, world</h1>
+
+    <div>{{ user }}</div>
+
+    <div>
+      <a href="{% url 'login' %}">Login</a>
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Log Out</button>
+      </form>
+    </div>
+
+  </body>
+</html>
+
+-- /code
+
+Now, visit the home page and log in and out to see it in action:
+
+-- link/
+-- title: home page link
+
+<<tablink|http://127.0.0.1:8000/>>
+
+-- /link
+
+When you log in with your "admin" super user account you'll see 
+"admin". When you're logged out, you'll see "AnonymousUser"
+
+- Django if/else Template Tag Overview
+
+Showing the username or "AnonymousUser" lets us tell if we are logged
+in or not, but it's confusing to show the "Login" link when we're already
+logged in. The same thing goes for the "Log Out" button which
+is confusing to show when we're already logged out. We can address 
+that using an <<code|if/else>> conditional statement block in
+our Django template. 
+
+The basic format Django template tag <<code|if/else>> blocks is:
+
+-- code/
+-- django
+-- no-nums
+-- title: django if/else template tag example
+
+{% if SOME_CONDITION %}
+  Do Something Here If The Condition Is true
+{% else %}
+  Do Something Here If The Condition Is false
+{% endif %}
+
+-- /code 
+
+All we need is a condition to check. The <<code|user>>
+object provided to the template by Django's user
+auth system has us covered with a <<code|is_authenticated>>
+method we can call on it like:
+
+-- code/
+-- python
+-- no-nums
+
+user.is_authenticated
+
+-- /code
+
+We'll make up update in two steps in an effort to keep things
+clear. 
+
+First, we'll start using the <<code|user.is_authenticated|python>> 
+check by updating the code for 
+<<path|tutorial_site/homepage/templates/homepage/index.html>>
+to:
+
+-- code/
+-- html
+-- title: update for: tutorial_site/homepage/templates/homepage/index.html
+
+<!DOCTYPE html>
+<html>
+  <body>
+
+    <h1>Hello, world</h1>
+
+    <div>{{ user }}</div>
+
+    <div>
+      <a href="{% url 'login' %}">Login</a>
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Log Out</button>
+      </form>
+    </div>
+
+    <div>
+    {% if user.is_authenticated %}
+      User is logged in
+    {% else %}
+      User is not logged in
+    {% endif %}
+    </div>
+
+  </body>
+</html>
+
+-- /code
+
+Now when we log in and out of the home page and verify 
+we see the "User is logged in" or "User is not logged in" message 
+depending of if we're logged in or not. 
+
+-- link/
+-- title: home page link
+
+<<tablink|http://127.0.0.1:8000/>>
+
+-- /link
 
 
+Once we've verified the <<code|if/else>> is working properly we can 
+move our logout form to replace
+"User is logged in" and replace "User is not logged in" with our
+login link. The updated code looks like this:
+
+-- code/
+-- html
+-- title: update for: tutorial_site/homepage/templates/homepage/index.html
+
+<!DOCTYPE html>
+<html>
+  <body>
+
+    <h1>Hello, world</h1>
+
+    <div>{{ user }}</div>
+
+    <div>
+    {% if user.is_authenticated %}
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Log Out</button>
+      </form>
+    {% else %}
+      <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+    </div>
+
+  </body>
+</html>
+
+-- /code
+
+Checking the page again we can verify that we either:
+
+-- list/
+
+- Show "AnonymousUser" and the Login link if the user isn't logged in
+
+- Show the current user's username and the Log Out button if the user is logged in
+
+-- /list
+
+-- /olist
+
+
+-- h2
+
+Wrapping Up
+
+And, that's it for the user authenction set up. There's lots of
+other things we can add, but we're all set working with 
+authenticated users in the rest of the tutorial. 
+
+We're ready to start adding content in our next step. 
 
 
 -- metadata
@@ -36,6 +245,6 @@ Section Steps
 -- updated: 2024-09-28T12:22:37-04:00
 -- id: 2mhtioft
 -- type: post
--- status: scratch
+-- status: draft 
 
 
