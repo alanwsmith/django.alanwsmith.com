@@ -6,11 +6,177 @@ Section 4 - Adding Logout Functionality
 
 Introduction
 
-Django has built-in user functionality. This section
-creates the login and logout pages. 
+We've got the ability to log in. Now we need to be able 
+to log out. We'll do that in this section. 
 
-Before we get started, <<ilink|make sure the Python
-virtual environment is active|2mcf8e2u>>.
+Make sure you've <<link|activated your venv>> and started
+the server if it's not already running with:
+
+-- cli/
+
+python manage.py runserver
+
+-- /cli
+
+-- h2
+
+Steps
+
+-- olist/
+
+- Add the logout form to the home page
+
+We're using a standard <<code|<a\>|html>> HTML tag
+for our login link. We have to handle the logout
+functionality a little differently. For security 
+reasons, Django requires that we use a form so
+that we can add CSRF protection. 
+
+The basic code for the form is:
+
+-- code/
+-- html
+-- no-nums
+-- title: logout form code
+
+<form action="{% url 'logout' %}" method="post">
+  {% csrf_token %}
+  <button type="submit">Log Out</button>
+</form>
+
+-- /code
+
+The <<code|action>> attribute defines the URL the form
+is sent to when submitted. In this case, we're using
+this url template tag
+
+-- code/
+-- django
+-- no-nums
+-- title: logout template tag
+
+{% url 'logout' %}
+
+-- /code
+
+The built-in user auth functionality provides 
+<<code|logout>> for us automatically. And, unlike
+the <<code|login>> link from the prior section we 
+don't need to make a template for <<code|logout>>. 
+That's because Django will automatically redirect
+the user to another page after the log out process
+runs. 
+
+The form also contains our CSRF security token. 
+
+-- code/
+-- django
+-- no-nums
+-- title: csrf template tag 
+
+{% csrf_token %}
+
+-- /code
+
+We don't need to so anything with it other than 
+making sure it's inside our form on the page. 
+
+
+Update the <<path|tutorial_site/homepage/templates/homepage/index.html>>
+template with this code to add the form:
+
+-- code/
+-- html
+-- title: update for: tutorial_site/homepage/templates/homepage/index.html
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hello, world</h1>
+    <div>
+      <a href="{% url 'login' %}">Login</a>
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Log Out</button>
+      </form>
+    </div>
+  </body>
+</html>
+
+-- /code
+
+Start the server if it's not already running with:
+
+-- cli/
+
+python manage.py runserver
+
+-- /cli
+
+Then visit the home page to see the logout button:
+
+-- link/
+-- title: home page link
+
+<<tablink|http://127.0.0.1/>>
+
+-- /link
+
+- Redirecting logout to the home page
+
+Django's default behavior when you click the <<code|Log Out>> button
+is to redirect you to a page that shows a "Logged out" message in
+a "Django administration" page template. That's not bad in and of
+itself, but it's most likely not what we'd want on a full site. So,
+let's set the logout to redirect to the home page instead. 
+
+All we need to do to make that happen is to add this line to the
+end of the <<path|tutorial_site/settings.py>> file (after the 
+<<code|DEFAULT_AUTO_FIELD>> line):
+
+-- code/
+-- python
+-- no-nums
+-- title: append to: tutorial_site/settings.py
+
+LOGOUT_REDIRECT_URL = "/"
+
+-- /code
+
+- Redirect login to the home page
+
+We can update the <<code|Log In>> link to redirect to the 
+home page (instead of the user profile page) in the same way
+by adding this line after our new <<code|LOGOUT_REDIRECT_URL>>
+line:
+
+-- code/
+-- python
+-- no-nums
+-- title: append to: tutorial_site/settings.py
+
+LOGIN_REDIRECT_URL = "/"
+
+-- /code
+
+-- h2
+
+Wrapping Up
+
+If we go to the home page now, both the Login link and
+the Log Out button work. 
+
+-- link/
+-- title: home page link
+
+<<tablink|http://127.0.0.1/>>
+
+-- /link
+
+It's a little hard to see that though since we don't have any indication of
+if we're logged in or not. We'll address that next.
+
+-- /olist
 
 
 -- h2
@@ -19,13 +185,13 @@ Links
 
 Previous: <<tlink|2md4eik2>>
 
-Next: TKTKTK
+Next: <<tlink|2mhtioft>>
 
 -- metadata
 -- created: 2024-09-26T19:20:03-04:00
 -- updated: 2024-09-26T19:20:03-04:00
 -- id: 2md3ouqp
 -- type: post
--- status: scratch
+-- status: draft 
 
 
