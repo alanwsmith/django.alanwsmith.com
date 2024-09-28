@@ -28,7 +28,7 @@ functionality to point calls to the root of the site.
 These changes are made in the file:
 
 -- pre/
--- title: File path:
+-- title: file path:
 
 tutorial_site/urls.py
 
@@ -39,7 +39,7 @@ of the file that looks like this:
 
 -- code/
 -- python
--- title: Original: tutorial_site/urls.py
+-- title: original: tutorial_site/urls.py
 
 # A bunch of comments are here that we're 
 # going to ignore
@@ -145,7 +145,7 @@ to replace the contents of the original:
 
 -- code/
 -- python
--- title: Update for: tutorial_site/urls.py
+-- title: update for: tutorial_site/urls.py
 
 from django.contrib import admin
 from django.urls import path
@@ -163,7 +163,7 @@ terminal will reload itself and show an error
 that ends with: 
 
 -- pre/
--- title: Error message:
+-- title: command line error:
 
 ModuleNotFoundError: No module named 'homepage'
 
@@ -177,6 +177,13 @@ up, but we'll start by tackling that error.
 We'll need to run another <<code|python manage.py>> command
 in the next step. Let's stop the server by holding down 
 the <<kbd|control>> key on the keyboard then pressing <<kbd|c>>
+
+-- pre/
+-- title: keyboard:
+
+control + c
+
+-- /pre
 
 - Make the new app/module
 
@@ -209,7 +216,7 @@ by adding this line:
 to the <<code|INSTALLED_APPS>> list variable in the file:
 
 -- pre/
--- title: File path:
+-- title: file path:
 
 tutorial_site/settings.py 
 
@@ -253,7 +260,7 @@ python manage.py runserver
 The error in the console changes from:
 
 -- pre/
--- title: Error message:
+-- title: command line error:
 
 ModuleNotFoundError: No module named 'homepage'
 
@@ -262,7 +269,7 @@ ModuleNotFoundError: No module named 'homepage'
 To:
 
 -- pre/
--- title: Error message:
+-- title: command line error:
 
 ModuleNotFoundError: No module named 'homepage.urls'
 
@@ -275,7 +282,7 @@ need to restart the server to see the change so
 we can stop it now with:
 
 -- pre/
--- title: Keyboard:
+-- title: keyboard:
 
 control + c
 
@@ -286,7 +293,7 @@ control + c
 Django is looking for a file at:
 
 -- pre/
--- title: File path:
+-- title: file path:
 
 homepage/urls.py
 
@@ -300,7 +307,7 @@ the contents of the file:
 
 -- code/
 -- python
--- title: New file: homepage/urls.py
+-- title: new file: homepage/urls.py
 
 from django.urls import path
 
@@ -316,7 +323,7 @@ urlpatterns = [
 This file looks a lot like: 
 
 -- pre/
--- title: File path:
+-- title: file path:
 
 tutorial_site/urls.py
 
@@ -336,7 +343,7 @@ path("", include("homepage.urls")),
 calls out to include the file we just created at:
 
 -- pre/
--- title: File path:
+-- title: file path:
 
 homepage/urls.py
 
@@ -378,7 +385,7 @@ This imports the "views.py" file from the current
 directory. In this case that means it's pointing to:
 
 -- pre/
--- title: File path:
+-- title: file path:
 
 homepage/views.py
 
@@ -452,7 +459,7 @@ python manage.py runserver
 The server will dump a big error message that ends with:
 
 -- pre/
--- title: Error message:
+-- title: command line error:
 
 AttributeError: module 'homepage.views' has no attribute 'index'
 
@@ -467,7 +474,7 @@ app's "views.py" file. We'll do that now.
 The file we need to edit is:
 
 -- pre/
--- title: File path:
+-- title: file path:
 
 homepage/views.py
 
@@ -479,6 +486,7 @@ that looks like this:
 
 -- code/
 -- python
+-- title: original file: homepage/views.py
 
 from django.shortcuts import render
 
@@ -492,6 +500,7 @@ what the file should look like:
 
 -- code/
 -- python
+-- title: replacement for: homepage/views.py
 
 from django.shortcuts import render
 
@@ -506,7 +515,7 @@ reload the server and clear the errors and should show
 this response:
 
 -- pre/
--- title: Message:
+-- title: command line message:
 
 Watching for file changes with StatReloader
 Performing system checks...
@@ -524,7 +533,7 @@ which will have changed from the default Django home page
 to an error page that starts with:
 
 -- pre/
--- title: Error message:
+-- title: web browesr error:
 
 TemplateDoesNotExist at /
 
@@ -619,7 +628,7 @@ create a couple of directories for us. So, stop the
 server with:
 
 -- pre/
--- title: Keyboard:
+-- title: keyboard:
 
 control + c
 
@@ -640,7 +649,7 @@ look at and we'll discuss why in a moment but for now we need
 to create a directory tree that looks like:
 
 -- pre/
--- title: Directory path:
+-- title: directory path:
 
 homepage/templates/homepage/
 
@@ -660,7 +669,7 @@ mkdir -p homepage/templates/homepage
 Now we're ready to drop in our "index.html" template file at:
 
 -- pre/
--- title: File path
+-- title: file path
 
 homepage/templates/homepage/index.html
 
@@ -670,7 +679,7 @@ Copy and past this for the content of the file and save it.
 
 -- code/
 -- html
--- title: New file: homepage/templates/homepage/index.html
+-- title: new file: homepage/templates/homepage/index.html
 
 <!DOCTYPE html>
 <html>
@@ -692,7 +701,17 @@ python manage.py runserver
 -- /cli
 
 Now, we can go back to our site and we'll see 
-our bare bones home page at: http://127.0.0.1:8000/
+our bare bones home page at:
+
+-- link/
+-- title: home page:
+
+<<link|http://127.0.0.1:8000/|http://127.0.0.1:8000>>
+
+-- /link
+
+It may not be a lot to look at, but it's live and that's
+the first step to making more progress. 
 
 -- /olist
 

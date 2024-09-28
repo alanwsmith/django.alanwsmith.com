@@ -299,14 +299,18 @@ If you run into some other error then you can copy
 and paste it into a search engine to start figuring
 out what went wrong. 
 
-
 - Check the home page
 
 When you first start a new Django site it displays 
 a default home page. You'll see it at this 
 address:
 
+-- link/
+-- title: home page:
+
 <<link|http://127.0.0.1:8000/|http://127.0.0.1:8000/>>
+
+-- /link
 
 Click that now and you should see the
 message "The install worked successfully! Congratulations!"
@@ -316,7 +320,12 @@ along with some more info and links.
 
 Next, click this link to open the admin interface: 
 
+-- link/
+-- title: admin interface:
+
 <<link|http://127.0.0.1:8000/admin/|http://127.0.0.1:8000/admin/>>
+
+-- /link
 
 You'll be presented with a login form where you can use 
 the "admin" Super User account and password you created
