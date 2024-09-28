@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Seciton 3 - Create A Web User In The Admin Interface</title>
+<title>Seciton 3 - Adding Login&#x2F;Logout Functionality</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta property="og:title" content="Seciton 3 - Create A Web User In The Admin Interface" />
+<meta property="og:title" content="Seciton 3 - Adding Login&#x2F;Logout Functionality" />
 <meta property="og:description" content="a post from alan w. smith" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://django.alanwsmith.com/en/2md4eik2/?page=seciton-3-create-a-web-user-in-the-admin-interface" />
+<meta property="og:url" content="https://django.alanwsmith.com/en/2md4eik2/?page=seciton-3-adding-login-x2f-logout-functionality" />
 <meta property="og:image" content="https://django.alanwsmith.com/neo-images/default-og-image/1200w.jpg" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/theme/favicons/apple-touch-icon.png">
@@ -44,12 +44,10 @@
     
       -
     
-       Create A Web User In The Admin Interface
+       Adding Login/Logout Functionality
     
     </h1>
     
-  
-
   
 
 </hgroup>
@@ -58,32 +56,85 @@
 
 
 
+
     
+
+</section><section class="unknown-section flow">
+
+      
+        
 <p>
 
-TODO
-
-:
-
- Show how to use the admin interface to create
+Throughout this tutorial we'll be working to make
 
 
 
 
-a local web user that can be used for the rest of
+pages that we can edit. An important part of that
 
 
 
 
-the tutorial on web pages. 
+is making sure that we're the only ones that can
+
+
+
+
+make changes. Dealing with user accounts is often
+
+
+
+
+a pain, but Django has a built
+
+-
+
+in user authentication
+
+
+
+
+system that smooths out the process a lot. We'll
+
+
+
+
+be using it in this section to add login/logout
+
+
+
+
+functionality to the home page. 
 
 </p>
 
+      
 
 
 
 
     
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Steps
+    
+    </h2>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
 
     
 
@@ -99,7 +150,32 @@ the tutorial on web pages.
 
 <p>
 
-alfa
+Update the home page template
+
+</p>
+
+
+
+<p>
+
+Our first step is to update the home page template file
+
+
+
+
+to get ready to display the login/logout links. To do that,
+
+
+
+
+we're doing to update the contents of the homepage file
+
+
+
+
+with this
+
+:
 
 </p>
 
@@ -111,13 +187,386 @@ alfa
 <div class="code-wrapper">
 
 
+<div class="code-title">update for: homepage/templates/homepage/index.html</div>
 
 
 
-<pre class="code-block"><code><span class="line-marker"></span><span class="text plain">charlie</span></code></pre>
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    {% if user.is_authenticated %}
+<span class="line-marker"></span>      <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block form html">form</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">action</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;logout&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">method</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>post<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>        {% csrf_token %}
+<span class="line-marker"></span>        {{ user.username }}
+<span class="line-marker"></span>        <span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline form html">button</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">type</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>submit<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log Out<span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline form html">button</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>      <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block form html">form</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    {% else %}
+<span class="line-marker"></span>      <span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log In<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    {% endif %}
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>Hello, world<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
     
 </div>
 </section>
+
+
+    
+<p>
+
+We're continuing our process here of making intentional 
+
+
+
+
+errors to track our progress. Checkout the home page
+
+
+
+
+to see the new one
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="link-section">
+
+<div class="link-wrapper">
+
+
+<div class="link-title">home page link</div>
+
+
+<div class="link-block">
+
+    
+<p>
+
+
+<a href="http://127.0.0.1/">http://127.0.0.1/</a>
+
+</p>
+
+
+    
+
+</div>
+</section>
+
+
+</div>
+
+
+<p>
+
+You'll see the error on the page that starts with
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+web page error
+</div>
+
+
+
+
+<pre class="pre-block">NoReverseMatch at &#x2f;</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Before we fix that, let's look at the new code for the 
+
+
+
+
+home page template to get a better idea of what's going
+
+
+
+
+on.
+
+</p>
+
+
+
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Example the new home page template
+
+</p>
+
+
+
+<p>
+
+The section of code we added to the home page template 
+
+
+
+
+looks like this
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">home page template snippet</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text html basic">{% if user.is_authenticated %}
+    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block form html">form</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">action</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;logout&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">method</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>post<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
+        {% csrf_token %}
+        {{ user.username }}
+        <span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline form html">button</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">type</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>submit<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log Out<span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline form html">button</span><span class="punctuation definition tag end html">&gt;</span></span>
+    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block form html">form</span><span class="punctuation definition tag end html">&gt;</span></span>
+{% else %}
+    <span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log In<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span>
+{% endif %}</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The first thing to point out is the Django template
+
+
+
+
+tags that start and end like this
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">django template tags</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text html basic">{% %}</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+Anything inside those tags is parsed and handled by
+
+
+
+
+Django as it renders the page. Let's look at these
+
+
+
+
+three lines that make up an if/else statement
+
+
+
+
+as an example
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">django if/else tags</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text html basic">{% if user.is_authenticated %}
+
+{% else %}
+  
+{% endif %}</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The format is like if/else statements in regular programming
+
+
+
+
+languages. If the result of the 
+
+<code class=""><span class="source python"><span class="meta statement if python"><span class="keyword control flow conditional python">if</span></span></span></code>
+
+ tag 
+
+
+
+
+is 
+
+<code class=""><span class="text plain">true</span></code>
+
+ then the content and code between it
+
+
+
+
+and the 
+
+<code class=""><span class="text plain">else</span></code>
+
+ statement is used. Otherwise, the
+
+
+
+
+code between the 
+
+<code class=""><span class="text plain">else</span></code>
+
+ and 
+
+<code class=""><span class="text plain">endif</span></code>
+
+
+
+
+tags is used. 
+
+</p>
+
+
+    
+<p>
+
+The value that's being checked by the 
+
+<code class=""><span class="text plain">if</span></code>
+
+ tag is
+
+
+
+
+<code class=""><span class="text plain">user.is_authenticated</span></code>
+
+. The 
+
+<code class=""><span class="text plain">user</span></code>
+
+ object
+
+
+
+
+and the 
+
+<code class=""><span class="text plain">is_authenticated</span></code>
+
+ method are provided
+
+
+
+
+automatically by Django's built
+
+-
+
+in user authentication 
+
+
+
+
+system. If a user is logged in, the value is 
+
+<code class=""><span class="text plain">true</span></code>
+
+. 
+
+
+
+
+Otherwise, it's 
+
+<code class=""><span class="text plain">false</span></code>
+
+</p>
 
  
 
@@ -133,9 +582,519 @@ alfa
 
 <p>
 
-bravo 
+The "url" template tag
 
 </p>
+
+
+
+<p>
+
+The next line to look at is
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">html</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text html basic"><span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block form html">form</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">action</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;logout&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">method</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>post<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The value for the 
+
+<code class=""><span class="text plain">action</span></code>
+
+ attribute of the 
+
+<code class=""><span class="text plain">form</span></code>
+
+
+
+
+element is another django template tag
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">django url tag</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text plain">{% url &#39;logout&#39; %}</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The 
+
+<code class=""><span class="text plain">url</span></code>
+
+ template tag is another feature that's built into 
+
+
+
+
+Django. It takes a string that is expected to be the
+
+
+
+
+name of a link inside your Django code and exapands it
+
+
+
+
+into a URL. 
+
+</p>
+
+
+    
+<p>
+
+In this case the value for 
+
+<code class=""><span class="text plain">logout</span></code>
+
+ is provided by
+
+
+
+
+the built
+
+-
+
+in user authentication system which will 
+
+
+
+
+see in just a moment. The user authentication system
+
+
+
+
+also provides the 
+
+<code class=""><span class="text plain">login</span></code>
+
+ used in the line
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">django template tag</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text html basic"><span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log In<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+TODO
+
+:
+
+ mention that this is called a reverse lookup. 
+
+</p>
+
+ 
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+The CSRF token
+
+</p>
+
+
+
+<p>
+
+The next line to look at is
+
+:
+
+</p>
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">django csrf token</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text plain">{% csrf_token %}</span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+"CSRF" stands for "Cross
+
+-
+
+Site Request Forgery" which is
+
+
+
+
+a security vulnerability that can happen when a malicious
+
+
+
+
+website sends traffic to your site. The 
+
+<code class=""><span class="text plain">csrf_token</span></code>
+
+ 
+
+
+
+
+template tag is another built
+
+-
+
+in Django feature that 
+
+
+
+
+protects against CSRF attacks. We don't need to dig
+
+
+
+
+into it here other than to point out that any form
+
+
+
+
+you make should have the token in it. When you're 
+
+
+
+
+ready to learn more about the specifics you can 
+
+
+
+
+check out the offical documentation
+
+:
+
+</p>
+
+ 
+
+
+
+
+
+<section class="link-section">
+
+<div class="link-wrapper">
+
+
+<div class="link-title">django csrf documentation</div>
+
+
+<div class="link-block">
+
+    
+<p>
+
+
+<a href="https://docs.djangoproject.com/en/5.1/howto/csrf/">https://docs.djangoproject.com/en/5.1/howto/csrf/</a>
+
+</p>
+
+
+    
+
+</div>
+</section>
+
+
+</div>
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+The "user.username" tag
+
+</p>
+
+
+
+<p>
+
+As we mentioned above, Django automatically provides 
+
+
+
+
+a 
+
+<code class=""><span class="text plain">user</span></code>
+
+ object to page templates. The 
+
+<code class=""><span class="text plain">username</span></code>
+
+
+
+
+method outputs the username value from the user authentication
+
+
+
+
+system. For example, we'll see "admin" when our Super User
+
+
+
+
+account is logged in. 
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+Looking at the "NoReverseMatch" error
+
+</p>
+
+
+
+<p>
+
+The error on our page is
+
+:
+
+</p>
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+web page error
+</div>
+
+
+
+
+<pre class="pre-block">NoReverseMatch at &#x2f;</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The second line is
+
+:
+
+</p>
+
+
+
+
+
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+web page error
+</div>
+
+
+
+
+<pre class="pre-block">Reverse for &#x27;login&#x27; not found. &#x27;login&#x27; is not a valid view function or pattern name.</pre>
+
+
+    
+</div>
+</section>
+
+
+    
+<p>
+
+The 
+
+<code class=""><span class="text plain">login</span></code>
+
+ that's referring to is the 
+
+<code class=""><span class="text plain">url</span></code>
+
+ 
+
+<code class=""><span class="text plain">login</span></code>
+
+ from
+
+:
+
+</p>
+
+
+
+
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">django url template tag</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="text html basic"><span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log In<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+    
+</div>
+</section>
+
+
+    
+<p>
+
+That code is being called because we're not logged in yet
+
+
+
+
+so the 
+
+<code class=""><span class="text plain">{% if user.is_authenticated %}</span></code>
+
+ value is false
+
+
+
+
+which means the 
+
+<code class=""><span class="text plain">{% else %}</span></code>
+
+ statement gets executed. 
+
+</p>
+
+ 
+
 
 
 

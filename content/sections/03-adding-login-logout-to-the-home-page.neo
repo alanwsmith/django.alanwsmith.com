@@ -1,0 +1,285 @@
+-- title
+
+Seciton 3 - Adding Login/Logout Functionality
+
+-- Introduction
+
+Throughout this tutorial we'll be working to make
+pages that we can edit. An important part of that
+is making sure that we're the only ones that can
+make changes. Dealing with user accounts is often
+a pain, but Django has a built-in user authentication
+system that smooths out the process a lot. We'll
+be using it in this section to add login/logout
+functionality to the home page. 
+
+-- h2
+
+Steps
+
+-- olist/
+
+- Update the home page template
+
+Our first step is to update the home page template file
+to get ready to display the login/logout links. To do that,
+we're doing to update the contents of the homepage file
+with this:
+
+
+-- code/
+-- html
+-- title: update for: homepage/templates/homepage/index.html
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <div>
+    {% if user.is_authenticated %}
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        {{ user.username }}
+        <button type="submit">Log Out</button>
+      </form>
+    {% else %}
+      <a href="{% url 'login' %}">Log In</a>
+    {% endif %}
+    </div>
+    <h1>Hello, world</h1>
+  </body>
+</html>
+
+-- /code
+
+We're continuing our process here of making intentional 
+errors to track our progress. Checkout the home page
+to see the new one:
+
+-- link/
+-- title: home page link
+
+<<link|http://127.0.0.1/|http://127.0.0.1/>>
+
+-- /link
+
+You'll see the error on the page that starts with:
+
+-- pre/
+-- title: web page error
+
+NoReverseMatch at /
+
+-- /pre
+
+Before we fix that, let's look at the new code for the 
+home page template to get a better idea of what's going
+on.
+
+
+- Example the new home page template
+
+The section of code we added to the home page template 
+looks like this:
+
+-- code/
+-- html
+-- no-nums
+-- title: home page template snippet
+
+{% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        {{ user.username }}
+        <button type="submit">Log Out</button>
+    </form>
+{% else %}
+    <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+
+-- /code
+
+The first thing to point out is the Django template
+tags that start and end like this:
+
+-- code/
+-- html
+-- no-nums
+-- title: django template tags
+
+{% %}
+
+-- /code
+
+Anything inside those tags is parsed and handled by
+Django as it renders the page. Let's look at these
+three lines that make up an if/else statement
+as an example:
+
+-- code/
+-- html
+-- no-nums
+-- title: django if/else tags
+
+{% if user.is_authenticated %}
+
+{% else %}
+  
+{% endif %}
+
+-- /code
+
+The format is like if/else statements in regular programming
+languages. If the result of the <<code|if|python>> tag 
+is <<code|true>> then the content and code between it
+and the <<code|else>> statement is used. Otherwise, the
+code between the <<code|else>> and <<code|endif>>
+tags is used. 
+
+The value that's being checked by the <<code|if>> tag is
+<<code|user.is_authenticated>>. The <<code|user>> object
+and the <<code|is_authenticated>> method are provided
+automatically by Django's built-in user authentication 
+system. If a user is logged in, the value is <<code|true>>. 
+Otherwise, it's <<code|false>>
+
+- The "url" template tag
+
+The next line to look at is:
+
+-- code/
+-- html
+-- no-nums
+
+<form action="{% url 'logout' %}" method="post">
+
+-- /code
+
+The value for the <<code|action>> attribute of the <<code|form>>
+element is another django template tag:
+
+-- code/
+-- no-nums
+-- title: django url tag
+
+{% url 'logout' %}
+
+-- /code
+
+The <<code|url>> template tag is another feature that's built into 
+Django. It takes a string that is expected to be the
+name of a link inside your Django code and exapands it
+into a URL. 
+
+In this case the value for <<code|logout>> is provided by
+the built-in user authentication system which will 
+see in just a moment. The user authentication system
+also provides the <<code|login>> used in the line:
+
+-- code/
+-- html
+-- no-nums
+-- title: django template tag
+
+<a href="{% url 'login' %}">Log In</a>
+
+-- /code
+
+TODO: mention that this is called a reverse lookup. 
+
+- The CSRF token
+
+The next line to look at is:
+
+-- code/
+-- no-nums
+-- title: django csrf token
+
+{% csrf_token %}
+
+-- /code
+
+"CSRF" stands for "Cross-Site Request Forgery" which is
+a security vulnerability that can happen when a malicious
+website sends traffic to your site. The <<code|csrf_token>> 
+template tag is another built-in Django feature that 
+protects against CSRF attacks. We don't need to dig
+into it here other than to point out that any form
+you make should have the token in it. When you're 
+ready to learn more about the specifics you can 
+check out the offical documentation:
+
+-- link/
+-- title: django csrf documentation
+
+<<link|https://docs.djangoproject.com/en/5.1/howto/csrf/|https://docs.djangoproject.com/en/5.1/howto/csrf/>>
+
+-- /link
+
+- The "user.username" tag
+
+As we mentioned above, Django automatically provides 
+a <<code|user>> object to page templates. The <<code|username>>
+method outputs the username value from the user authentication
+system. For example, we'll see "admin" when our Super User
+account is logged in. 
+
+- Looking at the "NoReverseMatch" error
+
+The error on our page is:
+
+-- pre/
+-- title: web page error
+
+NoReverseMatch at /
+
+-- /pre
+
+The second line is:
+
+-- pre/
+-- title: web page error
+
+Reverse for 'login' not found. 'login' is not a valid view function or pattern name.
+
+-- /pre
+
+The <<code|login>> that's referring to is the <<code|url>> <<code|login>> from:
+
+-- code/
+-- html
+-- no-nums
+-- title: django url template tag
+
+<a href="{% url 'login' %}">Log In</a>
+
+-- /code
+
+That code is being called because we're not logged in yet
+so the <<code|{% if user.is_authenticated %}>> value is false
+which means the <<code|{% else %}>> statement gets executed. 
+
+
+
+
+-- /olist
+
+
+
+
+-- h2
+
+Links
+
+Previous: <<tlink|2mcbmij7>>
+
+Next: <<tlink|2md3ouqp>>
+
+
+-- metadata
+-- created: 2024-09-26T19:23:25-04:00
+-- updated: 2024-09-26T19:23:25-04:00
+-- id: 2md4eik2
+-- type: post
+-- status: scratch
+
+
