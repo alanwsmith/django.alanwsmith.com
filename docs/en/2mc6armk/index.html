@@ -38,15 +38,7 @@
 <hgroup>
 
   
-    <h1 class="page-title">
-    
-      Section 1 
-    
-      -
-    
-       Basic Installation And Super User Creation
-    
-    </h1>
+    <h1 class="page-title">Section 1 - Basic Installation And Super User Creation</h1>
     
   
 
@@ -65,11 +57,7 @@
 <hgroup>
 
   
-    <h2 class="section-heading">
-    
-      Introduction
-    
-    </h2>
+    <h2 class="section-heading">Introduction</h2>
     
   
 
@@ -83,29 +71,10 @@
 
 
     
-<p>
-
-Welcome to the first part of the tutorial. The things
-
-
-
-
+<p>Welcome to the first part of the tutorial. The things
 we're going to cover get use up and running with
-
-
-
-
 a basic site with a default home page. The specific things we're
-
-
-
-
-doing to do are
-
-:
-
-</p>
-
+doing to do are:</p>
 
 
 
@@ -124,12 +93,7 @@ doing to do are
 
 
 
-<p>
-
-Install Django in a Python virtual environment
-
-</p>
-
+<p>Install Django in a Python virtual environment</p>
 
 
 </li>
@@ -139,12 +103,7 @@ Install Django in a Python virtual environment
 
 
 
-<p>
-
-Create a new Django site
-
-</p>
-
+<p>Create a new Django site</p>
 
 
 </li>
@@ -154,12 +113,7 @@ Create a new Django site
 
 
 
-<p>
-
-Create the "Super User" account for the site
-
-</p>
-
+<p>Create the "Super User" account for the site</p>
 
 
 </li>
@@ -169,21 +123,8 @@ Create the "Super User" account for the site
 
 
 
-<p>
-
-Verify we can log into Django's built
-
--
-
-in admin
-
-
-
-
-interface with the Super User account
-
-</p>
-
+<p>Verify we can log into Django's built-in admin
+interface with the Super User account</p>
 
 
 </li>
@@ -197,11 +138,7 @@ interface with the Super User account
 <hgroup>
 
   
-    <h2 class="section-heading">
-    
-      Section Steps
-    
-    </h2>
+    <h2 class="section-heading">Section Steps</h2>
     
   
 
@@ -227,37 +164,11 @@ Note</div>
 
       
         
-<p>
-
-These directions are for a Mac running the version of
-
-
-
-
-Python 3 provided by the 
-
-
-<a href="https://brew.sh/">homebrew package manager</a>
-
-. 
-
-
-
-
+<p>These directions are for a Mac running the version of
+Python 3 provided by the <a href="https://brew.sh/">homebrew package manager</a>. 
 I don't have the resources at the moment to make a Windows specific version,
-
-
-
-
 but hopefully the commands are close enough that they 
-
-
-
-
-can be followed.
-
-</p>
-
+can be followed.</p>
       
 
 
@@ -276,17 +187,8 @@ can be followed.
 
       
         
-<p>
-
-This is the full list of every command you need to run
-
-
-
-
-in your command line terminal to get started. 
-
-</p>
-
+<p>This is the full list of every command you need to run
+in your command line terminal to get started. </p>
       
 
 
@@ -307,32 +209,12 @@ in your command line terminal to get started.
 
 
 
-<p>
-
-Make a new directory and move into it
-
-</p>
+<p>Make a new directory and move into it</p>
 
 
-
-<p>
-
-We'll start things off by making a new directory
-
-
-
-
+<p>We'll start things off by making a new directory
 to house all our Django work. Run these commands
-
-
-
-
-to create the directory and move into it
-
-:
-
-</p>
-
+to create the directory and move into it:</p>
 
 
 
@@ -367,25 +249,12 @@ to create the directory and move into it
 
 
 
-<p>
-
-Make a new Python virtual environment
-
-<sup><a 
+<p>Make a new Python virtual environment<sup><a 
     href="#fnref-1-text"
     id="fnref-1-link"
     >1</a></sup>
-
-
  to house our Django
-
-
-
-
-installation
-
-</p>
-
+installation</p>
 
 
 
@@ -409,32 +278,11 @@ installation
 
 
     
-<p>
-
-This command creates a new "venv" directory that 
-
-
-
-
+<p>This command creates a new "venv" directory that 
 houses all the files for the virtual environment. 
-
-
-
-
 We won't edit anything inside of it so we can pretty 
-
-
-
-
 much ignore it after we run the activte the 
-
-
-
-
-envionment in the next step.
-
-</p>
-
+envionment in the next step.</p>
 
  
 
@@ -447,27 +295,11 @@ envionment in the next step.
 
 
 
-<p>
-
-Activate the Python virtual environment
-
-</p>
+<p>Activate the Python virtual environment</p>
 
 
-
-<p>
-
-We have to "activate" the Python virtual environment
-
-
-
-
-to actually use it. Run this command to do just that
-
-:
-
-</p>
-
+<p>We have to "activate" the Python virtual environment
+to actually use it. Run this command to do just that:</p>
 
 
 
@@ -505,45 +337,12 @@ Note</div>
 
       
         
-<p>
-
-You have to run this command in every 
-
-
-
-
+<p>You have to run this command in every 
 terminal window where you want to run the 
-
-
-
-
 various Django commands we'll use throughout
-
-
-
-
 the tutorial. That is, if you close your terminal
-
-
-
-
-and open it again, you'll need to re
-
--
-
-run this
-
-
-
-
-inside the "django
-
-_
-
-tutorial" directory. 
-
-</p>
-
+and open it again, you'll need to re-run this
+inside the "django_tutorial" directory. </p>
       
 
       
@@ -572,45 +371,13 @@ tutorial" directory.
 
 
 
-<p>
-
-Install Django using Python's built
-
--
-
-in "pip" package manager
-
-</p>
+<p>Install Django using Python's built-in "pip" package manager</p>
 
 
-
-<p>
-
-The first thing we need to install for building our
-
-
-
-
-Django site is the "django
-
--
-
-admin" command that we'll use
-
-
-
-
+<p>The first thing we need to install for building our
+Django site is the "django-admin" command that we'll use
 in the next step. It comes with the basic Django install 
-
-
-
-
-which we can do with this command now
-
-:
-
-</p>
-
+which we can do with this command now:</p>
 
 
 
@@ -634,19 +401,8 @@ which we can do with this command now
 
 
     
-<p>
-
-This command will output the install detail that look 
-
-
-
-
-something like
-
-:
-
-</p>
-
+<p>This command will output the install detail that look 
+something like:</p>
 
  
 
@@ -683,14 +439,7 @@ Successfully installed Django-5.1.1 asgiref-3.8.1 sqlparse-0.5.1</pre>
 
 
     
-<p>
-
-You may also see lines like this which can safely be ignored
-
-:
-
-</p>
-
+<p>You may also see lines like this which can safely be ignored:</p>
 
 
 
@@ -730,69 +479,18 @@ command line message:
 
 
 
-<p>
-
-Create A New Django Site
-
-:
-
-</p>
+<p>Create A New Django Site:</p>
 
 
-
-<p>
-
-Installing Django gives us access to "django
-
--
-
-admin" but doesn't
-
-
-
-
+<p>Installing Django gives us access to "django-admin" but doesn't
 automatically create a new site for us to work with. We'll
-
-
-
-
-do that by using the "django
-
--
-
-admin" subcommand "startproject". (Django 
-
-
-
-
+do that by using the "django-admin" subcommand "startproject". (Django 
 often uses the word "project" in place of "site" by convention, but
-
-
-
-
 for our purposes it means the same thing.) We'll name our 
+new site/project "tutorial_site". </p>
 
 
-
-
-new site/project "tutorial
-
-_
-
-site". 
-
-</p>
-
-
-
-<p>
-
-Here's the command to run
-
-:
-
-</p>
-
+<p>Here's the command to run:</p>
 
 
 
@@ -816,41 +514,12 @@ Here's the command to run
 
 
     
-<p>
-
-After running the command you'll see a new directory called
-
-
-
-
-<code class=""><span class="text plain">tutorial_site</span></code>
-
- in your 
-
-<code class=""><span class="text plain">django_tutorial</span></code>
-
-
-
-
+<p>After running the command you'll see a new directory called
+<code class=""><span class="text plain">tutorial_site</span></code> in your <code class=""><span class="text plain">django_tutorial</span></code>
 directory. Several default files and folders are generated
-
-
-
-
 in a tree underneath it. We'll be exploring them
-
-
-
-
 throughout this tutorial starting with the "manage.py"
-
-
-
-
-file that we'll use momentarily. 
-
-</p>
-
+file that we'll use momentarily. </p>
 
  
 
@@ -863,38 +532,12 @@ file that we'll use momentarily.
 
 
 
-<p>
-
-Move into the newly created 
-
-<code class=""><span class="text plain">tutorial_site</span></code>
-
- 
+<p>Move into the newly created <code class=""><span class="text plain">tutorial_site</span></code> 
+directory</p>
 
 
-
-
-directory
-
-</p>
-
-
-
-<p>
-
-We'll be doing all the rest of our work inside the 
-
-<code class=""><span class="text plain">tutorial_site</span></code>
-
-
-
-
-directory. Move into it with
-
-:
-
-</p>
-
+<p>We'll be doing all the rest of our work inside the <code class=""><span class="text plain">tutorial_site</span></code>
+directory. Move into it with:</p>
 
 
 
@@ -928,65 +571,20 @@ directory. Move into it with
 
 
 
-<p>
-
-Prep the database with a migration 
-
-</p>
+<p>Prep the database with a migration </p>
 
 
-
-<p>
-
-Django uses a database to store both content and
-
-
-
-
+<p>Django uses a database to store both content and
 it's own operating and administraion data. 
-
-
-
-
 Changes to the database are made via "migrations" 
-
-
-
-
 which provide the details of each change to be made. 
-
-
-
-
 When a new Django project/site is created it comes with a 
-
-
-
-
 set of migrations that need to run to complete the
-
-
-
-
 initial setup. The migrations are run by passing
+the "migrate" argument to "manage.py"</p>
 
 
-
-
-the "migrate" argument to "manage.py"
-
-</p>
-
-
-
-<p>
-
-Here's the full command which you can run now
-
-:
-
-</p>
-
+<p>Here's the full command which you can run now:</p>
 
 
 
@@ -1010,19 +608,8 @@ Here's the full command which you can run now
 
 
     
-<p>
-
-The terminal will display an overview of the changes 
-
-
-
-
-made that looks something like
-
-:
-
-</p>
-
+<p>The terminal will display an overview of the changes 
+made that looks something like:</p>
 
  
 
@@ -1080,110 +667,31 @@ Running migrations:
 
 
 
-<p>
-
-Create the "Super User" account
-
-</p>
+<p>Create the "Super User" account</p>
 
 
-
-<p>
-
-Django includes a built
-
--
-
-in admin interface and
-
-
-
-
+<p>Django includes a built-in admin interface and
 user authentication system. Part of that system
-
-
-
-
 includes the ability to make a "Super User" account
-
-
-
-
 that has full access to everything in the admin 
-
-
-
-
 interface. Creating that user is done using
+the "createsuperuser" argument for "manage.py". </p>
 
 
+<p>Running the command will ask you to fill in the username, 
+email, and password you want to use for the account. </p>
 
 
-the "createsuperuser" argument for "manage.py". 
-
-</p>
-
-
-
-<p>
-
-Running the command will ask you to fill in the username, 
-
-
-
-
-email, and password you want to use for the account. 
-
-</p>
-
-
-
-<p>
-
-You can pick whatever username you want to but for
-
-
-
-
+<p>You can pick whatever username you want to but for
 ease of use in this tutorial let's stick with "admin". 
-
-
-
-
 You can leave the email blank or put in a fake one as
-
-
-
-
 this tutorial won't be using it. You can use whatever
-
-
-
-
 password you want. Django will warn you if it thinks
-
-
-
-
 it's too short or too common but offers the option
+of using it anyway. </p>
 
 
-
-
-of using it anyway. 
-
-</p>
-
-
-
-<p>
-
-Go ahead and create the Super User now with
-
-:
-
-</p>
-
+<p>Go ahead and create the Super User now with:</p>
 
 
 
@@ -1217,22 +725,10 @@ Go ahead and create the Super User now with
 
 
 
-<p>
-
-Start the server
-
-</p>
+<p>Start the server</p>
 
 
-
-<p>
-
-Everything is ready to go now. Start the server with
-
-:
-
-</p>
-
+<p>Everything is ready to go now. Start the server with:</p>
 
 
 
@@ -1256,14 +752,7 @@ Everything is ready to go now. Start the server with
 
 
     
-<p>
-
-You should see output that looks like
-
-:
-
-</p>
-
+<p>You should see output that looks like:</p>
 
  
 
@@ -1297,29 +786,10 @@ Quit the server with CONTROL-C.</pre>
 
 
     
-<p>
-
-If you get that it means the server is up and running. 
-
-
-
-
+<p>If you get that it means the server is up and running. 
 If you don't see that, a common error is running into 
-
-
-
-
 another process that is trying to use port 8000. 
-
-
-
-
-If that's the case, you'll see an error message like
-
-:
-
-</p>
-
+If that's the case, you'll see an error message like:</p>
 
 
 
@@ -1351,35 +821,13 @@ Error: That port is already in use.</pre>
 
 
     
-<p>
-
-You'll need to find whatever process is using the port
-
-
-
-
-on your machine and stop it for now. 
-
-</p>
-
+<p>You'll need to find whatever process is using the port
+on your machine and stop it for now. </p>
 
     
-<p>
-
-If you run into some other error then you can copy
-
-
-
-
+<p>If you run into some other error then you can copy
 and paste it into a search engine to start figuring
-
-
-
-
-out what went wrong. 
-
-</p>
-
+out what went wrong. </p>
 
 
 
@@ -1393,32 +841,12 @@ out what went wrong.
 
 
 
-<p>
-
-Check the home page
-
-</p>
+<p>Check the home page</p>
 
 
-
-<p>
-
-When you first start a new Django site it displays 
-
-
-
-
+<p>When you first start a new Django site it displays 
 a default home page. You'll see it at this 
-
-
-
-
-address
-
-:
-
-</p>
-
+address:</p>
 
 
 
@@ -1431,41 +859,16 @@ address
 
 
 <div class="link-block">
-
-    
-<p>
-
-
-<a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>
-
-</p>
-
-
-    
+<p><a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></p>
 
 </div>
 </section>
-
-
 </div>
 
 
-<p>
-
-Click that now and you should see the
-
-
-
-
+<p>Click that now and you should see the
 message "The install worked successfully! Congratulations!"
-
-
-
-
-along with some more info and links. 
-
-</p>
-
+along with some more info and links. </p>
 
 
 </li>
@@ -1475,24 +878,10 @@ along with some more info and links.
 
 
 
-<p>
-
-Check the admin page
-
-</p>
+<p>Check the admin page</p>
 
 
-
-<p>
-
-Next, click this link to open the admin interface
-
-:
-
- 
-
-</p>
-
+<p>Next, click this link to open the admin interface: </p>
 
 
 
@@ -1505,59 +894,21 @@ Next, click this link to open the admin interface
 
 
 <div class="link-block">
-
-    
-<p>
-
-
-<a href="http://127.0.0.1:8000/admin/">http://127.0.0.1:8000/admin/</a>
-
-</p>
-
-
-    
+<p><a href="http://127.0.0.1:8000/admin/">http://127.0.0.1:8000/admin/</a></p>
 
 </div>
 </section>
-
-
 </div>
 
 
-<p>
-
-You'll be presented with a login form where you can use 
-
-
-
-
+<p>You'll be presented with a login form where you can use 
 the "admin" Super User account and password you created
-
-
-
-
 earlier. When you enter it correctly, you'll see the 
-
-
-
-
 initial admin page that contains links for "Groups" and 
+"Users". We'll be working with those more later. </p>
 
 
-
-
-"Users". We'll be working with those more later. 
-
-</p>
-
-
-
-<p>
-
-For now, we're ready to move on to the next part. 
-
-</p>
-
+<p>For now, we're ready to move on to the next part. </p>
 
 
 </li>
@@ -1573,11 +924,7 @@ For now, we're ready to move on to the next part.
 <hgroup>
 
   
-    <h2 class="section-heading">
-    
-      Links
-    
-    </h2>
+    <h2 class="section-heading">Links</h2>
     
   
 
@@ -1591,20 +938,9 @@ For now, we're ready to move on to the next part.
 
 
     
-<p>
-
-Next
-
-:
-
- 
-
-<a href="/en/2mcbmij7/?page=section-2-make-a-home-page">
+<p>Next: <a href="/en/2mcbmij7/?page=section-2-make-a-home-page">
   Section 2 - Make A Home Page
-</a>
-
-</p>
-
+</a></p>
 
 
 
@@ -1626,35 +962,11 @@ Next
 
       
         
-<p>
-
-Python Virtual Environments provide a way to issolate
-
-
-
-
+<p>Python Virtual Environments provide a way to issolate
 apps and projects so they don't interfere with each
-
-
-
-
 other or the main system version of python. There are
-
-
-
-
 different tools that can make the environments. We're
-
-
-
-
-using the 
-
-
-<a href="https://docs.python.org/3/library/venv.html">built-in venv functionality</a>
-
-</p>
-
+using the <a href="https://docs.python.org/3/library/venv.html">built-in venv functionality</a></p>
       
 
 

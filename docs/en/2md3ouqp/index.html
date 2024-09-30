@@ -38,15 +38,7 @@
 <hgroup>
 
   
-    <h1 class="page-title">
-    
-      Section 4 
-    
-      -
-    
-       Adding Logout Functionality 
-    
-    </h1>
+    <h1 class="page-title">Section 4 - Adding Logout Functionality </h1>
     
   
 
@@ -65,11 +57,7 @@
 <hgroup>
 
   
-    <h2 class="section-heading">
-    
-      Introduction
-    
-    </h2>
+    <h2 class="section-heading">Introduction</h2>
     
   
 
@@ -85,39 +73,14 @@
 
 
     
-<p>
-
-We've got the ability to log in. Now we need to be able 
-
-
-
-
-to log out. We'll do that in this section. 
-
-</p>
-
+<p>We've got the ability to log in. Now we need to be able 
+to log out. We'll do that in this section. </p>
 
 
 
     
-<p>
-
-Make sure you've 
-
-
-<a href="none">activated your venv</a>
-
- and started
-
-
-
-
-the server if it's not already running with
-
-:
-
-</p>
-
+<p>Make sure you've <a href="none">activated your venv</a> and started
+the server if it's not already running with:</p>
 
 
 
@@ -156,11 +119,7 @@ the server if it's not already running with
 <hgroup>
 
   
-    <h2 class="section-heading">
-    
-      Section Steps
-    
-    </h2>
+    <h2 class="section-heading">Section Steps</h2>
     
   
 
@@ -184,54 +143,17 @@ the server if it's not already running with
 
 
 
-<p>
-
-Add the logout form to the home page
-
-</p>
+<p>Add the logout form to the home page</p>
 
 
-
-<p>
-
-We're using a standard 
-
-<code class=""><span class="text html basic"><span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span></span></code>
-
- HTML tag
-
-
-
-
+<p>We're using a standard <code class=""><span class="text html basic"><span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span></span></code> HTML tag
 for our login link. We have to handle the logout
-
-
-
-
 functionality a little differently. For security 
-
-
-
-
 reasons, Django requires that we use a form so
+that we can add CSRF protection. </p>
 
 
-
-
-that we can add CSRF protection. 
-
-</p>
-
-
-
-<p>
-
-The basic code for the form is
-
-:
-
-</p>
-
+<p>The basic code for the form is:</p>
 
 
 
@@ -255,26 +177,9 @@ The basic code for the form is
 
 
     
-<p>
-
-The 
-
-<code class=""><span class="text plain">action</span></code>
-
- attribute defines the URL the form
-
-
-
-
+<p>The <code class=""><span class="text plain">action</span></code> attribute defines the URL the form
 is sent to when submitted. In this case, we're using
-
-
-
-
-this url template tag
-
-</p>
-
+this url template tag</p>
  
 
 
@@ -298,64 +203,16 @@ this url template tag
 
 
     
-<p>
-
-The built
-
--
-
-in user auth functionality provides 
-
-
-
-
-<code class=""><span class="text plain">logout</span></code>
-
- for us automatically. And, unlike
-
-
-
-
-the 
-
-<code class=""><span class="text plain">login</span></code>
-
- link from the prior section we 
-
-
-
-
-don't need to make a template for 
-
-<code class=""><span class="text plain">logout</span></code>
-
-. 
-
-
-
-
+<p>The built-in user auth functionality provides 
+<code class=""><span class="text plain">logout</span></code> for us automatically. And, unlike
+the <code class=""><span class="text plain">login</span></code> link from the prior section we 
+don't need to make a template for <code class=""><span class="text plain">logout</span></code>. 
 That's because Django will automatically redirect
-
-
-
-
 the user to another page after the log out process
-
-
-
-
-runs. 
-
-</p>
-
+runs. </p>
 
     
-<p>
-
-The form also contains our CSRF security token. 
-
-</p>
-
+<p>The form also contains our CSRF security token. </p>
  
 
 
@@ -379,36 +236,14 @@ The form also contains our CSRF security token.
 
 
     
-<p>
-
-We don't need to so anything with it other than 
-
-
-
-
-making sure it's inside our form on the page. 
-
-</p>
-
+<p>We don't need to so anything with it other than 
+making sure it's inside our form on the page. </p>
 
     
-<p>
-
-Update the 
-
-<path 
+<p>Update the <path 
 
 >tutorial_site/homepage/templates/homepage/index.html</path>
-
-
-
-
-template with this code to add the form
-
-:
-
-</p>
-
+template with this code to add the form:</p>
  
 
 
@@ -447,14 +282,7 @@ template with this code to add the form
 
 
     
-<p>
-
-Start the server if it's not already running with
-
-:
-
-</p>
-
+<p>Start the server if it's not already running with:</p>
  
 
 
@@ -481,14 +309,7 @@ Start the server if it's not already running with
 
 
     
-<p>
-
-Then visit the home page to see the logout button
-
-:
-
-</p>
-
+<p>Then visit the home page to see the logout button:</p>
 
  
 
@@ -504,23 +325,11 @@ Then visit the home page to see the logout button
 
 
 <div class="link-block">
-
-    
-<p>
-
-
-<a href="none" target="_blank">http://127.0.0.1/↗
-</a>
-
-</p>
-
-
-    
+<p><a href="none" target="_blank">http://127.0.0.1/↗
+</a></p>
 
 </div>
 </section>
-
-
 </div>
 
 
@@ -531,72 +340,21 @@ Then visit the home page to see the logout button
 
 
 
-<p>
-
-Redirecting logout to the home page
-
-</p>
+<p>Redirecting logout to the home page</p>
 
 
-
-<p>
-
-Django's default behavior when you click the 
-
-<code class=""><span class="text plain">Log Out</span></code>
-
- button
-
-
-
-
+<p>Django's default behavior when you click the <code class=""><span class="text plain">Log Out</span></code> button
 is to redirect you to a page that shows a "Logged out" message in
-
-
-
-
 a "Django administration" page template. That's not bad in and of
-
-
-
-
 itself, but it's most likely not what we'd want on a full site. So,
+let's set the logout to redirect to the home page instead. </p>
 
 
+<p>All we need to do to make that happen is to add this line to the
+end of the <path 
 
-
-let's set the logout to redirect to the home page instead. 
-
-</p>
-
-
-
-<p>
-
-All we need to do to make that happen is to add this line to the
-
-
-
-
-end of the 
-
-<path 
-
->tutorial_site/settings.py</path>
-
- file (after the 
-
-
-
-
-<code class=""><span class="text plain">DEFAULT_AUTO_FIELD</span></code>
-
- line)
-
-:
-
-</p>
-
+>tutorial_site/settings.py</path> file (after the 
+<code class=""><span class="text plain">DEFAULT_AUTO_FIELD</span></code> line):</p>
 
 
 
@@ -627,43 +385,13 @@ end of the
 
 
 
-<p>
-
-Redirect login to the home page
-
-</p>
+<p>Redirect login to the home page</p>
 
 
-
-<p>
-
-We can update the 
-
-<code class=""><span class="text plain">Log In</span></code>
-
- link to redirect to the 
-
-
-
-
+<p>We can update the <code class=""><span class="text plain">Log In</span></code> link to redirect to the 
 home page (instead of the user profile page) in the same way
-
-
-
-
-by adding this line after our new 
-
-<code class=""><span class="text plain">LOGOUT_REDIRECT_URL</span></code>
-
-
-
-
-line
-
-:
-
-</p>
-
+by adding this line after our new <code class=""><span class="text plain">LOGOUT_REDIRECT_URL</span></code>
+line:</p>
 
 
 
@@ -692,11 +420,7 @@ line
 <hgroup>
 
   
-    <h2 class="section-heading">
-    
-      Wrapping Up
-    
-    </h2>
+    <h2 class="section-heading">Wrapping Up</h2>
     
   
 
@@ -710,17 +434,8 @@ line
 
 
     
-<p>
-
-If we go to the home page now, both the Login link and
-
-
-
-
-the Log Out button work. 
-
-</p>
-
+<p>If we go to the home page now, both the Login link and
+the Log Out button work. </p>
 
 
 
@@ -742,37 +457,16 @@ the Log Out button work.
 
 
 <div class="link-block">
-
-    
-<p>
-
-
-<a href="none" target="_blank">http://127.0.0.1/↗
-</a>
-
-</p>
-
-
-    
+<p><a href="none" target="_blank">http://127.0.0.1/↗
+</a></p>
 
 </div>
 </section>
-
-
 </div>
 
 
-<p>
-
-It's a little hard to see that though since we don't have any indication of
-
-
-
-
-if we're logged in or not. We'll address that next.
-
-</p>
-
+<p>It's a little hard to see that though since we don't have any indication of
+if we're logged in or not. We'll address that next.</p>
 
 
 </li>
@@ -788,11 +482,7 @@ if we're logged in or not. We'll address that next.
 <hgroup>
 
   
-    <h2 class="section-heading">
-    
-      Links
-    
-    </h2>
+    <h2 class="section-heading">Links</h2>
     
   
 
@@ -808,38 +498,16 @@ if we're logged in or not. We'll address that next.
 
 
     
-<p>
-
-Previous
-
-:
-
- 
-
-<a href="/en/2md4eik2/?page=seciton-3-adding-login-functionality">
+<p>Previous: <a href="/en/2md4eik2/?page=seciton-3-adding-login-functionality">
   Seciton 3 - Adding Login Functionality
-</a>
-
-</p>
-
+</a></p>
 
 
 
     
-<p>
-
-Next
-
-:
-
- 
-
-<a href="/en/2mhtioft/?page=section-5-showing-login-state">
+<p>Next: <a href="/en/2mhtioft/?page=section-5-showing-login-state">
   Section 5 - Showing Login State
-</a>
-
-</p>
-
+</a></p>
 
 
 

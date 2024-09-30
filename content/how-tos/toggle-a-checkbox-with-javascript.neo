@@ -1,6 +1,7 @@
 -- title
 
-How To Toggle A Django Checkbox With A Generic JavaScript Function
+How-To: Toggle A Django Checkbox With A Generic JavaScript
+Function Without Refreshing The Page
 
 -- h2
 
@@ -11,14 +12,456 @@ watch for changes to checkboxes on the page and send
 a request to Django to update the value without 
 having to refresh the page. It assumes you already have
 a Django site/project set up to work with. If you don't, 
-you can follow the steps in the <<ilink|first section of the 
-Getting Started Tutorial|2mc6armk>>
+you can follow the steps in the <<tlink|2mny1qlt>>
+
+Right now, everything is copy paste. I'll add more details
+in the future. 
+
+It's also important to note that this version of the code
+doesn't work without javascript. I've got plans to make
+a more accessible version in the future. 
+
+-- h2
+
+Prep Work
+
+We need something to play with. This section sets up
+a simple todo list where each todo item has a text field
+and a checkbox to indicate if it's done. 
+
+
+-- olist/
+
+- Create the app
+
+-- cli/
+-- title: start a todos app
+-- class: highlight
+
+python manage.py startapp todos
+
+-- /cli
+
+- Make the todos templates directory
+
+-- cli/
+-- title: make the templates dir
+-- class: highlight
+
+mkdir -p todos/templates/todos
+
+-- /cli
+
+
+- Add the app to INSTALLED_APPS
+
+-- code/
+-- python
+-- title: edit: site_config/settings.py
+-- class: highlight
+-- no-nums
+
+INSTALLED_APPS = [
+    # ... existing installed apps ...
+    "todos.apps.TodosConfig",
+]
+
+-- /code
+
+- Update <<path|site_config/urls.py>> for todos
+
+-- code/
+-- python
+-- title: update: site_config/urls.py
+-- class: highlight
+
+from django.contrib import admin
+from django.urls import path
+from django.urls import include
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("todos/", include("todos.urls")),
+]
+
+-- /code
+
+- Make the todos urls file
+
+-- code/
+-- python
+-- title: create: todos/urls.py
+-- class: highlight
+
+from django.urls import path
+
+from . import views
+
+app_name = "todos"
+urlpatterns = [
+    path("", views.index, name="index"),
+]
+
+-- /code
+
+- Create the Todo model
+
+-- code/
+-- python
+-- title: update: todos/models.py
+-- class: highlight
+
+from django.db import models
+
+class Todo(models.Model):
+    todo_text = models.CharField(max_length=200)
+    is_done = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.todo_text
+
+-- /code
+
+- Run the todos migration
+
+-- cli/
+-- title: make and run the migration
+-- class: highlight
+
+python manage.py makemigrations todos
+python manage.py migrate
+
+-- /cli
+
+- Add the todos to the admin interface
+
+-- code/
+-- python
+-- title: update: todos/admin.py
+-- class: highlight
+
+from django.contrib import admin
+
+from .models import Todo 
+
+admin.site.register(Todo)
+
+-- /code
+
+
+- Update <<path|todos/views.py>>
+
+-- code/
+-- python
+-- title: update: todos/views.py
+-- class: highlight
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
+from todos.models import Todo 
+
+def index(request):
+    todos = Todo.objects.all()
+    context = { "todods": todos }
+    return render(request, "todos/index.html", context)
+
+-- /code
+
+
+- Make the initial todos index page template
+
+-- code/
+-- html
+-- title: create: todos/templates/todos/index.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h1>To Dos</h1>
+    <ul>
+    {% for todo in todos %}
+      <li>
+        <input 
+          type="checkbox"
+          {% if todo.is_done %}
+            checked="checked"
+          {% endif %}
+        />
+        {{ todo.todo_text }}
+      </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
+
+-- /code
+
+- Start the server
+
+-- cli/
+-- title: start the server
+-- class: highlight
+
+python manage.py runserver
+
+-- /cli
+
+- Add todos
+
+Go to the "todos" section of the admin interface
+and add a few Todos to play with. Tic the checkbox
+for "is_done" on some of them and leave it off
+for others. 
+
+-- link/
+-- title: todos admin interface
+-- class: highlight
+
+<<tablink|http://127.0.0.1:8000/admin/todos/todo/add/>>
+
+-- /link
+
+- Visit the todos index page and make sure they are
+showing up
+
+-- link/
+-- title: todos index page 
+-- class: highlight
+
+<<tablink|http://127.0.0.1:8000/todos/>>
+
+-- /link
+
+
+-- /olist
+
+
+
+-- h2
+
+Adding The Functionality
+
+
+-- olist/
+
+
+- Add a <<code|data-href>> attribute to the input
+
+The attribute to add to the input elements is:
+
+
+-- code/
+-- html
+-- title: new data-href attribute
+-- no-nums
+
+data-href="{% url 'todos:toggle' todos.id %}"
+
+-- /code
+
+It should look like this:
+
+-- code/
+-- html
+-- no-nums
+-- title: updated input element
+-- class: highlight
+
+<input 
+  type="checkbox"
+  data-href="{% url 'todos:toggle' todos.id %}"
+  {% if todo.is_done %}
+    checked="checked"
+  {% endif %}
+/>
+
+-- /code
+
+We haven't built the view yet so we'll see
+an expected error with this when we refresh the
+page:
+
+-- pre/
+-- title: browser error message
+
+NoReverseMatch at /todos/
+
+Reverse for 'toggle' not found. 'toggle' is not 
+a valid view function or pattern name.
+
+etc...
+
+-- /pre
+
+- Add the url pattern to <<path|todos/urls.py>>
+
+The line to add is:
+
+-- code/
+-- python
+-- title: new urlpatterns path:
+-- no-nums
+
+path("<int:pk>/toggle/", views.toggle, name="toggle"),
+
+-- /code
+
+The update file looks like this:
+
+-- code/
+-- python
+-- title: update: todos/urls.py
+-- class: highlight
+
+from django.urls import path
+
+from . import views
+
+app_name = "todos"
+urlpatterns = [
+    path("", views.index, name="index"),
+    path("<int:pk>/toggle/", views.toggle, name="toggle"),
+]
+
+-- /code
+
+If you refreash the page at this point you'll get another
+expected error:
+
+-- pre/
+-- title: web browser error
+
+NoReverseMatch at /todos/
+
+Reverse for 'toggle' not found. 'toggle' is not 
+a valid view function or pattern name.
+
+etc...
+
+-- /pre
+
+- Add JsonResponse to <<path|todos/views/py>>
+
+-- code/
+-- python
+-- no-nums
+-- title: add to: todos/views.py
+
+from django.http import JsonResponse
+
+-- /code
+
+
+- Create the toggle view in <<path|todos/views.py>>
+
+Add this to <<path|todos/views.py>>
+
+-- code/
+-- python
+-- title: add to: todos/views.py
+-- class: highlight
+-- no-nums
+
+@login_required
+def toggle(request, pk):
+    if request.method == "POST":
+        if request.POST['checked']:
+            check_value = request.POST['checked'].lower()
+            try:
+                todo = WeeklyTodo.objects.get(pk=pk)
+                if check_value == "true":
+                    todo.is_done = True 
+                    todo.save()
+                    return JsonResponse(
+                        {"message": f"Updated {pk}"}
+                    )
+                elif check_value == "false":
+                    todo.is_done = False 
+                    todo.save()
+                    return JsonResponse(
+                        {"message": f"Updated {pk}"}
+                    )
+                else:
+                    return JsonResponse(
+                        {"message": f"The 'checked' value must be either 'true' or 'false'"}, 
+                        status=406
+                    )
+            except:
+                return JsonResponse(
+                    {"message": f"Could not get {pk}"},
+                    status=400
+                )
+        else:
+            return JsonResponse(
+                {"message": f"Missing 'checked'"},
+                status=400
+            )
+    else:
+        return JsonResponse(
+            {"message": f"Method must be POST"},
+            status=405
+        )
+
+-- /code
+
+- Add the script to the index page template
+
+Update the <<code|head|html>> of the index template
+file to include this script:
+
+-- code/
+-- html
+-- no-nums
+-- title: add to: todos/templates/todos/index.html
+-- class: highlight
+
+<script>
+function addCheckboxToggles() {
+  const checkboxes = document.querySelectorAll('[type=checkbox]')
+  checkboxes.forEach((cb) => {
+    cb.addEventListener("change", toggleCheckbox)
+  })
+}
+
+async function toggleCheckbox(event) {
+  const el = event.target
+  const csrf_token = document.querySelector(
+    '[name=csrfmiddlewaretoken]'
+  ).value
+  const fd = new FormData()
+  fd.append("csrfmiddlewaretoken", csrf_token)
+  fd.append("checked", el.checked)
+  const request = new Request(el.dataset.href, {
+    method: "POST",
+    body: fd
+  });
+  const response = await fetch(request);
+  const json = await response.json();
+  if (!response.ok) {
+    console.log(`Error: ${json.message}`)
+  } 
+  else {
+    console.log(`Ok: ${json.message}`)
+  }
+}
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  addCheckboxToggles()
+})
+</script>
+
+
+
+-- /code
 
 
 
 
-
-
+-- /olist
 
 
 -- metadata
@@ -26,6 +469,6 @@ Getting Started Tutorial|2mc6armk>>
 -- updated: 2024-09-30T11:52:03-04:00
 -- id: 2mntpzed
 -- type: post
--- status: scratch
+-- status: draft 
 
 

@@ -38,15 +38,7 @@
 <hgroup>
 
   
-    <h1 class="page-title">
-    
-      Seciton 3 
-    
-      -
-    
-       Adding Login Functionality
-    
-    </h1>
+    <h1 class="page-title">Seciton 3 - Adding Login Functionality</h1>
     
   
 
@@ -65,11 +57,7 @@
 <hgroup>
 
   
-    <h2 class="section-heading">
-    
-      Introduction
-    
-    </h2>
+    <h2 class="section-heading">Introduction</h2>
     
   
 
@@ -83,51 +71,14 @@
 
 
     
-<p>
-
-Throughout this tutorial we'll be working to make
-
-
-
-
+<p>Throughout this tutorial we'll be working to make
 pages that we can edit. An important part of that
-
-
-
-
 is making sure that we're the only ones that can
-
-
-
-
 make changes. Dealing with user accounts is often
-
-
-
-
-a pain, but Django has a built
-
--
-
-in user authentication
-
-
-
-
+a pain, but Django has a built-in user authentication
 system that smooths out the process a lot. We'll
-
-
-
-
 start the process by adding a login link to 
-
-
-
-
-the home page in this section. 
-
-</p>
-
+the home page in this section. </p>
 
 
 
@@ -142,11 +93,7 @@ the home page in this section.
 <hgroup>
 
   
-    <h2 class="section-heading">
-    
-      Section Steps
-    
-    </h2>
+    <h2 class="section-heading">Section Steps</h2>
     
   
 
@@ -170,43 +117,15 @@ the home page in this section.
 
 
 
-<p>
-
-A quck look at Django template tags
-
-</p>
+<p>A quck look at Django template tags</p>
 
 
+<p>The <path 
 
-<p>
-
-The 
-
-<path 
-
->homepage/templates/homepage/index.html</path>
-
- file
-
-
-
-
+>homepage/templates/homepage/index.html</path> file
 is a Django template. It's what's untimatly used to
-
-
-
-
 create the output for our pages. Our file is currently 
-
-
-
-
-nothing but HTML
-
-:
-
-</p>
-
+nothing but HTML:</p>
 
 
 
@@ -234,29 +153,10 @@ nothing but HTML
 
 
     
-<p>
-
-Django doesn't do anything special with this code. 
-
-
-
-
+<p>Django doesn't do anything special with this code. 
 It simply returns it exaclty as it is. In order to
-
-
-
-
 use Django features we'll use Django template tags
-
-
-
-
-which are snippets of code that start with
-
-:
-
-</p>
-
+which are snippets of code that start with:</p>
  
 
 
@@ -283,14 +183,7 @@ django opening template tag
 
 
     
-<p>
-
-And end with
-
-:
-
-</p>
-
+<p>And end with:</p>
 
 
 
@@ -318,38 +211,11 @@ django closing template tag
 
 
     
-<p>
-
-The code for Django to execute goes between the
-
-
-
-
+<p>The code for Django to execute goes between the
 opening and closing portions of the tag. For example, 
-
-
-
-
-we can create a 
-
-<code class=""><span class="text plain">lorem</span></code>
-
- Django template tag that
-
-
-
-
+we can create a <code class=""><span class="text plain">lorem</span></code> Django template tag that
 outputs random "Lorem Ipsum" placeholder text like
-
-
-
-
-this
-
-:
-
-</p>
-
+this:</p>
 
 
 
@@ -374,19 +240,8 @@ this
 
 
     
-<p>
-
-That'll output a paragraph of random placeholder text
-
-
-
-
-like
-
-:
-
-</p>
-
+<p>That'll output a paragraph of random placeholder text
+like:</p>
  
 
 
@@ -415,19 +270,8 @@ dolore magna aliqua....</pre>
 
 
     
-<p>
-
-You can see this in action by replacing the content
-
-
-
-
-of the home page template index.html file with this
-
-:
-
-</p>
-
+<p>You can see this in action by replacing the content
+of the home page template index.html file with this:</p>
 
 
 
@@ -463,22 +307,9 @@ of the home page template index.html file with this
 
 
     
-<p>
+<p>Make sure you've <a href="/en/2mcf8e2u/?page=starting-the-python-virtual-environment">activated the Python virtual environment</a>
 
-Make sure you've 
-
-<a href="/en/2mcf8e2u/?page=starting-the-python-virtual-environment">activated the Python virtual environment</a>
-
-
-
-
-
-then start the server if it's not already running with
-
-:
-
-</p>
-
+then start the server if it's not already running with:</p>
  
 
 
@@ -505,14 +336,7 @@ then start the server if it's not already running with
 
 
     
-<p>
-
-Now, open the home page and you'll see the random text
-
-:
-
-</p>
-
+<p>Now, open the home page and you'll see the random text:</p>
 
  
 
@@ -528,23 +352,11 @@ Now, open the home page and you'll see the random text
 
 
 <div class="link-block">
-
-    
-<p>
-
-
-<a href="none" target="_blank">http://127.0.0.1/↗
-</a>
-
-</p>
-
-
-    
+<p><a href="none" target="_blank">http://127.0.0.1/↗
+</a></p>
 
 </div>
 </section>
-
-
 </div>
 
 
@@ -555,32 +367,12 @@ Now, open the home page and you'll see the random text
 
 
 
-<p>
-
-Introducing the Django url template tag
-
-</p>
+<p>Introducing the Django url template tag</p>
 
 
-
-<p>
-
-We'll be using Djano's "url" template tag to make 
-
-
-
-
+<p>We'll be using Djano's "url" template tag to make 
 a link to our login page. The basic format for the tag
-
-
-
-
-is
-
-:
-
-</p>
-
+is:</p>
 
 
 
@@ -601,62 +393,14 @@ is
 
 
     
-<p>
-
-One way to define a 
-
-<code class=""><span class="text plain">NAME-OF-PAGE-TO-LINK-TO</span></code>
-
- is
-
-
-
-
-with the 
-
-<code class=""><span class="text plain">app_name</span></code>
-
- and the 
-
-<code class=""><span class="text plain">name</span></code>
-
- argument
-
-
-
-
-for a 
-
-<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
-
- function in a "urls.py" file. 
-
-</p>
-
+<p>One way to define a <code class=""><span class="text plain">NAME-OF-PAGE-TO-LINK-TO</span></code> is
+with the <code class=""><span class="text plain">app_name</span></code> and the <code class=""><span class="text plain">name</span></code> argument
+for a <code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code> function in a "urls.py" file. </p>
 
     
-<p>
-
-For example, the current version of our 
-
-<code class=""><span class="text plain">homepage/urls.py</span></code>
-
- 
-
-
-
-
-file that we made in 
-
-<a href="/en/2mcbmij7/?page=section-2-make-a-home-page">Section 2</a>
-
-
- looks like this
-
-:
-
-</p>
-
+<p>For example, the current version of our <code class=""><span class="text plain">homepage/urls.py</span></code> 
+file that we made in <a href="/en/2mcbmij7/?page=section-2-make-a-home-page">Section 2</a>
+ looks like this:</p>
  
 
 
@@ -687,43 +431,10 @@ file that we made in
 
 
     
-<p>
-
-The 
-
-<code class=""><span class="text plain">app_name</span></code>
-
- is "homepage" and the 
-
-<code class=""><span class="text plain">name</span></code>
-
-
-
-
-for our 
-
-<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
-
- is "index". We combine
-
-
-
-
-those with a 
-
-<code class=""><span class="text plain">:</span></code>
-
- character to generate the full
-
-
-
-
-name for the page like
-
-:
-
-</p>
-
+<p>The <code class=""><span class="text plain">app_name</span></code> is "homepage" and the <code class=""><span class="text plain">name</span></code>
+for our <code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code> is "index". We combine
+those with a <code class=""><span class="text plain">:</span></code> character to generate the full
+name for the page like:</p>
  
 
 
@@ -747,23 +458,8 @@ name for the page like
 
 
     
-<p>
-
-We can use this name in our 
-
-<code class=""><span class="text plain">url</span></code>
-
- template tag like
-
-
-
-
-this
-
-:
-
-</p>
-
+<p>We can use this name in our <code class=""><span class="text plain">url</span></code> template tag like
+this:</p>
  
 
 
@@ -787,28 +483,11 @@ this
 
 
     
-<p>
-
-Let's add that temporarily to our home page so we 
-
-
-
-
-can see it. Replace the content of 
-
-<path 
+<p>Let's add that temporarily to our home page so we 
+can see it. Replace the content of <path 
 
 >homepage/templates/homepage/index.html</path>
-
-
-
-
-with this
-
-:
-
-</p>
-
+with this:</p>
  
 
 
@@ -843,14 +522,7 @@ with this
 
 
     
-<p>
-
-Visit the home page again to see our change
-
-:
-
-</p>
-
+<p>Visit the home page again to see our change:</p>
  
 
 
@@ -866,34 +538,15 @@ Visit the home page again to see our change
 
 
 <div class="link-block">
-
-    
-<p>
-
-
-<a href="none" target="_blank">http://127.0.0.1/↗
-</a>
-
-</p>
-
-
-    
+<p><a href="none" target="_blank">http://127.0.0.1/↗
+</a></p>
 
 </div>
 </section>
-
-
 </div>
 
 
-<p>
-
-The new output is
-
-:
-
-</p>
-
+<p>The new output is:</p>
 
 <section class="pre-section">
 
@@ -917,47 +570,15 @@ home page url line
 
 
     
-<p>
-
-There's not much to the URL. It points to the 
-
-
-
-
-root of the site so it's only the single 
-
-<code class=""><span class="text plain">/</span></code>
-
-
-
-
+<p>There's not much to the URL. It points to the 
+root of the site so it's only the single <code class=""><span class="text plain">/</span></code>
 character. That's fine since the key point is 
-
-
-
-
-that the URL was generated for us automatically. 
-
-</p>
-
+that the URL was generated for us automatically. </p>
 
     
-<p>
-
-Let's change the URL to link to our login page
-
-
-
-
+<p>Let's change the URL to link to our login page
 (which doesn't exist yet, but we'll implement in 
-
-
-
-
-the next few steps)
-
-</p>
-
+the next few steps)</p>
 
 
 
@@ -971,78 +592,23 @@ the next few steps)
 
 
 
-<p>
-
-Start making the login page link
-
-</p>
+<p>Start making the login page link</p>
 
 
-
-<p>
-
-Django's built
-
--
-
-in user authentication system provides
-
-
-
-
+<p>Django's built-in user authentication system provides
 a way to automatically create a login page. We'll
-
-
-
-
 need to configure it, but we can start by putting
-
-
-
-
 in the link which will demonstrate a new error for
+us. </p>
 
 
-
-
-us. 
-
-</p>
-
-
-
-<p>
-
-The Django template name we can use in the "url" template
-
-
-
-
+<p>The Django template name we can use in the "url" template
 tag is simply "login". Let's change our home page 
-
-
-
-
 to point use it (and get our new error message). Replace
-
-
-
-
-the contents of the 
-
-<path 
+the contents of the <path 
 
 >homepage/templates/homepage/index.html</path>
-
-
-
-
-file with this
-
-:
-
-</p>
-
+file with this:</p>
 
 
 
@@ -1074,19 +640,8 @@ file with this
 
 
     
-<p>
-
-Visit the home page and we'll see our new 
-
-
-
-
-error message
-
-:
-
-</p>
-
+<p>Visit the home page and we'll see our new 
+error message:</p>
  
 
 
@@ -1102,23 +657,11 @@ error message
 
 
 <div class="link-block">
-
-    
-<p>
-
-
-<a href="none" target="_blank">http://127.0.0.1/↗
-</a>
-
-</p>
-
-
-    
+<p><a href="none" target="_blank">http://127.0.0.1/↗
+</a></p>
 
 </div>
 </section>
-
-
 </div>
 
 <section class="pre-section">
@@ -1158,22 +701,10 @@ etc...</pre>
 
 
 
-<p>
-
-Examine the "NoReverseMatch" error
-
-</p>
+<p>Examine the "NoReverseMatch" error</p>
 
 
-
-<p>
-
-Our error message start with
-
-:
-
-</p>
-
+<p>Our error message start with:</p>
 
 <section class="pre-section">
 
@@ -1197,60 +728,16 @@ web error message part 1
 
 
     
-<p>
-
-The 
-
-<code class=""><span class="text plain">NoReverseMatch</span></code>
-
- error means that Django was 
-
-
-
-
-trying to look up a 
-
-<code class=""><span class="text plain">url</span></code>
-
- template tag name that 
-
-
-
-
-doesn't exist. The 
-
-<code class=""><span class="text plain">at /</span></code>
-
- identifies the page
-
-
-
-
+<p>The <code class=""><span class="text plain">NoReverseMatch</span></code> error means that Django was 
+trying to look up a <code class=""><span class="text plain">url</span></code> template tag name that 
+doesn't exist. The <code class=""><span class="text plain">at /</span></code> identifies the page
 the error occrred on which in this case is our home page
+(i.e. <path 
 
-
-
-
-(i.e. 
-
-<path 
-
->/</path>
-
-)
-
-</p>
-
+>/</path>)</p>
 
     
-<p>
-
-The next part of the error message is
-
-:
-
-</p>
-
+<p>The next part of the error message is:</p>
 
 
 
@@ -1278,24 +765,9 @@ web error message part 2
 
 
     
-<p>
-
-This let's us know that the name for the URL that failed
-
-
-
-
+<p>This let's us know that the name for the URL that failed
 is "login" which matches names we expect since we're trying
-
-
-
-
-to use
-
-:
-
-</p>
-
+to use:</p>
 
 
 
@@ -1320,44 +792,11 @@ to use
 
 
     
-<p>
-
-This URL isn't made up of an app
-
-_
-
-name and path() name
-
-
-
-
+<p>This URL isn't made up of an app_name and path() name
 separated by a colon like our previous example. That's 
-
-
-
-
-because we'll be using Django's built
-
--
-
-in user authentication 
-
-
-
-
+because we'll be using Django's built-in user authentication 
 for the link and it uses just 'login' instead of something
-
-
-
-
-like 'auth
-
-:
-
-login'.
-
-</p>
-
+like 'auth:login'.</p>
  
 
 
@@ -1370,35 +809,11 @@ login'.
 
 
 
-<p>
-
-Adding the built
-
--
-
-in login page overview
-
-</p>
+<p>Adding the built-in login page overview</p>
 
 
-
-<p>
-
-Setting up Djangos built
-
--
-
-in login page takes a couple of
-
-
-
-
-steps
-
-:
-
-</p>
-
+<p>Setting up Djangos built-in login page takes a couple of
+steps:</p>
 
 
 
@@ -1410,27 +825,10 @@ steps
 
 
 
-<p>
+<p>Update the sites <path 
 
-Update the sites 
-
-<path 
-
->urls.py</path>
-
- file to add the route
-
-
-
-
-paths for the built
-
--
-
-in pages
-
-</p>
-
+>urls.py</path> file to add the route
+paths for the built-in pages</p>
 
 
 </li>
@@ -1440,12 +838,7 @@ in pages
 
 
 
-<p>
-
-Create a template for the login page
-
-</p>
-
+<p>Create a template for the login page</p>
 
 
 </li>
@@ -1465,58 +858,18 @@ Create a template for the login page
 
 
 
-<p>
-
-Add the built
-
--
-
-in user authentication path routes
-
-</p>
+<p>Add the built-in user authentication path routes</p>
 
 
-
-<p>
-
-We'll add the path routes for the login and other 
-
-
-
-
+<p>We'll add the path routes for the login and other 
 user authentication pages that Django provides under 
-
-
-
-
 <path 
 
->accounts/</path>
-
-. We'll do this by adding this
-
-
-
-
-new line to the 
-
-<code class=""><span class="text plain">urlpatterns</span></code>
-
- list in our
-
-
-
-
+>accounts/</path>. We'll do this by adding this
+new line to the <code class=""><span class="text plain">urlpatterns</span></code> list in our
 <path 
 
->tutorial_site/urls.py</path>
-
- file
-
-:
-
-</p>
-
+>tutorial_site/urls.py</path> file:</p>
 
 
 
@@ -1537,23 +890,10 @@ new line to the
 
 
     
-<p>
-
-Here's the full contents of the 
-
-<path 
+<p>Here's the full contents of the <path 
 
 >tutorial_site/urls.py</path>
-
-
-
-
-file to copy/paste into the file
-
-:
-
-</p>
-
+file to copy/paste into the file:</p>
  
 
 
@@ -1585,53 +925,15 @@ file to copy/paste into the file
 
 
     
-<p>
-
-The 
-
-<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span></code>
-
- call 
-
-
-
-
-loads the built
-
--
-
-in user auth functionality at our defined
-
-
-
-
+<p>The <code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span></code> call 
+loads the built-in user auth functionality at our defined
 <path 
 
->accounts/</path>
-
- path. We don't need to do anything else
-
-
-
-
-to get the page to show up. 
-
-</p>
-
+>accounts/</path> path. We don't need to do anything else
+to get the page to show up. </p>
 
     
-<p>
-
-The built
-
--
-
-in functionality also gets our code to work for
-
-:
-
-</p>
-
+<p>The built-in functionality also gets our code to work for:</p>
  
 
 
@@ -1655,21 +957,10 @@ in functionality also gets our code to work for
 
 
     
-<p>
+<p>Visit the home page again and you'll see we've cleared the
+error and now show the URL for the login page as <path 
 
-Visit the home page again and you'll see we've cleared the
-
-
-
-
-error and now show the URL for the login page as 
-
-<path 
-
->/accounts/login</path>
-
-</p>
-
+>/accounts/login</path></p>
  
 
 
@@ -1685,23 +976,11 @@ error and now show the URL for the login page as
 
 
 <div class="link-block">
-
-    
-<p>
-
-
-<a href="none" target="_blank">http://127.0.0.1/↗
-</a>
-
-</p>
-
-
-    
+<p><a href="none" target="_blank">http://127.0.0.1/↗
+</a></p>
 
 </div>
 </section>
-
-
 </div>
 
 
@@ -1712,39 +991,11 @@ error and now show the URL for the login page as
 
 
 
-<p>
-
-Use the built
-
--
-
-in login link
-
-</p>
+<p>Use the built-in login link</p>
 
 
-
-<p>
-
-We can use the built
-
--
-
-in user auth url tag by placing it in
-
-
-
-
-an HTML 
-
-<code class=""><span class="text plain">&lt;a&gt;</span></code>
-
- tag like
-
-:
-
-</p>
-
+<p>We can use the built-in user auth url tag by placing it in
+an HTML <code class=""><span class="text plain">&lt;a&gt;</span></code> tag like:</p>
 
 
 
@@ -1765,25 +1016,10 @@ an HTML
 
 
     
-<p>
+<p>Update the <path 
 
-Update the 
-
-<path 
-
->homepage/templates/homepage/index.html</path>
-
- page
-
-
-
-
-to use it like this
-
-:
-
-</p>
-
+>homepage/templates/homepage/index.html</path> page
+to use it like this:</p>
  
 
 
@@ -1818,22 +1054,9 @@ to use it like this
 
 
     
-<p>
-
-Visit the home page again to checkout the Login link
-
-
-
-
+<p>Visit the home page again to checkout the Login link
 which you can click on. (It'll take us to an 
-
-
-
-
-intentional error which we'll address next)
-
-</p>
-
+intentional error which we'll address next)</p>
  
 
 
@@ -1849,23 +1072,11 @@ intentional error which we'll address next)
 
 
 <div class="link-block">
-
-    
-<p>
-
-
-<a href="none" target="_blank">http://127.0.0.1/↗
-</a>
-
-</p>
-
-
-    
+<p><a href="none" target="_blank">http://127.0.0.1/↗
+</a></p>
 
 </div>
 </section>
-
-
 </div>
 
 
@@ -1876,42 +1087,14 @@ intentional error which we'll address next)
 
 
 
-<p>
-
-Generic templates directory overview
-
-</p>
+<p>Generic templates directory overview</p>
 
 
+<p>Clicking on the <code class=""><span class="text plain">Login</span></code> link takes us 
+to the URL <path 
 
-<p>
-
-Clicking on the 
-
-<code class=""><span class="text plain">Login</span></code>
-
- link takes us 
-
-
-
-
-to the URL 
-
-<path 
-
->/accounts/login</path>
-
- and the page tries
-
-
-
-
-to load but produces this error
-
-:
-
-</p>
-
+>/accounts/login</path> and the page tries
+to load but produces this error:</p>
 
 <section class="pre-section">
 
@@ -1939,69 +1122,19 @@ etc...</pre>
 
 
     
-<p>
-
-The 
-
-<code class=""><span class="text plain">TemplateDoesNotExist</span></code>
-
- tells us that Django
-
-
-
-
+<p>The <code class=""><span class="text plain">TemplateDoesNotExist</span></code> tells us that Django
 couldn't find a template it expected to be able to use.
-
-
-
-
-The 
-
-<code class=""><span class="text plain">at /accounts/login</span></code>
-
- tells us the URL of
-
-
-
-
+The <code class=""><span class="text plain">at /accounts/login</span></code> tells us the URL of
 the page that had the problem and the "registration/login.html"
-
-
-
-
 tells us the path to the template file it was looking for. 
-
-
-
-
-We need to add a file that it can find for that path. 
-
-</p>
-
+We need to add a file that it can find for that path. </p>
 
     
-<p>
-
-By default, Django searching for templates inside any 
-
-
-
-
+<p>By default, Django searching for templates inside any 
 <path 
 
->template</path>
-
- directories in our app/module folders. 
-
-
-
-
-For example, we created the directory
-
-:
-
-</p>
-
+>template</path> directories in our app/module folders. 
+For example, we created the directory:</p>
 
 
 
@@ -2029,14 +1162,7 @@ home page template directory
 
 
     
-<p>
-
-and put the home page template itself in
-
-:
-
-</p>
-
+<p>and put the home page template itself in:</p>
 
 
 
@@ -2064,74 +1190,24 @@ home page template file
 
 
     
-<p>
-
-We can't use the same approach for our login template
-
-
-
-
-because we're using the built
-
--
-
-in user auth instead of
-
-
-
-
-our own app/module. That means we don't have an 
-
-<path 
+<p>We can't use the same approach for our login template
+because we're using the built-in user auth instead of
+our own app/module. That means we don't have an <path 
 
 >accounts</path>
+or <path 
 
-
-
-
-or 
-
-<path 
-
->registration</path>
-
- directory to create a 
-
-<path 
+>registration</path> directory to create a <path 
 
 >templates</path>
-
-
-
-
-directory in. To address this we'll make a generic 
-
-<path 
+directory in. To address this we'll make a generic <path 
 
 >templates</path>
-
-
-
-
 directory that's not inside an app/module and place
-
-
-
-
-our login template file there. 
-
-</p>
-
+our login template file there. </p>
 
     
-<p>
-
-There are two steps to doing this
-
-:
-
-</p>
-
+<p>There are two steps to doing this:</p>
 
 
 
@@ -2147,16 +1223,9 @@ There are two steps to doing this
 
 
 
-<p>
+<p>Define the directory in <path 
 
-Define the directory in 
-
-<path 
-
->tutorial_site/settings.py</path>
-
-</p>
-
+>tutorial_site/settings.py</path></p>
 
 
 </li>
@@ -2166,18 +1235,9 @@ Define the directory in
 
 
 
-<p>
+<p>Create the new <path 
 
-Create the new 
-
-<path 
-
->templates</path>
-
- directory itself
-
-</p>
-
+>templates</path> directory itself</p>
 
 
 </li>
@@ -2197,50 +1257,16 @@ Create the new
 
 
 
-<p>
-
-Create the generic templates directory
-
-</p>
+<p>Create the generic templates directory</p>
 
 
-
-<p>
-
-To be able to use a generic template directory we have
-
-
-
-
+<p>To be able to use a generic template directory we have
 to update our Django configuration so it knows to look
-
-
-
-
-for it. This is done in 
-
-<path 
+for it. This is done in <path 
 
 >tutorial_site/settings.py</path>
-
-
-
-
-inside the 
-
-<code class=""><span class="text plain">TEMPLATES</span></code>
-
- list. Open the file and 
-
-
-
-
-find the line
-
-:
-
-</p>
-
+inside the <code class=""><span class="text plain">TEMPLATES</span></code> list. Open the file and 
+find the line:</p>
 
 
 
@@ -2261,14 +1287,7 @@ find the line
 
 
     
-<p>
-
-and update it to
-
-:
-
-</p>
-
+<p>and update it to:</p>
  
 
 
@@ -2292,45 +1311,14 @@ and update it to
 
 
     
-<p>
+<p>The <code class=""><span class="text plain">BASE_DIR</span></code> variable represents our root
+site/project directory (i.e. <path 
 
-The 
+>tutorial_site</path>). So, 
+the full path we're adding here is <path 
 
-<code class=""><span class="text plain">BASE_DIR</span></code>
-
- variable represents our root
-
-
-
-
-site/project directory (i.e. 
-
-<path 
-
->tutorial_site</path>
-
-). So, 
-
-
-
-
-the full path we're adding here is 
-
-<path 
-
->tutorial_site/templates</path>
-
-)
-
-
-
-
-Let's add that now by stopping the server with
-
-:
-
-</p>
-
+>tutorial_site/templates</path>)
+Let's add that now by stopping the server with:</p>
  
 
 
@@ -2357,14 +1345,7 @@ keyboard
 
 
     
-<p>
-
-Then running the command
-
-:
-
-</p>
-
+<p>Then running the command:</p>
 
 
 
@@ -2392,17 +1373,8 @@ Then running the command
 
 
     
-<p>
-
-We're now set up to fix our error by adding our
-
-
-
-
-new template
-
-</p>
-
+<p>We're now set up to fix our error by adding our
+new template</p>
 
  
 
@@ -2415,42 +1387,14 @@ new template
 
 
 
-<p>
-
-Add the login template file
-
-</p>
+<p>Add the login template file</p>
 
 
-
-<p>
-
-Or current 
-
-<code class=""><span class="text plain">TemplateDoesNotExist</span></code>
-
- error on the
-
-
-
-
+<p>Or current <code class=""><span class="text plain">TemplateDoesNotExist</span></code> error on the
 <path 
 
->/accounts/login</path>
-
- page says it's looking for
-
-
-
-
-the template at
-
-:
-
- 
-
-</p>
-
+>/accounts/login</path> page says it's looking for
+the template at: </p>
 
 <section class="pre-section">
 
@@ -2474,14 +1418,7 @@ login page template error path
 
 
     
-<p>
-
-Django will look for that file under
-
-:
-
-</p>
-
+<p>Django will look for that file under:</p>
 
 
 
@@ -2509,25 +1446,10 @@ template file path
 
 
     
-<p>
+<p>We haven't created the <path 
 
-We haven't created the 
-
-<path 
-
->registration</path>
-
- directory
-
-
-
-
-yet. Do that now with
-
-:
-
-</p>
-
+>registration</path> directory
+yet. Do that now with:</p>
 
 
 
@@ -2555,23 +1477,10 @@ yet. Do that now with
 
 
     
-<p>
-
-Once that's done, make a new file at 
-
-<path 
+<p>Once that's done, make a new file at <path 
 
 >tutorial_site/templates/registration/index.html</path>
-
-
-
-
-with this content
-
-:
-
-</p>
-
+with this content:</p>
 
  
 
@@ -2604,14 +1513,7 @@ with this content
 
 
     
-<p>
-
-With that done, we can start the server again with
-
-:
-
-</p>
-
+<p>With that done, we can start the server again with:</p>
  
 
 
@@ -2638,14 +1540,7 @@ With that done, we can start the server again with
 
 
     
-<p>
-
-and check out the login page at
-
-:
-
-</p>
-
+<p>and check out the login page at:</p>
 
  
 
@@ -2661,177 +1556,45 @@ and check out the login page at
 
 
 <div class="link-block">
-
-    
-<p>
-
-
-<a href="none" target="_blank">http://127.0.0.1/accounts/login/↗
-</a>
-
-</p>
-
-
-    
+<p><a href="none" target="_blank">http://127.0.0.1/accounts/login/↗
+</a></p>
 
 </div>
 </section>
-
-
 </div>
 
 
-<p>
-
-This is a fully functional login form. Try putting
-
-
-
-
+<p>This is a fully functional login form. Try putting
 in a random username and password and you'll get
-
-
-
-
 a message that it's incorrect. Next, use your
-
-
-
-
 "admin" super user account username and password. 
-
-
-
-
 Django will log you in and redirect you to a page
+at <path 
+
+>/accounts/profile</path> by default. </p>
 
 
-
-
-at 
-
-<path 
-
->/accounts/profile</path>
-
- by default. 
-
-</p>
-
-
-
-<p>
-
-Full sites that have users generally provide profile
-
-
-
-
+<p>Full sites that have users generally provide profile
 pages for them, but we don't need that for our
-
-
-
-
 site right now. Instead of building out those pages
-
-
-
-
 we'll update the login page to redirect to the home
-
-
-
-
 page by default in a later step. We need to be able
-
-
-
-
 to log out first which we'll do shortly in the next 
+section. </p>
 
 
+<p>TODO: Put in note about CSRF. Earlier text is:</p>
 
 
-section. 
-
-</p>
-
-
-
-<p>
-
-TODO
-
-:
-
- Put in note about CSRF. Earlier text is
-
-:
-
-</p>
-
-
-
-<p>
-
-"CSRF" stands for "Cross
-
--
-
-Site Request Forgery" which is
-
-
-
-
+<p>"CSRF" stands for "Cross-Site Request Forgery" which is
 a security vulnerability that can happen when a malicious
-
-
-
-
-website sends traffic to your site. The 
-
-<code class=""><span class="text plain">csrf_token</span></code>
-
- 
-
-
-
-
-template tag is another built
-
--
-
-in Django feature that 
-
-
-
-
+website sends traffic to your site. The <code class=""><span class="text plain">csrf_token</span></code> 
+template tag is another built-in Django feature that 
 protects against CSRF attacks. We don't need to dig
-
-
-
-
 into it here other than to point out that any form
-
-
-
-
 you make should have the token in it. When you're 
-
-
-
-
 ready to learn more about the specifics you can 
-
-
-
-
-check out the offical documentation
-
-:
-
-</p>
-
+check out the offical documentation:</p>
 
 
 </li>
@@ -2841,32 +1604,12 @@ check out the offical documentation
 
 
 
-<p>
-
-Examine the login page template
-
-</p>
+<p>Examine the login page template</p>
 
 
-
-<p>
-
-Before we leave this section let's take another 
-
-
-
-
+<p>Before we leave this section let's take another 
 look at the login page and the template that 
-
-
-
-
-produces it. You can open the page with
-
-:
-
-</p>
-
+produces it. You can open the page with:</p>
 
 
 
@@ -2879,41 +1622,16 @@ produces it. You can open the page with
 
 
 <div class="link-block">
-
-    
-<p>
-
-
-<a href="none" target="_blank">http://127.0.0.1/accounts/login↗
-</a>
-
-</p>
-
-
-    
+<p><a href="none" target="_blank">http://127.0.0.1/accounts/login↗
+</a></p>
 
 </div>
 </section>
-
-
 </div>
 
 
-<p>
-
-And here's the contents of the template file again
-
-
-
-
-for reference
-
-:
-
- 
-
-</p>
-
+<p>And here's the contents of the template file again
+for reference: </p>
 
 
 
@@ -2943,22 +1661,9 @@ for reference
 
 
     
-<p>
-
-The template contains two Django template tags. The first one is
-
-
-
-
+<p>The template contains two Django template tags. The first one is
 the same CSRF tag we've seen before that needs to
-
-
-
-
-be added to every form we use. 
-
-</p>
-
+be added to every form we use. </p>
  
 
 
@@ -2982,14 +1687,7 @@ be added to every form we use.
 
 
     
-<p>
-
-The second tag is
-
-:
-
-</p>
-
+<p>The second tag is:</p>
  
 
 
@@ -3013,19 +1711,8 @@ The second tag is
 
 
     
-<p>
-
-This second tag looks a little different. Instead of opening and
-
-
-
-
-closing tokens that looks like this
-
-:
-
-</p>
-
+<p>This second tag looks a little different. Instead of opening and
+closing tokens that looks like this:</p>
  
 
 
@@ -3049,14 +1736,7 @@ closing tokens that looks like this
 
 
     
-<p>
-
-They look like this
-
-:
-
-</p>
-
+<p>They look like this:</p>
  
 
 
@@ -3080,102 +1760,24 @@ They look like this
 
 
     
-<p>
-
-Django uses both styles but treats them a little
-
-
-
-
+<p>Django uses both styles but treats them a little
 differently. They can both output content but the
-
-
-
-
-<code class=""><span class="text plain">{% %}</span></code>
-
- are used more for functions as well
-
-
-
-
-as control structures (like 
-
-<code class=""><span class="text plain">if</span></code>
-
- statements
-
-
-
-
-we'll see shortly) while the 
-
-<code class=""><span class="text plain">{{ }}</span></code>
-
- version
-
-
-
-
-outputs a variable directly. 
-
-</p>
-
+<code class=""><span class="text plain">{% %}</span></code> are used more for functions as well
+as control structures (like <code class=""><span class="text plain">if</span></code> statements
+we'll see shortly) while the <code class=""><span class="text plain">{{ }}</span></code> version
+outputs a variable directly. </p>
 
     
-<p>
+<p>In this case, the varialbe we're outputting the contents
+of the <code class=""><span class="text plain">form</span></code> variable. It's provided for us 
+automatically as part of the built-in user auth 
+functionality we got when we set the <code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
+for <path 
 
-In this case, the varialbe we're outputting the contents
-
-
-
-
-of the 
-
-<code class=""><span class="text plain">form</span></code>
-
- variable. It's provided for us 
-
-
-
-
-automatically as part of the built
-
--
-
-in user auth 
-
-
-
-
-functionality we got when we set the 
-
-<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
-
-
-
-
-for 
-
-<path 
-
->accounts</path>
-
- in our 
-
-<path 
+>accounts</path> in our <path 
 
 >tutorial_site/urls.py</path>
-
-
-
-
-file to use
-
-:
-
-</p>
-
+file to use:</p>
  
 
 
@@ -3215,11 +1817,7 @@ file to use
 <hgroup>
 
   
-    <h2 class="section-heading">
-    
-      Wrapping Up
-    
-    </h2>
+    <h2 class="section-heading">Wrapping Up</h2>
     
   
 
@@ -3235,72 +1833,20 @@ file to use
 
 
     
-<p>
-
-Setting up to handle user based functionality can be 
-
-
-
-
-a huge pain. There's all kinds of things to deal with
-
-:
-
-
-
-
-different sign
-
--
-
-up processes, secure crednetial storage, 
-
-
-
-
+<p>Setting up to handle user based functionality can be 
+a huge pain. There's all kinds of things to deal with:
+different sign-up processes, secure crednetial storage, 
 password resets, etc... Django builds all that stuff
-
-
-
-
 in. If you've never head to deal with handling user 
-
-
-
-
 accounts before it's tough to get across how much 
-
-
-
-
 of a bonus this is. It's enough to make Django a
-
-
-
-
-go
-
--
-
-to choice for lots of uses cases. 
-
-</p>
-
+go-to choice for lots of uses cases. </p>
 
 
 
     
-<p>
-
-Our next step will be implementing the logout 
-
-
-
-
-functionality. 
-
-</p>
-
+<p>Our next step will be implementing the logout 
+functionality. </p>
 
 
 
@@ -3317,11 +1863,7 @@ functionality.
 <hgroup>
 
   
-    <h2 class="section-heading">
-    
-      Links
-    
-    </h2>
+    <h2 class="section-heading">Links</h2>
     
   
 
@@ -3337,38 +1879,16 @@ functionality.
 
 
     
-<p>
-
-Previous
-
-:
-
- 
-
-<a href="/en/2mcbmij7/?page=section-2-make-a-home-page">
+<p>Previous: <a href="/en/2mcbmij7/?page=section-2-make-a-home-page">
   Section 2 - Make A Home Page
-</a>
-
-</p>
-
+</a></p>
 
 
 
     
-<p>
-
-Next
-
-:
-
- 
-
-<a href="/en/2md3ouqp/?page=section-4-adding-logout-functionality">
+<p>Next: <a href="/en/2md3ouqp/?page=section-4-adding-logout-functionality">
   Section 4 - Adding Logout Functionality 
-</a>
-
-</p>
-
+</a></p>
 
 
 
