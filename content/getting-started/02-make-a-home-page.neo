@@ -146,6 +146,7 @@ to replace the contents of the original:
 -- code/
 -- python
 -- title: update for: tutorial_site/urls.py
+-- class: highlight
 
 from django.contrib import admin
 from django.urls import path
@@ -179,7 +180,8 @@ in the next step. Let's stop the server by holding down
 the <<kbd|control>> key on the keyboard then pressing <<kbd|c>>
 
 -- pre/
--- title: keyboard:
+-- title: keyboard
+-- class: highlight 
 
 control + c
 
@@ -194,6 +196,7 @@ more details on app/module).
 Run this command to create our new "homepage" app/module:
 
 -- cli/
+-- class: highlight 
 
 python manage.py startapp homepage
 
@@ -227,8 +230,10 @@ some to find it. When you've made the update, the variable
 should look like this:
 
 -- code/
+-- title: update inside: tutorial_site/settings.py
 -- python
 -- no-nums
+-- class: highlight 
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -252,6 +257,7 @@ server again which will show us a new error. Run
 this to start the server:
 
 -- cli/
+-- class: highlight 
 
 python manage.py runserver
 
@@ -282,7 +288,8 @@ need to restart the server to see the change so
 we can stop it now with:
 
 -- pre/
--- title: keyboard:
+-- title: keyboard
+-- class: highlight
 
 control + c
 
@@ -308,6 +315,7 @@ the contents of the file:
 -- code/
 -- python
 -- title: new file: homepage/urls.py
+-- class: highlight
 
 from django.urls import path
 
@@ -451,6 +459,7 @@ the server again to see our new error message. Run it
 with the command:
 
 -- cli/
+-- class: highlight
 
 python manage.py runserver
 
@@ -500,7 +509,8 @@ what the file should look like:
 
 -- code/
 -- python
--- title: replacement for: homepage/views.py
+-- title: update for: homepage/views.py
+-- class: highlight
 
 from django.shortcuts import render
 
@@ -628,7 +638,8 @@ create a couple of directories for us. So, stop the
 server with:
 
 -- pre/
--- title: keyboard:
+-- title: keyboard
+-- class: highlight
 
 control + c
 
@@ -659,6 +670,7 @@ You can create this directory from the terminal command line
 with:
 
 -- cli/
+-- class: highlight
 
 mkdir -p homepage/templates/homepage
 
@@ -680,6 +692,7 @@ Copy and past this for the content of the file and save it.
 -- code/
 -- html
 -- title: new file: homepage/templates/homepage/index.html
+-- class: highlight
 
 <!DOCTYPE html>
 <html>
@@ -697,6 +710,7 @@ Copy and past this for the content of the file and save it.
 We're ready to start the server again with:
 
 -- cli/
+-- class: highlight
 
 python manage.py runserver
 
@@ -706,9 +720,10 @@ Now, we can go back to our site and we'll see
 our bare bones home page at:
 
 -- link/
--- title: home page:
+-- title: visit home page
+-- class: highlight
 
-<<link|http://127.0.0.1:8000/|http://127.0.0.1:8000>>
+<<tablink|http://127.0.0.1:8000/|http://127.0.0.1:8000>>
 
 -- /link
 
@@ -734,9 +749,10 @@ TODO: Add discussion about template name spacing
 
 Links
 
+Next: <<tlink|2md4eik2>>
+
 Previous: <<tlink|2mc6armk>>
 
-Next: <<tlink|2md4eik2>>
 
 
 -- metadata

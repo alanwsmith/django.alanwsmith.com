@@ -35,6 +35,7 @@ path("notes/", include("notes.urls")),
 -- code/
 -- python
 -- title: update for: tutorial_site/tutorial_site/urls.py
+-- class: highlight
 
 from django.contrib import admin
 from django.urls import path
@@ -63,6 +64,7 @@ ModelNotFoundError: No module named 'notes.urls'
 -- code/
 -- python
 -- title: new file: tutorial_site/notes/urls.py
+-- class: highlight
 
 from django.urls import path
 
@@ -106,6 +108,7 @@ To:
 -- code/
 -- python
 -- title: update for: tutorial_site/notes/views.py
+-- class: highlight
 
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -127,6 +130,7 @@ We can start the server again.
 
 -- cli/
 -- title: django server start command
+-- class: highlight
 
 python manage.py runserver
 
@@ -138,6 +142,7 @@ the URL (which will show us the next error):
 
 -- link/
 -- title: notes page link
+-- class: highlight
 
 <<link|http://127.0.0.1:8000/notes>>
 
@@ -157,6 +162,7 @@ notes/index.html
 - Make the notes/templates directory:
 
 -- cli/
+-- class: highlight
 
 mkdir -p notes/templates/notes
 
@@ -171,6 +177,7 @@ putting in logic for the template
 -- code/
 -- html
 -- title: first version: tutorial_site/notes/templates/notes/index.html
+-- class: highlight
 
 <!DOCTYPE html>
 <html>
@@ -187,6 +194,7 @@ putting in logic for the template
 -- code/
 -- html
 -- title: update for: tutorial_site/notes/templates/notes/index.html
+-- class: highlight
 
 <html>
 <body>
@@ -208,29 +216,11 @@ notes you added to the admin panel
 
 -- link/
 -- title: note page link
+-- class: highlight
 
 <<tablink|http://127.0.0.1:8000/notes/>>
 
 -- /link
-
-
-- TODO: Add the login restrition (above def index)
-
--- code/
--- python
-
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-
-from .models import Note 
-
-@login_required
-def index(request):
-    notes_list = Note.objects.order_by("created_at")
-    context = {"notes_list": notes_list}
-    return render(request, "notes/index.html", context)
-
--- /code
 
 
 
@@ -248,7 +238,7 @@ Links
 
 Previous: <<tlink|2midac9a>>
 
-Next: TKTKTKT
+Next: <<tlink|2miiqhla>>
 
 
 -- metadata

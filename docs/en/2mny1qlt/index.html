@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>How-To: Create A New Django Site</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta property="og:title" content="How-To: Create A New Django Site" />
+<meta property="og:description" content="a post from alan w. smith" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://django.alanwsmith.com/en/2mny1qlt/?page=how-to-create-a-new-django-site" />
+<meta property="og:image" content="https://django.alanwsmith.com/neo-images/default-og-image/1200w.jpg" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/theme/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/theme/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/theme/favicons/favicon-16x16.png">
+<link rel="manifest" href="/theme/favicons/site.webmanifest">
+<link rel="mask-icon" href="/theme/favicons/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/theme/favicons/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/theme/favicons/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="/theme/styles/variables.css" />
+<link rel="stylesheet" href="/theme/styles/theme.css" />
+<link rel="stylesheet" href="/theme/styles/syntax-highlighting/code-solarized-dark.css" /><script>
+
+function update_commands() {
+  const dir_name = document.querySelector("#dir-name").value
+  const module_name = document.querySelector("#module-name").value
+  const commands = document.querySelector("#commands pre")
+  commands.innerText = `mkdir ${dir_name} 
+cd ${dir_name}
+git init
+echo "venv" > .gitignore
+type deactivate &> /dev/null && deactivate
+python3 -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+python -m pip install Django
+django-admin startproject ${module_name}
+cd ${module_name}
+python manage.py migrate
+python manage.py createsuperuser
+`
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  update_commands()
+  const dir_input = document.querySelector("#dir-name")
+  dir_input.addEventListener("input", (event) => {
+    update_commands()
+  })
+  const module_input = document.querySelector("#module-name")
+  module_input.addEventListener("input", (event) => {
+    update_commands()
+  })
+})
+
+</script></head>
+<body>
+<header>
+      <a href="/">Home</a>
+      <div class="under-construction">
+        NOTE: I'm in the middle of upgrading the site. Most things are in place, but
+        some things are missing and/or broken. This includes alt text for images. Please
+        bear with me while I get things fixed. 
+      </div>
+    </header>
+<main class="flow">
+
+<section class="title-section flow">
+<hgroup>
+
+  
+    <h1 class="page-title">
+    
+      How
+    
+      -
+    
+      To
+    
+      :
+    
+       Create A New Django Site
+    
+    </h1>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+
+</section>
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      Introduction 
+    
+    </h2>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+
+    
+
+</section>
+
+<ul class="flow">
+    
+
+
+<li class="flow">
+
+
+
+<p>
+
+These are the commands to run to create a new site
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+The process creates a directory with your specified name
+
+
+
+
+then creates a django site/project inside it called "site
+
+_
+
+module".
+
+
+
+
+That's a little different than naming the django site/project
+
+
+
+
+directly, but I find it helps me keep better track
+
+
+
+
+of where I am in the directory structure.
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+The commands work on a Mac. I'll make a Windows
+
+
+
+
+version when I have the resources to work on it.
+
+</p>
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>
+
+The process ends with creating a super users which
+
+
+
+
+requires filling in responses to some prompts. Once
+
+
+
+
+that's done the main process is complete and you 
+
+
+
+
+can start the server. 
+
+</p>
+
+
+
+</li>
+
+
+
+</ul>
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
+      The Code
+    
+    </h2>
+    
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>
+
+Specify the name for your site/project directory
+
+
+
+
+and module names
+
+:
+
+</p>
+
+
+
+
+
+    
+
+    
+
+</section><section class="html-section">
+
+<form>
+  <div>
+    <label for="dir-name">Directory Name:</label>
+    <input type="text" id="dir-name" value="django_example"/ >
+  </div>
+  <div>
+    <label for="module-name">Module Name:</label>
+    <input type="text" id="module-name" value="site_stuff"/ >
+  </div>
+</form>
+
+
+<noscript>This page requires javascript to build the commands</noscript>
+
+</section><section class="highlight pre-section" id="commands">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+site/project creation commands
+</div>
+
+
+
+
+<pre class="pre-block"></pre>
+
+
+    
+</div>
+</section>
+
+
+
+
+<section class="highlight pre-section">
+
+<div class="pre-wrapper">
+
+
+
+<div class="pre-title">
+start the server
+</div>
+
+
+
+
+<pre class="pre-block">python manage.py runserver</pre>
+
+
+    
+</div>
+</section>
+
+
+
+
+<div class="fin-token">~ fin ~</div>
+
+</main>
+<footer></footer>
+
+
+
+
+
+
+</body>
+

@@ -30,6 +30,7 @@ stop the server so we can do that with:
 
 -- pre/
 -- title: keyboard
+-- class: highlight
 
 control + c
 
@@ -38,6 +39,7 @@ control + c
 - Create the notes app
 
 -- cli/
+-- class: highlight
 
 python manage.py startapp notes
 
@@ -61,6 +63,7 @@ The <<code|INSTALLED_APPS>> should look like this when you're done:
 -- python
 -- no-nums
 -- title: INSTALLED_APPS in tutorial_site/tutorial_site/settings.py
+-- class: highlight
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -94,6 +97,7 @@ Change it to:
 -- code/
 -- python
 -- title: update for: tutorial_site/notes/models.py
+-- class: highlight
 
 from django.db import models
 
@@ -115,6 +119,7 @@ TODO: Go through the models.py file line by line
 
 -- cli/
 -- title: django makemigrations command
+-- class: highlight
 
 python manage.py makemigrations notes
 
@@ -133,6 +138,7 @@ TODO: add the respose from makemigraions here
 
 -- cli/
 -- title: django migrate command
+-- class: highlight
 
 python manage.py migrate
 
@@ -166,6 +172,7 @@ Change it to:
 -- code/
 -- python
 -- title: update for: tutorial_site/notes/admin.py
+-- class: highlight
 
 from django.contrib import admin
 
@@ -182,6 +189,7 @@ TODO: Add line by line notes
 
 -- cli/
 -- title: django server start command
+-- class: highlight
 
 python manage.py runserver
 
@@ -191,6 +199,7 @@ python manage.py runserver
 
 -- link/
 -- title: django admin interface link
+-- class: highlight
 
 <<tablink|http://localhost:8000/admin/>>
 

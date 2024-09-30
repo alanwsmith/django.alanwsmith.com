@@ -1,0 +1,31 @@
+-- title
+
+How To Toggle A Django Checkbox With A Generic JavaScript Function
+
+-- h2
+
+Introduction
+
+This post shows how to use some JavaScript on a page to 
+watch for changes to checkboxes on the page and send
+a request to Django to update the value without 
+having to refresh the page. It assumes you already have
+a Django site/project set up to work with. If you don't, 
+you can follow the steps in the <<ilink|first section of the 
+Getting Started Tutorial|2mc6armk>>
+
+
+
+
+
+
+
+
+-- metadata
+-- created: 2024-09-30T11:52:03-04:00
+-- updated: 2024-09-30T11:52:03-04:00
+-- id: 2mntpzed
+-- type: post
+-- status: scratch
+
+

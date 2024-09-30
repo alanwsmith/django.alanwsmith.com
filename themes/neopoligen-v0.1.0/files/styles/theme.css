@@ -184,6 +184,14 @@ header a {
   color: var(--color-charlie);
 }
 
+.highlight .cli-wrapper, 
+.highlight .code-wrapper, 
+.highlight .link-wrapper, 
+.highlight .pre-wrapper
+ {
+  border-color: red;
+} 
+
 hr {
   margin-block: 1.5rem;
 }

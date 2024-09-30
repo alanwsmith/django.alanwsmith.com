@@ -1,0 +1,74 @@
+-- title
+
+Section 9 - Adding Page Links
+
+-- h2
+
+Introduction
+
+-- h2
+
+Section Steps
+
+-- olist/
+
+- Add A Link From The Home Page Page To The Notes Page 
+
+
+-- code/
+-- html
+-- title: update for: tutorial_site/homepage/templates/homepage/index.html
+
+<!DOCTYPE html>
+<html>
+  <body>
+
+    <h1>Hello, world</h1>
+
+    <a href="{% url 'notes.index' %}">Notes</a>
+
+    <div>{{ user }}</div>
+
+    <div>
+    {% if user.is_authenticated %}
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Log Out</button>
+      </form>
+    {% else %}
+      <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+    </div>
+
+  </body>
+</html>
+
+-- /code
+
+- Add A Link From The Notes Page To The Home Page 
+
+
+-- /olist
+
+
+-- h2
+
+Wrapping Up
+
+-- h2
+
+Links
+
+Previous: <<tlink|2midm9ws>>
+
+Next: <<tlink|2miiibj3>>
+
+
+-- metadata
+-- created: 2024-09-28T19:26:29-04:00
+-- updated: 2024-09-28T19:26:29-04:00
+-- id: 2miiqhla
+-- type: post
+-- status: scratch
+
+

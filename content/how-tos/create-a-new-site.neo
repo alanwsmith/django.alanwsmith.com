@@ -1,0 +1,114 @@
+-- title
+
+How-To: Create A New Django Site
+
+-- h2
+
+Introduction 
+
+-- list
+
+- These are the commands to run to create a new site
+
+- The process creates a directory with your specified name
+then creates a django site/project inside it called "site_module".
+That's a little different than naming the django site/project
+directly, but I find it helps me keep better track
+of where I am in the directory structure.
+
+- The commands work on a Mac. I'll make a Windows
+version when I have the resources to work on it.
+
+- The process ends with creating a super users which
+requires filling in responses to some prompts. Once
+that's done the main process is complete and you 
+can start the server. 
+
+-- h2
+
+The Code
+
+Specify the name for your site/project directory
+and module names:
+
+-- html
+
+<form>
+  <div>
+    <label for="dir-name">Directory Name:</label>
+    <input type="text" id="dir-name" value="django_example"/ >
+  </div>
+  <div>
+    <label for="module-name">Module Name:</label>
+    <input type="text" id="module-name" value="site_stuff"/ >
+  </div>
+</form>
+
+
+<noscript>This page requires javascript to build the commands</noscript>
+
+-- pre/
+-- title: site/project creation commands
+-- class: highlight
+-- id: commands
+
+-- /pre
+
+
+-- pre/
+-- title: start the server
+-- class: highlight
+
+python manage.py runserver
+
+-- /pre
+
+
+
+
+-- javascript
+
+function update_commands() {
+  const dir_name = document.querySelector("#dir-name").value
+  const module_name = document.querySelector("#module-name").value
+  const commands = document.querySelector("#commands pre")
+  commands.innerText = `mkdir ${dir_name} 
+cd ${dir_name}
+git init
+echo "venv" > .gitignore
+type deactivate &> /dev/null && deactivate
+python3 -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+python -m pip install Django
+django-admin startproject ${module_name}
+cd ${module_name}
+python manage.py migrate
+python manage.py createsuperuser
+`
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  update_commands()
+  const dir_input = document.querySelector("#dir-name")
+  dir_input.addEventListener("input", (event) => {
+    update_commands()
+  })
+  const module_input = document.querySelector("#module-name")
+  module_input.addEventListener("input", (event) => {
+    update_commands()
+  })
+})
+
+
+
+
+
+-- metadata
+-- created: 2024-09-30T12:26:34-04:00
+-- updated: 2024-09-30T12:26:34-04:00
+-- id: 2mny1qlt
+-- type: post
+-- status: scratch
+
+

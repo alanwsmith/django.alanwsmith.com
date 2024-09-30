@@ -49,6 +49,8 @@ to house all our Django work. Run these commands
 to create the directory and move into it:
 
 -- cli/
+-- title: set up the django directory
+-- class: highlight
 
 mkdir django_tutorial
 cd django_tutorial
@@ -59,6 +61,8 @@ cd django_tutorial
 installation
 
 -- cli/
+-- title: create the python virtual environment
+-- class: highlight
 
 python3 -m venv venv
 
@@ -76,6 +80,8 @@ We have to "activate" the Python virtual environment
 to actually use it. Run this command to do just that:
 
 -- cli/
+-- title: activate the python virtual environment
+-- class: highlight
 
 source venv/bin/activate
 
@@ -100,6 +106,8 @@ in the next step. It comes with the basic Django install
 which we can do with this command now:
 
 -- cli/
+-- title: install django
+-- class: highlight
 
 python -m pip install Django
 
@@ -149,6 +157,8 @@ Here's the command to run:
 
 
 -- cli/
+-- title: create the django site/project
+-- class: highlight
 
 django-admin startproject tutorial_site
 
@@ -168,6 +178,8 @@ We'll be doing all the rest of our work inside the <<code|tutorial_site>>
 directory. Move into it with:
 
 -- cli/
+-- title: move into the site/project directory
+-- class: highlight
 
 cd tutorial_site
 
@@ -187,6 +199,7 @@ the "migrate" argument to "manage.py"
 Here's the full command which you can run now:
 
 -- cli/
+-- class: highlight
 
 python manage.py migrate
 
@@ -244,7 +257,9 @@ of using it anyway.
 
 Go ahead and create the Super User now with:
 
+
 -- cli/
+-- class: highlight
 
 python manage.py createsuperuser
 
@@ -254,11 +269,14 @@ python manage.py createsuperuser
 
 Everything is ready to go now. Start the server with:
 
+
 -- cli/
+-- class: highlight
 
 python manage.py runserver
 
 -- /cli
+
 
 You should see output that looks like:
 
@@ -306,7 +324,8 @@ a default home page. You'll see it at this
 address:
 
 -- link/
--- title: home page:
+-- title: home page link
+-- class: highlight
 
 <<link|http://127.0.0.1:8000/|http://127.0.0.1:8000/>>
 
@@ -321,7 +340,8 @@ along with some more info and links.
 Next, click this link to open the admin interface: 
 
 -- link/
--- title: admin interface:
+-- title: admin  page link
+-- class: highlight
 
 <<link|http://127.0.0.1:8000/admin/|http://127.0.0.1:8000/admin/>>
 

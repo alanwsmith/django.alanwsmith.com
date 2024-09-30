@@ -1,0 +1,163 @@
+-- title
+
+Section 12 - Edit A Note
+
+-- h2
+
+Introduction
+
+-- h2
+
+Section Steps
+
+-- olist/
+
+- Add the url path route
+
+-- code/
+-- python
+
+path("<int:note_id>/edit/", views.edit, name="edit"),
+
+-- /code
+
+- This makes an intentional terminal error:
+
+-- pre/
+
+AttributeError TKTKTKTK
+
+-- /pre
+
+- Add "edit" to the view:
+
+-- code/
+-- python
+
+@login_required
+def edit(request, note_id):
+    note = get_object_or_404(Note, pk=note_id)
+    return render(request, "notes/edit.html", {"note": note})
+
+-- /code
+
+- That clears the error
+
+- Add the link to the edit page:
+
+-- code/
+-- html
+
+<div>
+    <a href="{% url 'notes:edit' note.id %}">edit</a>
+</div>
+
+-- /code
+
+- Click the link to see a new TemplateDoesNotExist error
+
+-- pre/
+
+TemplateDoesNotExist at /notes/1/edit/
+notes/edit.html
+
+-- /pre
+
+- Make the edit template file:
+
+-- code/
+-- html
+
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Edit Note</h1>
+</body>
+</html>
+
+-- /code
+
+- Make the forms.py file
+
+-- code/
+-- python
+
+from django import forms
+
+class NoteForm(forms.Form):
+    note_text = forms.CharField(label="Note Text", max_length=200) 
+    # TODO: Make sure the max_length matches the database 
+    # model
+
+-- /code
+
+
+- views.py needs:
+
+
+-- code/
+-- python
+
+from .forms import NoteForm
+
+# and move to:
+
+@login_required
+def edit(request, note_id):
+    form = NoteForm()
+    return render(request, "notes/edit.html", {"form": form})
+
+    # TODO: do this first instead of loading the note
+    # outside of the form
+
+-- /code
+
+
+- This is what edit looks like now:
+
+-- code/
+-- html
+
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Edit Note</h1>
+    <form action="{% url 'notes:edit' note.id %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
+
+-- /code
+
+
+
+
+
+
+-- /olist
+
+
+-- h2
+
+Wrapping Up
+
+-- h2
+
+Links
+
+Previous: <<tlink|2miqohlk>>
+
+Next: TKTKTKT
+
+
+-- metadata
+-- created: 2024-09-28T21:36:11-04:00
+-- updated: 2024-09-28T21:36:11-04:00
+-- id: 2miycfqt
+-- type: post
+-- status: scratch
+
+

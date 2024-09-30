@@ -260,6 +260,7 @@ file with this:
 -- code/
 -- html
 -- title: update for: homepage/templates/homepage/index.html
+-- class: highlight 
 
 <!DOCTYPE html>
 <html>
@@ -553,6 +554,7 @@ and update it to:
 -- python
 -- no-nums
 -- title: updated tutorial_site/settings.py line
+-- class: highlight
 
 "DIRS": [BASE_DIR / "templates"],
 
@@ -607,8 +609,9 @@ We haven't created the <<path|registration>> directory
 yet. Do that now with:
 
 -- cli/
+-- class: highlight
 
-mkdir templates/registration
+mkdir -p templates/registration
 
 -- /cli
 
@@ -618,6 +621,7 @@ with this content:
 -- code/
 -- html
 -- title: new file: tutorial_site/templates/registration/index.html
+-- class: highlight
 
 <!DOCTYPE html>
 <html>
@@ -635,6 +639,7 @@ with this content:
 With that done, we can start the server again with:
 
 -- cli/
+-- class: highlight
 
 python manage.py runserver
 
@@ -644,6 +649,7 @@ and check out the login page at:
 
 -- link/
 -- title: login page link
+-- class: highlight
 
 <<tablink|http://127.0.0.1/accounts/login/>>
 

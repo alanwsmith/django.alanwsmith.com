@@ -91,6 +91,85 @@
   
     <h2 class="section-heading">
     
+      Section Steps
+    
+    </h2>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+
+    
+
+</section>
+
+<ol class="flow">
+    
+
+
+<li class="flow">
+
+
+
+<p>
+
+Add the stuff
+
+</p>
+
+
+
+
+<section class="code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">python</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">shortcuts</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">render</span></span>
+<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">auth</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">decorators</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">login_required</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="keyword control import relative python">.</span></span><span class="meta import-path python"><span class="meta import-name python">models</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">Note</span></span> 
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta annotation python"><span class="punctuation definition annotation python">@</span><span class="meta qualified-name python"><span class="variable annotation python">login_required</span></span></span>
+<span class="line-marker"></span><span class="meta function python"><span class="storage type function python">def</span> <span class="entity name function python"><span class="meta generic-name python">index</span></span></span><span class="meta function parameters python"><span class="punctuation section parameters begin python">(</span></span><span class="meta function parameters python"><span class="variable parameter python">request</span><span class="punctuation section parameters end python">)</span></span><span class="meta function python"><span class="punctuation section function begin python">:</span></span>
+<span class="line-marker"></span>    <span class="meta qualified-name python"><span class="meta generic-name python">notes_list</span></span> <span class="keyword operator assignment python">=</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">Note</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">objects</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">order_by</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">created_at<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span>
+<span class="line-marker"></span>    <span class="meta qualified-name python"><span class="meta generic-name python">context</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure dictionary-or-set python"><span class="punctuation section dictionary-or-set begin python">{</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">notes_list<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator key-value python">:</span> <span class="meta qualified-name python"><span class="meta generic-name python">notes_list</span></span><span class="punctuation section dictionary-or-set end python">}</span></span>
+<span class="line-marker"></span>    <span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta qualified-name python"><span class="meta generic-name python">request</span></span><span class="punctuation separator arguments python">,</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">notes/index.html<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">context</span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
+    
+</div>
+</section>
+
+ 
+
+
+
+
+</li>
+
+</ol>
+
+
+
+
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">
+    
       Wrapping Up
     
     </h2>
@@ -139,7 +218,11 @@ Previous
 
 :
 
- TKTKTK
+ 
+
+<a href="/en/2miiqhla/?page=section-9-adding-page-links">
+  Section 9 - Adding Page Links
+</a>
 
 </p>
 
@@ -153,7 +236,11 @@ Next
 
 :
 
- TKTKTKT
+ 
+
+<a href="/en/2miqohlk/?page=seciton-11-view-a-single-note">
+  Seciton 11 - View A Single Note
+</a>
 
 </p>
 

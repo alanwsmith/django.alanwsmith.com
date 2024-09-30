@@ -1,22 +1,23 @@
 -- title
 
-Django 5.1 Getting Started Tutorial
+Django 5.1 Getting Started Tutorial And How-Tos
 
 -- h2
 
 Introduction
 
-Welcome to my Django Tutorial. 
+Welcome to my Django Tutorial and How-Tos
 
 This site was born out of frustration with the 
 offical Django getting started tutorial^^1^^.
-It doesn't show you 
-how to make a home page. It also skips details on 
+It doesn't show you how to make a home page. It also skips details on 
 how to do user authentication to edit content. 
-Those are both fundamental to 
-practial websites that Django is great at doing^^2^^.
+Those are both fundamental to practial websites 
+that Django is great at doing^^2^^.
 So, I made this tutorail to make it easier to get
 started with a site that includes those features. 
+
+I'm also making a <<ilink|collection of how-tos|2mneuy3c>>
 
 You can read more about the tutorial below. Or, jump straight
 into it here if you want to get started right away:
