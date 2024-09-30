@@ -200,6 +200,8 @@ def index(request):
 
 -- /code
 
+
+
 - Start the server
 
 -- cli/
@@ -210,12 +212,14 @@ python manage.py runserver
 
 -- /cli
 
+
 - Add todos
 
 Go to the "todos" section of the admin interface
 and add a few Todos to play with. Tic the checkbox
 for "is_done" on some of them and leave it off
 for others. 
+
 
 -- link/
 -- title: todos admin interface
@@ -225,11 +229,12 @@ for others.
 
 -- /link
 
+
 - Visit the todos index page and make sure they are
 showing up
 
 -- link/
--- title: todos index page 
+-- title: todos index page
 -- class: highlight
 
 <<tablink|http://127.0.0.1:8000/todos/>>
@@ -240,19 +245,15 @@ showing up
 -- /olist
 
 
-
 -- h2
 
 Adding The Functionality
 
-
 -- olist/
-
 
 - Add a <<code|data-href>> attribute to the input
 
 The attribute to add to the input elements is:
-
 
 -- code/
 -- html
@@ -350,6 +351,7 @@ etc...
 -- python
 -- no-nums
 -- title: add to: todos/views.py
+-- class: highlight
 
 from django.http import JsonResponse
 
@@ -372,7 +374,7 @@ def toggle(request, pk):
         if request.POST['checked']:
             check_value = request.POST['checked'].lower()
             try:
-                todo = WeeklyTodo.objects.get(pk=pk)
+                todo = Todo.objects.get(pk=pk)
                 if check_value == "true":
                     todo.is_done = True 
                     todo.save()
@@ -402,7 +404,7 @@ def toggle(request, pk):
             )
     else:
         return JsonResponse(
-            {"message": f"Method must be POST"},
+            {"message": f"Must be POST"},
             status=405
         )
 
@@ -454,14 +456,40 @@ document.addEventListener("DOMContentLoaded", (event) => {
 })
 </script>
 
-
-
 -- /code
 
-
-
-
 -- /olist
+
+-- endnote
+
+The JavaScript code is designed to be generic so that
+it can be used with any checkbox on the page. The
+only requirement is that the "data-href" be set
+up to point to a view that has a corresponding
+"toggle" function.
+
+-- endnote
+
+One possible enhancement is to check to make
+sure there's a "data-href" before trying to use
+it. That would provide the ability to have 
+other checkboxes on the page that don't
+trigger an attempt to toggle them in Django
+
+-- endnote 
+
+This code requires you to be logged in. 
+Currently there's no error handling if you 
+try to update without being logged in
+
+-- endnote
+
+The checkbox is currently updated on the client side
+regardless of if the Django database succeeds
+with its update or not. I'm adding error 
+handling for that in a future iteration
+
+
 
 
 -- metadata

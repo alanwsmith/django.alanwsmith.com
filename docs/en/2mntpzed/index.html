@@ -610,7 +610,7 @@ showing up</p>
 <div class="link-wrapper">
 
 
-<div class="link-title">todos index page </div>
+<div class="link-title">todos index page</div>
 
 
 <div class="link-block">
@@ -866,7 +866,7 @@ etc...</pre>
 
 
 
-<section class="code-section">
+<section class="highlight code-section">
 
 <div class="code-wrapper">
 
@@ -920,7 +920,7 @@ etc...</pre>
         <span class="meta statement if python"><span class="keyword control flow conditional python">if</span> <span class="meta item-access python"><span class="meta qualified-name python"><span class="meta generic-name python">request</span><span class="punctuation accessor dot python">.</span><span class="variable other constant python">POST</span></span></span><span class="meta item-access python"><span class="punctuation section brackets begin python">[</span></span><span class="meta item-access arguments python"><span class="meta string python"><span class="string quoted single python"><span class="punctuation definition string begin python">&#39;</span></span></span><span class="meta string python"><span class="string quoted single python">checked<span class="punctuation definition string end python">&#39;</span></span></span></span><span class="meta item-access python"><span class="punctuation section brackets end python">]</span></span><span class="punctuation section block conditional python">:</span></span>
             <span class="meta qualified-name python"><span class="meta generic-name python">check_value</span></span> <span class="keyword operator assignment python">=</span> <span class="meta item-access python"><span class="meta qualified-name python"><span class="meta generic-name python">request</span><span class="punctuation accessor dot python">.</span><span class="variable other constant python">POST</span></span></span><span class="meta item-access python"><span class="punctuation section brackets begin python">[</span></span><span class="meta item-access arguments python"><span class="meta string python"><span class="string quoted single python"><span class="punctuation definition string begin python">&#39;</span></span></span><span class="meta string python"><span class="string quoted single python">checked<span class="punctuation definition string end python">&#39;</span></span></span></span><span class="meta item-access python"><span class="punctuation section brackets end python">]</span></span><span class="meta function-call python"><span class="meta qualified-name python"><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">lower</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span>
             <span class="meta statement try python"><span class="keyword control flow try python">try</span><span class="punctuation section block try python">:</span></span>
-                <span class="meta qualified-name python"><span class="meta generic-name python">todo</span></span> <span class="keyword operator assignment python">=</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">WeeklyTodo</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">objects</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">get</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="variable parameter python">pk</span><span class="keyword operator assignment python">=</span><span class="meta qualified-name python"><span class="meta generic-name python">pk</span></span></span><span class="punctuation section arguments end python">)</span></span>
+                <span class="meta qualified-name python"><span class="meta generic-name python">todo</span></span> <span class="keyword operator assignment python">=</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">Todo</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">objects</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">get</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="variable parameter python">pk</span><span class="keyword operator assignment python">=</span><span class="meta qualified-name python"><span class="meta generic-name python">pk</span></span></span><span class="punctuation section arguments end python">)</span></span>
                 <span class="meta statement if python"><span class="keyword control flow conditional python">if</span> <span class="meta qualified-name python"><span class="meta generic-name python">check_value</span></span> <span class="keyword operator comparison python">==</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">true<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section block conditional python">:</span></span>
                     <span class="meta qualified-name python"><span class="meta generic-name python">todo</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">is_done</span></span> <span class="keyword operator assignment python">=</span> <span class="constant language python">True</span> 
                     <span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">todo</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">save</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span>
@@ -950,7 +950,7 @@ etc...</pre>
             </span><span class="punctuation section arguments end python">)</span></span>
     <span class="meta statement conditional python"><span class="keyword control flow conditional python">else</span><span class="punctuation section block python">:</span></span>
         <span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">JsonResponse</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python">
-            <span class="meta structure dictionary-or-set python"><span class="punctuation section dictionary-or-set begin python">{</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">message<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator key-value python">:</span> <span class="storage type string python">f</span><span class="meta string interpolated python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string interpolated python"><span class="string quoted double python">Method must be POST<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section dictionary-or-set end python">}</span></span><span class="punctuation separator arguments python">,</span>
+            <span class="meta structure dictionary-or-set python"><span class="punctuation section dictionary-or-set begin python">{</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">message<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator key-value python">:</span> <span class="storage type string python">f</span><span class="meta string interpolated python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string interpolated python"><span class="string quoted double python">Must be POST<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section dictionary-or-set end python">}</span></span><span class="punctuation separator arguments python">,</span>
             <span class="variable parameter python">status</span><span class="keyword operator assignment python">=</span><span class="constant numeric integer decimal python">405</span>
         </span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
     
@@ -1039,7 +1039,84 @@ file to include this script:</p>
 
 <div class="fin-token">~ fin ~</div>
 
-</main>
+
+      <section class="flow">
+        <h2>Endnotes</h2>
+        <ul class="flow">
+    
+    <li class="xendnote-item">
+  <div></div>
+  <div class="flow">
+
+      
+        
+<p>The JavaScript code is designed to be generic so that
+it can be used with any checkbox on the page. The
+only requirement is that the "data-href" be set
+up to point to a view that has a corresponding
+"toggle" function.</p>
+      
+
+
+</div>
+
+</li>
+
+<li class="xendnote-item">
+  <div></div>
+  <div class="flow">
+
+      
+        
+<p>One possible enhancement is to check to make
+sure there's a "data-href" before trying to use
+it. That would provide the ability to have 
+other checkboxes on the page that don't
+trigger an attempt to toggle them in Django</p>
+      
+
+
+</div>
+
+</li>
+
+<li class="xendnote-item">
+  <div></div>
+  <div class="flow">
+
+      
+        
+<p>This code requires you to be logged in. 
+Currently there's no error handling if you 
+try to update without being logged in</p>
+      
+
+
+</div>
+
+</li>
+
+<li class="xendnote-item">
+  <div></div>
+  <div class="flow">
+
+      
+        
+<p>The checkbox is currently updated on the client side
+regardless of if the Django database succeeds
+with its update or not. I'm adding error 
+handling for that in a future iteration</p>
+      
+
+
+</div>
+
+</li>
+
+
+    </ul>
+    </section>
+  </main>
 <footer></footer>
 
 
