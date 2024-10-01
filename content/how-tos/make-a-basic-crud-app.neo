@@ -1,0 +1,442 @@
+-- title
+
+How-To: Make A Basic "Create, Read, Update, and Delete" App
+
+-- h2
+
+Introduction
+
+-- list/
+
+- These are my notes for how to set up a basic model and views
+for a single Notes list. 
+
+- There's not any explination to speak of, it's just a copy of
+all the base files. 
+
+- This assumes you've gone though: <<tlink|2mny1qlt>>, 
+<<tlink|2mqmyqi8>>, and <<tlink|2mqkkio5>>
+
+- There's not a home page for this example, everything
+starts at: 
+
+-- link/
+
+<<tablink|http://127.0.0.1:8000/notes/|http://127.0.0.1:8000/notes/>>
+
+-- /link
+
+- Login is required for editing, creating, and deleting
+notes
+
+- This uses server side for confirmation of delete. 
+Could switch this to using javascript on the client-site,
+but the server side should probably still be there 
+for backup
+
+-- /list
+
+
+-- h2
+
+The Steps
+
+-- olist/
+
+- Create the app
+
+-- cli/
+-- class: highlight
+
+python manage.py startapp notes
+
+-- /cli
+
+- Add Notes App To INSTALLED_APPS
+
+-- code/
+-- python
+-- title: update for: site_files/settings.py
+-- class: highlight
+
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "notes.apps.NotesConfig",
+]
+
+-- /code
+
+
+- Create the Note model
+
+-- code/
+-- python
+-- title: update for: notes/models.py
+-- class: highlight
+
+from django.db import models
+
+class Note(models.Model):
+    note_title = models.CharField(max_length=200)
+    note_text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.note_title
+
+-- /code
+
+- Run the migrations
+
+-- cli/
+-- class: highlight
+
+python manage.py makemigrations notes
+python manage.py migrate 
+
+-- /cli
+
+
+
+- Make the home page point at the notes app:
+
+-- code/
+-- python
+-- title: update for: site_files/urls.py
+-- class: highlight
+
+from django.contrib import admin
+from django.urls import path
+from django.urls import include
+
+urlpatterns = [
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("admin/", admin.site.urls),
+    path("notes/", include("notes.urls")),
+]
+
+-- /code
+
+
+- Make the "notes/urls.py" file:
+
+-- code/
+-- python
+-- title: new file: notes/urls.py
+-- class: highlight
+
+
+from django.urls import path
+
+from . import views
+
+app_name = "notes"
+urlpatterns = [
+    path("", views.index, name="index"),
+    path("create/", views.create, name="create"),
+    path("<int:pk>/", views.view, name="view"),
+    path("<int:pk>/edit/", views.edit, name="edit"),
+    path("<int:pk>/delete/", views.delete, name="delete"),
+]
+
+-- /code
+
+
+- Add the admin for the notes page
+
+-- code/
+-- python
+-- title: update: notes/admin.py
+-- class: highlight
+
+from django.contrib import admin
+
+from .models import Note
+
+admin.site.register(Note)
+
+-- /code
+
+
+
+- Add the functions to: <<path|notes/views.py>> 
+
+-- code/
+-- python
+-- title: update for: notes/views.py
+-- class: highlight
+
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+
+from .models import Note 
+from .forms import NoteForm
+
+def index(request):
+    notes_list = Note.objects.order_by("created_at")
+    context = {"notes_list": notes_list}
+    return render(request, "notes/index.html", context)
+
+@login_required
+def create(request):
+    if request.method == "POST":
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # TODO: Update this url to be automatic 
+            return HttpResponseRedirect("/notes/")
+    else:
+        form = NoteForm()
+        context = { "form": form }
+        return render(request, "notes/create.html", context)
+
+@login_required
+def delete(request, pk):
+    note = get_object_or_404(Note, pk=pk)
+    if request.method == "POST":
+        note.delete()
+        # TODO: set this url automatically
+        return HttpResponseRedirect("/notes/")
+    else:
+        context = { "note": note }
+        return render(request, "notes/delete.html", context)
+
+@login_required
+def edit(request, pk):
+    note = get_object_or_404(Note, pk=pk)
+    if request.method == "POST":
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            note.note_text = form.cleaned_data["note_text"]
+            note.note_title = form.cleaned_data["note_title"]
+            note.save()
+            # TODO: Figure out how to make this redirect URL automatically
+            return HttpResponseRedirect(f"/notes/{pk}/")
+    else:
+        form = NoteForm(instance=note)
+        context = { "form": form, "note": note }
+        return render(request, "notes/edit.html", context)
+
+def view(request, pk):
+    note = get_object_or_404(Note, pk=pk)
+    return render(request, "notes/view.html", {"note": note})
+
+-- /code
+
+
+- Add the forms.py file:
+
+-- code/
+-- python
+-- title: new file: notes/forms.py
+-- class: highlight
+
+from django.forms import ModelForm
+
+from .models import Note
+
+class NoteForm(ModelForm):
+    class Meta:
+        model = Note 
+        fields = ["note_title", "note_text"]
+
+-- /code
+
+- Do the migrations:
+
+-- cli/
+-- title: make and run the migration
+
+python manage.py makemigrations notes
+python manage.py migrate
+
+-- /cli
+
+- Add "notes/forms.py"
+
+-- code/
+-- python
+-- title: create file: notes/forms.py
+-- class: highlight
+
+from django.forms import ModelForm
+
+from .models import Note
+
+class NoteForm(ModelForm):
+    class Meta:
+        model = Note 
+        fields = ["note_title", "note_text"]
+
+
+-- /code
+
+- Make the templates directory:
+
+-- cli/
+
+mkdir -p notes/templates/notes
+
+-- /cli
+
+- Create the <<path|index.html>> template
+
+-- code/
+-- python
+-- title: create file: notes/templates/notes/index.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Notes</h1>
+  <ul>
+    {% for note in notes_list %}
+      <li>
+        {{ note.note_title }}
+        <a href="{% url 'notes:view' note.id %}">view</a>
+      </li>
+    {% endfor %}
+  </ul> 
+  <div><a href="{% url 'notes:create' %}">Create A Note</a></div>
+</body>
+</html>
+
+-- /code
+
+
+- Create the <<path|view.html>> template
+
+-- code/
+-- python
+-- title: create file: notes/templates/notes/index.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+  <div>
+      <a href="{% url 'notes:index' %}">Notes</a>
+  </div>
+  <h1>Note Detail</h1>
+  <div>{{ note.note_title }}</div>
+    <div><pre>{{ note.note_text }}</pre></div>
+  <div>
+    <div>Created: {{ note.created_at }}</div>
+    <div>Updated: {{ note.updated_at }}</div>
+  </div>
+    <div>
+    <a href="{% url 'notes:edit' note.id %}">Edit note</a>
+      - 
+    <a href="{% url 'notes:delete' note.id %}">Delete note</a>
+  </div>
+</body>
+</html>
+
+-- /code
+
+
+- Create the <<path|create.html>> template
+
+-- code/
+-- python
+-- title: create file: notes/templates/notes/index.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Create A Note</h1>
+    <form action="{% url 'notes:create' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+  </body>
+</html>
+
+-- /code
+
+
+- Create the <<path|edit.html>> template
+
+-- code/
+-- python
+-- title: create file: notes/templates/notes/index.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Edit Note</h1>
+    <form action="{% url 'notes:edit' note.id %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
+
+-- /code
+
+- Create the <<path|delete.html>> template
+
+-- code/
+-- python
+-- title: create file: notes/templates/notes/index.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Confirm You Want To Delete The Note</h1>
+    <div>{{ note.note_title }}</div>
+    <div><pre>{{ note.note_text }}</pre></div>
+    <div>Created: {{ note.created_at }}</div>
+    <div>Updated: {{ note.updated_at }}</div>
+    <form action="{% url 'notes:delete' note.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+</body>
+</html>
+
+-- /code
+
+- Start the server:
+
+-- cli/
+-- class: highlight
+
+python manage.py runserver
+
+-- /cli
+
+- Visit the page:
+
+-- link
+
+<<tablink|http://127.0.0.1:8000/notes/|http://127.0.0.1:8000/notes/>>
+
+
+-- /olist
+
+
+
+
+
+
+-- metadata
+-- created: 2024-10-01T14:11:27-04:00
+-- updated: 2024-10-01T14:11:27-04:00
+-- id: 2mqzuh9i
+-- type: post
+-- status: draft 
+
+

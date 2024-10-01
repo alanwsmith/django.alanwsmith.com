@@ -1,0 +1,142 @@
+-- title
+
+Add Basic User Authencation
+
+-- h2
+
+Introduction
+
+-- list/
+
+- These are my notes for how to set up basic
+user auth
+
+- The notes assume you've already followed the
+steps in <<tlink|2mny1qlt>>
+and <<tlink|2mqmyqi8>>
+
+- Right now it only sets up so that login/logout
+can be used with the built-in users in a dev
+environment
+
+- The notes don't have a lot of details with them
+right now. It's mainly the code lines themselves. 
+I'll add more detail over time. 
+
+- TBD on what needs to change before deploying
+to production
+
+
+-- /list
+
+
+-- h2
+
+The Steps
+
+-- olist/
+
+- Add the includes import and auth include to 
+<<path|site_files/urls.py>>. The file should look 
+like this:
+
+-- code/
+-- python
+-- title: update for: site_files/urls.py
+-- class: highlight
+
+from django.contrib import admin
+from django.urls import path
+from django.urls import include
+
+urlpatterns = [
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("admin/", admin.site.urls),
+]
+
+-- /code
+
+The specific lines that were added are:
+
+-- code/
+-- python
+-- no-nums
+-- title: url import includes line
+
+from django.urls import include
+
+-- /code
+
+And <<code|urlpatters = []|python>>:
+
+-- code/
+-- python
+-- no-nums
+-- title: path include line
+
+path("accounts/", include("django.contrib.auth.urls")),
+
+-- /code
+
+
+
+
+
+- Add login/logout default redirects to the
+bottom of the <<path|site_files/settings.py>> file
+
+-- code/
+-- python
+-- class: highlight
+-- title: add to: site_files/settings.py
+
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+
+-- /code
+
+
+
+- Make the templates direcotry
+
+-- cli/
+
+mkdir -p templates/registration
+
+-- /cli
+
+
+- Add the login file:
+
+
+-- code/
+-- html
+-- title: new file: templates/registration/login.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+    <form method="post">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" value="Log In" />
+    </form>
+  </body>
+</html>
+
+-- /code
+
+
+
+-- /olist
+
+
+-- metadata
+-- created: 2024-10-01T15:40:35-04:00
+-- updated: 2024-10-01T15:40:35-04:00
+-- id: 2mqkkio5
+-- type: post
+-- status: scratch
+
+

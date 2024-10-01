@@ -1,0 +1,71 @@
+-- title
+
+Add Basic Template And Static File Handling In Django
+
+-- h2
+
+Introduction
+
+-- list/
+
+- These are my notes for adding basic static and
+template file handling for new sites
+
+- The static files are so you can server things
+like CSS and JS
+
+- The template set up preps for templates in 
+individual apps as well as a top level
+<<path|templates>> directory
+
+-- /list
+
+-- h2
+
+The Steps
+
+-- olist/
+
+- Update <<code|DIRS>> in <<path|site_files/settingsl.py>> to
+add templates
+
+Change:
+
+-- code/
+-- python
+-- no-nums
+-- title: original value in: site_files.settings.py
+
+"DIRS": [],
+
+-- /code
+
+To:
+
+-- code/
+-- python
+-- no-nums
+-- title: original value in: site_files.settings.py
+
+"DIRS": [BASE_DIR / "templates"],
+
+
+-- /code
+
+- TODO: Add static files
+
+- TODO: Add top level templates dir if necessary
+
+-- /olist
+
+
+
+
+-- metadata
+-- created: 2024-10-01T15:55:30-04:00
+-- updated: 2024-10-01T15:55:30-04:00
+-- id: 2mqmyqi8
+-- type: post
+-- status: draft 
+
+

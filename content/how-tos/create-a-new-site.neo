@@ -40,7 +40,7 @@ and module names:
   </div>
   <div>
     <label for="module-name">Module Name:</label>
-    <input type="text" id="module-name" value="site_stuff"/ >
+    <input type="text" id="module-name" value="site_files"/ >
   </div>
 </form>
 
@@ -62,8 +62,6 @@ and module names:
 python manage.py runserver
 
 -- /pre
-
-
 
 
 -- javascript

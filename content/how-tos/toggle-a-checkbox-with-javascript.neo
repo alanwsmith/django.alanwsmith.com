@@ -148,7 +148,6 @@ admin.site.register(Todo)
 
 -- /code
 
-
 - Update <<path|todos/views.py>>
 
 -- code/
@@ -156,7 +155,6 @@ admin.site.register(Todo)
 -- title: update: todos/views.py
 -- class: highlight
 
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from todos.models import Todo 
@@ -368,45 +366,36 @@ Add this to <<path|todos/views.py>>
 -- class: highlight
 -- no-nums
 
-@login_required
+# TODO: Reverify this code and format it
+# for shorter lines
+
 def toggle(request, pk):
-    if request.method == "POST":
-        if request.POST['checked']:
-            check_value = request.POST['checked'].lower()
-            try:
-                todo = Todo.objects.get(pk=pk)
-                if check_value == "true":
-                    todo.is_done = True 
-                    todo.save()
-                    return JsonResponse(
-                        {"message": f"Updated {pk}"}
-                    )
-                elif check_value == "false":
-                    todo.is_done = False 
-                    todo.save()
-                    return JsonResponse(
-                        {"message": f"Updated {pk}"}
-                    )
-                else:
-                    return JsonResponse(
-                        {"message": f"The 'checked' value must be either 'true' or 'false'"}, 
-                        status=406
-                    )
-            except:
-                return JsonResponse(
-                    {"message": f"Could not get {pk}"},
-                    status=400
-                )
+    # NOTE: Thist just tests if a user is authenticated, not
+    # for a specific user
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            if request.POST['checked']:
+                check_value = request.POST['checked'].lower()
+                try:
+                    todo = Todo.objects.get(pk=pk)
+                    if check_value == "true":
+                        todo.is_done = True 
+                        todo.save()
+                        return JsonResponse({"message": f"Updated {pk}"})
+                    elif check_value == "false":
+                        todo.is_done = False 
+                        todo.save()
+                        return JsonResponse({"message": f"Updated {pk}"})
+                    else:
+                        return JsonResponse({"message": f"The 'checked' value must be either 'true' or 'false'"}, status=406)
+                except:
+                    return JsonResponse({"message": f"Could not get {pk}"}, status=400)
+            else:
+                return JsonResponse({"message": f"Missing 'checked'"}, status=400)
         else:
-            return JsonResponse(
-                {"message": f"Missing 'checked'"},
-                status=400
-            )
+            return JsonResponse({"message": f"Must be POST"}, status=405)
     else:
-        return JsonResponse(
-            {"message": f"Must be POST"},
-            status=405
-        )
+        return JsonResponse({"message": f"Not authenticated"}, status=403)
 
 -- /code
 
@@ -476,12 +465,6 @@ it. That would provide the ability to have
 other checkboxes on the page that don't
 trigger an attempt to toggle them in Django
 
--- endnote 
-
-This code requires you to be logged in. 
-Currently there's no error handling if you 
-try to update without being logged in
-
 -- endnote
 
 The checkbox is currently updated on the client side
@@ -489,6 +472,16 @@ regardless of if the Django database succeeds
 with its update or not. I'm adding error 
 handling for that in a future iteration
 
+-- endnote
+
+TODO: Verify the 403 error status works properly 
+if you try to use the checkbox without being logged in
+
+This how-to is based off a single user site. 
+This only checks to see if the user is authenciated, 
+not for a specific user. Checking for a specific user is 
+probably what you'd want to do to make sure users can't 
+edit each other's stuff.
 
 
 
