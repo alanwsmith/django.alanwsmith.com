@@ -148,6 +148,41 @@ templates:</p>
 
 
 
+<p>Add login/logout default redirects to the
+bottom of the <path 
+
+>site_files/settings.py</path> file</p>
+
+
+
+<section class="highlight code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">append to end of: site_files/settings.py</div>
+
+
+
+
+<pre class="code-block-no-nums"><code><span class="source python"><span class="meta qualified-name python"><span class="variable other constant python">LOGIN_REDIRECT_URL</span></span> <span class="keyword operator assignment python">=</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">/<span class="punctuation definition string end python">&quot;</span></span></span>
+<span class="meta qualified-name python"><span class="variable other constant python">LOGOUT_REDIRECT_URL</span></span> <span class="keyword operator assignment python">=</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">/<span class="punctuation definition string end python">&quot;</span></span></span></span></code></pre>
+    
+</div>
+</section>
+
+ 
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
 <p>Add the includes import and auth include to 
 <path 
 
@@ -190,44 +225,9 @@ like this:</p>
 
 
 
-<p>Add login/logout default redirects to the
-bottom of the <path 
+<p>Make the <path 
 
->site_files/settings.py</path> file</p>
-
-
-
-<section class="highlight code-section">
-
-<div class="code-wrapper">
-
-
-<div class="code-title">append to end of: site_files/settings.py</div>
-
-
-
-
-<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta qualified-name python"><span class="variable other constant python">LOGIN_REDIRECT_URL</span></span> <span class="keyword operator assignment python">=</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">/<span class="punctuation definition string end python">&quot;</span></span></span>
-<span class="line-marker"></span><span class="meta qualified-name python"><span class="variable other constant python">LOGOUT_REDIRECT_URL</span></span> <span class="keyword operator assignment python">=</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">/<span class="punctuation definition string end python">&quot;</span></span></span></span></code></pre>
-    
-</div>
-</section>
-
- 
-
-
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>Create the <path 
-
->login.html</path> template:</p>
+>registration/login.html</path> page template:</p>
 
 
 
@@ -251,6 +251,49 @@ bottom of the <path
 <span class="line-marker"></span>    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block form html">form</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+    
+</div>
+</section>
+
+ 
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>Make the <path 
+
+>registration/login_status.html</path> page template</p>
+
+
+
+<section class="highlight code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">new file: templates/registration/login_status.html</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  {% if user.is_authenticated %}
+<span class="line-marker"></span>  <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block form html">form</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">action</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;logout&#39; %}?next={{ request.path }}<span class="punctuation definition string end html">&quot;</span></span></span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">method</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>post<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    {% csrf_token %}
+<span class="line-marker"></span>    User: {{ user }} - 
+<span class="line-marker"></span>    <span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline form html">button</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">type</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>submit<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log Out<span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline form html">button</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block form html">form</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  {% else %}
+<span class="line-marker"></span>  {{ user }} - <span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}?next={{ request.path }}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>login<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  {% endif %}
+<span class="line-marker"></span><span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
     
 </div>
 </section>

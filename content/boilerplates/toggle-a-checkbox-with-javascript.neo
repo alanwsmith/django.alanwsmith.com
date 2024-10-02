@@ -11,23 +11,20 @@ This post shows how to use some JavaScript on a page to
 watch for changes to checkboxes on the page and send
 a request to Django to update the value without 
 having to refresh the page. It assumes you already have
-a Django site/project set up to work with. If you don't, 
-you can follow the steps in the <<tlink|2mny1qlt>>
-
-Right now, everything is copy paste. I'll add more details
-in the future. 
+a Django site/project set up by following the 
+steps in <<tlink|2mny1qlt>>, <<tlink|2mqmyqi8>>, and
+<<tlink|2mqkkio5>>.
 
 It's also important to note that this version of the code
 doesn't work without javascript. I've got plans to make
 a more accessible version in the future. 
 
+TODO: Add logout button and make checkboxes read only
+when you're not logged in
+
 -- h2
 
-Prep Work
-
-We need something to play with. This section sets up
-a simple todo list where each todo item has a text field
-and a checkbox to indicate if it's done. 
+Boilerplate Steps
 
 
 -- olist/
@@ -53,18 +50,24 @@ mkdir -p todos/templates/todos
 -- /cli
 
 
-- Add the app to INSTALLED_APPS
+- Add the app to <<code|INSTALLED_APPS=[]|python>>
 
 -- code/
 -- python
--- title: edit: site_config/settings.py
+-- title: change for: site_config/settings.py
 -- class: highlight
 -- no-nums
 
 INSTALLED_APPS = [
-    # ... existing installed apps ...
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
     "todos.apps.TodosConfig",
 ]
+
 
 -- /code
 
@@ -72,14 +75,16 @@ INSTALLED_APPS = [
 
 -- code/
 -- python
--- title: update: site_config/urls.py
+-- title: full updated content for: site_config/urls.py
 -- class: highlight
+
 
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
 
 urlpatterns = [
+    path("accounts/", include("django.contrib.auth.urls")),
     path("admin/", admin.site.urls),
     path("todos/", include("todos.urls")),
 ]
@@ -90,7 +95,7 @@ urlpatterns = [
 
 -- code/
 -- python
--- title: create: todos/urls.py
+-- title: create new file: todos/urls.py
 -- class: highlight
 
 from django.urls import path
@@ -100,6 +105,7 @@ from . import views
 app_name = "todos"
 urlpatterns = [
     path("", views.index, name="index"),
+    path("<int:pk>/toggle/", views.toggle, name="toggle"),
 ]
 
 -- /code
@@ -108,7 +114,7 @@ urlpatterns = [
 
 -- code/
 -- python
--- title: update: todos/models.py
+-- title: full updated content for: todos/models.py
 -- class: highlight
 
 from django.db import models
@@ -122,22 +128,11 @@ class Todo(models.Model):
 
 -- /code
 
-- Run the todos migration
-
--- cli/
--- title: make and run the migration
--- class: highlight
-
-python manage.py makemigrations todos
-python manage.py migrate
-
--- /cli
-
 - Add the todos to the admin interface
 
 -- code/
 -- python
--- title: update: todos/admin.py
+-- title: full updated content for: todos/admin.py
 -- class: highlight
 
 from django.contrib import admin
@@ -152,52 +147,134 @@ admin.site.register(Todo)
 
 -- code/
 -- python
--- title: update: todos/views.py
+-- title: full updated content for: todos/views.py
 -- class: highlight
 
 from django.shortcuts import render
+from django.http import JsonResponse
 
 from todos.models import Todo 
 
 def index(request):
     todos = Todo.objects.all()
-    context = { "todods": todos }
+    context = { "todos": todos }
     return render(request, "todos/index.html", context)
+
+def toggle(request, pk):
+    # NOTE: This just tests if a user is authenticated, not
+    # for a specific user. That's a future enhancement to make
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            if request.POST['checked']:
+                check_value = request.POST['checked'].lower()
+                try:
+                    todo = Todo.objects.get(pk=pk)
+                    if check_value == "true":
+                        todo.is_done = True 
+                        todo.save()
+                        return JsonResponse({"message": f"Updated {pk}"})
+                    elif check_value == "false":
+                        todo.is_done = False 
+                        todo.save()
+                        return JsonResponse({"message": f"Updated {pk}"})
+                    else:
+                        return JsonResponse({"message": f"The 'checked' value must be either 'true' or 'false'"}, status=406)
+                except:
+                    return JsonResponse({"message": f"Could not get {pk}"}, status=400)
+            else:
+                return JsonResponse({"message": f"Missing 'checked'"}, status=400)
+        else:
+            return JsonResponse({"message": f"Must be POST"}, status=405)
+    else:
+        return JsonResponse({"message": f"Not authenticated"}, status=403)
 
 -- /code
 
 
-- Make the initial todos index page template
+- Make the <<path|todos/index.html>> page template
 
 -- code/
 -- html
--- title: create: todos/templates/todos/index.html
+-- title: create new file: todos/templates/todos/index.html
 -- class: highlight
 
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+function addCheckboxToggles() {
+  const checkboxes = document.querySelectorAll('[type=checkbox]')
+  checkboxes.forEach((cb) => {
+    cb.addEventListener("change", toggleCheckbox)
+  })
+}
+
+async function toggleCheckbox(event) {
+  const el = event.target
+  const csrf_token = document.querySelector(
+    '[name=csrfmiddlewaretoken]'
+  ).value
+  const fd = new FormData()
+  fd.append("csrfmiddlewaretoken", csrf_token)
+  fd.append("checked", el.checked)
+  const request = new Request(el.dataset.href, {
+    method: "POST",
+    body: fd
+  });
+  const response = await fetch(request);
+  const json = await response.json();
+  if (!response.ok) {
+    console.log(`Error: ${json.message}`)
+  } 
+  else {
+    console.log(`Ok: ${json.message}`)
+  }
+}
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  addCheckboxToggles()
+})
+</script>
 </head>
 <body>
+    {% include 'registration/login_status.html' %}
     <h1>To Dos</h1>
+    <form>
+      {% csrf_token %}
     <ul>
     {% for todo in todos %}
       <li>
         <input 
           type="checkbox"
+          data-href="{% url 'todos:toggle' todo.id %}"
           {% if todo.is_done %}
             checked="checked"
+          {% endif %}
+          {% if not user.is_authenticated %}
+            disabled
           {% endif %}
         />
         {{ todo.todo_text }}
       </li>
     {% endfor %}
     </ul>
+    </form>
 </body>
 </html>
 
 -- /code
 
+
+- Run the todos migration
+
+-- cli/
+-- title: make and run the migration
+-- class: highlight
+
+python manage.py makemigrations todos
+python manage.py migrate
+
+-- /cli
 
 
 - Start the server
@@ -218,12 +295,14 @@ and add a few Todos to play with. Tic the checkbox
 for "is_done" on some of them and leave it off
 for others. 
 
+(You'll need to login with your superuser admin
+username/password if you haven't already)
 
 -- link/
 -- title: todos admin interface
 -- class: highlight
 
-<<tablink|http://127.0.0.1:8000/admin/todos/todo/add/>>
+<<tablink|http://127.0.0.1:8000/admin/todos/todo/add/|http://127.0.0.1:8000/admin/todos/todo/add/>>
 
 -- /link
 
@@ -235,7 +314,7 @@ showing up
 -- title: todos index page
 -- class: highlight
 
-<<tablink|http://127.0.0.1:8000/todos/>>
+<<tablink|http://127.0.0.1:8000/todos/|http://127.0.0.1:8000/todos/>>
 
 -- /link
 

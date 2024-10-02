@@ -78,16 +78,15 @@ Function Without Refreshing The Page</h1>
 watch for changes to checkboxes on the page and send
 a request to Django to update the value without 
 having to refresh the page. It assumes you already have
-a Django site/project set up to work with. If you don't, 
-you can follow the steps in the <a href="/en/2mny1qlt/?page=boilerplate-create-a-new-django-site-x2f-project">
+a Django site/project set up by following the 
+steps in <a href="/en/2mny1qlt/?page=boilerplate-create-a-new-django-site-x2f-project">
   Boilerplate: Create A New Django Site&#x2F;Project
-</a></p>
-
-
-
-    
-<p>Right now, everything is copy paste. I'll add more details
-in the future. </p>
+</a>, <a href="/en/2mqmyqi8/?page=boilerplate-add-basic-template-and-static-file-handling-in-django">
+  Boilerplate: Add Basic Template And Static File Handling In Django
+</a>, and
+<a href="/en/2mqkkio5/?page=boilerplate-add-basic-user-authencation-to-a-django-site">
+  Boilerplate: Add Basic User Authencation To A Django Site
+</a>.</p>
 
 
 
@@ -95,6 +94,12 @@ in the future. </p>
 <p>It's also important to note that this version of the code
 doesn't work without javascript. I've got plans to make
 a more accessible version in the future. </p>
+
+
+
+    
+<p>TODO: Add logout button and make checkboxes read only
+when you're not logged in</p>
 
 
 
@@ -113,10 +118,8 @@ a more accessible version in the future. </p>
 <hgroup>
 
   
-    <h2 class="section-heading">Prep Work</h2>
+    <h2 class="section-heading">Boilerplate Steps</h2>
     
-  
-
   
 
 </hgroup>
@@ -126,15 +129,6 @@ a more accessible version in the future. </p>
 
 
 
-    
-<p>We need something to play with. This section sets up
-a simple todo list where each todo item has a text field
-and a checkbox to indicate if it's done. </p>
-
-
-
-
-    
 
     
 
@@ -216,7 +210,7 @@ and a checkbox to indicate if it's done. </p>
 
 
 
-<p>Add the app to INSTALLED_APPS</p>
+<p>Add the app to <code class=""><span class="source python"><span class="meta qualified-name python"><span class="variable other constant python">INSTALLED_APPS</span></span><span class="keyword operator assignment python">=</span><span class="meta structure list python"><span class="punctuation section list begin python">[</span><span class="punctuation section list end python">]</span></span></span></code></p>
 
 
 
@@ -225,14 +219,19 @@ and a checkbox to indicate if it's done. </p>
 <div class="code-wrapper">
 
 
-<div class="code-title">edit: site_config/settings.py</div>
+<div class="code-title">change for: site_config/settings.py</div>
 
 
 
 
 <pre class="code-block-no-nums"><code><span class="source python"><span class="meta qualified-name python"><span class="variable other constant python">INSTALLED_APPS</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
-    <span class="comment line number-sign python"><span class="punctuation definition comment python">#</span> ... existing installed apps ...
-</span>    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">todos.apps.TodosConfig<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.admin<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.contenttypes<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.sessions<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.messages<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.staticfiles<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
+    <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">todos.apps.TodosConfig<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
 <span class="punctuation section list end python">]</span></span></span></code></pre>
     
 </div>
@@ -261,7 +260,7 @@ and a checkbox to indicate if it's done. </p>
 <div class="code-wrapper">
 
 
-<div class="code-title">update: site_config/urls.py</div>
+<div class="code-title">full updated content for: site_config/urls.py</div>
 
 
 
@@ -271,6 +270,7 @@ and a checkbox to indicate if it's done. </p>
 <span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">include</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
+<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">accounts/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">admin/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">todos/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">todos.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
 <span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
@@ -299,7 +299,7 @@ and a checkbox to indicate if it's done. </p>
 <div class="code-wrapper">
 
 
-<div class="code-title">create: todos/urls.py</div>
+<div class="code-title">create new file: todos/urls.py</div>
 
 
 
@@ -311,6 +311,7 @@ and a checkbox to indicate if it's done. </p>
 <span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">app_name</span></span> <span class="keyword operator assignment python">=</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">todos<span class="punctuation definition string end python">&quot;</span></span></span>
 <span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">views</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">index</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">name</span><span class="keyword operator assignment python">=</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">index<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">&lt;int:pk&gt;/toggle/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">views</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">toggle</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">name</span><span class="keyword operator assignment python">=</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">toggle<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
 <span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
     
 </div>
@@ -337,7 +338,7 @@ and a checkbox to indicate if it's done. </p>
 <div class="code-wrapper">
 
 
-<div class="code-title">update: todos/models.py</div>
+<div class="code-title">full updated content for: todos/models.py</div>
 
 
 
@@ -350,6 +351,205 @@ and a checkbox to indicate if it's done. </p>
 <span class="line-marker"></span>
 <span class="line-marker"></span><span class="meta function python">    <span class="storage type function python">def</span> <span class="entity name function python"><span class="support function magic python">__str__</span></span></span><span class="meta function parameters python"><span class="punctuation section parameters begin python">(</span></span><span class="meta function parameters python"><span class="variable parameter python">self</span><span class="punctuation section parameters end python">)</span></span><span class="meta function python"><span class="punctuation section function begin python">:</span></span>
 <span class="line-marker"></span>        <span class="keyword control flow return python">return</span> <span class="meta qualified-name python"><span class="variable language python">self</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">todo_text</span></span></span></code></pre>
+    
+</div>
+</section>
+
+ 
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>Add the todos to the admin interface</p>
+
+
+
+<section class="highlight code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">full updated content for: todos/admin.py</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="keyword control import relative python">.</span></span><span class="meta import-path python"><span class="meta import-name python">models</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">Todo</span></span> 
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">register</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta qualified-name python"><span class="meta generic-name python">Todo</span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
+    
+</div>
+</section>
+
+ 
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>Update <path 
+
+>todos/views.py</path></p>
+
+
+
+<section class="highlight code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">full updated content for: todos/views.py</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">shortcuts</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">render</span></span>
+<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">http</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">JsonResponse</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">todos</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">models</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">Todo</span></span> 
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta function python"><span class="storage type function python">def</span> <span class="entity name function python"><span class="meta generic-name python">index</span></span></span><span class="meta function parameters python"><span class="punctuation section parameters begin python">(</span></span><span class="meta function parameters python"><span class="variable parameter python">request</span><span class="punctuation section parameters end python">)</span></span><span class="meta function python"><span class="punctuation section function begin python">:</span></span>
+<span class="line-marker"></span>    <span class="meta qualified-name python"><span class="meta generic-name python">todos</span></span> <span class="keyword operator assignment python">=</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">Todo</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">objects</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">all</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span>
+<span class="line-marker"></span>    <span class="meta qualified-name python"><span class="meta generic-name python">context</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure dictionary-or-set python"><span class="punctuation section dictionary-or-set begin python">{</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">todos<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator key-value python">:</span> <span class="meta qualified-name python"><span class="meta generic-name python">todos</span></span> <span class="punctuation section dictionary-or-set end python">}</span></span>
+<span class="line-marker"></span>    <span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta qualified-name python"><span class="meta generic-name python">request</span></span><span class="punctuation separator arguments python">,</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">todos/index.html<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">context</span></span></span><span class="punctuation section arguments end python">)</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta function python"><span class="storage type function python">def</span> <span class="entity name function python"><span class="meta generic-name python">toggle</span></span></span><span class="meta function parameters python"><span class="punctuation section parameters begin python">(</span></span><span class="meta function parameters python"><span class="variable parameter python">request</span><span class="punctuation separator parameters python">,</span> <span class="variable parameter python">pk</span><span class="punctuation section parameters end python">)</span></span><span class="meta function python"><span class="punctuation section function begin python">:</span></span>
+<span class="line-marker"></span>    <span class="comment line number-sign python"><span class="punctuation definition comment python">#</span> NOTE: This just tests if a user is authenticated, not
+<span class="line-marker"></span></span>    <span class="comment line number-sign python"><span class="punctuation definition comment python">#</span> for a specific user. That&#39;s a future enhancement to make
+<span class="line-marker"></span></span>    <span class="meta statement if python"><span class="keyword control flow conditional python">if</span> <span class="meta qualified-name python"><span class="meta generic-name python">request</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">user</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">is_authenticated</span></span><span class="punctuation section block conditional python">:</span></span>
+<span class="line-marker"></span>        <span class="meta statement if python"><span class="keyword control flow conditional python">if</span> <span class="meta qualified-name python"><span class="meta generic-name python">request</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">method</span></span> <span class="keyword operator comparison python">==</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">POST<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section block conditional python">:</span></span>
+<span class="line-marker"></span>            <span class="meta statement if python"><span class="keyword control flow conditional python">if</span> <span class="meta item-access python"><span class="meta qualified-name python"><span class="meta generic-name python">request</span><span class="punctuation accessor dot python">.</span><span class="variable other constant python">POST</span></span></span><span class="meta item-access python"><span class="punctuation section brackets begin python">[</span></span><span class="meta item-access arguments python"><span class="meta string python"><span class="string quoted single python"><span class="punctuation definition string begin python">&#39;</span></span></span><span class="meta string python"><span class="string quoted single python">checked<span class="punctuation definition string end python">&#39;</span></span></span></span><span class="meta item-access python"><span class="punctuation section brackets end python">]</span></span><span class="punctuation section block conditional python">:</span></span>
+<span class="line-marker"></span>                <span class="meta qualified-name python"><span class="meta generic-name python">check_value</span></span> <span class="keyword operator assignment python">=</span> <span class="meta item-access python"><span class="meta qualified-name python"><span class="meta generic-name python">request</span><span class="punctuation accessor dot python">.</span><span class="variable other constant python">POST</span></span></span><span class="meta item-access python"><span class="punctuation section brackets begin python">[</span></span><span class="meta item-access arguments python"><span class="meta string python"><span class="string quoted single python"><span class="punctuation definition string begin python">&#39;</span></span></span><span class="meta string python"><span class="string quoted single python">checked<span class="punctuation definition string end python">&#39;</span></span></span></span><span class="meta item-access python"><span class="punctuation section brackets end python">]</span></span><span class="meta function-call python"><span class="meta qualified-name python"><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">lower</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span>
+<span class="line-marker"></span>                <span class="meta statement try python"><span class="keyword control flow try python">try</span><span class="punctuation section block try python">:</span></span>
+<span class="line-marker"></span>                    <span class="meta qualified-name python"><span class="meta generic-name python">todo</span></span> <span class="keyword operator assignment python">=</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">Todo</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">objects</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">get</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="variable parameter python">pk</span><span class="keyword operator assignment python">=</span><span class="meta qualified-name python"><span class="meta generic-name python">pk</span></span></span><span class="punctuation section arguments end python">)</span></span>
+<span class="line-marker"></span>                    <span class="meta statement if python"><span class="keyword control flow conditional python">if</span> <span class="meta qualified-name python"><span class="meta generic-name python">check_value</span></span> <span class="keyword operator comparison python">==</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">true<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section block conditional python">:</span></span>
+<span class="line-marker"></span>                        <span class="meta qualified-name python"><span class="meta generic-name python">todo</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">is_done</span></span> <span class="keyword operator assignment python">=</span> <span class="constant language python">True</span> 
+<span class="line-marker"></span>                        <span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">todo</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">save</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span>
+<span class="line-marker"></span>                        <span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">JsonResponse</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta structure dictionary-or-set python"><span class="punctuation section dictionary-or-set begin python">{</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">message<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator key-value python">:</span> <span class="storage type string python">f</span><span class="meta string interpolated python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string interpolated python"><span class="string quoted double python">Updated </span><span class="meta interpolation python"><span class="punctuation section interpolation begin python">{</span><span class="source python embedded"><span class="meta qualified-name python"><span class="meta generic-name python">pk</span></span></span></span><span class="meta interpolation python"><span class="punctuation section interpolation end python">}</span></span><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section dictionary-or-set end python">}</span></span></span><span class="punctuation section arguments end python">)</span></span>
+<span class="line-marker"></span>                    <span class="meta statement conditional python"><span class="keyword control flow conditional python">elif</span></span> <span class="meta qualified-name python"><span class="meta generic-name python">check_value</span></span> <span class="keyword operator comparison python">==</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">false<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator annotation variable python">:</span>
+<span class="line-marker"></span>                        <span class="meta qualified-name python"><span class="meta generic-name python">todo</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">is_done</span></span> <span class="keyword operator assignment python">=</span> <span class="constant language python">False</span> 
+<span class="line-marker"></span>                        <span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">todo</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">save</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span>
+<span class="line-marker"></span>                        <span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">JsonResponse</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta structure dictionary-or-set python"><span class="punctuation section dictionary-or-set begin python">{</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">message<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator key-value python">:</span> <span class="storage type string python">f</span><span class="meta string interpolated python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string interpolated python"><span class="string quoted double python">Updated </span><span class="meta interpolation python"><span class="punctuation section interpolation begin python">{</span><span class="source python embedded"><span class="meta qualified-name python"><span class="meta generic-name python">pk</span></span></span></span><span class="meta interpolation python"><span class="punctuation section interpolation end python">}</span></span><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section dictionary-or-set end python">}</span></span></span><span class="punctuation section arguments end python">)</span></span>
+<span class="line-marker"></span>                    <span class="meta statement conditional python"><span class="keyword control flow conditional python">else</span><span class="punctuation section block python">:</span></span>
+<span class="line-marker"></span>                        <span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">JsonResponse</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta structure dictionary-or-set python"><span class="punctuation section dictionary-or-set begin python">{</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">message<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator key-value python">:</span> <span class="storage type string python">f</span><span class="meta string interpolated python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string interpolated python"><span class="string quoted double python">The &#39;checked&#39; value must be either &#39;true&#39; or &#39;false&#39;<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section dictionary-or-set end python">}</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">status</span><span class="keyword operator assignment python">=</span><span class="constant numeric integer decimal python">406</span></span><span class="punctuation section arguments end python">)</span></span>
+<span class="line-marker"></span>                <span class="meta statement except python"><span class="keyword control flow except python">except</span><span class="punctuation section block except python">:</span></span>
+<span class="line-marker"></span>                    <span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">JsonResponse</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta structure dictionary-or-set python"><span class="punctuation section dictionary-or-set begin python">{</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">message<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator key-value python">:</span> <span class="storage type string python">f</span><span class="meta string interpolated python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string interpolated python"><span class="string quoted double python">Could not get </span><span class="meta interpolation python"><span class="punctuation section interpolation begin python">{</span><span class="source python embedded"><span class="meta qualified-name python"><span class="meta generic-name python">pk</span></span></span></span><span class="meta interpolation python"><span class="punctuation section interpolation end python">}</span></span><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section dictionary-or-set end python">}</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">status</span><span class="keyword operator assignment python">=</span><span class="constant numeric integer decimal python">400</span></span><span class="punctuation section arguments end python">)</span></span>
+<span class="line-marker"></span>            <span class="meta statement conditional python"><span class="keyword control flow conditional python">else</span><span class="punctuation section block python">:</span></span>
+<span class="line-marker"></span>                <span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">JsonResponse</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta structure dictionary-or-set python"><span class="punctuation section dictionary-or-set begin python">{</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">message<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator key-value python">:</span> <span class="storage type string python">f</span><span class="meta string interpolated python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string interpolated python"><span class="string quoted double python">Missing &#39;checked&#39;<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section dictionary-or-set end python">}</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">status</span><span class="keyword operator assignment python">=</span><span class="constant numeric integer decimal python">400</span></span><span class="punctuation section arguments end python">)</span></span>
+<span class="line-marker"></span>        <span class="meta statement conditional python"><span class="keyword control flow conditional python">else</span><span class="punctuation section block python">:</span></span>
+<span class="line-marker"></span>            <span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">JsonResponse</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta structure dictionary-or-set python"><span class="punctuation section dictionary-or-set begin python">{</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">message<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator key-value python">:</span> <span class="storage type string python">f</span><span class="meta string interpolated python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string interpolated python"><span class="string quoted double python">Must be POST<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section dictionary-or-set end python">}</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">status</span><span class="keyword operator assignment python">=</span><span class="constant numeric integer decimal python">405</span></span><span class="punctuation section arguments end python">)</span></span>
+<span class="line-marker"></span>    <span class="meta statement conditional python"><span class="keyword control flow conditional python">else</span><span class="punctuation section block python">:</span></span>
+<span class="line-marker"></span>        <span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">JsonResponse</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta structure dictionary-or-set python"><span class="punctuation section dictionary-or-set begin python">{</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">message<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator key-value python">:</span> <span class="storage type string python">f</span><span class="meta string interpolated python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string interpolated python"><span class="string quoted double python">Not authenticated<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section dictionary-or-set end python">}</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">status</span><span class="keyword operator assignment python">=</span><span class="constant numeric integer decimal python">403</span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
+    
+</div>
+</section>
+
+ 
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>Make the <path 
+
+>todos/index.html</path> page template</p>
+
+
+
+<section class="highlight code-section">
+
+<div class="code-wrapper">
+
+
+<div class="code-title">create new file: todos/templates/todos/index.html</div>
+
+
+
+
+<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">head</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag script begin html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag script html">script</span></span><span class="meta tag script begin html"><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="source js embedded html"><span class="source js"><span class="meta function declaration js"><span class="storage type function js">function</span> <span class="entity name function js">addCheckboxToggles</span><span class="punctuation section group begin js">(</span><span class="punctuation section group end js">)</span><span class="meta function declaration js"> </span></span><span class="meta block js"><span class="punctuation section block js">{</span>
+<span class="line-marker"></span>  <span class="storage type js">const</span> <span class="variable other readwrite js">checkboxes</span> <span class="keyword operator assignment js">=</span> <span class="support type object dom js">document</span><span class="punctuation accessor js">.</span><span class="meta function-call method js"><span class="variable function js">querySelectorAll</span><span class="meta group js"><span class="punctuation section group js">(</span><span class="string quoted single js"><span class="punctuation definition string begin js">&#39;</span>[type=checkbox]<span class="punctuation definition string end js">&#39;</span></span></span><span class="meta group js"><span class="punctuation section group js">)</span></span></span>
+<span class="line-marker"></span>  <span class="variable other object js">checkboxes</span><span class="punctuation accessor js">.</span><span class="meta function-call method js"><span class="variable function js">forEach</span><span class="meta group js"><span class="punctuation section group js">(</span><span class="meta function declaration js"><span class="punctuation section group begin js">(</span><span class="variable parameter function js">cb</span><span class="punctuation section group end js">)</span><span class="meta function declaration js"> </span><span class="storage type function arrow js">=&gt;</span></span> <span class="meta block js"><span class="punctuation section block js">{</span>
+<span class="line-marker"></span>    <span class="variable other object js">cb</span><span class="punctuation accessor js">.</span><span class="meta function-call method js"><span class="variable function js">addEventListener</span><span class="meta group js"><span class="punctuation section group js">(</span><span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>change<span class="punctuation definition string end js">&quot;</span></span><span class="punctuation separator comma js">,</span> <span class="variable other readwrite js">toggleCheckbox</span></span><span class="meta group js"><span class="punctuation section group js">)</span></span></span>
+<span class="line-marker"></span>  <span class="punctuation section block js">}</span></span></span><span class="meta group js"><span class="punctuation section group js">)</span></span></span>
+<span class="line-marker"></span><span class="punctuation section block js">}</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta function declaration js"><span class="storage type js">async</span> <span class="storage type function js">function</span> <span class="entity name function js">toggleCheckbox</span><span class="punctuation section group begin js">(</span><span class="variable parameter function js">event</span><span class="punctuation section group end js">)</span><span class="meta function declaration js"> </span></span><span class="meta block js"><span class="punctuation section block js">{</span>
+<span class="line-marker"></span>  <span class="storage type js">const</span> <span class="variable other readwrite js">el</span> <span class="keyword operator assignment js">=</span> <span class="variable other object js">event</span><span class="punctuation accessor js">.</span><span class="meta property object js">target</span>
+<span class="line-marker"></span>  <span class="storage type js">const</span> <span class="variable other readwrite js">csrf_token</span> <span class="keyword operator assignment js">=</span> <span class="support type object dom js">document</span><span class="punctuation accessor js">.</span><span class="meta function-call method js"><span class="variable function js">querySelector</span><span class="meta group js"><span class="punctuation section group js">(</span>
+<span class="line-marker"></span>    <span class="string quoted single js"><span class="punctuation definition string begin js">&#39;</span>[name=csrfmiddlewaretoken]<span class="punctuation definition string end js">&#39;</span></span>
+<span class="line-marker"></span>  </span><span class="meta group js"><span class="punctuation section group js">)</span></span></span><span class="punctuation accessor js">.</span><span class="meta property object js">value</span>
+<span class="line-marker"></span>  <span class="storage type js">const</span> <span class="variable other readwrite js">fd</span> <span class="keyword operator assignment js">=</span> <span class="meta instance constructor js"><span class="keyword operator word new js">new</span><span class="meta function-call constructor js"> <span class="variable type js">FormData</span><span class="meta group js"><span class="punctuation section group js">(</span></span><span class="meta group js"><span class="punctuation section group js">)</span></span></span></span>
+<span class="line-marker"></span>  <span class="variable other object js">fd</span><span class="punctuation accessor js">.</span><span class="meta function-call method js"><span class="variable function js">append</span><span class="meta group js"><span class="punctuation section group js">(</span><span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>csrfmiddlewaretoken<span class="punctuation definition string end js">&quot;</span></span><span class="punctuation separator comma js">,</span> <span class="variable other readwrite js">csrf_token</span></span><span class="meta group js"><span class="punctuation section group js">)</span></span></span>
+<span class="line-marker"></span>  <span class="variable other object js">fd</span><span class="punctuation accessor js">.</span><span class="meta function-call method js"><span class="variable function js">append</span><span class="meta group js"><span class="punctuation section group js">(</span><span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>checked<span class="punctuation definition string end js">&quot;</span></span><span class="punctuation separator comma js">,</span> <span class="variable other object js">el</span><span class="punctuation accessor js">.</span><span class="meta property object js">checked</span></span><span class="meta group js"><span class="punctuation section group js">)</span></span></span>
+<span class="line-marker"></span>  <span class="storage type js">const</span> <span class="variable other readwrite js">request</span> <span class="keyword operator assignment js">=</span> <span class="meta instance constructor js"><span class="keyword operator word new js">new</span><span class="meta function-call constructor js"> <span class="variable type js">Request</span><span class="meta group js"><span class="punctuation section group js">(</span><span class="variable other object js">el</span><span class="punctuation accessor js">.</span><span class="meta property object js">dataset</span><span class="punctuation accessor js">.</span><span class="meta property object js">href</span><span class="punctuation separator comma js">,</span> <span class="meta object-literal js"><span class="punctuation section block js">{</span>
+<span class="line-marker"></span>    <span class="meta object-literal key js">method</span><span class="punctuation separator key-value js">:</span> <span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>POST<span class="punctuation definition string end js">&quot;</span></span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>    <span class="meta object-literal key js">body</span><span class="punctuation separator key-value js">:</span> <span class="variable other readwrite js">fd</span>
+<span class="line-marker"></span>  <span class="punctuation section block js">}</span></span></span><span class="meta group js"><span class="punctuation section group js">)</span></span></span></span><span class="punctuation terminator statement js">;</span>
+<span class="line-marker"></span>  <span class="storage type js">const</span> <span class="variable other readwrite js">response</span> <span class="keyword operator assignment js">=</span> <span class="variable other readwrite js">await</span> <span class="meta function-call js"><span class="variable function js">fetch</span><span class="meta group js"><span class="punctuation section group js">(</span><span class="variable other readwrite js">request</span></span><span class="meta group js"><span class="punctuation section group js">)</span></span></span><span class="punctuation terminator statement js">;</span>
+<span class="line-marker"></span>  <span class="storage type js">const</span> <span class="variable other readwrite js">json</span> <span class="keyword operator assignment js">=</span> <span class="variable other readwrite js">await</span> <span class="variable other object js">response</span><span class="punctuation accessor js">.</span><span class="meta function-call method js"><span class="variable function js">json</span><span class="meta group js"><span class="punctuation section group js">(</span></span><span class="meta group js"><span class="punctuation section group js">)</span></span></span><span class="punctuation terminator statement js">;</span>
+<span class="line-marker"></span>  <span class="meta conditional js"><span class="keyword control conditional js">if</span> <span class="meta group js"><span class="punctuation section group js">(</span><span class="keyword operator logical js">!</span><span class="variable other object js">response</span><span class="punctuation accessor js">.</span><span class="meta property object js">ok</span><span class="punctuation section group js">)</span></span> <span class="meta block js"><span class="punctuation section block js">{</span>
+<span class="line-marker"></span>    <span class="meta function-call method js"><span class="support type object console js">console</span><span class="punctuation accessor js">.</span><span class="support function console js">log</span><span class="meta group js"><span class="punctuation section group js">(</span><span class="string template js"><span class="punctuation definition string template begin js">`</span>Error: </span><span class="meta template expression js"><span class="punctuation definition template-expression begin js">${</span></span><span class="meta template expression js"><span class="source js embedded expression"><span class="variable other object js">json</span><span class="punctuation accessor js">.</span><span class="meta property object js">message</span></span><span class="punctuation definition template-expression end js">}</span></span><span class="string template js"><span class="punctuation definition string template end js">`</span></span></span><span class="meta group js"><span class="punctuation section group js">)</span></span></span>
+<span class="line-marker"></span>  </span><span class="meta block js"><span class="punctuation section block js">}</span></span></span> 
+<span class="line-marker"></span>  <span class="meta conditional js"><span class="keyword control conditional js">else</span> <span class="meta block js"><span class="punctuation section block js">{</span>
+<span class="line-marker"></span>    <span class="meta function-call method js"><span class="support type object console js">console</span><span class="punctuation accessor js">.</span><span class="support function console js">log</span><span class="meta group js"><span class="punctuation section group js">(</span><span class="string template js"><span class="punctuation definition string template begin js">`</span>Ok: </span><span class="meta template expression js"><span class="punctuation definition template-expression begin js">${</span></span><span class="meta template expression js"><span class="source js embedded expression"><span class="variable other object js">json</span><span class="punctuation accessor js">.</span><span class="meta property object js">message</span></span><span class="punctuation definition template-expression end js">}</span></span><span class="string template js"><span class="punctuation definition string template end js">`</span></span></span><span class="meta group js"><span class="punctuation section group js">)</span></span></span>
+<span class="line-marker"></span>  </span><span class="meta block js"><span class="punctuation section block js">}</span></span></span>
+<span class="line-marker"></span><span class="punctuation section block js">}</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="support type object dom js">document</span><span class="punctuation accessor js">.</span><span class="meta function-call method js"><span class="variable function js">addEventListener</span><span class="meta group js"><span class="punctuation section group js">(</span><span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>DOMContentLoaded<span class="punctuation definition string end js">&quot;</span></span><span class="punctuation separator comma js">,</span> <span class="meta function declaration js"><span class="punctuation section group begin js">(</span><span class="variable parameter function js">event</span><span class="punctuation section group end js">)</span><span class="meta function declaration js"> </span><span class="storage type function arrow js">=&gt;</span></span> <span class="meta block js"><span class="punctuation section block js">{</span>
+<span class="line-marker"></span>  <span class="meta function-call js"><span class="variable function js">addCheckboxToggles</span><span class="meta group js"><span class="punctuation section group js">(</span></span><span class="meta group js"><span class="punctuation section group js">)</span></span></span>
+<span class="line-marker"></span><span class="punctuation section block js">}</span></span></span><span class="meta group js"><span class="punctuation section group js">)</span></span></span>
+<span class="line-marker"></span></span></span><span class="meta tag script end html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag script html">script</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">head</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    {% include &#39;registration/login_status.html&#39; %}
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>To Dos<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block form html">form</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>      {% csrf_token %}
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">ul</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    {% for todo in todos %}
+<span class="line-marker"></span>      <span class="meta tag inline any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline any html">li</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>        <span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline form html">input</span> 
+<span class="line-marker"></span>          <span class="meta attribute-with-value html"><span class="entity other attribute-name html">type</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>checkbox<span class="punctuation definition string end html">&quot;</span></span></span>
+<span class="line-marker"></span>          <span class="meta attribute-with-value html"><span class="entity other attribute-name html">data-href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;todos:toggle&#39; todo.id %}<span class="punctuation definition string end html">&quot;</span></span></span>
+<span class="line-marker"></span>          {% <span class="entity other attribute-name html">if</span> <span class="entity other attribute-name html">todo.is_done</span> %}
+<span class="line-marker"></span>            <span class="meta attribute-with-value html"><span class="entity other attribute-name html">checked</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>checked<span class="punctuation definition string end html">&quot;</span></span></span>
+<span class="line-marker"></span>          {% <span class="entity other attribute-name html">endif</span> %}
+<span class="line-marker"></span>          {% <span class="entity other attribute-name html">if</span> <span class="entity other attribute-name html">not</span> <span class="entity other attribute-name html">user.is_authenticated</span> %}
+<span class="line-marker"></span>            <span class="entity other attribute-name html">disabled</span>
+<span class="line-marker"></span>          {% <span class="entity other attribute-name html">endif</span> %}
+<span class="line-marker"></span>       <span class="punctuation definition tag end html"> /&gt;</span></span>
+<span class="line-marker"></span>        {{ todo.todo_text }}
+<span class="line-marker"></span>      <span class="meta tag inline any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline any html">li</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    {% endfor %}
+<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">ul</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block form html">form</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
     
 </div>
 </section>
@@ -391,132 +591,6 @@ and a checkbox to indicate if it's done. </p>
 
 
  
-
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>Add the todos to the admin interface</p>
-
-
-
-<section class="highlight code-section">
-
-<div class="code-wrapper">
-
-
-<div class="code-title">update: todos/admin.py</div>
-
-
-
-
-<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
-<span class="line-marker"></span>
-<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="keyword control import relative python">.</span></span><span class="meta import-path python"><span class="meta import-name python">models</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">Todo</span></span> 
-<span class="line-marker"></span>
-<span class="line-marker"></span><span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">register</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta qualified-name python"><span class="meta generic-name python">Todo</span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
-    
-</div>
-</section>
-
- 
-
-
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>Update <path 
-
->todos/views.py</path></p>
-
-
-
-<section class="highlight code-section">
-
-<div class="code-wrapper">
-
-
-<div class="code-title">update: todos/views.py</div>
-
-
-
-
-<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">shortcuts</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">render</span></span>
-<span class="line-marker"></span>
-<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">todos</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">models</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">Todo</span></span> 
-<span class="line-marker"></span>
-<span class="line-marker"></span><span class="meta function python"><span class="storage type function python">def</span> <span class="entity name function python"><span class="meta generic-name python">index</span></span></span><span class="meta function parameters python"><span class="punctuation section parameters begin python">(</span></span><span class="meta function parameters python"><span class="variable parameter python">request</span><span class="punctuation section parameters end python">)</span></span><span class="meta function python"><span class="punctuation section function begin python">:</span></span>
-<span class="line-marker"></span>    <span class="meta qualified-name python"><span class="meta generic-name python">todos</span></span> <span class="keyword operator assignment python">=</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">Todo</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">objects</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">all</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span>
-<span class="line-marker"></span>    <span class="meta qualified-name python"><span class="meta generic-name python">context</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure dictionary-or-set python"><span class="punctuation section dictionary-or-set begin python">{</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">todods<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator key-value python">:</span> <span class="meta qualified-name python"><span class="meta generic-name python">todos</span></span> <span class="punctuation section dictionary-or-set end python">}</span></span>
-<span class="line-marker"></span>    <span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta qualified-name python"><span class="meta generic-name python">request</span></span><span class="punctuation separator arguments python">,</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">todos/index.html<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">context</span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
-    
-</div>
-</section>
-
- 
-
-
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>Make the initial todos index page template</p>
-
-
-
-<section class="highlight code-section">
-
-<div class="code-wrapper">
-
-
-<div class="code-title">create: todos/templates/todos/index.html</div>
-
-
-
-
-<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">head</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">head</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>To Dos<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">ul</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>    {% for todo in todos %}
-<span class="line-marker"></span>      <span class="meta tag inline any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline any html">li</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>        <span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline form html">input</span> 
-<span class="line-marker"></span>          <span class="meta attribute-with-value html"><span class="entity other attribute-name html">type</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>checkbox<span class="punctuation definition string end html">&quot;</span></span></span>
-<span class="line-marker"></span>          {% <span class="entity other attribute-name html">if</span> <span class="entity other attribute-name html">todo.is_done</span> %}
-<span class="line-marker"></span>            <span class="meta attribute-with-value html"><span class="entity other attribute-name html">checked</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>checked<span class="punctuation definition string end html">&quot;</span></span></span>
-<span class="line-marker"></span>          {% <span class="entity other attribute-name html">endif</span> %}
-<span class="line-marker"></span>       <span class="punctuation definition tag end html"> /&gt;</span></span>
-<span class="line-marker"></span>        {{ todo.todo_text }}
-<span class="line-marker"></span>      <span class="meta tag inline any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline any html">li</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>    {% endfor %}
-<span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">ul</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
-    
-</div>
-</section>
-
- 
-
 
 
 
@@ -570,6 +644,10 @@ for "is_done" on some of them and leave it off
 for others. </p>
 
 
+<p>(You'll need to login with your superuser admin
+username/password if you haven't already)</p>
+
+
 
 <section class="highlight link-section">
 
@@ -580,7 +658,7 @@ for others. </p>
 
 
 <div class="link-block">
-<p><a href="none" target="_blank">http://127.0.0.1:8000/admin/todos/todo/add/↗
+<p><a href="http://127.0.0.1:8000/admin/todos/todo/add/" target="_blank">http://127.0.0.1:8000/admin/todos/todo/add/↗
 </a></p>
 
 </div>
@@ -609,7 +687,7 @@ showing up</p>
 
 
 <div class="link-block">
-<p><a href="none" target="_blank">http://127.0.0.1:8000/todos/↗
+<p><a href="http://127.0.0.1:8000/todos/" target="_blank">http://127.0.0.1:8000/todos/↗
 </a></p>
 
 </div>
