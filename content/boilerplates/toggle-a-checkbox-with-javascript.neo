@@ -259,6 +259,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
     {% endfor %}
     </ul>
     </form>
+
+    <div>
+      <input type="checkbox" name="unused_checkbox" /> Django doesn't try to manage this checkbox since it doesn't have a data-href attribute
+    </div>
 </body>
 </html>
 
@@ -307,8 +311,8 @@ username/password if you haven't already)
 -- /link
 
 
-- Visit the todos index page and make sure they are
-showing up
+- Visit the todos index page and play around with 
+the checkboxes. 
 
 -- link/
 -- title: todos index page
@@ -318,213 +322,6 @@ showing up
 
 -- /link
 
-
--- /olist
-
-
--- h2
-
-Adding The Functionality
-
--- olist/
-
-- Add a <<code|data-href>> attribute to the input
-
-The attribute to add to the input elements is:
-
--- code/
--- html
--- title: new data-href attribute
--- no-nums
-
-data-href="{% url 'todos:toggle' todos.id %}"
-
--- /code
-
-It should look like this:
-
--- code/
--- html
--- no-nums
--- title: updated input element
--- class: highlight
-
-<input 
-  type="checkbox"
-  data-href="{% url 'todos:toggle' todos.id %}"
-  {% if todo.is_done %}
-    checked="checked"
-  {% endif %}
-/>
-
--- /code
-
-We haven't built the view yet so we'll see
-an expected error with this when we refresh the
-page:
-
--- pre/
--- title: browser error message
-
-NoReverseMatch at /todos/
-
-Reverse for 'toggle' not found. 'toggle' is not 
-a valid view function or pattern name.
-
-etc...
-
--- /pre
-
-- Add the url pattern to <<path|todos/urls.py>>
-
-The line to add is:
-
--- code/
--- python
--- title: new urlpatterns path:
--- no-nums
-
-path("<int:pk>/toggle/", views.toggle, name="toggle"),
-
--- /code
-
-The update file looks like this:
-
--- code/
--- python
--- title: update: todos/urls.py
--- class: highlight
-
-from django.urls import path
-
-from . import views
-
-app_name = "todos"
-urlpatterns = [
-    path("", views.index, name="index"),
-    path("<int:pk>/toggle/", views.toggle, name="toggle"),
-]
-
--- /code
-
-If you refreash the page at this point you'll get another
-expected error:
-
--- pre/
--- title: web browser error
-
-NoReverseMatch at /todos/
-
-Reverse for 'toggle' not found. 'toggle' is not 
-a valid view function or pattern name.
-
-etc...
-
--- /pre
-
-- Add JsonResponse to <<path|todos/views/py>>
-
--- code/
--- python
--- no-nums
--- title: add to: todos/views.py
--- class: highlight
-
-from django.http import JsonResponse
-
--- /code
-
-
-- Create the toggle view in <<path|todos/views.py>>
-
-Add this to <<path|todos/views.py>>
-
--- code/
--- python
--- title: add to: todos/views.py
--- class: highlight
--- no-nums
-
-# TODO: Reverify this code and format it
-# for shorter lines
-
-def toggle(request, pk):
-    # NOTE: Thist just tests if a user is authenticated, not
-    # for a specific user
-    if request.user.is_authenticated:
-        if request.method == "POST":
-            if request.POST['checked']:
-                check_value = request.POST['checked'].lower()
-                try:
-                    todo = Todo.objects.get(pk=pk)
-                    if check_value == "true":
-                        todo.is_done = True 
-                        todo.save()
-                        return JsonResponse({"message": f"Updated {pk}"})
-                    elif check_value == "false":
-                        todo.is_done = False 
-                        todo.save()
-                        return JsonResponse({"message": f"Updated {pk}"})
-                    else:
-                        return JsonResponse({"message": f"The 'checked' value must be either 'true' or 'false'"}, status=406)
-                except:
-                    return JsonResponse({"message": f"Could not get {pk}"}, status=400)
-            else:
-                return JsonResponse({"message": f"Missing 'checked'"}, status=400)
-        else:
-            return JsonResponse({"message": f"Must be POST"}, status=405)
-    else:
-        return JsonResponse({"message": f"Not authenticated"}, status=403)
-
--- /code
-
-- Add the script to the index page template
-
-Update the <<code|head|html>> of the index template
-file to include this script:
-
--- code/
--- html
--- no-nums
--- title: add to: todos/templates/todos/index.html
--- class: highlight
-
-<script>
-function addCheckboxToggles() {
-  const checkboxes = document.querySelectorAll('[type=checkbox]')
-  checkboxes.forEach((cb) => {
-    cb.addEventListener("change", toggleCheckbox)
-  })
-}
-
-async function toggleCheckbox(event) {
-  const el = event.target
-  const csrf_token = document.querySelector(
-    '[name=csrfmiddlewaretoken]'
-  ).value
-  const fd = new FormData()
-  fd.append("csrfmiddlewaretoken", csrf_token)
-  fd.append("checked", el.checked)
-  const request = new Request(el.dataset.href, {
-    method: "POST",
-    body: fd
-  });
-  const response = await fetch(request);
-  const json = await response.json();
-  if (!response.ok) {
-    console.log(`Error: ${json.message}`)
-  } 
-  else {
-    console.log(`Ok: ${json.message}`)
-  }
-}
-
-document.addEventListener("DOMContentLoaded", (event) => {
-  addCheckboxToggles()
-})
-</script>
-
--- /code
 
 -- /olist
 
@@ -538,18 +335,12 @@ up to point to a view that has a corresponding
 
 -- endnote
 
-One possible enhancement is to check to make
-sure there's a "data-href" before trying to use
-it. That would provide the ability to have 
-other checkboxes on the page that don't
-trigger an attempt to toggle them in Django
-
--- endnote
-
 The checkbox is currently updated on the client side
 regardless of if the Django database succeeds
-with its update or not. I'm adding error 
-handling for that in a future iteration
+with its update or not. TODO: Add error handling so
+that if Django doesn't respond or has an error
+the checkbox is reverted to its prior state
+after a short delay
 
 -- endnote
 
