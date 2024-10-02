@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Boilerplate: Create A New Django Site</title>
+<title>Boilerplate: Create A New Django Site&#x2F;Project</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta property="og:title" content="Boilerplate: Create A New Django Site" />
+<meta property="og:title" content="Boilerplate: Create A New Django Site&#x2F;Project" />
 <meta property="og:description" content="a post from alan w. smith" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://django.alanwsmith.com/en/2mny1qlt/?page=boilerplate-create-a-new-django-site" />
+<meta property="og:url" content="https://django.alanwsmith.com/en/2mny1qlt/?page=boilerplate-create-a-new-django-site-x2f-project" />
 <meta property="og:image" content="https://django.alanwsmith.com/neo-images/default-og-image/1200w.jpg" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/theme/favicons/apple-touch-icon.png">
@@ -28,16 +28,26 @@ function update_commands() {
   const dir_name = document.querySelector("#dir-name").value
   const module_name = document.querySelector("#module-name").value
   const commands = document.querySelector("#commands pre")
-  commands.innerText = `mkdir ${dir_name} 
+  commands.innerText = `type deactivate &> /dev/null && deactivate
+mkdir ${dir_name} 
 cd ${dir_name}
-git init
-echo "venv" > .gitignore
-type deactivate &> /dev/null && deactivate
 python3 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
 python -m pip install Django
 django-admin startproject ${module_name}
+git init
+echo "venv" > .gitignore
+echo ".env" >> .gitignore
+echo "*.log" >> .gitignore
+echo "*.pot" >> .gitignore
+echo "*.pyc" >> .gitignore
+echo "__pycache__" >> .gitignore
+echo "db.sqlite3" >> .gitignore
+echo "media" >> .gitignore
+git add .
+git commit -m "Initial commit"
+git checkout -b dev
 cd ${module_name}
 python manage.py migrate
 python manage.py createsuperuser
@@ -68,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <hgroup>
 
   
-    <h1 class="page-title">Boilerplate: Create A New Django Site</h1>
+    <h1 class="page-title">Boilerplate: Create A New Django Site/Project</h1>
     
   
 
@@ -91,6 +101,43 @@ document.addEventListener("DOMContentLoaded", () => {
     
   
 
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>These are the basic Mac commands to create a 
+new Django site (aka project). I expect the commands
+should work on most linux installs too, but haven't 
+had a chance to check it. I'll do that and add a
+Windows version as time allows. There's also more 
+about the process in the <em 
+
+>Boilerplate Details</em> section 
+further below. </p>
+
+
+
+
+    
+
+    
+
+</section>
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">Boilerplate Steps </h2>
+    
+  
+
 </hgroup>
 
 
@@ -103,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </section>
 
-<ul class="flow">
+<ol class="flow">
     
 
 
@@ -111,83 +158,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-<p>These are the commands to run to create a new site</p>
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>The process creates a directory with your specified name
-then creates a django site/project inside it called "site_module".
-That's a little different than naming the django site/project
-directly, but I find it helps me keep better track
-of where I am in the directory structure.</p>
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>The commands work on a Mac. I'll make a Windows
-version when I have the resources to work on it.</p>
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>The process ends with creating a super users which
-requires filling in responses to some prompts. Once
-that's done the main process is complete and you 
-can start the server. </p>
-
-
-</li>
-
-
-
-</ul>
-
-
-<section class="h2-section flow">
-<hgroup>
-
-  
-    <h2 class="section-heading">The Code</h2>
-    
-  
-
-  
-
-</hgroup>
-
-
-
-
-
-
-    
 <p>Specify the name for your site/project directory
-and module names:</p>
+and intial module name (which I default to site_files
+for consistency):</p>
 
-
-
-
-    
-
-    
-
-</section><section class="html-section">
+<section class="html-section">
 
 <form>
   <div>
@@ -200,10 +175,28 @@ and module names:</p>
   </div>
 </form>
 
-
 <noscript>This page requires javascript to build the commands</noscript>
 
-</section><section class="highlight pre-section" id="commands">
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>Run these Mac commands</p>
+
+
+<p>The last step will be to create a superuser accont
+which you'll need to fill out some details for. I use 
+"admin" for the username, keep the email blank, and use
+a simple password when I'm making test boilerplate
+sites, but you can use whatever you want.</p>
+
+<section class="highlight pre-section" id="commands">
 
 <div class="pre-wrapper">
 
@@ -225,6 +218,18 @@ site/project creation commands
 
 
 
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>Start the server</p>
 
 <section class="highlight pre-section">
 
@@ -249,6 +254,207 @@ start the server
 
 
 
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>Verify the default home page shows up</p>
+
+
+
+<section class="highlight link-section">
+
+<div class="link-wrapper">
+
+
+<div class="link-title">home page link</div>
+
+
+<div class="link-block">
+<p><a href="http://127.0.0.1/" target="_blank">http://127.0.0.1:8000/↗
+</a></p>
+
+</div>
+</section>
+</div>
+
+
+</li>
+
+</ol>
+
+
+
+
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">Next Steps</h2>
+    
+  
+
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>That's it for the site creation. If you're setting
+up for a new boilerplate example, the next step is:</p>
+
+
+
+    
+<p><a href="/en/2mqmyqi8/?page=boilerplate-add-basic-template-and-static-file-handling-in-django">
+  Boilerplate: Add Basic Template And Static File Handling In Django
+</a></p>
+
+
+
+
+    
+
+    
+
+    
+
+</section>
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">Boilerplate Details</h2>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+
+    
+
+</section>
+
+<ul class="flow">
+    
+
+
+<li class="flow">
+
+
+
+<p>The commands work on a Mac. They migth work on any
+given linux install. I'll make a Windows
+version when I have the resources to work on it.</p>
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>The process creates a directory with your specified name.
+It then creates a django site/project inside it using the 
+Module Name you defined. I go with "site_files" for consistency 
+among my sites. Most instructions I see use a more specific name,
+but I haven't been able to determine if there's a reason to 
+not stick with a generic one. </p>
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>The process creates a Python virtual environment and activates
+it. Django is then installed inside it to avoid messing
+with the system install of Python.</p>
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>The process creates a git repo and <path 
+
+>.gitignore</path> file
+that ignore the <path 
+
+>.env</path> file, <path 
+
+>venv</path> directory, 
+<path 
+
+>db.sqlite3</path> database, and
+some other python/django related files that don't need to be
+stored. </p>
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>The intiail code is committed to the git repo and a 
+new branch named dev is created and checked out to work on. </p>
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>All the initial database migrations are run to set up
+the database. </p>
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>The <code class=""><span class="text plain">createsuperuser</span></code> command is run at the end to
+prompt for super user account details. </p>
+
+
+</li>
+
+
+
+</ul>
 <div class="fin-token">~ fin ~</div>
 
 </main>

@@ -1,37 +1,30 @@
 -- title
 
-Boilerplate: Create A New Django Site
+Boilerplate: Create A New Django Site/Project
 
 -- h2
 
 Introduction 
 
--- list
-
-- These are the commands to run to create a new site
-
-- The process creates a directory with your specified name
-then creates a django site/project inside it called "site_module".
-That's a little different than naming the django site/project
-directly, but I find it helps me keep better track
-of where I am in the directory structure.
-
-- The commands work on a Mac. I'll make a Windows
-version when I have the resources to work on it.
-
-- The process ends with creating a super users which
-requires filling in responses to some prompts. Once
-that's done the main process is complete and you 
-can start the server. 
+These are the basic Mac commands to create a 
+new Django site (aka project). I expect the commands
+should work on most linux installs too, but haven't 
+had a chance to check it. I'll do that and add a
+Windows version as time allows. There's also more 
+about the process in the <<em|Boilerplate Details>> section 
+further below. 
 
 -- h2
 
-The Code
+Boilerplate Steps 
 
-Specify the name for your site/project directory
-and module names:
+-- olist/
 
--- html
+- Specify the name for your site/project directory
+and intial module name (which I default to site_files
+for consistency):
+
+-- html/
 
 <form>
   <div>
@@ -44,8 +37,17 @@ and module names:
   </div>
 </form>
 
-
 <noscript>This page requires javascript to build the commands</noscript>
+
+-- /html
+
+- Run these Mac commands
+
+The last step will be to create a superuser accont
+which you'll need to fill out some details for. I use 
+"admin" for the username, keep the email blank, and use
+a simple password when I'm making test boilerplate
+sites, but you can use whatever you want.
 
 -- pre/
 -- title: site/project creation commands
@@ -55,6 +57,8 @@ and module names:
 -- /pre
 
 
+- Start the server
+
 -- pre/
 -- title: start the server
 -- class: highlight
@@ -63,6 +67,29 @@ python manage.py runserver
 
 -- /pre
 
+- Verify the default home page shows up
+
+-- link/
+-- title: home page link
+-- class: highlight
+
+<<tablink|http://127.0.0.1:8000/|http://127.0.0.1/>>
+
+-- /link
+
+-- /olist
+
+-- h2
+
+Next Steps
+
+That's it for the site creation. If you're setting
+up for a new boilerplate example, the next step is:
+
+<<tlink|2mqmyqi8>>
+
+
+
 
 -- javascript
 
@@ -70,16 +97,26 @@ function update_commands() {
   const dir_name = document.querySelector("#dir-name").value
   const module_name = document.querySelector("#module-name").value
   const commands = document.querySelector("#commands pre")
-  commands.innerText = `mkdir ${dir_name} 
+  commands.innerText = `type deactivate &> /dev/null && deactivate
+mkdir ${dir_name} 
 cd ${dir_name}
-git init
-echo "venv" > .gitignore
-type deactivate &> /dev/null && deactivate
 python3 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
 python -m pip install Django
 django-admin startproject ${module_name}
+git init
+echo "venv" > .gitignore
+echo ".env" >> .gitignore
+echo "*.log" >> .gitignore
+echo "*.pot" >> .gitignore
+echo "*.pyc" >> .gitignore
+echo "__pycache__" >> .gitignore
+echo "db.sqlite3" >> .gitignore
+echo "media" >> .gitignore
+git add .
+git commit -m "Initial commit"
+git checkout -b dev
 cd ${module_name}
 python manage.py migrate
 python manage.py createsuperuser
@@ -98,6 +135,41 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 })
 
+-- h2
+
+Boilerplate Details
+
+-- list
+
+- The commands work on a Mac. They migth work on any
+given linux install. I'll make a Windows
+version when I have the resources to work on it.
+
+- The process creates a directory with your specified name.
+It then creates a django site/project inside it using the 
+Module Name you defined. I go with "site_files" for consistency 
+among my sites. Most instructions I see use a more specific name,
+but I haven't been able to determine if there's a reason to 
+not stick with a generic one. 
+
+- The process creates a Python virtual environment and activates
+it. Django is then installed inside it to avoid messing
+with the system install of Python.
+
+- The process creates a git repo and <<path|.gitignore>> file
+that ignore the <<path|.env>> file, <<path|venv>> directory, 
+<<path|db.sqlite3>> database, and
+some other python/django related files that don't need to be
+stored. 
+
+- The intiail code is committed to the git repo and a 
+new branch named dev is created and checked out to work on. 
+
+- All the initial database migrations are run to set up
+the database. 
+
+- The <<code|createsuperuser>> command is run at the end to
+prompt for super user account details. 
 
 
 

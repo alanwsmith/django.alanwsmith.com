@@ -57,6 +57,8 @@
     
   
 
+  
+
 </hgroup>
 
 
@@ -64,62 +66,27 @@
 
 
 
+    
+<p>This boilerplate is designed to be run after
+<a href="/en/2mny1qlt/?page=boilerplate-create-a-new-django-site-x2f-project">
+  Boilerplate: Create A New Django Site&#x2F;Project
+</a>. It sets up the site/project
+to be able to use a top level templates directory. </p>
+
+
+
+
+    
 
     
 
 </section>
 
-<ul class="flow">
-    
-
-
-<li class="flow">
-
-
-
-<p>These are my notes for adding basic static and
-template file handling for new sites</p>
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>The static files are so you can server things
-like CSS and JS</p>
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>The template set up preps for templates in 
-individual apps as well as a top level
-<path 
-
->templates</path> directory</p>
-
-
-</li>
-
-</ul>
-
-
-
-
-
-
 <section class="h2-section flow">
 <hgroup>
 
   
-    <h2 class="section-heading">The Steps</h2>
+    <h2 class="section-heading">Boilerplate Steps </h2>
     
   
 
@@ -143,10 +110,44 @@ individual apps as well as a top level
 
 
 
-<p>Update <code class=""><span class="text plain">DIRS</span></code> in <path 
+<p>Create the top level templates directory:</p>
 
->site_files/settingsl.py</path> to
-add templates</p>
+
+
+<section class="highlight cli-section">
+
+<div class="cli-wrapper">
+
+    <div class="cli-title">
+    
+    mkdir for templates directory
+    
+    </div>
+
+
+    <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">mkdir</span></span><span class="meta function-call arguments shell"> templates</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+ 
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>Update <code class=""><span class="text plain">DIRS</span></code> inside <code class=""><span class="source python"><span class="meta qualified-name python"><span class="variable other constant python">TEMPLATE</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span><span class="punctuation section list end python">]</span></span></span></code>
+in the <path 
+
+>site_files/settingsl.py</path> file</p>
 
 
 <p>Change:</p>
@@ -158,7 +159,7 @@ add templates</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">original value in: site_files.settings.py</div>
+<div class="code-title">original value in: site_files/settings.py</div>
 
 
 
@@ -177,12 +178,12 @@ add templates</p>
 
 
 
-<section class="code-section">
+<section class="highlight code-section">
 
 <div class="code-wrapper">
 
 
-<div class="code-title">original value in: site_files.settings.py</div>
+<div class="code-title">updated value in: site_files/settings.py</div>
 
 
 
@@ -198,6 +199,77 @@ add templates</p>
 
 
 </li>
+
+</ol>
+
+
+
+
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">Next Steps</h2>
+    
+  
+
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>If you're building a site/project for a boilerplate
+example the next step is:</p>
+
+
+
+    
+<p><a href="/en/2mqkkio5/?page=boilerplate-add-basic-user-authencation-to-a-django-site">
+  Boilerplate: Add Basic User Authencation To A Django Site
+</a></p>
+
+
+
+
+    
+
+    
+
+    
+
+</section>
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">Boilerplate Details</h2>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+
+    
+
+</section>
+
+<ul class="flow">
+    
 
 
 <li class="flow">
@@ -219,11 +291,9 @@ add templates</p>
 
 </li>
 
-</ol>
 
 
-
-
+</ul>
 <div class="fin-token">~ fin ~</div>
 
 </main>

@@ -57,6 +57,8 @@
     
   
 
+  
+
 </hgroup>
 
 
@@ -64,99 +66,30 @@
 
 
 
+    
+<p>This process sets up for basic user authentication. 
+It's designed to be run 
+after going through <a href="/en/2mny1qlt/?page=boilerplate-create-a-new-django-site-x2f-project">
+  Boilerplate: Create A New Django Site&#x2F;Project
+</a> and 
+<a href="/en/2mqmyqi8/?page=boilerplate-add-basic-template-and-static-file-handling-in-django">
+  Boilerplate: Add Basic Template And Static File Handling In Django
+</a>.</p>
+
+
+
+
+    
 
     
 
 </section>
 
-<ul class="flow">
-    
-
-
-<li class="flow">
-
-
-
-<p>These are my notes for how to set up basic
-user auth</p>
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>The notes assume you've already followed the
-steps in <a href="/en/2mny1qlt/?page=boilerplate-create-a-new-django-site">
-  Boilerplate: Create A New Django Site
-</a>
-and <a href="/en/2mqmyqi8/?page=boilerplate-add-basic-template-and-static-file-handling-in-django">
-  Boilerplate: Add Basic Template And Static File Handling In Django
-</a></p>
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>Right now it only sets up so that login/logout
-can be used with the built-in users in a dev
-environment</p>
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>The notes don't have a lot of details with them
-right now. It's mainly the code lines themselves. 
-I'll add more detail over time. </p>
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>TBD on what needs to change before deploying
-to production</p>
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>TODO: write up details below the files
-themselves about what the things are</p>
-
-
-</li>
-
-</ul>
-
-
-
-
-
-
 <section class="h2-section flow">
 <hgroup>
 
   
-    <h2 class="section-heading">The Files</h2>
+    <h2 class="section-heading">Boilerplate Steps</h2>
     
   
 
@@ -180,11 +113,12 @@ themselves about what the things are</p>
 
 
 
-<p>Make the templates direcotry</p>
+<p>Make the directory to hold the necessary 
+templates:</p>
 
 
 
-<section class="cli-section">
+<section class="highlight cli-section">
 
 <div class="cli-wrapper">
 
@@ -268,7 +202,7 @@ bottom of the <path
 <div class="code-wrapper">
 
 
-<div class="code-title">add to: site_files/settings.py</div>
+<div class="code-title">append to end of: site_files/settings.py</div>
 
 
 
@@ -291,7 +225,9 @@ bottom of the <path
 
 
 
-<p>Add the login file:</p>
+<p>Create the <path 
+
+>login.html</path> template:</p>
 
 
 
@@ -337,7 +273,7 @@ bottom of the <path
 <hgroup>
 
   
-    <h2 class="section-heading">The Details</h2>
+    <h2 class="section-heading">Next Steps</h2>
     
   
 
@@ -351,8 +287,10 @@ bottom of the <path
 
 
     
-<p>TODO: Write up details about all the things
-the individual files to above. </p>
+<p>That's it for the basic login/logout functionality. 
+You're ready to work on the site or
+<a href="/">go back to the home page</a>
+and pick a Boilerplate Task to try out. </p>
 
 
 
@@ -361,7 +299,76 @@ the individual files to above. </p>
 
     
 
-</section><div class="fin-token">~ fin ~</div>
+</section>
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">Boilerplate Details</h2>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+
+    
+
+</section>
+
+<ul class="flow">
+    
+
+
+<li class="flow">
+
+
+
+<p>Right now this boilerplate only sets up so that login/logout
+can be used with the built-in users in a dev
+environment</p>
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>TBD on what needs to change before deploying
+to production</p>
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>The super user account created in <a href="/en/2mny1qlt/?page=boilerplate-create-a-new-django-site-x2f-project">
+  Boilerplate: Create A New Django Site&#x2F;Project
+</a>
+can be used for the test account but a better thing to
+do from a security perspective would be to create another
+account. I'll add that to a boilerplate in a future
+update.</p>
+
+
+</li>
+
+</ul>
+
+
+
+
+<div class="fin-token">~ fin ~</div>
 
 </main>
 <footer></footer>

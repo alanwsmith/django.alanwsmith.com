@@ -6,41 +6,22 @@ Boilerplate: Add Basic User Authencation To A Django Site
 
 Introduction
 
--- list/
-
-- These are my notes for how to set up basic
-user auth
-
-- The notes assume you've already followed the
-steps in <<tlink|2mny1qlt>>
-and <<tlink|2mqmyqi8>>
-
-- Right now it only sets up so that login/logout
-can be used with the built-in users in a dev
-environment
-
-- The notes don't have a lot of details with them
-right now. It's mainly the code lines themselves. 
-I'll add more detail over time. 
-
-- TBD on what needs to change before deploying
-to production
-
-- TODO: write up details below the files
-themselves about what the things are
-
--- /list
-
+This process sets up for basic user authentication. 
+It's designed to be run 
+after going through <<tlink|2mny1qlt>> and 
+<<tlink|2mqmyqi8>>.
 
 -- h2
 
-The Files
+Boilerplate Steps
 
 -- olist/
 
-- Make the templates direcotry
+- Make the directory to hold the necessary 
+templates:
 
 -- cli/
+-- class: highlight
 
 mkdir -p templates/registration
 
@@ -75,7 +56,7 @@ bottom of the <<path|site_files/settings.py>> file
 -- code/
 -- python
 -- class: highlight
--- title: add to: site_files/settings.py
+-- title: append to end of: site_files/settings.py
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
@@ -84,7 +65,7 @@ LOGOUT_REDIRECT_URL = "/"
 
 
 
-- Add the login file:
+- Create the <<path|login.html>> template:
 
 
 -- code/
@@ -106,15 +87,39 @@ LOGOUT_REDIRECT_URL = "/"
 -- /code
 
 
-
 -- /olist
 
 -- h2
 
-The Details
+Next Steps
 
-TODO: Write up details about all the things
-the individual files to above. 
+That's it for the basic login/logout functionality. 
+You're ready to work on the site or
+<<link|go back to the home page|/>>
+and pick a Boilerplate Task to try out. 
+
+
+-- h2
+
+Boilerplate Details
+
+
+-- list/
+
+- Right now this boilerplate only sets up so that login/logout
+can be used with the built-in users in a dev
+environment
+
+- TBD on what needs to change before deploying
+to production
+
+- The super user account created in <<tlink|2mny1qlt>>
+can be used for the test account but a better thing to
+do from a security perspective would be to create another
+account. I'll add that to a boilerplate in a future
+update.
+
+-- /list
 
 
 
@@ -123,6 +128,6 @@ the individual files to above.
 -- updated: 2024-10-01T15:40:35-04:00
 -- id: 2mqkkio5
 -- type: post
--- status: scratch
+-- status: draft 
 
 
