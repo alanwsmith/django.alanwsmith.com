@@ -1,20 +1,28 @@
 -- title
 
-Django Stuff
-
-This is where I'm putting my Django notes. 
-
-I'm still new to Django. Please let me know,
-if you know of more django native ways to do 
-anythihg you see here. 
+Alan's Django Notes 
 
 -- h2
 
-Getting Started 
+Welcome!
 
-These are the first three things I do in order 
-to get set up for a new site/project. All the
-other how-tos assume they have been done. 
+I'm Alan and this site is my collection of Django notes. 
+It's currently a collection of boilerplate code  
+and commands designed to
+be copied and pasted to accomplish specific tasks.
+You can learn more about the site
+in the <<em|Site Details>> section below. Or, dig 
+right in with the boilerplates:
+
+
+-- h2
+
+The First Three Boilerplates
+
+These are the first three "Getting Started" things I do to set up
+a new site/project. All the 
+boilerplates in the next section assume these
+have been run in order. 
 
 -- list
 
@@ -26,20 +34,71 @@ other how-tos assume they have been done.
 
 -- h2
 
-The How-Tos
+Boilerplate Tasks
 
-These how-tos are designed to be run individually 
-(after going throuh the first three above to get
-the basics in place). 
+These boilerplates are designed to be run as stand-alone
+examples (after going throuh the first three above to get
+the basics in place). The goal for each one is that it 
+contain 100% of the code and commands you need to use to
+accomplish the specific task. 
 
 
 -- list/
+
 
 - <<tlink|2mqzuh9i>>
 
 - <<tlink|2mntpzed>>
 
+- <<tlink|2mrboroo>>
+
 -- /list
+
+
+-- h2
+
+Site Details
+
+A few things to note about the site:
+
+-- list
+
+- <<em|Working-in-public>> and publishing
+my notes is one of the most effective ways for me
+to learn. I mostly publish on my 
+<<link|main site|https://www.alanwsmith.com/>>, 
+but I expect I'll be spending
+enough time with Django that these notes warrent a site of
+their own. 
+
+- The site currently consists of <<em|boilerplate>> code
+and commands. There's not much explination with 
+them beyond the code itself. 
+
+- I cut everything down as much as I can to focus on 
+the specific task. That means no CSS unless the task is
+focused on CSS.  
+
+- The first three boilerplates are
+designed to be run togther. They set up 
+a basic site/project that the other boilerplates 
+are run on top of. 
+
+- The rest of the boilerplates are designed to
+be used independetly of each other to show how
+to do a specific task. 
+
+- The goal of each boilerplate is to contain 100%
+of the code and commands you need to run in order
+to accomplish the task. 
+
+- I'm still new to Django. Please let me know,
+if you know of more django native ways to do 
+anythihg you see here. You can reach
+me <<link|on mastodon|https://hachyderm.io/@TheIdOfAlan>>
+
+
+
 
 
 -- metadata

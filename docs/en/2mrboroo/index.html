@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>How-To: Make A Many-To-Many Model Connection In Django</title>
+<title>Boilderplate: Make A Many-To-Many Model Connection In Django</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta property="og:title" content="How-To: Make A Many-To-Many Model Connection In Django" />
+<meta property="og:title" content="Boilderplate: Make A Many-To-Many Model Connection In Django" />
 <meta property="og:description" content="a post from alan w. smith" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://django.alanwsmith.com/en/2mrboroo/?page=how-to-make-a-many-to-many-model-connection-in-django" />
+<meta property="og:url" content="https://django.alanwsmith.com/en/2mrboroo/?page=boilderplate-make-a-many-to-many-model-connection-in-django" />
 <meta property="og:image" content="https://django.alanwsmith.com/neo-images/default-og-image/1200w.jpg" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/theme/favicons/apple-touch-icon.png">
@@ -26,11 +26,7 @@
 <body>
 <header>
       <a href="/">Home</a>
-      <div class="under-construction">
-        NOTE: I'm in the middle of upgrading the site. Most things are in place, but
-        some things are missing and/or broken. This includes alt text for images. Please
-        bear with me while I get things fixed. 
-      </div>
+      
     </header>
 <main class="flow">
 
@@ -38,7 +34,7 @@
 <hgroup>
 
   
-    <h1 class="page-title">How-To: Make A Many-To-Many Model Connection In Django</h1>
+    <h1 class="page-title">Boilderplate: Make A Many-To-Many Model Connection In Django</h1>
     
   
 
@@ -128,11 +124,10 @@ the books that use them. </p>
 
 
 <p>Authors can only be deleted if they don't
-have any books associated with them. I'm not 
-sure how to enforce this at the database level
-(if there's even a way to do that) so it's
-covered in both the template and in the
-view itself. </p>
+have any books associated with them. This 
+is done by manually creating the many-to-many
+table and setting foreign keys in it
+to protect the author. </p>
 
 
 </li>

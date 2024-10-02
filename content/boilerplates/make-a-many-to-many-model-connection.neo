@@ -1,6 +1,6 @@
 -- title
 
-How-To: Make A Many-To-Many Model Connection In Django
+Boilderplate: Make A Many-To-Many Model Connection In Django
 
 -- h2
 
@@ -23,11 +23,10 @@ each author can have written multiple books.
 the books that use them. 
 
 - Authors can only be deleted if they don't
-have any books associated with them. I'm not 
-sure how to enforce this at the database level
-(if there's even a way to do that) so it's
-covered in both the template and in the
-view itself. 
+have any books associated with them. This 
+is done by manually creating the many-to-many
+table and setting foreign keys in it
+to protect the author. 
 
 - You can delete books at any point
 
@@ -718,9 +717,8 @@ class BookForm(ModelForm):
 
 -- /code
 
-
-
 -- /olist
+
 
 -- h3
 

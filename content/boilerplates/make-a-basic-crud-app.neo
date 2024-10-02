@@ -1,6 +1,8 @@
 -- title
 
-How-To: Make A Basic "Create, Read, Update, and Delete" App
+Boilerplate: Make A Basic Django App With The Ability To 
+Create, Read, Update, and Delete Content From A Protected
+Web Interface
 
 -- h2
 
