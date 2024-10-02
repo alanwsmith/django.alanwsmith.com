@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Add Basic User Authencation</title>
+<title>How-To: Add Basic User Authencation To A Django Site</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta property="og:title" content="Add Basic User Authencation" />
+<meta property="og:title" content="How-To: Add Basic User Authencation To A Django Site" />
 <meta property="og:description" content="a post from alan w. smith" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://django.alanwsmith.com/en/2mqkkio5/?page=add-basic-user-authencation" />
+<meta property="og:url" content="https://django.alanwsmith.com/en/2mqkkio5/?page=how-to-add-basic-user-authencation-to-a-django-site" />
 <meta property="og:image" content="https://django.alanwsmith.com/neo-images/default-og-image/1200w.jpg" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/theme/favicons/apple-touch-icon.png">
@@ -38,7 +38,7 @@
 <hgroup>
 
   
-    <h1 class="page-title">Add Basic User Authencation</h1>
+    <h1 class="page-title">How-To: Add Basic User Authencation To A Django Site</h1>
     
   
 
@@ -96,8 +96,8 @@ user auth</p>
 steps in <a href="/en/2mny1qlt/?page=how-to-create-a-new-django-site">
   How-To: Create A New Django Site
 </a>
-and <a href="/en/2mqmyqi8/?page=add-basic-template-and-static-file-handling-in-django">
-  Add Basic Template And Static File Handling In Django
+and <a href="/en/2mqmyqi8/?page=how-to-add-basic-template-and-static-file-handling-in-django">
+  How-To: Add Basic Template And Static File Handling In Django
 </a></p>
 
 
@@ -138,6 +138,17 @@ to production</p>
 
 </li>
 
+
+<li class="flow">
+
+
+
+<p>TODO: write up details below the files
+themselves about what the things are</p>
+
+
+</li>
+
 </ul>
 
 
@@ -149,7 +160,7 @@ to production</p>
 <hgroup>
 
   
-    <h2 class="section-heading">The Steps</h2>
+    <h2 class="section-heading">The Files</h2>
     
   
 
@@ -167,6 +178,40 @@ to production</p>
 
 <ol class="flow">
     
+
+
+<li class="flow">
+
+
+
+<p>Make the templates direcotry</p>
+
+
+
+<section class="cli-section">
+
+<div class="cli-wrapper">
+
+    <div class="cli-title">
+    
+    command line:
+    
+    </div>
+
+
+    <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">mkdir</span></span><span class="meta function-call arguments shell"><span class="variable parameter option shell"><span class="punctuation definition parameter shell"> -</span>p</span> templates/registration</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+ 
+
+
+
+</li>
 
 
 <li class="flow">
@@ -199,54 +244,6 @@ like this:</p>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">accounts/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">admin/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
 <span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
-    
-</div>
-</section>
-
-
-    
-<p>The specific lines that were added are:</p>
- 
-
-
-
-
-
-<section class="code-section">
-
-<div class="code-wrapper">
-
-
-<div class="code-title">url import includes line</div>
-
-
-
-
-<pre class="code-block-no-nums"><code><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">include</span></span></span></code></pre>
-    
-</div>
-</section>
-
-
-    
-<p>And <code class=""><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">urlpatters</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span><span class="punctuation section list end python">]</span></span></span></code>:</p>
- 
-
-
-
-
-
-<section class="code-section">
-
-<div class="code-wrapper">
-
-
-<div class="code-title">path include line</div>
-
-
-
-
-<pre class="code-block-no-nums"><code><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">accounts/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span>,</span></code></pre>
     
 </div>
 </section>
@@ -298,40 +295,6 @@ bottom of the <path
 
 
 
-<p>Make the templates direcotry</p>
-
-
-
-<section class="cli-section">
-
-<div class="cli-wrapper">
-
-    <div class="cli-title">
-    
-    command line:
-    
-    </div>
-
-
-    <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">mkdir</span></span><span class="meta function-call arguments shell"><span class="variable parameter option shell"><span class="punctuation definition parameter shell"> -</span>p</span> templates/registration</span></span></code></pre>
-
-
-    
-</div>
-</section>
-
-
- 
-
-
-
-</li>
-
-
-<li class="flow">
-
-
-
 <p>Add the login file:</p>
 
 
@@ -372,7 +335,37 @@ bottom of the <path
 
 
 
-<div class="fin-token">~ fin ~</div>
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">The Details</h2>
+    
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>TODO: Write up details about all the things
+the individual files to above. </p>
+
+
+
+
+    
+
+    
+
+</section><div class="fin-token">~ fin ~</div>
 
 </main>
 <footer></footer>

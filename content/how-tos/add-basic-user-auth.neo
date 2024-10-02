@@ -1,6 +1,6 @@
 -- title
 
-Add Basic User Authencation
+How-To: Add Basic User Authencation To A Django Site
 
 -- h2
 
@@ -26,15 +26,26 @@ I'll add more detail over time.
 - TBD on what needs to change before deploying
 to production
 
+- TODO: write up details below the files
+themselves about what the things are
 
 -- /list
 
 
 -- h2
 
-The Steps
+The Files
 
 -- olist/
+
+- Make the templates direcotry
+
+-- cli/
+
+mkdir -p templates/registration
+
+-- /cli
+
 
 - Add the includes import and auth include to 
 <<path|site_files/urls.py>>. The file should look 
@@ -56,30 +67,6 @@ urlpatterns = [
 
 -- /code
 
-The specific lines that were added are:
-
--- code/
--- python
--- no-nums
--- title: url import includes line
-
-from django.urls import include
-
--- /code
-
-And <<code|urlpatters = []|python>>:
-
--- code/
--- python
--- no-nums
--- title: path include line
-
-path("accounts/", include("django.contrib.auth.urls")),
-
--- /code
-
-
-
 
 
 - Add login/logout default redirects to the
@@ -95,15 +82,6 @@ LOGOUT_REDIRECT_URL = "/"
 
 -- /code
 
-
-
-- Make the templates direcotry
-
--- cli/
-
-mkdir -p templates/registration
-
--- /cli
 
 
 - Add the login file:
@@ -130,6 +108,14 @@ mkdir -p templates/registration
 
 
 -- /olist
+
+-- h2
+
+The Details
+
+TODO: Write up details about all the things
+the individual files to above. 
+
 
 
 -- metadata

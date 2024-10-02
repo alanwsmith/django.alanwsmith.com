@@ -52,6 +52,17 @@ python manage.py startapp notes
 
 -- /cli
 
+
+- Make the templates directory:
+
+-- cli/
+-- class: highlight
+
+mkdir -p notes/templates/notes
+
+-- /cli
+
+
 - Add Notes App To INSTALLED_APPS
 
 -- code/
@@ -67,6 +78,25 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "notes.apps.NotesConfig",
+]
+
+-- /code
+
+- Update the top level urls patterns
+
+-- code/
+-- python
+-- title: update for: site_files/urls.py
+-- class: highlight
+
+from django.contrib import admin
+from django.urls import path
+from django.urls import include
+
+urlpatterns = [
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("admin/", admin.site.urls),
+    path("notes/", include("notes.urls")),
 ]
 
 -- /code
@@ -102,26 +132,6 @@ python manage.py migrate
 
 -- /cli
 
-
-
-- Make the home page point at the notes app:
-
--- code/
--- python
--- title: update for: site_files/urls.py
--- class: highlight
-
-from django.contrib import admin
-from django.urls import path
-from django.urls import include
-
-urlpatterns = [
-    path("accounts/", include("django.contrib.auth.urls")),
-    path("admin/", admin.site.urls),
-    path("notes/", include("notes.urls")),
-]
-
--- /code
 
 
 - Make the "notes/urls.py" file:
@@ -249,47 +259,10 @@ class NoteForm(ModelForm):
 
 -- /code
 
-- Do the migrations:
-
--- cli/
--- title: make and run the migration
-
-python manage.py makemigrations notes
-python manage.py migrate
-
--- /cli
-
-- Add "notes/forms.py"
-
--- code/
--- python
--- title: create file: notes/forms.py
--- class: highlight
-
-from django.forms import ModelForm
-
-from .models import Note
-
-class NoteForm(ModelForm):
-    class Meta:
-        model = Note 
-        fields = ["note_title", "note_text"]
-
-
--- /code
-
-- Make the templates directory:
-
--- cli/
-
-mkdir -p notes/templates/notes
-
--- /cli
-
 - Create the <<path|index.html>> template
 
 -- code/
--- python
+-- html
 -- title: create file: notes/templates/notes/index.html
 -- class: highlight
 
@@ -315,8 +288,8 @@ mkdir -p notes/templates/notes
 - Create the <<path|view.html>> template
 
 -- code/
--- python
--- title: create file: notes/templates/notes/index.html
+-- html
+-- title: create file: notes/templates/notes/view.html
 -- class: highlight
 
 <!DOCTYPE html>
@@ -346,8 +319,8 @@ mkdir -p notes/templates/notes
 - Create the <<path|create.html>> template
 
 -- code/
--- python
--- title: create file: notes/templates/notes/index.html
+-- html
+-- title: create file: notes/templates/notes/create.html
 -- class: highlight
 
 <!DOCTYPE html>
@@ -367,8 +340,8 @@ mkdir -p notes/templates/notes
 - Create the <<path|edit.html>> template
 
 -- code/
--- python
--- title: create file: notes/templates/notes/index.html
+-- html
+-- title: create file: notes/templates/notes/edit.html
 -- class: highlight
 
 <!DOCTYPE html>
@@ -388,8 +361,8 @@ mkdir -p notes/templates/notes
 - Create the <<path|delete.html>> template
 
 -- code/
--- python
--- title: create file: notes/templates/notes/index.html
+-- html
+-- title: create file: notes/templates/notes/delete.html
 -- class: highlight
 
 <!DOCTYPE html>
@@ -421,9 +394,9 @@ python manage.py runserver
 - Visit the page:
 
 -- link
+-- class: highlight
 
 <<tablink|http://127.0.0.1:8000/notes/|http://127.0.0.1:8000/notes/>>
-
 
 -- /olist
 

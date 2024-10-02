@@ -10,9 +10,11 @@ anythihg you see here.
 
 -- h2
 
-How-Tos
+Getting Started 
 
-The first three that I use for new sites/projects are:
+These are the first three things I do in order 
+to get set up for a new site/project. All the
+other how-tos assume they have been done. 
 
 -- list
 
@@ -22,20 +24,22 @@ The first three that I use for new sites/projects are:
 
 - <<tlink|2mqkkio5>>
 
+-- h2
 
--- p
+The How-Tos
 
-Together, they get a basic site set up with user
-auth and the ability to serve CSS/JS files. 
+These how-tos are designed to be run individually 
+(after going throuh the first three above to get
+the basics in place). 
 
 
--- list
+-- list/
 
 - <<tlink|2mqzuh9i>>
 
 - <<tlink|2mntpzed>>
 
-
+-- /list
 
 
 -- metadata
