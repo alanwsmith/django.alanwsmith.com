@@ -1,0 +1,835 @@
+-- title
+
+Seciton 3 - Adding Login Functionality
+
+-- h2
+
+Introduction
+
+Throughout this tutorial we'll be working to make
+pages that we can edit. An important part of that
+is making sure that we're the only ones that can
+make changes. Dealing with user accounts is often
+a pain, but Django has a built-in user authentication
+system that smooths out the process a lot. We'll
+start the process by adding a login link to 
+the home page in this section. 
+
+-- h2
+
+Section Steps
+
+-- olist/
+
+- A quck look at Django template tags
+
+The <<path|homepage/templates/homepage/index.html>> file
+is a Django template. It's what's untimatly used to
+create the output for our pages. Our file is currently 
+nothing but HTML:
+
+-- code/
+-- html
+-- title: original home page template
+
+<!DOCTYPE html>
+<html>
+  <body>
+
+    <h1>Hello, world</h1>
+
+  </body>
+</html>
+
+-- /code
+
+Django doesn't do anything special with this code. 
+It simply returns it exaclty as it is. In order to
+use Django features we'll use Django template tags
+which are snippets of code that start with:
+
+-- pre/
+-- title: django opening template tag
+
+{%
+
+-- /pre
+
+And end with:
+
+-- pre/
+-- title: django closing template tag
+
+%}
+
+-- /pre
+
+The code for Django to execute goes between the
+opening and closing portions of the tag. For example, 
+we can create a <<code|lorem>> Django template tag that
+outputs random "Lorem Ipsum" placeholder text like
+this:
+
+-- code/
+-- django
+-- no-nums
+-- title: lorem placeholder text template tag
+
+{% lorem %}
+
+-- /code
+
+That'll output a paragraph of random placeholder text
+like:
+
+-- pre/
+-- title: lorem placeholder text output
+
+Lorem ipsum dolor sit amet, consectetur adipisicing 
+elit, sed do eiusmod tempor incididunt ut labore et 
+dolore magna aliqua.... 
+
+-- /pre
+
+You can see this in action by replacing the content
+of the home page template index.html file with this:
+
+-- code/
+-- html
+-- title: update for: homepage/templates/homepage/index.html
+
+<!DOCTYPE html>
+<html>
+  <body>
+
+    <h1>Hello, world</h1>
+
+    <div>
+      {% lorem %}
+    </div>
+
+  </body>
+</html>
+
+
+-- /code
+
+Make sure you've <<ilink|activated the Python virtual environment|2mcf8e2u>>
+then start the server if it's not already running with:
+
+-- cli/
+
+python manage.py runserver
+
+-- /cli
+
+Now, open the home page and you'll see the random text:
+
+-- link/
+-- title: home page link
+
+<<tablink|http://127.0.0.1/>>
+
+-- /link
+
+- Introducing the Django url template tag
+
+We'll be using Djano's "url" template tag to make 
+a link to our login page. The basic format for the tag
+is:
+
+-- code/
+-- django
+-- no-nums
+-- title: django url template tag example
+
+{% url 'NAME-OF-PAGE-TO-LINK-TO' %}
+
+-- /code
+
+One way to define a <<code|NAME-OF-PAGE-TO-LINK-TO>> is
+with the <<code|app_name>> and the <<code|name>> argument
+for a <<code|path()|python>> function in a "urls.py" file. 
+
+For example, the current version of our <<code|homepage/urls.py>> 
+file that we made in <<ilink|Section 2|2mcbmij7>> looks like this:
+
+-- code/
+-- python
+-- title: homepage/urls.py
+
+from django.urls import path
+
+from . import views
+
+app_name = "homepage"
+urlpatterns = [
+    path("", views.index, name="index"),
+]
+
+-- /code
+
+The <<code|app_name>> is "homepage" and the <<code|name>>
+for our <<code|path()|python>> is "index". We combine
+those with a <<code|:>> character to generate the full
+name for the page like:
+
+-- code/
+-- no-nums
+-- title: django homepage name
+
+homepage:index
+
+-- /code
+
+We can use this name in our <<code|url>> template tag like
+this:
+
+-- code/
+-- django
+-- no-nums
+
+{% url 'homepage:index' %}
+
+-- /code
+
+Let's add that temporarily to our home page so we 
+can see it. Replace the content of <<path|homepage/templates/homepage/index.html>>
+with this:
+
+-- code/
+-- html
+-- title: update for: homepage/templates/homepage/index.html
+
+<!DOCTYPE html>
+<html>
+  <body>
+
+    <h1>Hello, world</h1>
+
+    <div>
+      Home Page URL: {% url 'homepage:index' %}
+    </div>
+
+  </body>
+</html>
+
+-- /code
+
+Visit the home page again to see our change:
+
+-- link/
+-- title: home page link
+
+<<tablink|http://127.0.0.1/>>
+
+-- /link
+
+The new output is:
+
+-- pre/
+-- title: home page url line
+
+Home Page URL: /
+
+-- /pre
+
+There's not much to the URL. It points to the 
+root of the site so it's only the single <<code|/>>
+character. That's fine since the key point is 
+that the URL was generated for us automatically. 
+
+Let's change the URL to link to our login page
+(which doesn't exist yet, but we'll implement in 
+the next few steps)
+
+- Start making the login page link
+
+Django's built-in user authentication system provides
+a way to automatically create a login page. We'll
+need to configure it, but we can start by putting
+in the link which will demonstrate a new error for
+us. 
+
+The Django template name we can use in the "url" template
+tag is simply "login". Let's change our home page 
+to point use it (and get our new error message). Replace
+the contents of the <<path|homepage/templates/homepage/index.html>>
+file with this:
+
+-- code/
+-- html
+-- title: update for: homepage/templates/homepage/index.html
+-- class: highlight 
+
+<!DOCTYPE html>
+<html>
+  <body>
+
+    <h1>Hello, world</h1>
+
+    <div>
+      Login URL: {% url 'login' %}
+    </div>
+
+  </body>
+</html>
+
+-- /code
+
+Visit the home page and we'll see our new 
+error message:
+
+-- link/
+-- title: home page link
+
+<<tablink|http://127.0.0.1/>>
+
+-- /link
+
+-- pre/
+-- title: home page error message
+
+NoReverseMatch at /
+
+Reverse for 'login' not found. 'login' is not a valid view function or pattern name.
+
+etc...
+
+-- /pre
+
+- Examine the "NoReverseMatch" error
+
+Our error message start with:
+
+-- pre/
+-- title: web error message part 1
+
+NoReverseMatch at /
+
+-- /pre
+
+The <<code|NoReverseMatch>> error means that Django was 
+trying to look up a <<code|url>> template tag name that 
+doesn't exist. The <<code|at />> identifies the page
+the error occrred on which in this case is our home page
+(i.e. <<path|/>>)
+
+The next part of the error message is:
+
+-- pre/
+-- title: web error message part 2
+
+Reverse for 'login' not found. 'login' is not a valid view function or pattern name.
+
+-- /pre
+
+This let's us know that the name for the URL that failed
+is "login" which matches names we expect since we're trying
+to use:
+
+-- code/
+-- django
+-- no-nums
+-- title: url template tag
+
+{% url 'login' %}
+
+-- /code
+
+This URL isn't made up of an app_name and path() name
+separated by a colon like our previous example. That's 
+because we'll be using Django's built-in user authentication 
+for the link and it uses just 'login' instead of something
+like 'auth:login'.
+
+
+- Adding the built-in login page overview
+
+Setting up Djangos built-in login page takes a couple of
+steps:
+
+-- olist/
+
+- Update the sites <<path|urls.py>> file to add the route
+paths for the built-in pages
+
+- Create a template for the login page
+
+-- /olist
+
+- Add the built-in user authentication path routes
+
+We'll add the path routes for the login and other 
+user authentication pages that Django provides under 
+<<path|accounts/>>. We'll do this by adding this
+new line to the <<code|urlpatterns>> list in our
+<<path|tutorial_site/urls.py>> file:
+
+-- code/
+-- python
+-- no-nums
+-- title: user authentication path routes
+
+path("accounts/", include("django.contrib.auth.urls")),
+
+-- /code
+
+Here's the full contents of the <<path|tutorial_site/urls.py>>
+file to copy/paste into the file:
+
+-- code/
+-- python
+-- title: update for: tutorial_site/urls.py
+
+from django.contrib import admin
+from django.urls import path
+from django.urls import include
+
+urlpatterns = [
+    path("", include("homepage.urls")),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("admin/", admin.site.urls),
+]
+
+-- /code
+
+The <<code|include("django.contrib.auth.urls")|python>> call 
+loads the built-in user auth functionality at our defined
+<<path|accounts/>> path. We don't need to do anything else
+to get the page to show up. 
+
+The built-in functionality also gets our code to work for:
+
+-- code/
+-- django
+-- no-nums
+-- title: django url template tag
+
+{% url 'login' %}
+
+-- /code
+
+Visit the home page again and you'll see we've cleared the
+error and now show the URL for the login page as <<path|/accounts/login>>
+
+-- link/
+-- title: home page link
+
+<<tablink|http://127.0.0.1/>>
+
+-- /link
+
+
+- Use the built-in login link
+
+We can use the built-in user auth url tag by placing it in
+an HTML <<code|<a\>>> tag like:
+
+-- code/
+-- html
+-- no-nums
+-- title: login page link
+
+<a href="{% url 'login' %}">Login</a>
+
+-- /code
+
+Update the <<path|homepage/templates/homepage/index.html>> page
+to use it like this:
+
+-- code/
+-- html
+-- title: update for: homepage/templates/homepage/index.html
+
+<!DOCTYPE html>
+<html>
+  <body>
+
+    <h1>Hello, world</h1>
+
+    <div>
+      <a href="{% url 'login' %}">Login</a>
+    </div>
+
+  </body>
+</html>
+
+-- /code
+
+Visit the home page again to checkout the Login link
+which you can click on. (It'll take us to an 
+intentional error which we'll address next)
+
+-- link/
+-- title: home page link
+
+<<tablink|http://127.0.0.1/>>
+
+-- /link
+
+- Generic templates directory overview
+
+Clicking on the <<code|Login>> link takes us 
+to the URL <<path|/accounts/login>> and the page tries
+to load but produces this error:
+
+
+-- pre/
+-- title: login page error message
+
+TemplateDoesNotExist at /accounts/login/
+
+registration/login.html
+
+etc...
+
+-- /pre
+
+The <<code|TemplateDoesNotExist>> tells us that Django
+couldn't find a template it expected to be able to use.
+The <<code|at /accounts/login>> tells us the URL of
+the page that had the problem and the "registration/login.html"
+tells us the path to the template file it was looking for. 
+We need to add a file that it can find for that path. 
+
+By default, Django searching for templates inside any 
+<<path|template>> directories in our app/module folders. 
+For example, we created the directory:
+
+-- pre/
+-- title: home page template directory 
+
+homepage/templates
+
+-- /pre
+
+and put the home page template itself in:
+
+-- pre/
+-- title: home page template file
+
+homepage/templates/homepage/index.html
+
+-- /pre
+
+We can't use the same approach for our login template
+because we're using the built-in user auth instead of
+our own app/module. That means we don't have an <<path|accounts>>
+or <<path|registration>> directory to create a <<path|templates>>
+directory in. To address this we'll make a generic <<path|templates>>
+directory that's not inside an app/module and place
+our login template file there. 
+
+There are two steps to doing this:
+
+-- olist/
+
+- Define the directory in <<path|tutorial_site/settings.py>>
+
+- Create the new <<path|templates>> directory itself
+
+-- /olist
+
+- Create the generic templates directory
+
+To be able to use a generic template directory we have
+to update our Django configuration so it knows to look
+for it. This is done in <<path|tutorial_site/settings.py>>
+inside the <<code|TEMPLATES>> list. Open the file and 
+find the line:
+
+-- code/
+-- python
+-- no-nums
+-- title: initial tutorial_site/settings.py line
+
+"DIRS": [],
+
+-- /code
+
+and update it to:
+
+-- code/
+-- python
+-- no-nums
+-- title: updated tutorial_site/settings.py line
+-- class: highlight
+
+"DIRS": [BASE_DIR / "templates"],
+
+-- /code
+
+The <<code|BASE_DIR>> variable represents our root
+site/project directory (i.e. <<path|tutorial_site>>). So, 
+the full path we're adding here is <<path|tutorial_site/templates>>)
+Let's add that now by stopping the server with:
+
+-- pre/
+-- title: keyboard
+
+control + c
+
+-- /pre
+
+Then running the command:
+
+-- cli/
+
+mkdir templates
+
+-- /cli
+
+We're now set up to fix our error by adding our
+new template
+
+- Add the login template file
+
+Or current <<code|TemplateDoesNotExist>> error on the
+<<path|/accounts/login>> page says it's looking for
+the template at: 
+
+-- pre/
+-- title: login page template error path
+
+registration/login.html
+
+-- /pre
+
+Django will look for that file under:
+
+-- pre/
+-- title: template file path
+
+tutorial_site/templates/registraion/index.html
+
+-- /pre
+
+We haven't created the <<path|registration>> directory
+yet. Do that now with:
+
+-- cli/
+-- class: highlight
+
+mkdir -p templates/registration
+
+-- /cli
+
+Once that's done, make a new file at <<path|tutorial_site/templates/registration/index.html>>
+with this content:
+
+-- code/
+-- html
+-- title: new file: tutorial_site/templates/registration/index.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+    <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Log In</button>
+    </form>
+  </body>
+</html>
+
+-- /code
+
+With that done, we can start the server again with:
+
+-- cli/
+-- class: highlight
+
+python manage.py runserver
+
+-- /cli
+
+and check out the login page at:
+
+-- link/
+-- title: login page link
+-- class: highlight
+
+<<tablink|http://127.0.0.1/accounts/login/>>
+
+-- /link
+
+This is a fully functional login form. Try putting
+in a random username and password and you'll get
+a message that it's incorrect. Next, use your
+"admin" super user account username and password. 
+Django will log you in and redirect you to a page
+at <<path|/accounts/profile>> by default. 
+
+Full sites that have users generally provide profile
+pages for them, but we don't need that for our
+site right now. Instead of building out those pages
+we'll update the login page to redirect to the home
+page by default in a later step. We need to be able
+to log out first which we'll do shortly in the next 
+section. 
+
+TODO: Put in note about CSRF. Earlier text is:
+
+"CSRF" stands for "Cross-Site Request Forgery" which is
+a security vulnerability that can happen when a malicious
+website sends traffic to your site. The <<code|csrf_token>> 
+template tag is another built-in Django feature that 
+protects against CSRF attacks. We don't need to dig
+into it here other than to point out that any form
+you make should have the token in it. When you're 
+ready to learn more about the specifics you can 
+check out the offical documentation:
+
+- Examine the login page template
+
+Before we leave this section let's take another 
+look at the login page and the template that 
+produces it. You can open the page with:
+
+-- link/
+-- title: login page
+
+<<tablink|http://127.0.0.1/accounts/login>>
+
+-- /link
+
+And here's the contents of the template file again
+for reference: 
+
+-- code/
+-- html
+-- title: current tutorial_site/templates/registration/index.html
+
+<!DOCTYPE html>
+<html>
+<body>
+    <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Log In</button>
+    </form>
+  </body>
+</html>
+
+-- /code
+
+The template contains two Django template tags. The first one is
+the same CSRF tag we've seen before that needs to
+be added to every form we use. 
+
+-- code/
+-- django
+-- no-nums
+-- title: csrf template tag
+
+{% csrf_token %}
+
+-- /code
+
+The second tag is:
+
+
+-- code/
+-- django
+-- no-nums
+-- title: form template tag
+
+{{ form }}
+
+-- /code
+
+This second tag looks a little different. Instead of opening and
+closing tokens that looks like this:
+
+-- code/
+-- django
+-- no-nums
+-- title: original opening and closing tokens
+
+{% %}
+
+-- /code
+
+They look like this:
+
+-- code/
+-- django
+-- no-nums
+-- title: alternate opening and closing tokens
+
+{{ }} 
+
+-- /code
+
+Django uses both styles but treats them a little
+differently. They can both output content but the
+<<code|{% %}>> are used more for functions as well
+as control structures (like <<code|if>> statements
+we'll see shortly) while the <<code|{{ }}>> version
+outputs a variable directly. 
+
+In this case, the varialbe we're outputting the contents
+of the <<code|form>> variable. It's provided for us 
+automatically as part of the built-in user auth 
+functionality we got when we set the <<code|path()|python>>
+for <<path|accounts>> in our <<path|tutorial_site/urls.py>>
+file to use:
+
+-- code/
+-- python
+-- no-nums
+
+include("django.contrib.auth.urls")
+
+-- /code
+
+
+-- /olist
+
+-- h2
+
+Wrapping Up
+
+Setting up to handle user based functionality can be 
+a huge pain. There's all kinds of things to deal with:
+different sign-up processes, secure crednetial storage, 
+password resets, etc... Django builds all that stuff
+in. If you've never head to deal with handling user 
+accounts before it's tough to get across how much 
+of a bonus this is. It's enough to make Django a
+go-to choice for lots of uses cases. 
+
+Our next step will be implementing the logout 
+functionality. 
+
+-- h2
+
+Links
+
+Previous: <<tlink|2mcbmij7>>
+
+Next: <<tlink|2md3ouqp>>
+
+
+
+-- ref
+-- title: Django Built-in template tags and filters
+-- url: https://docs.djangoproject.com/en/5.1/ref/templates/builtins/
+
+
+-- ref
+-- title: Djanog NoReverseMatch error docs
+-- url: https://docs.djangoproject.com/en/5.1/ref/exceptions/#django.urls.NoReverseMatch
+
+
+
+-- metadata
+-- created: 2024-09-26T19:23:25-04:00
+-- updated: 2024-09-26T19:23:25-04:00
+-- id: 2md4eik2
+-- type: post
+-- status: draft
+
+

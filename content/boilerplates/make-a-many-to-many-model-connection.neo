@@ -1,0 +1,804 @@
+-- title
+
+Boilderplate: Make A Many-To-Many Model Connection In Django
+
+-- h2
+
+Introduction
+
+This boilerplate creates an interface for Books
+and Authors to demonstarte a many-to-many connection. 
+It assumes you've already gone through the basic site/project
+setup steps (i.e. <<tlink|2mny1qlt>>, 
+<<tlink|2mqmyqi8>>, and <<tlink|2mqkkio5>>). More
+details are below the code in the <<em|Boilerplate 
+Details>> section. 
+
+-- h2
+
+Boilerplate Steps
+
+-- h3
+
+Perp Work
+
+-- olist/
+
+- Make sure you're in the python venv
+
+TODO: Write up how to make sure you're in
+the proper vecv
+
+- Move into the directory with <<path|manage.py>>
+
+- Create app modules with <<code|startapp>> 
+
+-- cli/
+-- class: highlight
+
+python manage.py startapp authors
+python manage.py startapp books  
+
+-- /cli
+
+- Make the templates directories
+
+-- cli/
+-- class: highlight
+
+mkdir -p authors/templates/authors
+mkdir -p books/templates/books 
+
+-- /cli
+
+
+- Update INSTALLED_APPS in 
+<<path|site_files/settings.py>>
+
+
+-- code/
+-- python
+-- title: change for: site_files/settings.py
+-- class: highlight
+
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "authors.apps.AuthorsConfig",
+    "books.apps.BooksConfig",
+]
+
+-- /code
+
+- Add the top level url patterns:
+
+-- code/
+-- python
+-- title: updated content for: site_files/settings.py
+-- class: highlight
+
+from django.contrib import admin
+from django.urls import path
+from django.urls import include
+
+urlpatterns = [
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("admin/", admin.site.urls),
+    path("authors/", include("authors.urls")),
+    path("books/", include("books.urls")),
+]
+
+
+-- /code
+
+
+-- /olist
+
+
+-- h3
+
+Make The Authors
+
+
+-- olist/
+
+- Make the authors model
+
+-- code/
+-- python
+-- title: updated content for: authors/models.py
+-- class: highlight
+
+from django.db import models
+
+class Author(models.Model):
+    first_name = models.CharField(max_length=80)
+    last_name = models.CharField(max_length=80, blank=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
+-- /code
+
+
+- Make the "authors/urls.py" file:
+
+-- code/
+-- python
+-- title: new file: authors/urls.py
+-- class: highlight
+
+from django.urls import path
+
+from . import views
+
+app_name = "authors"
+urlpatterns = [
+    path("", views.index, name="index"),
+    path("create/", views.create, name="create"),
+    path("<int:pk>/", views.view, name="view"),
+    path("<int:pk>/edit/", views.edit, name="edit"),
+    path("<int:pk>/delete/", views.delete, name="delete"),
+]
+
+-- /code
+
+
+- Add the admin for the authors page
+
+-- code/
+-- python
+-- title: updated content for: authors/admin.py
+-- class: highlight
+
+from django.contrib import admin
+
+from .models import Author 
+
+admin.site.register(Author)
+
+-- /code
+
+
+
+- Add the functions to: <<path|author/views.py>> 
+
+-- code/
+-- python
+-- title: updated content for: authors/views.py
+-- class: highlight
+
+
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+
+from .models import Author 
+from .forms import AuthorForm
+
+def index(request):
+    authors_list = Author.objects.order_by("first_name").order_by("last_name")
+    context = { "authors_list": authors_list }
+    return render(request, "authors/index.html", context)
+
+@login_required
+def create(request):
+    if request.method == "POST":
+        form = AuthorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # TODO: Update this url to be automatic 
+            return HttpResponseRedirect("/authors/")
+    else:
+        form = AuthorForm()
+        context = { "form": form }
+        return render(request, "authors/create.html", context)
+
+@login_required
+def delete(request, pk):
+    author = get_object_or_404(Author, pk=pk)
+    if request.method == "POST":
+        books = author.book_set.all()
+        if len(books) > 0:
+            # This makes sure we don't rely solely on the template
+            # TODO: Add flash message here about not deleting
+            return HttpResponseRedirect("/authors/")
+        else:
+            author.delete()
+            return HttpResponseRedirect("/authors/")
+    else:
+        context = { "author": author }
+        return render(request, "authors/delete.html", context)
+
+@login_required
+def edit(request, pk):
+    author = get_object_or_404(Author, pk=pk)
+    if request.method == "POST":
+        form = AuthorForm(request.POST)
+        if form.is_valid():
+            author.first_name = form.cleaned_data["first_name"]
+            author.last_name = form.cleaned_data["last_name"]
+            author.save()
+            # TODO: Figure out how to make this redirect URL automatically
+            return HttpResponseRedirect(f"/authors/{pk}/")
+    else:
+        form = AuthorForm(instance=author)
+        context = { "form": form, "author": author }
+        return render(request, "authors/edit.html", context)
+
+def view(request, pk):
+    author = get_object_or_404(Author, pk=pk)
+    return render(request, "authors/view.html", {"author": author})
+
+
+-- /code
+
+
+- Add the forms.py file:
+
+-- code/
+-- python
+-- title: create new file: authors/forms.py
+-- class: highlight
+
+from django.forms import ModelForm
+
+from .models import Author
+
+class AuthorForm(ModelForm):
+    class Meta:
+        model = Author 
+        fields = ["first_name", "last_name"]
+
+-- /code
+
+- Create the <<path|index.html>> template
+
+-- code/
+-- html
+-- title: create file: authors/templates/authors/index.html
+-- class: highlight
+
+
+<!DOCTYPE html>
+<html>
+<body>
+  <div>
+      <a href="{% url 'books:index' %}">Books</a>
+      - 
+      Authors
+  </div>
+  <hr />
+  <h1>Authors</h1>
+  <ul>
+    {% for author in authors_list %}
+      <li>
+        <a href="{% url 'authors:view' author.id %}">{{ author }}</a>
+      </li>
+    {% endfor %}
+  </ul> 
+  <hr />
+  <div>
+    <a href="{% url 'authors:create' %}">Add An Author</a>
+  </div>
+</body>
+</html>
+
+-- /code
+
+
+- Create the <<path|view.html>> template
+
+-- code/
+-- html
+-- title: create file: authors/templates/authors/view.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+  <div>
+      <a href="{% url 'books:index' %}">Books</a>
+      -
+      <a href="{% url 'authors:index' %}">Authors</a>
+  </div>
+  <hr />
+    <h1>{{ author.first_name }} {{ author.last_name }}</h1>
+  <h3>Books</h3>
+    <ul>
+      {% for book in author.book_set.all %}
+        <li><a href="{% url 'books:view' book.id %}">{{ book }}</a></li>
+      {% endfor %}
+    </ul>
+    <hr />
+    <div>
+      <a href="{% url 'authors:edit' author.id %}">Edit author</a>
+      - 
+      <a href="{% url 'authors:delete' author.id %}">Delete author</a>
+    </div>
+</body>
+</html>
+
+-- /code
+
+
+- Create the <<path|create.html>> template
+
+-- code/
+-- html
+-- title: create file: authors/templates/authors/create.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Create A Author</h1>
+    <form action="{% url 'authors:create' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Add Author">
+  </body>
+</html>
+
+-- /code
+
+
+- Create the <<path|edit.html>> template
+
+-- code/
+-- html
+-- title: create file: authors/templates/authors/edit.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Edit Author</h1>
+    <form action="{% url 'authors:edit' author.id %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
+
+-- /code
+
+- Create the <<path|delete.html>> template
+
+-- code/
+-- html
+-- title: create file: authors/templates/authors/delete.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div>
+      <a href="{% url 'books:index' %}">Books</a>
+      -
+      <a href="{% url 'authors:index' %}">Authors</a>
+    </div>
+    {% if author.book_set.count > 0 %}
+        <h1>Can't Delete Yet</h1>
+        <div>{{ author}} is still listed as the author of:</div>
+        <ul>
+            {% for book in author.book_set.all %}
+            <li><a href="{% url 'books:view' book.id %}">{{ book }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h1>Confirm You Want To Delete The Author</h1>
+        <div>{{ author}}</div>
+        <form action="{% url 'authors:delete' author.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete" />
+        </form>
+    {% endif %}
+</body>
+</html>
+
+-- /code
+
+-- /olist
+
+
+
+-- h3
+
+Make The Books
+
+-- olist/
+
+- Make the books and book_authors models
+
+-- code/
+-- python
+-- title: updated content for: books/models.py
+-- class: highlight
+
+
+from django.db import models
+
+from authors.models import Author
+
+class Book(models.Model):
+    title = models.CharField(max_length=200)
+    authors = models.ManyToManyField(Author, blank=True, through="BookAuthor")
+
+    def __str__(self):
+        return self.title
+
+class BookAuthor(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.PROTECT)
+
+-- /code
+
+
+- Make the "books/urls.py" file:
+
+-- code/
+-- python
+-- title: create new file: books/urls.py
+-- class: highlight
+
+from django.urls import path
+
+from . import views
+
+app_name = "books"
+urlpatterns = [
+    path("", views.index, name="index"),
+    path("create/", views.create, name="create"),
+    path("<int:pk>/", views.view, name="view"),
+    path("<int:pk>/edit/", views.edit, name="edit"),
+    path("<int:pk>/delete/", views.delete, name="delete"),
+]
+
+-- /code
+
+
+- Add the admin for the books page
+
+-- code/
+-- python
+-- title: updated content for: books/admin.py
+-- class: highlight
+
+from django.contrib import admin
+
+from .models import Book 
+
+admin.site.register(Book)
+
+-- /code
+
+
+
+- Add the functions to: <<path|book/views.py>> 
+
+-- code/
+-- python
+-- title: updated content for: books/views.py
+-- class: highlight
+
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+
+from .models import Book 
+from .forms import BookForm
+
+def index(request):
+    books_list = Book.objects.order_by("title")
+    context = {"books_list": books_list}
+    return render(request, "books/index.html", context)
+
+@login_required
+def create(request):
+    if request.method == "POST":
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # TODO: Update this url to be automatic 
+            return HttpResponseRedirect("/books/")
+    else:
+        form = BookForm()
+        context = { "form": form }
+        return render(request, "books/create.html", context)
+
+@login_required
+def delete(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    if request.method == "POST":
+        book.delete()
+        # TODO: set this url automatically
+        return HttpResponseRedirect("/books/")
+    else:
+        context = { "book": book }
+        return render(request, "books/delete.html", context)
+
+@login_required
+def edit(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    if request.method == "POST":
+        form = BookForm(request.POST)
+        if form.is_valid():
+            book.title = form.cleaned_data["title"]
+            book.authors.set(form.cleaned_data["authors"])
+            book.save()
+            # TODO: Figure out how to make this redirect URL automatically
+            return HttpResponseRedirect(f"/books/{pk}/")
+    else:
+        form = BookForm(instance=book)
+        context = { "form": form, "book": book }
+        return render(request, "books/edit.html", context)
+
+def view(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    return render(request, "books/view.html", {"book": book})
+
+
+-- /code
+
+
+- Add the forms.py file:
+
+-- code/
+-- python
+-- title: create new file: books/forms.py
+-- class: highlight
+
+from django.forms import ModelForm
+
+from .models import Book
+
+class BookForm(ModelForm):
+    class Meta:
+        model = Book 
+        fields = ["title", "authors"]
+
+-- /code
+
+- Create the <<path|index.html>> template
+
+-- code/
+-- html
+-- title: create file: books/templates/books/index.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+  <div>
+      Books 
+      -
+      <a href="{% url 'authors:index' %}">Authors</a>
+  </div>
+  <hr />
+  <h1>Books</h1>
+  <ul>
+    {% for book in books_list %}
+      <li>
+        <a href="{% url 'books:view' book.id %}">{{ book }}</a>
+        {% if book.authors.count > 0 %}
+          by: {% for author in  book.authors.all %}
+          {{ author.first_name }} 
+          {{ author.middle_string }}
+          {{ author.last_name }}{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul> 
+  <hr />
+  <div>
+    <a href="{% url 'books:create' %}">Add A Book</a>
+  </div>
+</body>
+</html>
+
+
+-- /code
+
+
+- Create the <<path|view.html>> template
+
+-- code/
+-- html
+-- title: create file: books/templates/books/view.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+  <div>
+      <a href="{% url 'books:index' %}">Books</a>
+      -
+      <a href="{% url 'authors:index' %}">Authors</a>
+  </div>
+  <hr />
+  <h1>{{ book }}</h1>
+  <div>
+      {% if book.authors.count > 0 %}
+        by: 
+        {% for author in  book.authors.all %}
+        <a href="{% url 'authors:view' author.id %}">
+          {{ author.first_name }} 
+          {{ author.last_name }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+      {% endif %}
+  </div>
+  <hr />
+  <div>
+    <a href="{% url 'books:edit' book.id %}">Edit book</a>
+    - 
+    <a href="{% url 'books:delete' book.id %}">Delete book</a>
+  </div>
+</body>
+</html>
+
+-- /code
+
+
+- Create the <<path|create.html>> template
+
+-- code/
+-- html
+-- title: create file: books/templates/books/create.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div>
+      <a href="{% url 'books:index' %}">Books</a>
+      -
+      <a href="{% url 'authors:index' %}">Authors</a>
+    </div>
+    <hr />
+    <h1>Create A Book</h1>
+    <form action="{% url 'books:create' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Create Book">
+  </body>
+</html>
+
+-- /code
+
+
+- Create the <<path|edit.html>> template
+
+-- code/
+-- html
+-- title: create file: books/templates/books/edit.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Edit Book</h1>
+    <form action="{% url 'books:edit' book.id %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
+
+-- /code
+
+- Create the <<path|delete.html>> template
+
+-- code/
+-- html
+-- title: create file: books/templates/books/delete.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div>
+      <a href="{% url 'books:index' %}">Books</a>
+      -
+      <a href="{% url 'authors:index' %}">Authors</a>
+    </div>
+    <h1>Confirm You Want To Delete The Book</h1>
+    <div>{{ book }}</div>
+    <form action="{% url 'books:delete' book.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+</body>
+</html>
+
+-- /code
+
+-- /olist
+
+
+-- h3
+
+Finishing Up
+
+-- olist/
+
+- Run the migrations
+
+-- cli/
+-- class: highlight
+
+python manage.py makemigrations authors
+python manage.py migrate authors
+python manage.py makemigrations books 
+python manage.py migrate books 
+
+-- /cli
+
+
+- Start the server:
+
+-- cli/
+-- class: highlight
+
+python manage.py runserver
+
+-- /cli
+
+- Visit the page:
+
+-- link
+-- class: highlight
+
+<<tablink|http://127.0.0.1:8000/books/|http://127.0.0.1:8000/books/>>
+
+-- /olist
+
+
+-- h2
+
+Boilerpage Details 
+
+-- list/
+
+- This boilerplate demonstrates a basic many-to-many
+connection between database items. 
+
+- The example uses Books and Authors. 
+
+- You can view books and authors without being logged in.
+
+- You have to be logged in in order to add/edit/delete
+books and authors. 
+
+- Each Book can have zero or more Authors.
+
+- Each Author can have zero or more Books. 
+
+- You can delete a Book at any point. 
+
+- You can only delete Authors when they don't
+have any books associated with them. 
+
+- Author names have to have a first name, but the
+last name is not required. 
+
+
+-- /list
+
+
+
+-- metadata
+-- created: 2024-10-01T19:23:12-04:00
+-- updated: 2024-10-01T19:23:12-04:00
+-- id: 2mrboroo
+-- type: post
+-- status: draft 
+
+

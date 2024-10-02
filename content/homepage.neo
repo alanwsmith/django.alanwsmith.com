@@ -1,168 +1,103 @@
 -- title
 
-Django 5.1 Getting Started Tutorial
+Alan's Django Notes 
 
 -- h2
 
-Introduction
+Welcome!
 
-Welcome to my Django Tutorial. 
-
-This site was born out of frustration with the 
-offical Django getting started tutorial^^1^^.
-It doesn't show you 
-how to make a home page. It also skips details on 
-how to do user authentication to edit content. 
-Those are both fundamental to 
-practial websites that Django is great at doing^^2^^.
-So, I made this tutorail to make it easier to get
-started with a site that includes those features. 
-
-You can read more about the tutorial below. Or, jump straight
-into it here if you want to get started right away:
-
-<<tlink|2mc6armk>>
-
--- h2
-
-Who This Tutorial Is For
-
-This tutorial is desinged for:
-
--- list
-
-- Folks who have never worked with Django before 
-
-- Folks who are frustrated with other tutorials not
-giving them enough information to make a basic site
-with Django's core features
-
--- p
-
-There are a few prerequisites you'll need to know in 
-order to get started:
-
--- list
-
-- A code editor (like <<link|VS Code|https://code.visualstudio.com/>>)
-
-- An installed version of <<link|Python 3|https://www.python.org/>>
-
-- A basic knowledge of working with the Python
-programming langauge
-
-- A basic knowledge of how to run commands on 
-a terminal command line
-
-- A baisc knowledge of HTML
+I'm Alan and this site is my collection of Django notes. 
+It's currently a collection of boilerplate code  
+and commands designed to
+be copied and pasted to accomplish specific tasks.
+You can learn more about the site
+in the <<em|Site Details>> section below. Or, dig 
+right in with the boilerplates:
 
 
 -- h2
 
-Goals
+The First Three Boilerplates
 
-The primary goal of this tutorial is to provide you 
-with enough knowledge to make your own Django site that
-includes the ability for authorized users to 
-create and modify content. 
-
-The specific things we'll cover include:
+These are the first three "Getting Started" things I do to set up
+a new site/project. All the 
+boilerplates in the next section assume these
+have been run in order. 
 
 -- list
 
-- An overview of Django's built-in admin 
-interface and user authentication tools
+- <<tlink|2mny1qlt>>
 
-- Creating A Home Page
+- <<tlink|2mqmyqi8>>
 
-- Implementing login/logout functionality
+- <<tlink|2mqkkio5>>
 
-- Providing the ability to create, view, update, 
-and delete content based on if a user is logged
-in or not
+-- h2
 
--- p
+Boilerplate Tasks
 
-We'll cover each of those items with a fair
-amount of depth. To keep a balance with the 
-amount of detail and the length of
-the tutorial there are some limits to what's covered. 
-Specifically:
+These boilerplates are designed to be run as stand-alone
+examples (after going throuh the first three above to get
+the basics in place). The goal for each one is that it 
+contain 100% of the code and commands you need to use to
+accomplish the specific task. 
 
--- list
 
-- I'm a fan of the "First, make it work. Then, make it pretty"
-approach to development. We'll be focusing on the
-first part and skipping design and styling for the most 
-part. 
+-- list/
 
-- Details on how to deploy a site to production 
-vary greatly depending on where the site is hosted. So, we'll
-be sticking with a local development version of the
-site.
 
-- Django has offical database support for PostgreSQL,
-MariaDB, MySQL, Oracle, and SQLite^^3^^. Generally speaking, 
-SQLite probably isn't what you'd want to use for a 
-production database, but it'll work great for our
-purposes since we're working with a local development
-environment. The reason for this choice is that
-SQLite works without having to do any of the 
-software set up that's required for the other databases. 
+- <<tlink|2mqzuh9i>>
 
-- The requirements for user sign-up systems vary grately 
-from site to site. We'll be making our users and assigning 
-their permissions via the built-in admin interface instead
-of trying to address that. 
+- <<tlink|2mntpzed>>
 
-- Django provides built-in tools for automated testing. 
-I'm a firm believer in testing, but learning how to do that
-adds to the mental overhead. We'll skip that for the time
-being to focus on the fundamental site functionality. 
+- <<tlink|2mrboroo>>
 
-- Version control is a highly recommended best practice, 
-but it's not the focus of this tutorial. If you're already 
-familiar with how to use a version control system like Git^^4^^, feel free
-to make commits as you make progress, but we won't be
-specically mentioning it. 
+-- /list
 
 
 -- h2
 
-Getting Started
+Site Details
 
-That's it for the overview. You're ready for:
+A few things to note about the site:
 
-<<tlink|2mc6armk>>
+-- list
+
+- <<em|Working-in-public>> and publishing
+my notes is one of the most effective ways for me
+to learn. I mostly publish on my 
+<<link|main site|https://www.alanwsmith.com/>>, 
+but I expect I'll be spending
+enough time with Django that these notes warrent a site of
+their own. 
+
+- The site currently consists of <<em|boilerplate>> code
+and commands. There's not much explination with 
+them beyond the code itself. 
+
+- I cut everything down as much as I can to focus on 
+the specific task. That means no CSS unless the task is
+focused on CSS.  
+
+- The first three boilerplates are
+designed to be run togther. They set up 
+a basic site/project that the other boilerplates 
+are run on top of. 
+
+- The rest of the boilerplates are designed to
+be used independetly of each other to show how
+to do a specific task. 
+
+- The goal of each boilerplate is to contain 100%
+of the code and commands you need to run in order
+to accomplish the task. 
+
+- I'm still new to Django. Please let me know,
+if you know of more django native ways to do 
+anythihg you see here. You can reach
+me <<link|on mastodon|https://hachyderm.io/@TheIdOfAlan>>
 
 
-
--- footnote
--- id: 1
--- title: Writing your first Django app
--- url: https://docs.djangoproject.com/en/5.1/intro/tutorial01/
-
-This is the offical getting started tutofial from the Django
-project. It may work for other folks, but it doesn't for me. 
-Hence the reason I made this site. 
-
--- footnote
--- id: 2
--- title: My Problems With The Offical Django Tutorial
--- url: /en/2mc0os37
-
-This is my full list of frustrations with the offical 
-tutorial. 
-
--- footnote
--- id: 3
--- title: Django Offical Database Documentation
--- url: https://docs.djangoproject.com/en/5.1/ref/databases/
-
--- footnote
--- id: 4
--- title: Git Version Control Software
--- url: https://git-scm.com/
 
 
 
@@ -171,7 +106,7 @@ tutorial.
 -- updated: 2024-09-26T10:13:34-04:00
 -- id: 2mbzmjd0
 -- type: post
--- status: scratch
+-- status: draft 
 -- path: /
 
 

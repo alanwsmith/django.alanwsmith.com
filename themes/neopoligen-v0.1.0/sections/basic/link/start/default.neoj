@@ -11,7 +11,7 @@
 [! endif !]
 
 <div class="link-block">
-[! for child in section.children !]
-    [@ theme.output_section(site, page_id, child) @]
-[! endfor !]
+[!- for child in section.children -!]
+    [@- theme.output_section(site, page_id, child) -@]
+[!- endfor -!]
 </div>

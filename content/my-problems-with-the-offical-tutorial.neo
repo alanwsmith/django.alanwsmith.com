@@ -206,6 +206,9 @@ site and then breaking testing out to it's own tutorial where you
 can start from scratch and to TDD instead of retro-fitting the 
 tests into already the already existing code. 
 
+- Something I didn't realize until I started building my own
+tutorial is that the offial one doesn't actually show you 
+how to edit a text field. 
 
 -- /list
 
@@ -264,6 +267,6 @@ Links
 -- updated: 2024-09-26T10:25:34-04:00
 -- id: 2mc0os37
 -- type: post
--- status: scratch
+-- status: draft 
 
 

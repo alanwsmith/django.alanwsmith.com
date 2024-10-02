@@ -26,11 +26,7 @@
 <body>
 <header>
       <a href="/">Home</a>
-      <div class="under-construction">
-        NOTE: I'm in the middle of upgrading the site. Most things are in place, but
-        some things are missing and/or broken. This includes alt text for images. Please
-        bear with me while I get things fixed. 
-      </div>
+      
     </header>
 <main class="flow">
 
@@ -38,15 +34,7 @@
 <hgroup>
 
   
-    <h1 class="page-title">
-    
-      Section 2 
-    
-      -
-    
-       Make A Home Page
-    
-    </h1>
+    <h1 class="page-title">Section 2 - Make A Home Page</h1>
     
   
 
@@ -65,11 +53,7 @@
 <hgroup>
 
   
-    <h2 class="section-heading">
-    
-      Introduction 
-    
-    </h2>
+    <h2 class="section-heading">Introduction </h2>
     
   
 
@@ -85,48 +69,18 @@
 
 
     
-<p>
-
-Django provided us with a nice default home page to 
-
-
-
-
+<p>Django provided us with a nice default home page to 
 let us know that things are working, but we don't 
-
-
-
-
 want it to be what folks would see if they visited
-
-
-
-
 our site. Instead, we'll make our own basic home
-
-
-
-
-page.
-
-</p>
-
+page.</p>
 
 
 
     
-<p>
-
-Before we get started, 
-
-<a href="/en/2mcf8e2u/?page=starting-the-python-virtual-environment">make sure the Python
+<p>Before we get started, <a href="/en/2mcf8e2u/?page=starting-the-python-virtual-environment">make sure the Python
 virtual environment is active</a>
-
-
-.
-
-</p>
-
+.</p>
 
 
 
@@ -143,11 +97,7 @@ virtual environment is active</a>
 <hgroup>
 
   
-    <h2 class="section-heading">
-    
-      The Steps
-    
-    </h2>
+    <h2 class="section-heading">Section Steps</h2>
     
   
 
@@ -171,32 +121,12 @@ virtual environment is active</a>
 
 
 
-<p>
-
-Examine the initial url paths
-
-</p>
+<p>Examine the initial url paths</p>
 
 
-
-<p>
-
-The first change we're going make is to update the routing
-
-
-
-
+<p>The first change we're going make is to update the routing
 functionality to point calls to the root of the site. 
-
-
-
-
-These changes are made in the file
-
-:
-
-</p>
-
+These changes are made in the file:</p>
 
 <section class="pre-section">
 
@@ -220,19 +150,8 @@ file path:
 
 
     
-<p>
-
-Before we make any changes, let's examine the initial version 
-
-
-
-
-of the file that looks like this
-
-:
-
-</p>
-
+<p>Before we make any changes, let's examine the initial version 
+of the file that looks like this:</p>
 
 
 
@@ -265,14 +184,7 @@ of the file that looks like this
 
 
     
-<p>
-
-These first two lines of code are
-
-:
-
-</p>
-
+<p>These first two lines of code are:</p>
  
 
 
@@ -297,32 +209,12 @@ These first two lines of code are
 
 
     
-<p>
-
-These lines import some of Django's
-
-
-
-
+<p>These lines import some of Django's
 default functionality that's used for the 
-
-
-
-
-configuration. 
-
-</p>
-
+configuration. </p>
 
     
-<p>
-
-The next snippet of code is
-
-:
-
-</p>
-
+<p>The next snippet of code is:</p>
  
 
 
@@ -348,76 +240,19 @@ The next snippet of code is
 
 
     
-<p>
-
-The 
-
-<code class=""><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span><span class="punctuation section list end python">]</span></span></span></code>
-
- list holds a 
-
-
-
-
-collection of 
-
-<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
-
- functions. These are
-
-
-
-
-what define the specific url paths that define the routes. 
-
-</p>
-
+<p>The <code class=""><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span><span class="punctuation section list end python">]</span></span></span></code> list holds a 
+collection of <code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code> functions. These are
+what define the specific url paths that define the routes. </p>
 
     
-<p>
-
-The 
-
-<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
-
- functions take two required arguments. The first is 
-
-
-
-
+<p>The <code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code> functions take two required arguments. The first is 
 a pattern to match in the requested page's URL. The second
-
-
-
-
-is what to do when a match is found. (The 
-
-<code class=""><span class="text plain">path()</span></code>
-
- 
-
-
-
-
+is what to do when a match is found. (The <code class=""><span class="text plain">path()</span></code> 
 function can also take two optional arguments for "kwargs" and "name"
-
-
-
-
-that we'll see later.)
-
-</p>
-
+that we'll see later.)</p>
 
     
-<p>
-
-The initial path that's include by default is
-
-:
-
-</p>
-
+<p>The initial path that's include by default is:</p>
  
 
 
@@ -441,39 +276,10 @@ The initial path that's include by default is
 
 
     
-<p>
-
-It tells Django to match "admin/" from the URL of
-
-
-
-
+<p>It tells Django to match "admin/" from the URL of
 a page request and send it to the built in admin functionality
-
-
-
-
-defined in 
-
-<code class=""><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span></code>
-
-. This is what
-
-
-
-
-powers the http
-
-:
-
-//127.0.0.1
-
-:
-
-8000/admin/ pages. 
-
-</p>
-
+defined in <code class=""><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span></code>. This is what
+powers the http://127.0.0.1:8000/admin/ pages. </p>
  
 
 
@@ -486,32 +292,12 @@ powers the http
 
 
 
-<p>
-
-Adding the new url path route
-
-</p>
+<p>Adding the new url path route</p>
 
 
-
-<p>
-
-We need to do two things to create the new url path route
-
-
-
-
+<p>We need to do two things to create the new url path route
 for the home page. First, we need to import a new module 
-
-
-
-
-with
-
-:
-
-</p>
-
+with:</p>
 
 
 
@@ -532,14 +318,7 @@ with
 
 
     
-<p>
-
-Then, we need to add a new path with
-
-:
-
-</p>
-
+<p>Then, we need to add a new path with:</p>
  
 
 
@@ -563,94 +342,26 @@ Then, we need to add a new path with
 
 
     
-<p>
-
-The empty 
-
-<code class=""><span class="source python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span></span></code>
-
- match argument
-
-
-
-
-means the 
-
-<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
-
- is for the root
-
-
-
-
-of the site (i.e. http
-
-:
-
-//127.0.0.1
-
-:
-
-8000/) and
-
-
-
-
-the 
-
-<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span></code>
-
- tells
-
-
-
-
+<p>The empty <code class=""><span class="source python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span></span></code> match argument
+means the <code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code> is for the root
+of the site (i.e. http://127.0.0.1:8000/) and
+the <code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span></code> tells
 Django that we want to use an app/module named
-
-
-
-
 "homepage" to handle it. (We haven't created this
-
-
-
-
 module yet, so this will cause an expected error
-
-
-
-
-that we see below.)
-
-</p>
-
+that we see below.)</p>
 
     
-<p>
-
-Putting those two lines in place updates the file
-
-
-
-
+<p>Putting those two lines in place updates the file
 to look like this which you can copy and paste 
-
-
-
-
-to replace the contents of the original
-
-:
-
-</p>
-
+to replace the contents of the original:</p>
  
 
 
 
 
 
-<section class="code-section">
+<section class="highlight code-section">
 
 <div class="code-wrapper">
 
@@ -674,26 +385,9 @@ to replace the contents of the original
 
 
     
-<p>
-
-When we save that file the Django server in the 
-
-
-
-
+<p>When we save that file the Django server in the 
 terminal will reload itself and show an error
-
-
-
-
-that ends with
-
-:
-
- 
-
-</p>
-
+that ends with: </p>
  
 
 
@@ -720,17 +414,8 @@ command line error:
 
 
     
-<p>
-
-It'll take us a few steps to get the home page to show
-
-
-
-
-up, but we'll start by tackling that error. 
-
-</p>
-
+<p>It'll take us a few steps to get the home page to show
+up, but we'll start by tackling that error. </p>
 
 
 
@@ -744,53 +429,25 @@ up, but we'll start by tackling that error.
 
 
 
-<p>
-
-Stop the server
-
-</p>
+<p>Stop the server</p>
 
 
-
-<p>
-
-We'll need to run another 
-
-<code class=""><span class="text plain">python manage.py</span></code>
-
- command
-
-
-
-
+<p>We'll need to run another <code class=""><span class="text plain">python manage.py</span></code> command
 in the next step. Let's stop the server by holding down 
+the <kbd 
 
+>control</kbd> key on the keyboard then pressing <kbd 
 
+>c</kbd></p>
 
-
-the 
-
-<kbd 
-
->control</kbd>
-
- key on the keyboard then pressing 
-
-<kbd 
-
->c</kbd>
-
-</p>
-
-
-<section class="pre-section">
+<section class="highlight  pre-section">
 
 <div class="pre-wrapper">
 
 
 
 <div class="pre-title">
-keyboard:
+keyboard
 </div>
 
 
@@ -816,59 +473,30 @@ keyboard:
 
 
 
-<p>
-
-Make the new app/module
-
-</p>
+<p>Make the new app/module</p>
 
 
+<p>The error message starts with "ModuleNotFountError". In Django's
+terminology the module it's looking for is called an "app". (TODO:
+more details on app/module). </p>
 
-<p>
 
-The error message starts with "ModuleNotFountError". In Django's
+<p>Run this command to create our new "homepage" app/module:</p>
 
 
 
-
-terminology the module it's looking for is called an "app". (TODO
-
-:
-
-
-
-
-more details on app/module). 
-
-</p>
-
-
-
-<p>
-
-Run this command to create our new "homepage" app/module
-
-:
-
-</p>
-
-
-
-
-<section class="cli-section">
-
-
+<section class="highlight  cli-section">
 
 <div class="cli-wrapper">
 
-<div class="cli-title">
+    <div class="cli-title">
+    
+    command line:
+    
+    </div>
 
-command line:
 
-</div>
-
-
-<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py startapp homepage</span></span></code></pre>
+    <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py startapp homepage</span></span></code></pre>
 
 
     
@@ -887,32 +515,12 @@ command line:
 
 
 
-<p>
-
-Register the newly created app/module
-
-</p>
+<p>Register the newly created app/module</p>
 
 
-
-<p>
-
-After creating the app/module with "startapp" in the previous 
-
-
-
-
+<p>After creating the app/module with "startapp" in the previous 
 command we have to configure Django to use it. We do this
-
-
-
-
-by adding this line
-
-:
-
-</p>
-
+by adding this line:</p>
 
 
 
@@ -933,18 +541,7 @@ by adding this line
 
 
     
-<p>
-
-to the 
-
-<code class=""><span class="text plain">INSTALLED_APPS</span></code>
-
- list variable in the file
-
-:
-
-</p>
-
+<p>to the <code class=""><span class="text plain">INSTALLED_APPS</span></code> list variable in the file:</p>
  
 
 
@@ -971,23 +568,9 @@ file path:
 
 
     
-<p>
-
-There's a lot to that file so you'll have to scroll down
-
-
-
-
+<p>There's a lot to that file so you'll have to scroll down
 some to find it. When you've made the update, the variable
-
-
-
-
-should look like this
-
-:
-
-</p>
+should look like this:</p>
 
 
 
@@ -995,13 +578,12 @@ should look like this
 
 
 
-
-<section class="code-section">
+<section class="highlight  code-section">
 
 <div class="code-wrapper">
 
 
-<div class="code-title">python</div>
+<div class="code-title">update inside: tutorial_site/settings.py</div>
 
 
 
@@ -1021,25 +603,8 @@ should look like this
 
 
     
-<p>
-
-TODO
-
-:
-
- Link to some docs about how the 
-
-<code class=""><span class="text plain">&quot;homepage.apps.HomepageConfig&quot;,</span></code>
-
- 
-
-
-
-
-line works. 
-
-</p>
-
+<p>TODO: Link to some docs about how the <code class=""><span class="text plain">&quot;homepage.apps.HomepageConfig&quot;,</span></code> 
+line works. </p>
  
 
 
@@ -1052,49 +617,27 @@ line works.
 
 
 
-<p>
-
-Start the server
-
-</p>
+<p>Start the server</p>
 
 
-
-<p>
-
-With that change in place, we're ready to start the
-
-
-
-
+<p>With that change in place, we're ready to start the
 server again which will show us a new error. Run
+this to start the server:</p>
 
 
 
-
-this to start the server
-
-:
-
-</p>
-
-
-
-
-<section class="cli-section">
-
-
+<section class="highlight  cli-section">
 
 <div class="cli-wrapper">
 
-<div class="cli-title">
+    <div class="cli-title">
+    
+    command line:
+    
+    </div>
 
-command line:
 
-</div>
-
-
-<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
+    <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
 
 
     
@@ -1103,14 +646,7 @@ command line:
 
 
     
-<p>
-
-The error in the console changes from
-
-:
-
-</p>
-
+<p>The error in the console changes from:</p>
 
  
 
@@ -1137,14 +673,7 @@ command line error:
 
 
     
-<p>
-
-To
-
-:
-
-</p>
-
+<p>To:</p>
 
 
 
@@ -1183,41 +712,21 @@ command line error:
 
 
 
-<p>
-
-Stop the server 
-
-</p>
+<p>Stop the server </p>
 
 
-
-<p>
-
-We're going to add a new file in the next step. We'll
-
-
-
-
+<p>We're going to add a new file in the next step. We'll
 need to restart the server to see the change so 
+we can stop it now with:</p>
 
-
-
-
-we can stop it now with
-
-:
-
-</p>
-
-
-<section class="pre-section">
+<section class="highlight pre-section">
 
 <div class="pre-wrapper">
 
 
 
 <div class="pre-title">
-keyboard:
+keyboard
 </div>
 
 
@@ -1243,26 +752,10 @@ keyboard:
 
 
 
-<p>
-
-Add a 
-
-<code class=""><span class="text plain">homepage/urls.py</span></code>
-
- file
-
-</p>
+<p>Add a <code class=""><span class="text plain">homepage/urls.py</span></code> file</p>
 
 
-
-<p>
-
-Django is looking for a file at
-
-:
-
-</p>
-
+<p>Django is looking for a file at:</p>
 
 <section class="pre-section">
 
@@ -1286,37 +779,11 @@ file path:
 
 
     
-<p>
-
-When we ran the 
-
-<code class=""><span class="text plain">python manage.py startapp homepage</span></code>
-
- 
-
-
-
-
+<p>When we ran the <code class=""><span class="text plain">python manage.py startapp homepage</span></code> 
 command it built a bunch of default files in the "homepage"
-
-
-
-
 directory, but "url.py" wasn't one of them. We have 
-
-
-
-
 to make it ourselves. Create it now and add this for
-
-
-
-
-the contents of the file
-
-:
-
-</p>
+the contents of the file:</p>
 
 
 
@@ -1324,8 +791,7 @@ the contents of the file
 
 
 
-
-<section class="code-section">
+<section class="highlight code-section">
 
 <div class="code-wrapper">
 
@@ -1349,16 +815,7 @@ the contents of the file
 
 
     
-<p>
-
-This file looks a lot like
-
-:
-
- 
-
-</p>
-
+<p>This file looks a lot like: </p>
  
 
 
@@ -1385,23 +842,8 @@ file path:
 
 
     
-<p>
-
-In fact, they two files work together. Inside the 
-
-<code class=""><span class="text plain">tutorial_site/urls.py</span></code>
-
- file
-
-
-
-
-the line
-
-:
-
-</p>
-
+<p>In fact, they two files work together. Inside the <code class=""><span class="text plain">tutorial_site/urls.py</span></code> file
+the line:</p>
 
 
 
@@ -1426,14 +868,7 @@ the line
 
 
     
-<p>
-
-calls out to include the file we just created at
-
-:
-
-</p>
-
+<p>calls out to include the file we just created at:</p>
  
 
 
@@ -1471,35 +906,14 @@ file path:
 
 
 
-<p>
-
-Examine the new urls.py file
-
-</p>
+<p>Examine the new urls.py file</p>
 
 
-
-<p>
-
-Let's take a quick look at the lines of the new "urls.py" file
+<p>Let's take a quick look at the lines of the new "urls.py" file
+to see what's going on. </p>
 
 
-
-
-to see what's going on. 
-
-</p>
-
-
-
-<p>
-
-Details
-
-:
-
-</p>
-
+<p>Details:</p>
 
 
 
@@ -1511,30 +925,9 @@ Details
 
 
 
-<p>
-
-The first line is a the basic import statement that
-
-
-
-
-let's use use the 
-
-<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
-
- function in 
-
-
-
-
-our 
-
-<code class=""><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span></span></code>
-
- variable later in the file.
-
-</p>
-
+<p>The first line is a the basic import statement that
+let's use use the <code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code> function in 
+our <code class=""><span class="source python"><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span></span></code> variable later in the file.</p>
 
 
 
@@ -1565,14 +958,7 @@ our
 
 
 
-<p>
-
-The next line of code is
-
-:
-
-</p>
-
+<p>The next line of code is:</p>
 
 
 
@@ -1593,19 +979,8 @@ The next line of code is
 
 
     
-<p>
-
-This imports the "views.py" file from the current
-
-
-
-
-directory. In this case that means it's pointing to
-
-:
-
-</p>
-
+<p>This imports the "views.py" file from the current
+directory. In this case that means it's pointing to:</p>
  
 
 
@@ -1632,12 +1007,7 @@ file path:
 
 
     
-<p>
-
-We'll be editing that file in our next step. 
-
-</p>
-
+<p>We'll be editing that file in our next step. </p>
 
 
 
@@ -1651,14 +1021,7 @@ We'll be editing that file in our next step.
 
 
 
-<p>
-
-The next code line is
-
-:
-
-</p>
-
+<p>The next code line is:</p>
 
 
 
@@ -1679,26 +1042,9 @@ The next code line is
 
 
     
-<p>
-
-The "app
-
-_
-
-name" provides us with part of what we need
-
-
-
-
+<p>The "app_name" provides us with part of what we need
 to automatically generate links. We'll see more about
-
-
-
-
-how that works in a moment. 
-
-</p>
-
+how that works in a moment. </p>
  
 
 
@@ -1711,14 +1057,7 @@ how that works in a moment.
 
 
 
-<p>
-
-Next we get to
-
-:
-
-</p>
-
+<p>Next we get to:</p>
 
 
 
@@ -1741,130 +1080,30 @@ Next we get to
 
 
     
-<p>
-
-These paths are combined with those from the top level 
-
-
-
-
-file (i.e. 
-
-<code class=""><span class="text plain">tutorial_site/urls.py</span></code>
-
-)
-
-
-
-
+<p>These paths are combined with those from the top level 
+file (i.e. <code class=""><span class="text plain">tutorial_site/urls.py</span></code>)
 to create that pattern matches for requested URLs and 
-
-
-
-
-assocaite them with their respective actions. 
-
-</p>
-
+assocaite them with their respective actions. </p>
 
     
-<p>
-
-In this case, we have an 
-
-<code class=""><span class="text plain">&quot;&quot;</span></code>
-
- empty string for the 
-
-
-
-
-matcher. TODO
-
-:
-
- show how this works with the top level
-
-
-
-
-urls.py file to serve the home page.
-
-</p>
-
+<p>In this case, we have an <code class=""><span class="text plain">&quot;&quot;</span></code> empty string for the 
+matcher. TODO: show how this works with the top level
+urls.py file to serve the home page.</p>
 
     
-<p>
-
-The "views.index" parameter tells Django that we want 
-
-
-
-
+<p>The "views.index" parameter tells Django that we want 
 to use the "index" function from the "views.py" file
-
-
-
-
 that was imported earlier. (That function doesn't 
-
-
-
-
 exist yet, so we'll expect an error that we'll discuss
-
-
-
-
-in a moment)
-
-</p>
-
+in a moment)</p>
 
     
-<p>
-
-The last argument passed to the path is 
-
-<code class=""><span class="text plain">name=&quot;index&quot;</span></code>
-
-. 
-
-
-
-
+<p>The last argument passed to the path is <code class=""><span class="text plain">name=&quot;index&quot;</span></code>. 
 This name is the second component we can use to 
-
-
-
-
 automatically generate links to specific URLs. In this 
-
-
-
-
-case, our "app
-
-_
-
-name" from above is "homepage" which we combine
-
-
-
-
-with "index" into the format "homepage
-
-:
-
-index". We'll see
-
-
-
-
-examples of how this is used later in the tutorial. 
-
-</p>
-
+case, our "app_name" from above is "homepage" which we combine
+with "index" into the format "homepage:index". We'll see
+examples of how this is used later in the tutorial. </p>
  
 
 
@@ -1887,53 +1126,27 @@ examples of how this is used later in the tutorial.
 
 
 
-<p>
-
-Start the server
-
-</p>
+<p>Start the server</p>
 
 
-
-<p>
-
-With our new 
-
-<code class=""><span class="text plain">urls.py</span></code>
-
- file in place we can start
-
-
-
-
+<p>With our new <code class=""><span class="text plain">urls.py</span></code> file in place we can start
 the server again to see our new error message. Run it
+with the command:</p>
 
 
 
-
-with the command
-
-:
-
-</p>
-
-
-
-
-<section class="cli-section">
-
-
+<section class="highlight cli-section">
 
 <div class="cli-wrapper">
 
-<div class="cli-title">
+    <div class="cli-title">
+    
+    command line:
+    
+    </div>
 
-command line:
 
-</div>
-
-
-<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
+    <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
 
 
     
@@ -1942,14 +1155,7 @@ command line:
 
 
     
-<p>
-
-The server will dump a big error message that ends with
-
-:
-
-</p>
-
+<p>The server will dump a big error message that ends with:</p>
 
  
 
@@ -1976,22 +1182,9 @@ command line error:
 
 
     
-<p>
-
-This is exactly what we're expecting since we know that 
-
-
-
-
+<p>This is exactly what we're expecting since we know that 
 we haven't yet created an "index" function in the homepage
-
-
-
-
-app's "views.py" file. We'll do that now. 
-
-</p>
-
+app's "views.py" file. We'll do that now. </p>
 
 
 
@@ -2005,22 +1198,10 @@ app's "views.py" file. We'll do that now.
 
 
 
-<p>
-
-Add and "index" function to the homepage app's "views.py" file
-
-</p>
+<p>Add and "index" function to the homepage app's "views.py" file</p>
 
 
-
-<p>
-
-The file we need to edit is
-
-:
-
-</p>
-
+<p>The file we need to edit is:</p>
 
 <section class="pre-section">
 
@@ -2044,24 +1225,9 @@ file path:
 
 
     
-<p>
-
-The default version that was created when we ran the "startapp"
-
-
-
-
+<p>The default version that was created when we ran the "startapp"
 command contains only a single line of code and a comment
-
-
-
-
-that looks like this
-
-:
-
-</p>
-
+that looks like this:</p>
 
 
 
@@ -2088,36 +1254,21 @@ that looks like this
 
 
     
-<p>
-
-We can remove the comment and create a new "index" function
-
-
-
-
+<p>We can remove the comment and create a new "index" function
 that Django is looking for. Here's the full contents of
-
-
-
-
-what the file should look like
-
-:
-
-</p>
-
+what the file should look like:</p>
  
 
 
 
 
 
-<section class="code-section">
+<section class="highlight code-section">
 
 <div class="code-wrapper">
 
 
-<div class="code-title">replacement for: homepage/views.py</div>
+<div class="code-title">update for: homepage/views.py</div>
 
 
 
@@ -2133,24 +1284,9 @@ what the file should look like
 
 
     
-<p>
-
-paste that in and save the file which will automatically 
-
-
-
-
+<p>paste that in and save the file which will automatically 
 reload the server and clear the errors and should show 
-
-
-
-
-this response
-
-:
-
-</p>
-
+this response:</p>
  
 
 
@@ -2184,24 +1320,9 @@ Quit the server with CONTROL-C.</pre>
 
 
     
-<p>
-
-At this point we can open our browser to our home page
-
-
-
-
+<p>At this point we can open our browser to our home page
 which will have changed from the default Django home page
-
-
-
-
-to an error page that starts with
-
-:
-
-</p>
-
+to an error page that starts with:</p>
 
 
 
@@ -2229,17 +1350,8 @@ web browesr error:
 
 
     
-<p>
-
-We'll address that in a moment, but first let's look 
-
-
-
-
-and the file we just updated. 
-
-</p>
-
+<p>We'll address that in a moment, but first let's look 
+and the file we just updated. </p>
 
 
 
@@ -2253,22 +1365,10 @@ and the file we just updated.
 
 
 
-<p>
-
-Examine the homepage views.py file
-
-</p>
+<p>Examine the homepage views.py file</p>
 
 
-
-<p>
-
-Details
-
-:
-
-</p>
-
+<p>Details:</p>
 
 
 
@@ -2280,14 +1380,7 @@ Details
 
 
 
-<p>
-
-The first line is
-
-:
-
-</p>
-
+<p>The first line is:</p>
 
 
 
@@ -2308,30 +1401,9 @@ The first line is
 
 
     
-<p>
-
-This imports some of the built
-
--
-
-in Django functionality
-
-
-
-
-for a 
-
-<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
-
- function that we'll use
-
-
-
-
-as the return value for our function. 
-
-</p>
-
+<p>This imports some of the built-in Django functionality
+for a <code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code> function that we'll use
+as the return value for our function. </p>
  
 
 
@@ -2344,14 +1416,7 @@ as the return value for our function.
 
 
 
-<p>
-
-The next code line is
-
-:
-
-</p>
-
+<p>The next code line is:</p>
 
 
 
@@ -2372,36 +1437,11 @@ The next code line is
 
 
     
-<p>
-
-This creates a new Python function named "index" that
-
-
-
-
+<p>This creates a new Python function named "index" that
 expects a "request" object to be passed to it. Since
-
-
-
-
 we're in the "views.py" file this is what the "views.index"
-
-
-
-
-portion of the 
-
-<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
-
- function in the 
-
-
-
-
-homepage "urls.py" file from above points to. 
-
-</p>
-
+portion of the <code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code> function in the 
+homepage "urls.py" file from above points to. </p>
  
 
 
@@ -2414,14 +1454,7 @@ homepage "urls.py" file from above points to.
 
 
 
-<p>
-
-Our next line is
-
-:
-
-</p>
-
+<p>Our next line is:</p>
 
 
 
@@ -2442,26 +1475,9 @@ Our next line is
 
 
     
-<p>
-
-The context is something that's required to be passed
-
-
-
-
-to 
-
-<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
-
- on the next line. We don't need
-
-
-
-
-to do anything with it on our homepage so it's empty here. 
-
-</p>
-
+<p>The context is something that's required to be passed
+to <code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code> on the next line. We don't need
+to do anything with it on our homepage so it's empty here. </p>
  
 
 
@@ -2474,14 +1490,7 @@ to do anything with it on our homepage so it's empty here.
 
 
 
-<p>
-
-Our last line is
-
-:
-
-</p>
-
+<p>Our last line is:</p>
 
 
 
@@ -2502,33 +1511,10 @@ Our last line is
 
 
     
-<p>
-
-This is the respose that's returned to Django for assembly 
-
-
-
-
+<p>This is the respose that's returned to Django for assembly 
 into the content that's sent back to the browser. The value
-
-
-
-
-that's returned is from the 
-
-<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
-
- function. 
-
-
-
-
-It takes three arguments
-
-:
-
-</p>
-
+that's returned is from the <code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code> function. 
+It takes three arguments:</p>
  
 
 
@@ -2543,12 +1529,7 @@ It takes three arguments
 
 
 
-<p>
-
-The "request" object that was passed into the "index" function
-
-</p>
-
+<p>The "request" object that was passed into the "index" function</p>
 
 
 </li>
@@ -2558,12 +1539,7 @@ The "request" object that was passed into the "index" function
 
 
 
-<p>
-
-The template to use for the rendering (in this case "homepage/index.html")
-
-</p>
-
+<p>The template to use for the rendering (in this case "homepage/index.html")</p>
 
 
 </li>
@@ -2573,12 +1549,7 @@ The template to use for the rendering (in this case "homepage/index.html")
 
 
 
-<p>
-
-And the context (which we defined as empty in the prior line)
-
-</p>
-
+<p>And the context (which we defined as empty in the prior line)</p>
 
 
 </li>
@@ -2608,46 +1579,22 @@ And the context (which we defined as empty in the prior line)
 
 
 
-<p>
-
-Stop the server
-
-</p>
+<p>Stop the server</p>
 
 
-
-<p>
-
-We'll be making another change that Django can't see
-
-
-
-
+<p>We'll be making another change that Django can't see
 automatically along with using the command line to 
-
-
-
-
 create a couple of directories for us. So, stop the
+server with:</p>
 
-
-
-
-server with
-
-:
-
-</p>
-
-
-<section class="pre-section">
+<section class="highlight pre-section">
 
 <div class="pre-wrapper">
 
 
 
 <div class="pre-title">
-keyboard:
+keyboard
 </div>
 
 
@@ -2673,74 +1620,21 @@ keyboard:
 
 
 
-<p>
-
-Create the homepage app templates directory
-
-</p>
+<p>Create the homepage app templates directory</p>
 
 
-
-<p>
-
-The homepage "views.py" file we just updated defined the template
-
-
-
-
-the 
-
-<code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code>
-
- function should use as "homepage/index.html". 
-
-
-
-
+<p>The homepage "views.py" file we just updated defined the template
+the <code class=""><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">render</span></span><span class="punctuation section arguments begin python">(</span><span class="punctuation section arguments end python">)</span></span></span></code> function should use as "homepage/index.html". 
 Django automatically looks for template directories inside apps
-
-
-
-
 to find those files. When we created the "homepage" app with
-
-
-
-
 "startapp" it didn't automatically create a "templates" directory for
+us. We need to do it ourselves. </p>
 
 
-
-
-us. We need to do it ourselves. 
-
-</p>
-
-
-
-<p>
-
-Because of the way namespacing works in Django will also need to create
-
-
-
-
+<p>Because of the way namespacing works in Django will also need to create
 another directory named "homepage" inside it. It's a little weird to 
-
-
-
-
 look at and we'll discuss why in a moment but for now we need
-
-
-
-
-to create a directory tree that looks like
-
-:
-
-</p>
-
+to create a directory tree that looks like:</p>
 
 <section class="pre-section">
 
@@ -2764,18 +1658,8 @@ directory path:
 
 
     
-<p>
-
-You can create this directory from the terminal command line
-
-
-
-
-with
-
-:
-
-</p>
+<p>You can create this directory from the terminal command line
+with:</p>
 
 
 
@@ -2783,21 +1667,18 @@ with
 
 
 
-
-<section class="cli-section">
-
-
+<section class="highlight cli-section">
 
 <div class="cli-wrapper">
 
-<div class="cli-title">
+    <div class="cli-title">
+    
+    command line:
+    
+    </div>
 
-command line:
 
-</div>
-
-
-<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">mkdir</span></span><span class="meta function-call arguments shell"><span class="variable parameter option shell"><span class="punctuation definition parameter shell"> -</span>p</span> homepage/templates/homepage</span></span></code></pre>
+    <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">mkdir</span></span><span class="meta function-call arguments shell"><span class="variable parameter option shell"><span class="punctuation definition parameter shell"> -</span>p</span> homepage/templates/homepage</span></span></code></pre>
 
 
     
@@ -2816,22 +1697,10 @@ command line:
 
 
 
-<p>
-
-Make the home page "index.html" template file
-
-</p>
+<p>Make the home page "index.html" template file</p>
 
 
-
-<p>
-
-Now we're ready to drop in our "index.html" template file at
-
-:
-
-</p>
-
+<p>Now we're ready to drop in our "index.html" template file at:</p>
 
 <section class="pre-section">
 
@@ -2855,11 +1724,7 @@ file path
 
 
     
-<p>
-
-Copy and past this for the content of the file and save it.
-
-</p>
+<p>Copy and past this for the content of the file and save it.</p>
 
 
 
@@ -2867,8 +1732,7 @@ Copy and past this for the content of the file and save it.
 
 
 
-
-<section class="code-section">
+<section class="highlight code-section">
 
 <div class="code-wrapper">
 
@@ -2881,7 +1745,9 @@ Copy and past this for the content of the file and save it.
 <pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>
 <span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>Hello, world<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
     
@@ -2900,39 +1766,25 @@ Copy and past this for the content of the file and save it.
 
 
 
-<p>
-
-Start the server
-
-</p>
+<p>Start the server</p>
 
 
-
-<p>
-
-We're ready to start the server again with
-
-:
-
-</p>
+<p>We're ready to start the server again with:</p>
 
 
 
-
-<section class="cli-section">
-
-
+<section class="highlight cli-section">
 
 <div class="cli-wrapper">
 
-<div class="cli-title">
+    <div class="cli-title">
+    
+    command line:
+    
+    </div>
 
-command line:
 
-</div>
-
-
-<pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
+    <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
 
 
     
@@ -2941,64 +1793,33 @@ command line:
 
 
     
-<p>
-
-Now, we can go back to our site and we'll see 
-
-
-
-
-our bare bones home page at
-
-:
-
-</p>
-
+<p>Now, we can go back to our site and we'll see 
+our bare bones home page at:</p>
 
  
 
 
 
 
-<section class="link-section">
+<section class="highlight link-section">
 
 <div class="link-wrapper">
 
 
-<div class="link-title">home page:</div>
+<div class="link-title">visit home page</div>
 
 
 <div class="link-block">
-
-    
-<p>
-
-
-<a href="http://127.0.0.1:8000">http://127.0.0.1:8000/</a>
-
-</p>
-
-
-    
+<p><a href="http://127.0.0.1:8000" target="_blank">http://127.0.0.1:8000/↗
+</a></p>
 
 </div>
 </section>
-
-
 </div>
 
 
-<p>
-
-It may not be a lot to look at, but it's live and that's
-
-
-
-
-the first step to making more progress. 
-
-</p>
-
+<p>It may not be a lot to look at, but it's live and that's
+the first step to making more progress. </p>
 
 
 </li>
@@ -3014,11 +1835,7 @@ the first step to making more progress.
 <hgroup>
 
   
-    <h2 class="section-heading">
-    
-      Wrapping Up
-    
-    </h2>
+    <h2 class="section-heading">Wrapping Up</h2>
     
   
 
@@ -3034,51 +1851,17 @@ the first step to making more progress.
 
 
     
-<p>
-
-We covered a lot of ground here. It feels like a lot
-
-
-
-
+<p>We covered a lot of ground here. It feels like a lot
 to make a simple home page, but we'll see in the next
-
-
-
-
 sections how what we've learned here is the basis for
-
-
-
-
 a lot of the power Django provides that we aren't 
-
-
-
-
 using yet. Things will aslo start going faster now
-
-
-
-
-that we have some understanding of the basics. 
-
-</p>
-
+that we have some understanding of the basics. </p>
 
 
 
     
-<p>
-
-TODO
-
-:
-
- Add discussion about template name spacing
-
-</p>
-
+<p>TODO: Add discussion about template name spacing</p>
 
 
 
@@ -3095,11 +1878,7 @@ TODO
 <hgroup>
 
   
-    <h2 class="section-heading">
-    
-      Links
-    
-    </h2>
+    <h2 class="section-heading">Links</h2>
     
   
 
@@ -3115,38 +1894,16 @@ TODO
 
 
     
-<p>
-
-Previous
-
-:
-
- 
-
-<a href="/en/2mc6armk/?page=section-1-basic-installation-and-super-user-creation">
-  Section 1 - Basic Installation And Super User Creation
-</a>
-
-</p>
-
+<p>Next: <a href="/en/2md4eik2/?page=seciton-3-adding-login-functionality">
+  Seciton 3 - Adding Login Functionality
+</a></p>
 
 
 
     
-<p>
-
-Next
-
-:
-
- 
-
-<a href="/en/2md4eik2/?page=seciton-3-create-a-web-user-in-the-admin-interface">
-  Seciton 3 - Create A Web User In The Admin Interface
-</a>
-
-</p>
-
+<p>Previous: <a href="/en/2mc6armk/?page=section-1-basic-installation-and-super-user-creation">
+  Section 1 - Basic Installation And Super User Creation
+</a></p>
 
 
 

@@ -1,0 +1,54 @@
+-- title
+
+Section  10 - Protecting The Notes Page
+
+-- h2
+
+Introduction
+
+-- h2
+
+Section Steps
+
+-- olist/
+
+- Add the stuff
+
+-- code/
+-- python
+
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
+from .models import Note 
+
+@login_required
+def index(request):
+    notes_list = Note.objects.order_by("created_at")
+    context = {"notes_list": notes_list}
+    return render(request, "notes/index.html", context)
+
+-- /code
+
+-- /olist
+
+-- h2
+
+Wrapping Up
+
+-- h2
+
+Links
+
+Previous: <<tlink|2miiqhla>>
+
+Next: <<tlink|2miqohlk>>
+
+-- metadata
+-- created: 2024-09-28T19:25:25-04:00
+-- updated: 2024-09-28T19:25:25-04:00
+-- id: 2miiibj3
+-- type: post
+-- status: scratch
+
+

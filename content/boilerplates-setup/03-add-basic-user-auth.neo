@@ -1,0 +1,154 @@
+-- title
+
+Boilerplate: Add Basic User Authencation To A Django Site
+
+-- h2
+
+Introduction
+
+This process sets up for basic user authentication. 
+It's designed to be run 
+after going through <<tlink|2mny1qlt>> and 
+<<tlink|2mqmyqi8>>.
+
+-- h2
+
+Boilerplate Steps
+
+-- olist/
+
+- Make the directory to hold the necessary 
+templates:
+
+-- cli/
+-- class: highlight
+
+mkdir -p templates/registration
+
+-- /cli
+
+
+- Add login/logout default redirects to the
+bottom of the <<path|site_files/settings.py>> file
+
+-- code/
+-- python
+-- class: highlight
+-- title: append to end of: site_files/settings.py
+-- no-nums
+
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+
+-- /code
+
+
+- Add the includes import and auth include to 
+<<path|site_files/urls.py>>. The file should look 
+like this:
+
+-- code/
+-- python
+-- title: update for: site_files/urls.py
+-- class: highlight
+
+from django.contrib import admin
+from django.urls import path
+from django.urls import include
+
+urlpatterns = [
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("admin/", admin.site.urls),
+]
+
+-- /code
+
+
+
+- Make the <<path|registration/login.html>> page template:
+
+
+-- code/
+-- html
+-- title: new file: templates/registration/login.html
+-- class: highlight
+
+<!DOCTYPE html>
+<html>
+<body>
+    <form method="post">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" value="Log In" />
+    </form>
+  </body>
+</html>
+
+-- /code
+
+
+- Make the <<path|registration/login_status.html>> page template
+
+-- code/
+-- html
+-- title: new file: templates/registration/login_status.html
+-- class: highlight
+
+<div>
+  {% if user.is_authenticated %}
+  <form action="{% url 'logout' %}?next={{ request.path }}" method="post">
+    {% csrf_token %}
+    User: {{ user }} - 
+    <button type="submit">Log Out</button>
+  </form>
+  {% else %}
+  {{ user }} - <a href="{% url 'login' %}?next={{ request.path }}">login</a>
+  {% endif %}
+</div>
+
+-- /code
+
+-- /olist
+
+-- h2
+
+Next Steps
+
+That's it for the basic login/logout functionality. 
+You're ready to work on the site or
+<<link|go back to the home page|/>>
+and pick a Boilerplate Task to try out. 
+
+
+-- h2
+
+Boilerplate Details
+
+
+-- list/
+
+- Right now this boilerplate only sets up so that login/logout
+can be used with the built-in users in a dev
+environment
+
+- TBD on what needs to change before deploying
+to production
+
+- The super user account created in <<tlink|2mny1qlt>>
+can be used for the test account but a better thing to
+do from a security perspective would be to create another
+account. I'll add that to a boilerplate in a future
+update.
+
+-- /list
+
+
+
+-- metadata
+-- created: 2024-10-01T15:40:35-04:00
+-- updated: 2024-10-01T15:40:35-04:00
+-- id: 2mqkkio5
+-- type: post
+-- status: draft 
+
+

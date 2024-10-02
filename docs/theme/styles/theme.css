@@ -80,11 +80,15 @@ body {
   background-color: var(--color-black-30);
   border-top-right-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem;
+  overflow-wrap: break-word;
+  white-space: pre-wrap; 
 }
 
 .code-block-no-nums {
   padding: 0.8rem;
   background-color: var(--color-black-30);
+  overflow-wrap: break-word;
+  white-space: pre-wrap; 
 }
 
 .code-title {
@@ -183,6 +187,14 @@ header {
 header a {
   color: var(--color-charlie);
 }
+
+.highlight .cli-wrapper, 
+.highlight .code-wrapper, 
+.highlight .link-wrapper, 
+.highlight .pre-wrapper
+ {
+  border-color: red;
+} 
 
 hr {
   margin-block: 1.5rem;

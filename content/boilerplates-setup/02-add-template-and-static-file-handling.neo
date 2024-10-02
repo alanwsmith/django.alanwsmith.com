@@ -1,0 +1,87 @@
+-- title
+
+Boilerplate: Add Basic Template And Static File Handling In Django
+
+-- h2
+
+Introduction
+
+This boilerplate is designed to be run after
+<<tlink|2mny1qlt>>. It sets up the site/project
+to be able to use a top level templates directory. 
+
+-- h2
+
+Boilerplate Steps 
+
+-- olist/
+
+- Create the top level templates directory:
+
+-- cli/
+-- title: mkdir for templates directory
+-- class: highlight
+
+mkdir templates
+
+-- /cli
+
+- Update <<code|DIRS>> inside <<code|TEMPLATE = []|python>>
+in the <<path|site_files/settingsl.py>> file
+
+Change:
+
+-- code/
+-- python
+-- no-nums
+-- title: original value in: site_files/settings.py
+
+"DIRS": [],
+
+-- /code
+
+To:
+
+-- code/
+-- python
+-- no-nums
+-- title: updated value in: site_files/settings.py
+-- class: highlight
+
+"DIRS": [BASE_DIR / "templates"],
+
+
+-- /code
+
+-- /olist
+
+-- h2
+
+Next Steps
+
+If you're building a site/project for a boilerplate
+example the next step is:
+
+<<tlink|2mqkkio5>>
+
+
+-- h2
+
+Boilerplate Details
+
+-- list
+
+- TODO: Add static files
+
+- TODO: Add top level templates dir if necessary
+
+
+
+-- metadata
+-- created: 2024-10-01T15:55:30-04:00
+-- updated: 2024-10-01T15:55:30-04:00
+-- id: 2mqmyqi8
+-- type: post
+-- status: draft 
+
+

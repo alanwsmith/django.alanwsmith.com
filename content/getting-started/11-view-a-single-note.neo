@@ -1,0 +1,143 @@
+-- title
+
+Seciton 11 - View A Single Note
+
+-- h2
+
+Introduction
+
+TODO: Show a 404 error
+
+-- h2
+
+Section Steps
+
+-- olist/
+
+- Add to notes urls.py
+
+-- code/
+-- python
+
+path("<int:note_id>/", views.detail, name="detail"),
+
+-- /code
+
+- There's a terminal error here
+
+- Update the notes index page to have links to the individual notes
+
+-- code/
+-- html
+
+<a href="{% url 'notes:detail' note.id %}">view note</a>
+
+-- /code
+
+- Produces a terminal error (this might be a duplicate)
+
+AttributeError: module 'notes.views' has no 
+attribute 'detail'
+
+- Add to notes/views.py
+
+-- code/
+-- python
+
+from django.shortcuts import get_object_or_404
+
+-- /code
+
+and
+
+-- code/
+-- python
+
+@login_required
+def detail(request, note_id):
+    note = get_object_or_404(Note, pk=note_id)
+    return render(request, "notes/detail.html", {"note": note})
+
+-- /code
+
+- This clears the error
+
+Visit the /notes page and you'll see the links. 
+Click one and you'll get a TemplateDoesNotExist error. 
+for "notes/detail.html"
+
+- Create the notes/details.html template
+
+-- code/
+-- html
+
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Note Detail</h1>
+</body>
+</html>
+
+-- /code
+
+- Now show the details for the note
+
+-- code/
+-- html
+
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Note Detail</h1>
+  <div>Text: {{ note.note_text }}</div>
+  <div>Date: {{ note.created_at }}</div>
+</body>
+</html>
+
+-- /code
+
+- Add links back to the notes index page
+
+-- code/
+-- html
+
+<!DOCTYPE html>
+<html>
+<body>
+  <div>
+      <a href="{% url 'notes:index' %}">Notes</a>
+  </div>
+  <h1>Note Detail</h1>
+  <div>Text: {{ note.note_text }}</div>
+  <div>Date: {{ note.created_at }}</div>
+</body>
+</html>
+
+-- /code
+
+
+-- /olist
+
+
+
+-- h2
+
+Wrapping Up
+
+-- h2
+
+Links
+
+Previous: <<tlink|2miiibj3>>
+
+Next: <<tlink|2miycfqt>>
+
+
+-- metadata
+-- created: 2024-09-28T20:28:30-04:00
+-- updated: 2024-09-28T20:28:30-04:00
+-- id: 2miqohlk
+-- type: post
+-- status: scratch
+
+
