@@ -13,14 +13,9 @@ Introduction
 - These are my notes for how to set up a basic model and views
 for a single Notes list. 
 
-- There's not any explination to speak of, it's just a copy of
-all the base files. 
-
 - This assumes you've gone though: <<tlink|2mny1qlt>>, 
 <<tlink|2mqmyqi8>>, and <<tlink|2mqkkio5>>
 
-- There's not a home page for this example, everything
-starts at: 
 
 -- link/
 
@@ -28,7 +23,7 @@ starts at:
 
 -- /link
 
-- Login is required for editing, creating, and deleting
+- Login is required for creating, editing, and deleting
 notes
 
 - This uses server side for confirmation of delete. 
@@ -41,7 +36,7 @@ for backup
 
 -- h2
 
-The Steps
+Boilerplate Steps
 
 -- olist/
 
@@ -69,7 +64,7 @@ mkdir -p notes/templates/notes
 
 -- code/
 -- python
--- title: update for: site_files/settings.py
+-- title: change for: site_files/settings.py
 -- class: highlight
 
 INSTALLED_APPS = [
@@ -88,7 +83,7 @@ INSTALLED_APPS = [
 
 -- code/
 -- python
--- title: update for: site_files/urls.py
+-- title: full updated content for: site_files/urls.py
 -- class: highlight
 
 from django.contrib import admin
@@ -108,7 +103,7 @@ urlpatterns = [
 
 -- code/
 -- python
--- title: update for: notes/models.py
+-- title: full updated content for: notes/models.py
 -- class: highlight
 
 from django.db import models
@@ -124,23 +119,12 @@ class Note(models.Model):
 
 -- /code
 
-- Run the migrations
-
--- cli/
--- class: highlight
-
-python manage.py makemigrations notes
-python manage.py migrate 
-
--- /cli
-
-
 
 - Make the "notes/urls.py" file:
 
 -- code/
 -- python
--- title: new file: notes/urls.py
+-- title: create new file: notes/urls.py
 -- class: highlight
 
 
@@ -164,7 +148,7 @@ urlpatterns = [
 
 -- code/
 -- python
--- title: update: notes/admin.py
+-- title: full updated content for: notes/admin.py
 -- class: highlight
 
 from django.contrib import admin
@@ -181,7 +165,7 @@ admin.site.register(Note)
 
 -- code/
 -- python
--- title: update for: notes/views.py
+-- title: full updated content for: notes/views.py
 -- class: highlight
 
 from django.contrib.auth.decorators import login_required
@@ -247,7 +231,7 @@ def view(request, pk):
 
 -- code/
 -- python
--- title: new file: notes/forms.py
+-- title: create new file: notes/forms.py
 -- class: highlight
 
 from django.forms import ModelForm
@@ -265,7 +249,7 @@ class NoteForm(ModelForm):
 
 -- code/
 -- html
--- title: create file: notes/templates/notes/index.html
+-- title: create new file: notes/templates/notes/index.html
 -- class: highlight
 
 <!DOCTYPE html>
@@ -291,7 +275,7 @@ class NoteForm(ModelForm):
 
 -- code/
 -- html
--- title: create file: notes/templates/notes/view.html
+-- title: create new file: notes/templates/notes/view.html
 -- class: highlight
 
 <!DOCTYPE html>
@@ -322,7 +306,7 @@ class NoteForm(ModelForm):
 
 -- code/
 -- html
--- title: create file: notes/templates/notes/create.html
+-- title: create new file: notes/templates/notes/create.html
 -- class: highlight
 
 <!DOCTYPE html>
@@ -332,7 +316,7 @@ class NoteForm(ModelForm):
     <form action="{% url 'notes:create' %}" method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Submit">
+    <input type="submit" value="Create Note">
   </body>
 </html>
 
@@ -343,7 +327,7 @@ class NoteForm(ModelForm):
 
 -- code/
 -- html
--- title: create file: notes/templates/notes/edit.html
+-- title: create new file: notes/templates/notes/edit.html
 -- class: highlight
 
 <!DOCTYPE html>
@@ -353,7 +337,7 @@ class NoteForm(ModelForm):
     <form action="{% url 'notes:edit' note.id %}" method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Submit">
+    <input type="submit" value="Update">
 </form>
 </body>
 </html>
@@ -364,7 +348,7 @@ class NoteForm(ModelForm):
 
 -- code/
 -- html
--- title: create file: notes/templates/notes/delete.html
+-- title: create new file: notes/templates/notes/delete.html
 -- class: highlight
 
 <!DOCTYPE html>
@@ -383,6 +367,18 @@ class NoteForm(ModelForm):
 </html>
 
 -- /code
+
+
+- Run the migrations
+
+-- cli/
+-- class: highlight
+
+python manage.py makemigrations notes
+python manage.py migrate 
+
+-- /cli
+
 
 - Start the server:
 

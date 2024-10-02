@@ -73,7 +73,7 @@ python manage.py runserver
 -- title: home page link
 -- class: highlight
 
-<<tablink|http://127.0.0.1:8000/|http://127.0.0.1/>>
+<<tablink|http://127.0.0.1:8000/|http://127.0.0.1:8000/>>
 
 -- /link
 

@@ -94,17 +94,6 @@ for a single Notes list. </p>
 
 
 
-<p>There's not any explination to speak of, it's just a copy of
-all the base files. </p>
-
-
-</li>
-
-
-<li class="flow">
-
-
-
 <p>This assumes you've gone though: <a href="/en/2mny1qlt/?page=boilerplate-create-a-new-django-site-x2f-project">
   Boilerplate: Create A New Django Site&#x2F;Project
 </a>, 
@@ -113,17 +102,6 @@ all the base files. </p>
 </a>, and <a href="/en/2mqkkio5/?page=boilerplate-add-basic-user-authencation-to-a-django-site">
   Boilerplate: Add Basic User Authencation To A Django Site
 </a></p>
-
-
-</li>
-
-
-<li class="flow">
-
-
-
-<p>There's not a home page for this example, everything
-starts at: </p>
 
 
 
@@ -149,7 +127,7 @@ starts at: </p>
 
 
 
-<p>Login is required for editing, creating, and deleting
+<p>Login is required for creating, editing, and deleting
 notes</p>
 
 
@@ -179,7 +157,7 @@ for backup</p>
 <hgroup>
 
   
-    <h2 class="section-heading">The Steps</h2>
+    <h2 class="section-heading">Boilerplate Steps</h2>
     
   
 
@@ -280,7 +258,7 @@ for backup</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">update for: site_files/settings.py</div>
+<div class="code-title">change for: site_files/settings.py</div>
 
 
 
@@ -319,7 +297,7 @@ for backup</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">update for: site_files/urls.py</div>
+<div class="code-title">full updated content for: site_files/urls.py</div>
 
 
 
@@ -358,7 +336,7 @@ for backup</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">update for: notes/models.py</div>
+<div class="code-title">full updated content for: notes/models.py</div>
 
 
 
@@ -389,41 +367,6 @@ for backup</p>
 
 
 
-<p>Run the migrations</p>
-
-
-
-<section class="highlight cli-section">
-
-<div class="cli-wrapper">
-
-    <div class="cli-title">
-    
-    command line:
-    
-    </div>
-
-
-    <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py makemigrations notes</span>
-<span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py migrate</span></span></code></pre>
-
-
-    
-</div>
-</section>
-
-
- 
-
-
-
-</li>
-
-
-<li class="flow">
-
-
-
 <p>Make the "notes/urls.py" file:</p>
 
 
@@ -433,7 +376,7 @@ for backup</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">new file: notes/urls.py</div>
+<div class="code-title">create new file: notes/urls.py</div>
 
 
 
@@ -475,7 +418,7 @@ for backup</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">update: notes/admin.py</div>
+<div class="code-title">full updated content for: notes/admin.py</div>
 
 
 
@@ -512,7 +455,7 @@ for backup</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">update for: notes/views.py</div>
+<div class="code-title">full updated content for: notes/views.py</div>
 
 
 
@@ -597,7 +540,7 @@ for backup</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">new file: notes/forms.py</div>
+<div class="code-title">create new file: notes/forms.py</div>
 
 
 
@@ -637,7 +580,7 @@ for backup</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">create file: notes/templates/notes/index.html</div>
+<div class="code-title">create new file: notes/templates/notes/index.html</div>
 
 
 
@@ -684,7 +627,7 @@ for backup</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">create file: notes/templates/notes/view.html</div>
+<div class="code-title">create new file: notes/templates/notes/view.html</div>
 
 
 
@@ -736,7 +679,7 @@ for backup</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">create file: notes/templates/notes/create.html</div>
+<div class="code-title">create new file: notes/templates/notes/create.html</div>
 
 
 
@@ -748,7 +691,7 @@ for backup</p>
 <span class="line-marker"></span>    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block form html">form</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">action</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;notes:create&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">method</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>post<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>    {% csrf_token %}
 <span class="line-marker"></span>    {{ form }}
-<span class="line-marker"></span>    <span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline form html">input</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">type</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>submit<span class="punctuation definition string end html">&quot;</span></span></span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">value</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>Submit<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline form html">input</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">type</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>submit<span class="punctuation definition string end html">&quot;</span></span></span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">value</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>Create Note<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
     
@@ -778,7 +721,7 @@ for backup</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">create file: notes/templates/notes/edit.html</div>
+<div class="code-title">create new file: notes/templates/notes/edit.html</div>
 
 
 
@@ -790,7 +733,7 @@ for backup</p>
 <span class="line-marker"></span>    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block form html">form</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">action</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;notes:edit&#39; note.id %}<span class="punctuation definition string end html">&quot;</span></span></span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">method</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>post<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>    {% csrf_token %}
 <span class="line-marker"></span>    {{ form }}
-<span class="line-marker"></span>    <span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline form html">input</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">type</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>submit<span class="punctuation definition string end html">&quot;</span></span></span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">value</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>Submit<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>    <span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline form html">input</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">type</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>submit<span class="punctuation definition string end html">&quot;</span></span></span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">value</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>Update<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block form html">form</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
@@ -821,7 +764,7 @@ for backup</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">create file: notes/templates/notes/delete.html</div>
+<div class="code-title">create new file: notes/templates/notes/delete.html</div>
 
 
 
@@ -846,6 +789,41 @@ for backup</p>
 
  
 
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>Run the migrations</p>
+
+
+
+<section class="highlight cli-section">
+
+<div class="cli-wrapper">
+
+    <div class="cli-title">
+    
+    command line:
+    
+    </div>
+
+
+    <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py makemigrations notes</span>
+<span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py migrate</span></span></code></pre>
+
+
+    
+</div>
+</section>
+
+
+ 
 
 
 
