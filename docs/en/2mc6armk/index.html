@@ -22,7 +22,9 @@
 <meta name="theme-color" content="#000000">
 <link rel="stylesheet" href="/theme/styles/variables.css" />
 <link rel="stylesheet" href="/theme/styles/theme.css" />
-<link rel="stylesheet" href="/theme/styles/syntax-highlighting/code-solarized-dark.css" /></head>
+<link rel="stylesheet" href="/theme/styles/syntax-highlighting/code-solarized-dark.css" />
+
+<script src="/theme/scripts/theme.js"></script></head>
 <body>
 <header>
       <a href="/">Home</a>
@@ -223,10 +225,10 @@ to create the directory and move into it:</p>
     set up the django directory
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">mkdir</span></span><span class="meta function-call arguments shell"> django_tutorial</span>
 <span class="meta function-call shell"><span class="support function cd shell">cd</span></span><span class="meta function-call arguments shell"> django_tutorial</span></span></code></pre>
+    </div>
 
 
     
@@ -263,9 +265,9 @@ installation</p>
     create the python virtual environment
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python3</span></span><span class="meta function-call arguments shell"><span class="variable parameter option shell"><span class="punctuation definition parameter shell"> -</span>m</span> venv venv</span></span></code></pre>
+    </div>
 
 
     
@@ -308,9 +310,9 @@ to actually use it. Run this command to do just that:</p>
     activate the python virtual environment
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="support function source shell">source</span></span><span class="meta function-call arguments shell"> venv/bin/activate</span></span></code></pre>
+    </div>
 
 
     
@@ -386,9 +388,9 @@ which we can do with this command now:</p>
     install django
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"><span class="variable parameter option shell"><span class="punctuation definition parameter shell"> -</span>m</span> pip install Django</span></span></code></pre>
+    </div>
 
 
     
@@ -499,9 +501,9 @@ new site/project "tutorial_site". </p>
     create the django site/project
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">django-admin</span></span><span class="meta function-call arguments shell"> startproject tutorial_site</span></span></code></pre>
+    </div>
 
 
     
@@ -546,9 +548,9 @@ directory. Move into it with:</p>
     move into the site/project directory
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="support function cd shell">cd</span></span><span class="meta function-call arguments shell"> tutorial_site</span></span></code></pre>
+    </div>
 
 
     
@@ -590,12 +592,12 @@ the "migrate" argument to "manage.py"</p>
 
     <div class="cli-title">
     
-    command line:
+    terminal commands
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py migrate</span></span></code></pre>
+    </div>
 
 
     
@@ -697,12 +699,12 @@ of using it anyway. </p>
 
     <div class="cli-title">
     
-    command line:
+    terminal commands
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py createsuperuser</span></span></code></pre>
+    </div>
 
 
     
@@ -734,12 +736,12 @@ of using it anyway. </p>
 
     <div class="cli-title">
     
-    command line:
+    terminal commands
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
+    </div>
 
 
     
@@ -850,9 +852,10 @@ address:</p>
 
 <div class="link-wrapper">
 
+<div class="link-title">
 
-<div class="link-title">home page link</div>
-
+home page link
+</div>
 
 <div class="link-block">
 <p><a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></p>
@@ -885,9 +888,10 @@ along with some more info and links. </p>
 
 <div class="link-wrapper">
 
+<div class="link-title">
 
-<div class="link-title">admin  page link</div>
-
+admin  page link
+</div>
 
 <div class="link-block">
 <p><a href="http://127.0.0.1:8000/admin/">http://127.0.0.1:8000/admin/</a></p>

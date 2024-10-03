@@ -26,15 +26,11 @@ for consistency):
 
 -- html/
 
-<form>
-  <div>
+<form class="name-form">
     <label for="dir-name">Directory Name:</label>
     <input type="text" id="dir-name" value="django_example"/ >
-  </div>
-  <div>
     <label for="module-name">Module Name:</label>
     <input type="text" id="module-name" value="site_files"/ >
-  </div>
 </form>
 
 <noscript>This page requires javascript to build the commands</noscript>
@@ -49,28 +45,25 @@ which you'll need to fill out some details for. I use
 a simple password when I'm making test boilerplate
 sites, but you can use whatever you want.
 
--- pre/
--- title: site/project creation commands
+-- cli/
 -- class: highlight
 -- id: commands
 
--- /pre
+-- /cli
 
 
 - Start the server
 
--- pre/
--- title: start the server
+-- cli/
 -- class: highlight
 
 python manage.py runserver
 
--- /pre
+-- /cli
 
 - Verify the default home page shows up
 
 -- link/
--- title: home page link
 -- class: highlight
 
 <<tablink|http://127.0.0.1:8000/|http://127.0.0.1:8000/>>
@@ -171,6 +164,16 @@ the database.
 - The <<code|createsuperuser>> command is run at the end to
 prompt for super user account details. 
 
+
+
+
+-- css
+
+.name-form {
+  display: grid;
+  grid-template-columns: 180px 200px;
+  gap: 2rem;
+}
 
 
 

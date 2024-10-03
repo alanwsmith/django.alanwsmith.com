@@ -22,7 +22,9 @@
 <meta name="theme-color" content="#000000">
 <link rel="stylesheet" href="/theme/styles/variables.css" />
 <link rel="stylesheet" href="/theme/styles/theme.css" />
-<link rel="stylesheet" href="/theme/styles/syntax-highlighting/code-solarized-dark.css" /></head>
+<link rel="stylesheet" href="/theme/styles/syntax-highlighting/code-solarized-dark.css" />
+
+<script src="/theme/scripts/theme.js"></script></head>
 <body>
 <header>
       <a href="/">Home</a>
@@ -135,14 +137,19 @@ nothing but HTML:</p>
 
 
 
-<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+
+
+<div class="code-button-wrapper"><pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>Hello, world<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -229,7 +236,12 @@ this:</p>
 
 
 
-<pre class="code-block-no-nums"><code><span class="text plain">{% lorem %}</span></code></pre>
+
+
+<div class="code-button-wrapper"><pre class="code-block-no-nums"><code><span class="text plain">{% lorem %}</span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -285,7 +297,9 @@ of the home page template index.html file with this:</p>
 
 
 
-<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+
+
+<div class="code-button-wrapper"><pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>
@@ -296,7 +310,10 @@ of the home page template index.html file with this:</p>
 <span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -318,12 +335,12 @@ then start the server if it's not already running with:</p>
 
     <div class="cli-title">
     
-    command line:
+    terminal commands
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
+    </div>
 
 
     
@@ -343,13 +360,13 @@ then start the server if it's not already running with:</p>
 
 <div class="link-wrapper">
 
+<div class="link-title">
 
-<div class="link-title">home page link</div>
-
+home page link
+</div>
 
 <div class="link-block">
-<p><a href="none" target="_blank">http://127.0.0.1/↗
-</a></p>
+<p><a href="none" target="_blank">http://127.0.0.1/</a> <span class="new-tab-arrow">↗</span></p>
 
 </div>
 </section>
@@ -382,7 +399,12 @@ is:</p>
 
 
 
-<pre class="code-block-no-nums"><code><span class="text plain">{% url &#39;NAME-OF-PAGE-TO-LINK-TO&#39; %}</span></code></pre>
+
+
+<div class="code-button-wrapper"><pre class="code-block-no-nums"><code><span class="text plain">{% url &#39;NAME-OF-PAGE-TO-LINK-TO&#39; %}</span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -413,14 +435,19 @@ file that we made in <a href="/en/2mcbmij7/?page=section-2-make-a-home-page">Sec
 
 
 
-<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span>
+
+
+<div class="code-button-wrapper"><pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="keyword control import relative python">.</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">views</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">app_name</span></span> <span class="keyword operator assignment python">=</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage<span class="punctuation definition string end python">&quot;</span></span></span>
 <span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">views</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">index</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">name</span><span class="keyword operator assignment python">=</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">index<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
-<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -447,7 +474,12 @@ name for the page like:</p>
 
 
 
-<pre class="code-block-no-nums"><code><span class="text plain">homepage:index</span></code></pre>
+
+
+<div class="code-button-wrapper"><pre class="code-block-no-nums"><code><span class="text plain">homepage:index</span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -472,7 +504,12 @@ this:</p>
 
 
 
-<pre class="code-block-no-nums"><code><span class="text plain">{% url &#39;homepage:index&#39; %}</span></code></pre>
+
+
+<div class="code-button-wrapper"><pre class="code-block-no-nums"><code><span class="text plain">{% url &#39;homepage:index&#39; %}</span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -500,7 +537,9 @@ with this:</p>
 
 
 
-<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+
+
+<div class="code-button-wrapper"><pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>
@@ -511,7 +550,10 @@ with this:</p>
 <span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -529,13 +571,13 @@ with this:</p>
 
 <div class="link-wrapper">
 
+<div class="link-title">
 
-<div class="link-title">home page link</div>
-
+home page link
+</div>
 
 <div class="link-block">
-<p><a href="none" target="_blank">http://127.0.0.1/↗
-</a></p>
+<p><a href="none" target="_blank">http://127.0.0.1/</a> <span class="new-tab-arrow">↗</span></p>
 
 </div>
 </section>
@@ -618,7 +660,9 @@ file with this:</p>
 
 
 
-<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+
+
+<div class="code-button-wrapper"><pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>
@@ -629,7 +673,10 @@ file with this:</p>
 <span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -648,13 +695,13 @@ error message:</p>
 
 <div class="link-wrapper">
 
+<div class="link-title">
 
-<div class="link-title">home page link</div>
-
+home page link
+</div>
 
 <div class="link-block">
-<p><a href="none" target="_blank">http://127.0.0.1/↗
-</a></p>
+<p><a href="none" target="_blank">http://127.0.0.1/</a> <span class="new-tab-arrow">↗</span></p>
 
 </div>
 </section>
@@ -781,7 +828,12 @@ to use:</p>
 
 
 
-<pre class="code-block-no-nums"><code><span class="text plain">{% url &#39;login&#39; %}</span></code></pre>
+
+
+<div class="code-button-wrapper"><pre class="code-block-no-nums"><code><span class="text plain">{% url &#39;login&#39; %}</span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -879,7 +931,12 @@ new line to the <code class=""><span class="text plain">urlpatterns</span></code
 
 
 
-<pre class="code-block-no-nums"><code><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">accounts/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span>,</span></code></pre>
+
+
+<div class="code-button-wrapper"><pre class="code-block-no-nums"><code><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">accounts/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span>,</span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -906,7 +963,9 @@ file to copy/paste into the file:</p>
 
 
 
-<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
+
+
+<div class="code-button-wrapper"><pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
 <span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span>
 <span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">include</span></span>
 <span class="line-marker"></span>
@@ -914,7 +973,10 @@ file to copy/paste into the file:</p>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">homepage.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">accounts/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">admin/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
-<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -946,7 +1008,12 @@ to get the page to show up. </p>
 
 
 
-<pre class="code-block-no-nums"><code><span class="text plain">{% url &#39;login&#39; %}</span></code></pre>
+
+
+<div class="code-button-wrapper"><pre class="code-block-no-nums"><code><span class="text plain">{% url &#39;login&#39; %}</span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -967,13 +1034,13 @@ error and now show the URL for the login page as <path
 
 <div class="link-wrapper">
 
+<div class="link-title">
 
-<div class="link-title">home page link</div>
-
+home page link
+</div>
 
 <div class="link-block">
-<p><a href="none" target="_blank">http://127.0.0.1/↗
-</a></p>
+<p><a href="none" target="_blank">http://127.0.0.1/</a> <span class="new-tab-arrow">↗</span></p>
 
 </div>
 </section>
@@ -1005,7 +1072,12 @@ an HTML <code class=""><span class="text plain">&lt;a&gt;</span></code> tag like
 
 
 
-<pre class="code-block-no-nums"><code><span class="text html basic"><span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Login<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+
+
+<div class="code-button-wrapper"><pre class="code-block-no-nums"><code><span class="text html basic"><span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline a html">a</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">href</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>{% url &#39;login&#39; %}<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Login<span class="meta tag inline a html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline a html">a</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -1032,7 +1104,9 @@ to use it like this:</p>
 
 
 
-<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+
+
+<div class="code-button-wrapper"><pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>
@@ -1043,7 +1117,10 @@ to use it like this:</p>
 <span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -1063,13 +1140,13 @@ intentional error which we'll address next)</p>
 
 <div class="link-wrapper">
 
+<div class="link-title">
 
-<div class="link-title">home page link</div>
-
+home page link
+</div>
 
 <div class="link-block">
-<p><a href="none" target="_blank">http://127.0.0.1/↗
-</a></p>
+<p><a href="none" target="_blank">http://127.0.0.1/</a> <span class="new-tab-arrow">↗</span></p>
 
 </div>
 </section>
@@ -1276,7 +1353,12 @@ find the line:</p>
 
 
 
-<pre class="code-block-no-nums"><code><span class="source python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">DIRS<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator annotation variable python">:</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span><span class="punctuation section list end python">]</span></span>,</span></code></pre>
+
+
+<div class="code-button-wrapper"><pre class="code-block-no-nums"><code><span class="source python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">DIRS<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator annotation variable python">:</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span><span class="punctuation section list end python">]</span></span>,</span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -1300,7 +1382,12 @@ find the line:</p>
 
 
 
-<pre class="code-block-no-nums"><code><span class="source python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">DIRS<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator annotation variable python">:</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span><span class="meta qualified-name python"><span class="variable other constant python">BASE_DIR</span></span> <span class="keyword operator arithmetic python">/</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">templates<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section list end python">]</span></span>,</span></code></pre>
+
+
+<div class="code-button-wrapper"><pre class="code-block-no-nums"><code><span class="source python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">DIRS<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator annotation variable python">:</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span><span class="meta qualified-name python"><span class="variable other constant python">BASE_DIR</span></span> <span class="keyword operator arithmetic python">/</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">templates<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section list end python">]</span></span>,</span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -1355,12 +1442,12 @@ keyboard
 
     <div class="cli-title">
     
-    command line:
+    terminal commands
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">mkdir</span></span><span class="meta function-call arguments shell"> templates</span></span></code></pre>
+    </div>
 
 
     
@@ -1459,12 +1546,12 @@ yet. Do that now with:</p>
 
     <div class="cli-title">
     
-    command line:
+    terminal commands
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">mkdir</span></span><span class="meta function-call arguments shell"><span class="variable parameter option shell"><span class="punctuation definition parameter shell"> -</span>p</span> templates/registration</span></span></code></pre>
+    </div>
 
 
     
@@ -1493,7 +1580,9 @@ with this content:</p>
 
 
 
-<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+
+
+<div class="code-button-wrapper"><pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block form html">form</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">method</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>post<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
@@ -1502,7 +1591,10 @@ with this content:</p>
 <span class="line-marker"></span>    <span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline form html">button</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">type</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>submit<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log In<span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline form html">button</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block form html">form</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -1522,12 +1614,12 @@ with this content:</p>
 
     <div class="cli-title">
     
-    command line:
+    terminal commands
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
+    </div>
 
 
     
@@ -1547,13 +1639,13 @@ with this content:</p>
 
 <div class="link-wrapper">
 
+<div class="link-title">
 
-<div class="link-title">login page link</div>
-
+login page link
+</div>
 
 <div class="link-block">
-<p><a href="none" target="_blank">http://127.0.0.1/accounts/login/↗
-</a></p>
+<p><a href="none" target="_blank">http://127.0.0.1/accounts/login/</a> <span class="new-tab-arrow">↗</span></p>
 
 </div>
 </section>
@@ -1613,13 +1705,13 @@ produces it. You can open the page with:</p>
 
 <div class="link-wrapper">
 
+<div class="link-title">
 
-<div class="link-title">login page</div>
-
+login page
+</div>
 
 <div class="link-block">
-<p><a href="none" target="_blank">http://127.0.0.1/accounts/login↗
-</a></p>
+<p><a href="none" target="_blank">http://127.0.0.1/accounts/login</a> <span class="new-tab-arrow">↗</span></p>
 
 </div>
 </section>
@@ -1641,7 +1733,9 @@ for reference: </p>
 
 
 
-<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+
+
+<div class="code-button-wrapper"><pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block form html">form</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">method</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>post<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
@@ -1650,7 +1744,10 @@ for reference: </p>
 <span class="line-marker"></span>    <span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline form html">button</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">type</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>submit<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>Log In<span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag inline form html">button</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block form html">form</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>  <span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -1676,7 +1773,12 @@ be added to every form we use. </p>
 
 
 
-<pre class="code-block-no-nums"><code><span class="text plain">{% csrf_token %}</span></code></pre>
+
+
+<div class="code-button-wrapper"><pre class="code-block-no-nums"><code><span class="text plain">{% csrf_token %}</span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -1700,7 +1802,12 @@ be added to every form we use. </p>
 
 
 
-<pre class="code-block-no-nums"><code><span class="text plain">{{ form }}</span></code></pre>
+
+
+<div class="code-button-wrapper"><pre class="code-block-no-nums"><code><span class="text plain">{{ form }}</span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -1725,7 +1832,12 @@ closing tokens that looks like this:</p>
 
 
 
-<pre class="code-block-no-nums"><code><span class="text plain">{% %}</span></code></pre>
+
+
+<div class="code-button-wrapper"><pre class="code-block-no-nums"><code><span class="text plain">{% %}</span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -1749,7 +1861,12 @@ closing tokens that looks like this:</p>
 
 
 
-<pre class="code-block-no-nums"><code><span class="text plain">{{ }}</span></code></pre>
+
+
+<div class="code-button-wrapper"><pre class="code-block-no-nums"><code><span class="text plain">{{ }}</span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -1790,7 +1907,12 @@ file to use:</p>
 
 
 
-<pre class="code-block-no-nums"><code><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
+
+
+<div class="code-button-wrapper"><pre class="code-block-no-nums"><code><span class="source python"><span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>

@@ -65,12 +65,23 @@ mkdir -p notes/templates/notes
 
 -- /cli
 
-
-- Add Notes App To INSTALLED_APPS
+- The <<code|INSTALLED_APPS = []|python>> section of 
+<<path|site_files/settings.py>> to add:
 
 -- code/
 -- python
--- title: change for: site_files/settings.py
+-- no-nums
+-- no-copy
+
+"notes.app.NotesConfig",
+
+-- /code
+
+It should look like this when you're done:
+
+-- code/
+-- python
+-- title: site_files/settings.py - replacement lines
 -- class: highlight
 
 INSTALLED_APPS = [
@@ -89,7 +100,7 @@ INSTALLED_APPS = [
 
 -- code/
 -- python
--- title: full updated content for: site_files/urls.py
+-- title: site_files/urls.py - full content replacement 
 -- class: highlight
 
 from django.contrib import admin
@@ -109,7 +120,7 @@ urlpatterns = [
 
 -- code/
 -- python
--- title: full updated content for: notes/models.py
+-- title: notes/models.py - full content replacement 
 -- class: highlight
 
 from django.db import models
@@ -154,7 +165,7 @@ urlpatterns = [
 
 -- code/
 -- python
--- title: full updated content for: notes/admin.py
+-- title: notes/admin.py - full content replacement 
 -- class: highlight
 
 from django.contrib import admin
@@ -171,7 +182,7 @@ admin.site.register(Note)
 
 -- code/
 -- python
--- title: full updated content for: notes/views.py
+-- title: notes/views.py - full content replacement 
 -- class: highlight
 
 from django.contrib.auth.decorators import login_required
@@ -237,7 +248,7 @@ def view(request, pk):
 
 -- code/
 -- python
--- title: create new file: notes/forms.py
+-- title: notes/forms.py - new file to create
 -- class: highlight
 
 from django.forms import ModelForm
@@ -255,7 +266,7 @@ class NoteForm(ModelForm):
 
 -- code/
 -- html
--- title: create new file: notes/templates/notes/index.html
+-- title: notes/templates/notes/index.html - new file to create
 -- class: highlight
 
 <!DOCTYPE html>
@@ -287,7 +298,7 @@ class NoteForm(ModelForm):
 
 -- code/
 -- html
--- title: create new file: notes/templates/notes/view.html
+-- title: notes/templates/notes/view.html - new file to create
 -- class: highlight
 
 <!DOCTYPE html>
@@ -321,7 +332,7 @@ class NoteForm(ModelForm):
 
 -- code/
 -- html
--- title: create new file: notes/templates/notes/create.html
+-- title: notes/templates/notes/create.html - new file content
 -- class: highlight
 
 <!DOCTYPE html>
@@ -347,7 +358,7 @@ class NoteForm(ModelForm):
 
 -- code/
 -- html
--- title: create new file: notes/templates/notes/edit.html
+-- title: notes/templates/notes/edit.html - new file content
 -- class: highlight
 
 <!DOCTYPE html>
@@ -373,7 +384,7 @@ class NoteForm(ModelForm):
 
 -- code/
 -- html
--- title: create new file: notes/templates/notes/delete.html
+-- title: notes/templates/notes/delete.html - new file content
 -- class: highlight
 
 <!DOCTYPE html>

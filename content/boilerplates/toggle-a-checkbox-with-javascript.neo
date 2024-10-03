@@ -36,7 +36,6 @@ the proper vecv
 - Create the app
 
 -- cli/
--- title: start a todos app
 -- class: highlight
 
 python manage.py startapp todos
@@ -46,7 +45,6 @@ python manage.py startapp todos
 - Make the todos templates directory
 
 -- cli/
--- title: make the templates dir
 -- class: highlight
 
 mkdir -p todos/templates/todos
@@ -58,7 +56,7 @@ mkdir -p todos/templates/todos
 
 -- code/
 -- python
--- title: change for: site_config/settings.py
+-- title: site_config/settings.py - section update
 -- class: highlight
 -- no-nums
 
@@ -79,7 +77,7 @@ INSTALLED_APPS = [
 
 -- code/
 -- python
--- title: full updated content for: site_config/urls.py
+-- title: site_config/urls.py - full content replacement
 -- class: highlight
 
 
@@ -99,7 +97,7 @@ urlpatterns = [
 
 -- code/
 -- python
--- title: create new file: todos/urls.py
+-- title: todos/urls.py - new file to create
 -- class: highlight
 
 from django.urls import path
@@ -118,7 +116,7 @@ urlpatterns = [
 
 -- code/
 -- python
--- title: full updated content for: todos/models.py
+-- title: todos/models.py - full content replacement
 -- class: highlight
 
 from django.db import models
@@ -136,7 +134,7 @@ class Todo(models.Model):
 
 -- code/
 -- python
--- title: full updated content for: todos/admin.py
+-- title: todos/admin.py - full content replacement
 -- class: highlight
 
 from django.contrib import admin
@@ -151,7 +149,7 @@ admin.site.register(Todo)
 
 -- code/
 -- python
--- title: full updated content for: todos/views.py
+-- title: todos/views.py - full content replacement
 -- class: highlight
 
 from django.shortcuts import render
@@ -199,11 +197,12 @@ def toggle(request, pk):
 
 -- code/
 -- html
--- title: create new file: todos/templates/todos/index.html
+-- title: todos/templates/todos/index.html - new file to create
 -- class: highlight
 
 <!DOCTYPE html>
 <html>
+
 <head>
 <script>
 function addCheckboxToggles() {
@@ -240,6 +239,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 })
 </script>
 </head>
+
 <body>
     {% include 'registration/login_status.html' %}
     <h1>To Dos</h1>
@@ -263,11 +263,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
     {% endfor %}
     </ul>
     </form>
-
     <div>
       <input type="checkbox" name="unused_checkbox" /> Django doesn't try to manage this checkbox since it doesn't have a data-href attribute
     </div>
 </body>
+
 </html>
 
 -- /code
@@ -276,7 +276,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 - Run the todos migration
 
 -- cli/
--- title: make and run the migration
 -- class: highlight
 
 python manage.py makemigrations todos
@@ -288,7 +287,6 @@ python manage.py migrate
 - Start the server
 
 -- cli/
--- title: start the server
 -- class: highlight
 
 python manage.py runserver
@@ -307,7 +305,6 @@ for others.
 username/password if you haven't already)
 
 -- link/
--- title: todos admin interface
 -- class: highlight
 
 <<tablink|http://127.0.0.1:8000/admin/todos/todo/add/|http://127.0.0.1:8000/admin/todos/todo/add/>>
@@ -319,7 +316,6 @@ username/password if you haven't already)
 the checkboxes. 
 
 -- link/
--- title: todos index page
 -- class: highlight
 
 <<tablink|http://127.0.0.1:8000/todos/|http://127.0.0.1:8000/todos/>>
