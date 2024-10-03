@@ -22,7 +22,17 @@
 <meta name="theme-color" content="#000000">
 <link rel="stylesheet" href="/theme/styles/variables.css" />
 <link rel="stylesheet" href="/theme/styles/theme.css" />
-<link rel="stylesheet" href="/theme/styles/syntax-highlighting/code-solarized-dark.css" /><script>
+<link rel="stylesheet" href="/theme/styles/syntax-highlighting/code-solarized-dark.css" />
+
+<script src="/theme/scripts/theme.js"></script><style>
+
+.name-form {
+  display: grid;
+  grid-template-columns: 180px 200px;
+  gap: 2rem;
+}
+
+</style><script>
 
 function update_commands() {
   const dir_name = document.querySelector("#dir-name").value
@@ -164,15 +174,11 @@ for consistency):</p>
 
 <section class="html-section">
 
-<form>
-  <div>
+<form class="name-form">
     <label for="dir-name">Directory Name:</label>
     <input type="text" id="dir-name" value="django_example"/ >
-  </div>
-  <div>
     <label for="module-name">Module Name:</label>
     <input type="text" id="module-name" value="site_files"/ >
-  </div>
 </form>
 
 <noscript>This page requires javascript to build the commands</noscript>
@@ -196,20 +202,20 @@ which you'll need to fill out some details for. I use
 a simple password when I'm making test boilerplate
 sites, but you can use whatever you want.</p>
 
-<section class="highlight pre-section" id="commands">
-
-<div class="pre-wrapper">
 
 
+<section class="highlight cli-section" id="commands">
 
-<div class="pre-title">
-site/project creation commands
-</div>
+<div class="cli-wrapper">
 
-
-
-
-<pre class="pre-block"></pre>
+    <div class="cli-title">
+    
+    terminal commands
+    
+    </div>
+    <div class="code-button-wrapper">
+    <pre class="cli-block"><code></code></pre>
+    </div>
 
 
     
@@ -217,8 +223,7 @@ site/project creation commands
 </section>
 
 
-
-
+ 
 
 
 
@@ -231,20 +236,20 @@ site/project creation commands
 
 <p>Start the server</p>
 
-<section class="highlight pre-section">
-
-<div class="pre-wrapper">
 
 
+<section class="highlight cli-section">
 
-<div class="pre-title">
-start the server
-</div>
+<div class="cli-wrapper">
 
-
-
-
-<pre class="pre-block">python manage.py runserver</pre>
+    <div class="cli-title">
+    
+    terminal commands
+    
+    </div>
+    <div class="code-button-wrapper">
+    <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
+    </div>
 
 
     
@@ -252,8 +257,7 @@ start the server
 </section>
 
 
-
-
+ 
 
 
 
@@ -272,13 +276,13 @@ start the server
 
 <div class="link-wrapper">
 
+<div class="link-title">
+link
 
-<div class="link-title">home page link</div>
-
+</div>
 
 <div class="link-block">
-<p><a href="http://127.0.0.1:8000/" target="_blank">http://127.0.0.1:8000/↗
-</a></p>
+<p><a href="http://127.0.0.1:8000/" target="_blank">http://127.0.0.1:8000/</a> <span class="new-tab-arrow">↗</span></p>
 
 </div>
 </section>

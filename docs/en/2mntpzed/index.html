@@ -24,7 +24,9 @@ Function Without Refreshing The Page" />
 <meta name="theme-color" content="#000000">
 <link rel="stylesheet" href="/theme/styles/variables.css" />
 <link rel="stylesheet" href="/theme/styles/theme.css" />
-<link rel="stylesheet" href="/theme/styles/syntax-highlighting/code-solarized-dark.css" /></head>
+<link rel="stylesheet" href="/theme/styles/syntax-highlighting/code-solarized-dark.css" />
+
+<script src="/theme/scripts/theme.js"></script></head>
 <body>
 <header>
       <a href="/">Home</a>
@@ -64,8 +66,6 @@ Function Without Refreshing The Page</h1>
 
   
 
-  
-
 </hgroup>
 
 
@@ -97,14 +97,6 @@ a more accessible version in the future. </p>
 
 
 
-    
-<p>TODO: Add logout button and make checkboxes read only
-when you're not logged in</p>
-
-
-
-
-    
 
     
 
@@ -142,6 +134,26 @@ when you're not logged in</p>
 
 
 
+<p>Make sure you've started the Python venv and
+are in the directory with: <em 
+
+><span 
+ class="red"
+
+>manage.py</span></em></p>
+
+
+<p>TODO: Write up how to make sure you're in
+the proper vecv</p>
+
+
+</li>
+
+
+<li class="flow">
+
+
+
 <p>Create the app</p>
 
 
@@ -152,12 +164,12 @@ when you're not logged in</p>
 
     <div class="cli-title">
     
-    start a todos app
+    terminal commands
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py startapp todos</span></span></code></pre>
+    </div>
 
 
     
@@ -186,12 +198,12 @@ when you're not logged in</p>
 
     <div class="cli-title">
     
-    make the templates dir
+    terminal commands
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">mkdir</span></span><span class="meta function-call arguments shell"><span class="variable parameter option shell"><span class="punctuation definition parameter shell"> -</span>p</span> todos/templates/todos</span></span></code></pre>
+    </div>
 
 
     
@@ -219,12 +231,14 @@ when you're not logged in</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">change for: site_config/settings.py</div>
+<div class="code-title">site_config/settings.py - section update</div>
 
 
 
 
-<pre class="code-block-no-nums"><code><span class="source python"><span class="meta qualified-name python"><span class="variable other constant python">INSTALLED_APPS</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
+
+
+<div class="code-button-wrapper"><pre class="code-block-no-nums"><code><span class="source python"><span class="meta qualified-name python"><span class="variable other constant python">INSTALLED_APPS</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
     <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.admin<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
     <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
     <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.contenttypes<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
@@ -232,7 +246,10 @@ when you're not logged in</p>
     <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.messages<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
     <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.staticfiles<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
     <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">todos.apps.TodosConfig<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator list python">,</span>
-<span class="punctuation section list end python">]</span></span></span></code></pre>
+<span class="punctuation section list end python">]</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -260,12 +277,14 @@ when you're not logged in</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">full updated content for: site_config/urls.py</div>
+<div class="code-title">site_config/urls.py - full content replacement</div>
 
 
 
 
-<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
+
+
+<div class="code-button-wrapper"><pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
 <span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span>
 <span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">include</span></span>
 <span class="line-marker"></span>
@@ -273,7 +292,10 @@ when you're not logged in</p>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">accounts/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">django.contrib.auth.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">admin/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">urls</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">todos/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">include</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">todos.urls<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
-<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -299,12 +321,14 @@ when you're not logged in</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">create new file: todos/urls.py</div>
+<div class="code-title">todos/urls.py - new file to create</div>
 
 
 
 
-<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span>
+
+
+<div class="code-button-wrapper"><pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="keyword control import relative python">.</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">views</span></span>
 <span class="line-marker"></span>
@@ -312,7 +336,10 @@ when you're not logged in</p>
 <span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">views</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">index</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">name</span><span class="keyword operator assignment python">=</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">index<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
 <span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">&lt;int:pk&gt;/toggle/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">views</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">toggle</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">name</span><span class="keyword operator assignment python">=</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">toggle<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
-<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre>
+<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -338,19 +365,24 @@ when you're not logged in</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">full updated content for: todos/models.py</div>
+<div class="code-title">todos/models.py - full content replacement</div>
 
 
 
 
-<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">db</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">models</span></span>
+
+
+<div class="code-button-wrapper"><pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">db</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">models</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span><span class="meta class python"><span class="storage type class python">class</span> <span class="entity name class python"><span class="meta generic-name python">Todo</span></span><span class="meta class inheritance python"><span class="punctuation section inheritance begin python">(</span></span></span><span class="meta class inheritance python"><span class="entity other inherited-class python">models<span class="punctuation accessor dot python">.</span>Model</span><span class="punctuation section inheritance end python">)</span></span><span class="meta class python"><span class="punctuation section class begin python">:</span></span>
 <span class="line-marker"></span>    <span class="meta qualified-name python"><span class="meta generic-name python">todo_text</span></span> <span class="keyword operator assignment python">=</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">models</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">CharField</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="variable parameter python">max_length</span><span class="keyword operator assignment python">=</span><span class="constant numeric integer decimal python">200</span></span><span class="punctuation section arguments end python">)</span></span>
 <span class="line-marker"></span>    <span class="meta qualified-name python"><span class="meta generic-name python">is_done</span></span> <span class="keyword operator assignment python">=</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">models</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">BooleanField</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="variable parameter python">default</span><span class="keyword operator assignment python">=</span><span class="constant language python">False</span></span><span class="punctuation section arguments end python">)</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span><span class="meta function python">    <span class="storage type function python">def</span> <span class="entity name function python"><span class="support function magic python">__str__</span></span></span><span class="meta function parameters python"><span class="punctuation section parameters begin python">(</span></span><span class="meta function parameters python"><span class="variable parameter python">self</span><span class="punctuation section parameters end python">)</span></span><span class="meta function python"><span class="punctuation section function begin python">:</span></span>
-<span class="line-marker"></span>        <span class="keyword control flow return python">return</span> <span class="meta qualified-name python"><span class="variable language python">self</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">todo_text</span></span></span></code></pre>
+<span class="line-marker"></span>        <span class="keyword control flow return python">return</span> <span class="meta qualified-name python"><span class="variable language python">self</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">todo_text</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -376,16 +408,21 @@ when you're not logged in</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">full updated content for: todos/admin.py</div>
+<div class="code-title">todos/admin.py - full content replacement</div>
 
 
 
 
-<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
+
+
+<div class="code-button-wrapper"><pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">contrib</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">admin</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="keyword control import relative python">.</span></span><span class="meta import-path python"><span class="meta import-name python">models</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">Todo</span></span> 
 <span class="line-marker"></span>
-<span class="line-marker"></span><span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">register</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta qualified-name python"><span class="meta generic-name python">Todo</span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
+<span class="line-marker"></span><span class="meta function-call python"><span class="meta qualified-name python"><span class="meta generic-name python">admin</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">site</span><span class="punctuation accessor dot python">.</span></span><span class="meta qualified-name python"><span class="variable function python">register</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta qualified-name python"><span class="meta generic-name python">Todo</span></span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -413,12 +450,14 @@ when you're not logged in</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">full updated content for: todos/views.py</div>
+<div class="code-title">todos/views.py - full content replacement</div>
 
 
 
 
-<pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">shortcuts</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">render</span></span>
+
+
+<div class="code-button-wrapper"><pre class="code-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">shortcuts</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">render</span></span>
 <span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">http</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">JsonResponse</span></span>
 <span class="line-marker"></span>
 <span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">todos</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">models</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">Todo</span></span> 
@@ -454,7 +493,10 @@ when you're not logged in</p>
 <span class="line-marker"></span>        <span class="meta statement conditional python"><span class="keyword control flow conditional python">else</span><span class="punctuation section block python">:</span></span>
 <span class="line-marker"></span>            <span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">JsonResponse</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta structure dictionary-or-set python"><span class="punctuation section dictionary-or-set begin python">{</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">message<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator key-value python">:</span> <span class="storage type string python">f</span><span class="meta string interpolated python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string interpolated python"><span class="string quoted double python">Must be POST<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section dictionary-or-set end python">}</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">status</span><span class="keyword operator assignment python">=</span><span class="constant numeric integer decimal python">405</span></span><span class="punctuation section arguments end python">)</span></span>
 <span class="line-marker"></span>    <span class="meta statement conditional python"><span class="keyword control flow conditional python">else</span><span class="punctuation section block python">:</span></span>
-<span class="line-marker"></span>        <span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">JsonResponse</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta structure dictionary-or-set python"><span class="punctuation section dictionary-or-set begin python">{</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">message<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator key-value python">:</span> <span class="storage type string python">f</span><span class="meta string interpolated python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string interpolated python"><span class="string quoted double python">Not authenticated<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section dictionary-or-set end python">}</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">status</span><span class="keyword operator assignment python">=</span><span class="constant numeric integer decimal python">403</span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre>
+<span class="line-marker"></span>        <span class="keyword control flow return python">return</span> <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">JsonResponse</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta structure dictionary-or-set python"><span class="punctuation section dictionary-or-set begin python">{</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">message<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator key-value python">:</span> <span class="storage type string python">f</span><span class="meta string interpolated python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string interpolated python"><span class="string quoted double python">Not authenticated<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation section dictionary-or-set end python">}</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">status</span><span class="keyword operator assignment python">=</span><span class="constant numeric integer decimal python">403</span></span><span class="punctuation section arguments end python">)</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -482,13 +524,16 @@ when you're not logged in</p>
 <div class="code-wrapper">
 
 
-<div class="code-title">create new file: todos/templates/todos/index.html</div>
+<div class="code-title">todos/templates/todos/index.html - new file to create</div>
 
 
 
 
-<pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+
+
+<div class="code-button-wrapper"><pre class="code-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">head</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag script begin html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag script html">script</span></span><span class="meta tag script begin html"><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span><span class="source js embedded html"><span class="source js"><span class="meta function declaration js"><span class="storage type function js">function</span> <span class="entity name function js">addCheckboxToggles</span><span class="punctuation section group begin js">(</span><span class="punctuation section group end js">)</span><span class="meta function declaration js"> </span></span><span class="meta block js"><span class="punctuation section block js">{</span>
@@ -525,6 +570,7 @@ when you're not logged in</p>
 <span class="line-marker"></span><span class="punctuation section block js">}</span></span></span><span class="meta group js"><span class="punctuation section group js">)</span></span></span>
 <span class="line-marker"></span></span></span><span class="meta tag script end html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag script html">script</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">head</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>    {% include &#39;registration/login_status.html&#39; %}
 <span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>To Dos<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
@@ -548,12 +594,15 @@ when you're not logged in</p>
 <span class="line-marker"></span>    {% endfor %}
 <span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">ul</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>    <span class="meta tag block form html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block form html">form</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span>
 <span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span>      <span class="meta tag inline form html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag inline form html">input</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">type</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>checkbox<span class="punctuation definition string end html">&quot;</span></span></span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">name</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>unused_checkbox<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html"> /&gt;</span></span> Django doesn&#39;t try to manage this checkbox since it doesn&#39;t have a data-href attribute
 <span class="line-marker"></span>    <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">div</span><span class="punctuation definition tag end html">&gt;</span></span>
 <span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
-<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre></div>
+
+
+
     
 </div>
 </section>
@@ -580,13 +629,13 @@ when you're not logged in</p>
 
     <div class="cli-title">
     
-    make and run the migration
+    terminal commands
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py makemigrations todos</span>
 <span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py migrate</span></span></code></pre>
+    </div>
 
 
     
@@ -615,12 +664,12 @@ when you're not logged in</p>
 
     <div class="cli-title">
     
-    start the server
+    terminal commands
     
     </div>
-
-
+    <div class="code-button-wrapper">
     <pre class="cli-block"><code><span class="source shell bash"><span class="meta function-call shell"><span class="variable function shell">python</span></span><span class="meta function-call arguments shell"> manage.py runserver</span></span></code></pre>
+    </div>
 
 
     
@@ -657,13 +706,13 @@ username/password if you haven't already)</p>
 
 <div class="link-wrapper">
 
+<div class="link-title">
+link
 
-<div class="link-title">todos admin interface</div>
-
+</div>
 
 <div class="link-block">
-<p><a href="http://127.0.0.1:8000/admin/todos/todo/add/" target="_blank">http://127.0.0.1:8000/admin/todos/todo/add/↗
-</a></p>
+<p><a href="http://127.0.0.1:8000/admin/todos/todo/add/" target="_blank">http://127.0.0.1:8000/admin/todos/todo/add/</a> <span class="new-tab-arrow">↗</span></p>
 
 </div>
 </section>
@@ -686,13 +735,13 @@ the checkboxes. </p>
 
 <div class="link-wrapper">
 
+<div class="link-title">
+link
 
-<div class="link-title">todos index page</div>
-
+</div>
 
 <div class="link-block">
-<p><a href="http://127.0.0.1:8000/todos/" target="_blank">http://127.0.0.1:8000/todos/↗
-</a></p>
+<p><a href="http://127.0.0.1:8000/todos/" target="_blank">http://127.0.0.1:8000/todos/</a> <span class="new-tab-arrow">↗</span></p>
 
 </div>
 </section>
@@ -759,6 +808,15 @@ after a short delay</p>
 <p>TODO: Verify the 403 error status works properly 
 if you try to use the checkbox without being logged in</p>
       
+
+
+</div>
+
+</li>
+
+<li class="xendnote-item">
+  <div></div>
+  <div class="flow">
 
       
         

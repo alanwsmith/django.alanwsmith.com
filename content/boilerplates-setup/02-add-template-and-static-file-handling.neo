@@ -16,10 +16,13 @@ Boilerplate Steps
 
 -- olist/
 
-- Create the top level templates directory:
+- Make sure you've started the Python venv and
+are in the directory with: <<em|<<span|manage.py|class: red>>>>
+
+TODO: Write up how to make sure you're in
+the proper venv
 
 -- cli/
--- title: mkdir for templates directory
 -- class: highlight
 
 mkdir templates
@@ -34,7 +37,8 @@ Change:
 -- code/
 -- python
 -- no-nums
--- title: original value in: site_files/settings.py
+-- no-copy
+-- title: site_files/settings.py - original value
 
 "DIRS": [],
 
@@ -45,7 +49,7 @@ To:
 -- code/
 -- python
 -- no-nums
--- title: updated value in: site_files/settings.py
+-- title: site_files/settings.py - updated line
 -- class: highlight
 
 "DIRS": [BASE_DIR / "templates"],

@@ -24,12 +24,12 @@ Perp Work
 
 -- olist/
 
-- Make sure you're in the python venv
+
+- Make sure you've started the Python venv and
+are in the directory with: <<em|<<span|manage.py|class: red>>>>
 
 TODO: Write up how to make sure you're in
 the proper vecv
-
-- Move into the directory with <<path|manage.py>>
 
 - Create app modules with <<code|startapp>> 
 
@@ -58,8 +58,9 @@ mkdir -p books/templates/books
 
 -- code/
 -- python
--- title: change for: site_files/settings.py
+-- title: site_files/settings.py - section update
 -- class: highlight
+-- no-nums
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -78,7 +79,7 @@ INSTALLED_APPS = [
 
 -- code/
 -- python
--- title: updated content for: site_files/settings.py
+-- title: site_files/urls.py - full content replacement
 -- class: highlight
 
 from django.contrib import admin
@@ -110,7 +111,7 @@ Make The Authors
 
 -- code/
 -- python
--- title: updated content for: authors/models.py
+-- title: authors/models.py - full content replacement
 -- class: highlight
 
 from django.db import models
@@ -129,7 +130,7 @@ class Author(models.Model):
 
 -- code/
 -- python
--- title: new file: authors/urls.py
+-- title: authors/urls.py - new file to create
 -- class: highlight
 
 from django.urls import path
@@ -152,7 +153,7 @@ urlpatterns = [
 
 -- code/
 -- python
--- title: updated content for: authors/admin.py
+-- title: authors/admin.py - full content replacement
 -- class: highlight
 
 from django.contrib import admin
@@ -169,7 +170,7 @@ admin.site.register(Author)
 
 -- code/
 -- python
--- title: updated content for: authors/views.py
+-- title: authors/views.py - full content replacement
 -- class: highlight
 
 
@@ -242,7 +243,7 @@ def view(request, pk):
 
 -- code/
 -- python
--- title: create new file: authors/forms.py
+-- title: authors/forms.py - new file to create
 -- class: highlight
 
 from django.forms import ModelForm
@@ -260,7 +261,7 @@ class AuthorForm(ModelForm):
 
 -- code/
 -- html
--- title: create file: authors/templates/authors/index.html
+-- title: authors/templates/authors/index.html - new file to create
 -- class: highlight
 
 
@@ -295,7 +296,7 @@ class AuthorForm(ModelForm):
 
 -- code/
 -- html
--- title: create file: authors/templates/authors/view.html
+-- title: authors/templates/authors/view.html - new file to create
 -- class: highlight
 
 <!DOCTYPE html>
@@ -330,7 +331,7 @@ class AuthorForm(ModelForm):
 
 -- code/
 -- html
--- title: create file: authors/templates/authors/create.html
+-- title: authors/templates/authors/create.html - new file to create
 -- class: highlight
 
 <!DOCTYPE html>
@@ -351,7 +352,7 @@ class AuthorForm(ModelForm):
 
 -- code/
 -- html
--- title: create file: authors/templates/authors/edit.html
+-- title: authors/templates/authors/edit.html - new file to create
 -- class: highlight
 
 <!DOCTYPE html>
@@ -361,7 +362,7 @@ class AuthorForm(ModelForm):
     <form action="{% url 'authors:edit' author.id %}" method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Submit">
+    <input type="submit" value="Update">
 </form>
 </body>
 </html>
@@ -372,7 +373,7 @@ class AuthorForm(ModelForm):
 
 -- code/
 -- html
--- title: create file: authors/templates/authors/delete.html
+-- title: authors/templates/authors/delete.html - new file to create
 -- class: highlight
 
 <!DOCTYPE html>
@@ -418,7 +419,7 @@ Make The Books
 
 -- code/
 -- python
--- title: updated content for: books/models.py
+-- title: books/models.py - full content replacement
 -- class: highlight
 
 
@@ -444,7 +445,7 @@ class BookAuthor(models.Model):
 
 -- code/
 -- python
--- title: create new file: books/urls.py
+-- title: books/urls.py - new file to create
 -- class: highlight
 
 from django.urls import path
@@ -467,7 +468,7 @@ urlpatterns = [
 
 -- code/
 -- python
--- title: updated content for: books/admin.py
+-- title: books/admin.py - full content replacement
 -- class: highlight
 
 from django.contrib import admin
@@ -484,7 +485,7 @@ admin.site.register(Book)
 
 -- code/
 -- python
--- title: updated content for: books/views.py
+-- title: books/views.py - full content replacement
 -- class: highlight
 
 from django.contrib.auth.decorators import login_required
@@ -551,7 +552,7 @@ def view(request, pk):
 
 -- code/
 -- python
--- title: create new file: books/forms.py
+-- title: books/forms.py - new file to create
 -- class: highlight
 
 from django.forms import ModelForm
@@ -569,7 +570,7 @@ class BookForm(ModelForm):
 
 -- code/
 -- html
--- title: create file: books/templates/books/index.html
+-- title: books/templates/books/index.html - new file to create
 -- class: highlight
 
 <!DOCTYPE html>
@@ -611,7 +612,7 @@ class BookForm(ModelForm):
 
 -- code/
 -- html
--- title: create file: books/templates/books/view.html
+-- title: books/templates/books/view.html - new file to create
 -- class: highlight
 
 <!DOCTYPE html>
@@ -650,7 +651,7 @@ class BookForm(ModelForm):
 
 -- code/
 -- html
--- title: create file: books/templates/books/create.html
+-- title: books/templates/books/create.html - new file to create
 -- class: highlight
 
 <!DOCTYPE html>
@@ -667,6 +668,9 @@ class BookForm(ModelForm):
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Create Book">
+    <div>
+        You have to make new authors <a href="{% url 'authors:create' %}">on this page</a>
+    </div>
   </body>
 </html>
 
@@ -677,7 +681,7 @@ class BookForm(ModelForm):
 
 -- code/
 -- html
--- title: create file: books/templates/books/edit.html
+-- title: books/templates/books/edit.html - new file to create
 -- class: highlight
 
 <!DOCTYPE html>
@@ -687,7 +691,7 @@ class BookForm(ModelForm):
     <form action="{% url 'books:edit' book.id %}" method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Submit">
+    <input type="submit" value="Update">
 </form>
 </body>
 </html>
@@ -698,7 +702,7 @@ class BookForm(ModelForm):
 
 -- code/
 -- html
--- title: create file: books/templates/books/delete.html
+-- title: books/templates/books/delete.html - new file to create
 -- class: highlight
 
 <!DOCTYPE html>
