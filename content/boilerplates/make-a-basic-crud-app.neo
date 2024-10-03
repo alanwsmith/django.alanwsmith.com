@@ -28,8 +28,8 @@ notes
 
 - This uses server side for confirmation of delete. 
 Could switch this to using javascript on the client-site,
-but the server side should probably still be there 
-for backup
+but the server side should still be there as the final
+authority
 
 -- /list
 
@@ -39,6 +39,12 @@ for backup
 Boilerplate Steps
 
 -- olist/
+
+- Make sure you've started the Python venv and
+are in the directory with: <<em|<<span|manage.py|class: red>>>>
+
+TODO: Write up how to make sure you're in
+the proper venv
 
 - Create the app
 
@@ -255,6 +261,11 @@ class NoteForm(ModelForm):
 <!DOCTYPE html>
 <html>
 <body>
+  {% include 'registration/login_status.html' %}
+  <div>
+      Notes
+  </div>
+  <hr />
   <h1>Notes</h1>
   <ul>
     {% for note in notes_list %}
@@ -264,6 +275,7 @@ class NoteForm(ModelForm):
       </li>
     {% endfor %}
   </ul> 
+  <hr />
   <div><a href="{% url 'notes:create' %}">Create A Note</a></div>
 </body>
 </html>
@@ -281,9 +293,11 @@ class NoteForm(ModelForm):
 <!DOCTYPE html>
 <html>
 <body>
+  {% include 'registration/login_status.html' %}
   <div>
       <a href="{% url 'notes:index' %}">Notes</a>
   </div>
+  <hr />
   <h1>Note Detail</h1>
   <div>{{ note.note_title }}</div>
     <div><pre>{{ note.note_text }}</pre></div>
@@ -291,7 +305,8 @@ class NoteForm(ModelForm):
     <div>Created: {{ note.created_at }}</div>
     <div>Updated: {{ note.updated_at }}</div>
   </div>
-    <div>
+  <hr />
+  <div>
     <a href="{% url 'notes:edit' note.id %}">Edit note</a>
       - 
     <a href="{% url 'notes:delete' note.id %}">Delete note</a>
@@ -312,7 +327,12 @@ class NoteForm(ModelForm):
 <!DOCTYPE html>
 <html>
 <body>
-<h1>Create A Note</h1>
+  {% include 'registration/login_status.html' %}
+  <div>
+      <a href="{% url 'notes:index' %}">Notes</a>
+  </div>
+  <hr />
+  <h1>Create A Note</h1>
     <form action="{% url 'notes:create' %}" method="post">
     {% csrf_token %}
     {{ form }}
@@ -333,12 +353,17 @@ class NoteForm(ModelForm):
 <!DOCTYPE html>
 <html>
 <body>
+  {% include 'registration/login_status.html' %}
+  <div>
+      <a href="{% url 'notes:index' %}">Notes</a>
+  </div>
+  <hr />
   <h1>Edit Note</h1>
     <form action="{% url 'notes:edit' note.id %}" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Update">
-</form>
+  </form>
 </body>
 </html>
 
@@ -354,11 +379,17 @@ class NoteForm(ModelForm):
 <!DOCTYPE html>
 <html>
 <body>
+    {% include 'registration/login_status.html' %}
+    <div>
+      <a href="{% url 'notes:index' %}">Notes</a>
+    </div>
+    <hr />
     <h1>Confirm You Want To Delete The Note</h1>
     <div>{{ note.note_title }}</div>
     <div><pre>{{ note.note_text }}</pre></div>
     <div>Created: {{ note.created_at }}</div>
     <div>Updated: {{ note.updated_at }}</div>
+    <hr />
     <form action="{% url 'notes:delete' note.id %}" method="post">
         {% csrf_token %}
         <input type="submit" value="Delete">
@@ -397,8 +428,6 @@ python manage.py runserver
 <<tablink|http://127.0.0.1:8000/notes/|http://127.0.0.1:8000/notes/>>
 
 -- /olist
-
-
 
 
 

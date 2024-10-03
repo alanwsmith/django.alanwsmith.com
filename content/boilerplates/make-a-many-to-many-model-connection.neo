@@ -24,12 +24,12 @@ Perp Work
 
 -- olist/
 
-- Make sure you're in the python venv
+
+- Make sure you've started the Python venv and
+are in the directory with: <<em|<<span|manage.py|class: red>>>>
 
 TODO: Write up how to make sure you're in
 the proper vecv
-
-- Move into the directory with <<path|manage.py>>
 
 - Create app modules with <<code|startapp>> 
 
@@ -78,7 +78,7 @@ INSTALLED_APPS = [
 
 -- code/
 -- python
--- title: updated content for: site_files/settings.py
+-- title: full updated content for: site_files/urls.py
 -- class: highlight
 
 from django.contrib import admin
@@ -361,7 +361,7 @@ class AuthorForm(ModelForm):
     <form action="{% url 'authors:edit' author.id %}" method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Submit">
+    <input type="submit" value="Update">
 </form>
 </body>
 </html>
@@ -667,6 +667,9 @@ class BookForm(ModelForm):
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Create Book">
+    <div>
+        You have to make new authors <a href="{% url 'authors:create' %}">on this page</a>
+    </div>
   </body>
 </html>
 
@@ -687,7 +690,7 @@ class BookForm(ModelForm):
     <form action="{% url 'books:edit' book.id %}" method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Submit">
+    <input type="submit" value="Update">
 </form>
 </body>
 </html>

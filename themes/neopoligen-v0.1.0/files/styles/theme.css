@@ -309,6 +309,10 @@ main {
   max-width: min(94vw, 98vi, 100%);
 }
 
+.red {
+  color: red;
+}
+
 .under-construction {
   padding: 2rem;
   border: 1px solid var(--color-alfa);

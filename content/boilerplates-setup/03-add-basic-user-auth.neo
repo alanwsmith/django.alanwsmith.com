@@ -17,6 +17,13 @@ Boilerplate Steps
 
 -- olist/
 
+
+- Make sure you've started the Python venv and
+are in the directory with: <<em|<<span|manage.py|class: red>>>>
+
+TODO: Write up how to make sure you're in
+the proper venv
+
 - Make the directory to hold the necessary 
 templates:
 
@@ -105,6 +112,7 @@ urlpatterns = [
   {{ user }} - <a href="{% url 'login' %}?next={{ request.path }}">login</a>
   {% endif %}
 </div>
+<hr />
 
 -- /code
 
